@@ -18,4 +18,16 @@ function assegurarInputs($input){
     return $input;
 }
 
+/* function assegurarInputs($input){
+    $input = XSS($input);
+    $input = sqlinjection(getconn(), $input);
+    return $input;
+}*/
+
+function assegurarInputs($input){
+    $input = XSS($input);
+    $input = sqlinjection(getconn(), $input);
+    return $input;
+}
+
 ?>
