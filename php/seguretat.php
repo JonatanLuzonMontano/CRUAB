@@ -1,5 +1,8 @@
 <?php
-
+/*
+* Código prueba
+* Código prueba
+*/
 function XSS($input){
     $input = trim($input);
     $input = stripslashes($input);
