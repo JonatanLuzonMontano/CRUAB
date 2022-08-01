@@ -1,0 +1,67 @@
+<?php
+
+header('Access-Control-Allow-Origin: *');
+include_once('../php/connexiobd.php');
+include_once('../php/seguretat.php');
+
+switch($_SERVER['REQUEST_METHOD']){
+
+    case 'POST':
+        $_POST = json_decode(file_get_contents('php://input'), true);
+
+        $email = assegurarInputs($_POST["email"]);
+        $tlf = assegurarInputs($_POST["telefon"]);
+
+        $querycheckemail = "SELECT numsoci FROM membres WHERE email='$email';";
+        $resultemail = dbconnselect($querycheckemail);
+        
+        $querychecktelefon = "SELECT numsoci FROM membres WHERE telefon=$tlf;";
+        $resulttelefon = dbconnselect($querychecktelefon);
+
+        if($valuesemail = mysqli_fetch_array($resultemail)){
+            $msg["Error"] = "Email ja existent. Cambia a un que no estigui registrat";
+        } elseif ($valuestelefon = mysqli_fetch_array($resulttelefon)) {
+            $msg["Error"] = "Telefon ja existent. Cambia a un que no estigui registrat";
+        }else{
+            $any = date("Y");
+            $query = sprintf(
+                "INSERT INTO membres (nom, primercognom, segoncognom, telefon, genere, email, pass, facultat, curs, estat, anyingres, naixement, " 
+                . "treballadorUAB, pseudonim) VALUES ('%s', '%s', '%s', %d, '%s', '%s', '%s', '%s', '%s', '%s', %d, '%s', '%s', '%s')",
+                assegurarInputs($_POST["nom"]),
+                assegurarInputs($_POST["cognom1"]),
+                assegurarInputs($_POST["cognom2"]),
+                $tlf,
+                assegurarInputs($_POST["genere"]),
+                $email, 
+                assegurarInputs($_POST["password"]), 
+                assegurarInputs($_POST["facultat"]), 
+                assegurarInputs($_POST["curs"]),
+                'Inactiu', 
+                $any, 
+                assegurarInputs($_POST["naixement"]), 
+                assegurarInputs($_POST["treballador"]), 
+                assegurarInputs($_POST["mote"])
+            );
+            
+            $resultat = dbconninsert($query);
+
+            if(substr($resultat, 0, 5) == "Error"){
+                $msg["Error"] = "Error al inserir les dades. comproba que tot estigui correcte";
+                $msg["DeBug"] = $resultat;
+            } else {
+                $msg["Correcte"] = "Tot ok";
+            }
+
+        }
+        
+        break;
+
+    default:
+        http_response_code(400);
+        $msg["Error"]="wrong method";
+        break;
+}
+
+echo json_encode($msg);
+
+?>
