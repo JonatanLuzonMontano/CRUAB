@@ -9,18 +9,24 @@
   <link rel="stylesheet" href="css/general.css">
 </head>
 
-<body class="white-mode" onload="obtenirLloguersJocs()">
+<body onload="obtenirLloguersJocs()">
   <header id="topbar" class="navigation">
     <nav id="navbar">
       <a class="navbar-brand" href="index.html">CRUAB</a>
 
-      <div class="collapse">
+      <div id="navbuttons" class="collapsed">
         <a class="nav-link" aria-current="page" href="jocstaula.html">Jocs de taula</a>
         <a class="nav-link" aria-current="page" href="manuals.html">Manuals</a>
-                <a class="nav-link" aria-current="page" href="usuari.html">Usuari</a>
+        <a class="nav-link" aria-current="page" href="usuari.html">Usuari</a>
       </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse"
-        data-target="#navbarSupportedContent"></button>
+      <button id="theme-toggler" type="button" data-toggle="theme" data-target="body"></button>
+      <button id="theme-toggler" type="button" data-toggle="theme" data-target="body"><svg
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path
+            d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z" />
+        </svg></button>
+      <button id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbuttons"></button>
     </nav>
   </header>
 
