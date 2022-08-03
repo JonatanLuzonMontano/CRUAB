@@ -77,6 +77,7 @@ select {
 
 :root {
     /*fonts*/
+    --brand-font-size: 35px;
     --nav-font-size: 27px;
     --h1-size: 35px;
     --h2-size: 27px;
@@ -95,6 +96,7 @@ body.white-mode {
     --body-bg-color: hsl(0, 0%, 100%);
     --body-bg-image: none;
     --nav-bg-color: hsl(0, 0%, 90%);
+    --nav-bg-image: none;
 
     /*interactive colors*/
     --button-bg-base: var(--nav-bg-color);
@@ -115,7 +117,7 @@ body.white-mode {
 
 body.black-mode {
     --theme-max-contrast: white;
-    
+
     --body-bg-color: hsl(0, 0%, 20%);
     --nav-bg-color: hsl(0, 0%, 30%);
 }
@@ -132,69 +134,49 @@ body {
     accent-color: var(--accent-color);
 }
 
-.navbar {
-    position: fixed;
-    background: var(--nav-bg-color);
-    width: 100vw;
-    max-width: 100%;
-    height: 10vh;
-    z-index: 2;
-    user-select: none;
-}
-
-.navbar .container-fluid {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
+header {
     width: 100%;
-    height: 100%;
-}
-
-.container-fluid .navbar-brand {
-    text-align: center;
-    font-size: 30px;
-    text-decoration: unset;
-    color: hsl(0, 0%, 24%);
-    min-width: 9ch;
-    margin-block-start: auto;
-    margin-block-end: auto;
-}
-
-/*
-.container-fluid #navbarSupportedContent {}
-*/
-#navbarSupportedContent ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+    display: block;
+    position: sticky;
     height: 10vh;
+    background-color:var(--nav-bg-color);
+    background-image:var(--nav-bg-image);
 }
 
-#navbarSupportedContent ul li {
-    float: left;
-
-}
-
-#navbarSupportedContent ul li a {
+header>nav {
     display: flex;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    font-size: var(--nav-font-size);
-    padding: 0 10px;
-    text-decoration: none;
-    background-color: var(--button-bg-base);
-    height: 10vh;
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
     align-items: center;
 }
 
-#navbarSupportedContent ul li a:hover:not(.clicked) {
-    background: var(--button-bg-hover);
+header>nav>a,
+header>nav>.collapse {
+    height: 100%;
+    margin-block: auto;
+    display: flex;
+    align-items: center;
 }
 
-#navbarSupportedContent ul li a.clicked {
-    background: var(--button-bg-clicked);
+header>nav>.collapse>a {
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    font-size: var(--nav-font-size);
+    color: var(--h2-color);
+    text-decoration: none;
 }
+
+header .navbar-brand {
+    font-size: var(--brand-font-size);
+    text-decoration: none;
+    color: var(--h1-color);
+    margin: 0 30px;
+}
+
+
+
 
 
 
@@ -213,21 +195,18 @@ body {
 
 
 
-
 #main-content {
-    display: flex;
-    justify-content: center;
     width: 100vw;
     min-height: 100vh;
-
+    display: flex;
+    justify-content: center;
 }
 
-#main-content article {
-    margin-top: 20vh;
+#main-content div {
+    margin-top: 10vh;
     width: 80%;
     min-height: 80vh;
 }
-
 
 #main-content h1 {
     font-size: var(--h1-size);

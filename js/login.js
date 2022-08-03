@@ -20,7 +20,7 @@ function ferLogin(){
             } else {
                 sessionStorage.setItem("numsoci", data["numsoci"]);
                 sessionStorage.setItem("juntari", data["juntari"]);
-                window.location.href = "http://www.cruab.local/index.html";
+                window.location.href = "http://localhost/CRUAB/index.html";
             }
         }
     };
