@@ -103,7 +103,7 @@ body:not(black-mode) {
     --accent-color: hsl(0, 84%, 29%);
 
     /*base backgrounds*/
-    --body-bg-color: var(--theme-10contrast);
+    --body-bg-color: var(--theme-mincontrast);
     --body-bg-image: none;
     --nav-bg-color: var(--theme-20contrast);
 
@@ -117,7 +117,7 @@ body:not(black-mode) {
     --input-border: var(--theme-maxcontrast);
 
     /*text color*/
-    --text-color-general: var(--theme-maxcontrast);
+    --text-color-general: var(--theme-80contrast);
     --header-color-general: var(--text-color-general);
     --h1-color: var(--header-color-general);
     --h2-color: var(--header-color-general);
@@ -126,7 +126,7 @@ body:not(black-mode) {
     --p-color: var(--text-color-general);
 
 }
-/*
+
 body.black-mode {
     --theme-maxcontrast: hsl(0, 0%, 100%);
     --theme-90contrast: hsl(0, 0%, 90%);
@@ -139,9 +139,12 @@ body.black-mode {
     --theme-20contrast: hsl(0, 0%, 20%);
     --theme-10contrast: hsl(0, 0%, 10%);
     --theme-mincontrast: hsl(0, 0%, 0%);
-    --body-bg-color: hsl(0, 0%, 20%);
-    --nav-bg-color: hsl(0, 0%, 30%);
-}*/
+
+    --body-bg-color:var(--theme-20contrast);
+    --nav-bg-color: var(--theme-30contrast);
+    --button-bg-hover: var(--theme-40contrast);
+    --button-bg-clicked: var(--theme-50contrast);
+}
 
 body {
     background-color: var(--body-bg-color);
@@ -226,14 +229,20 @@ nav #theme-toggler {
     position: absolute;
     right: 0px;
     top: 0px;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: var(--nav-height);
     height: var(--nav-height);
     z-index: 4;
     border: unset;
-    background-color: var(--button-bg-base);
+    background:none;
 }
 
+nav #theme-toggler svg {
+    width:25px;
+    height:25px;
+}
 
 
 
@@ -394,9 +403,15 @@ input[type="file"] {
     #navbuttons.collapsed {
         display: none !important;
     }
+    nav #navbar-toggler {
+        top:15px;
+    }
 
-
-
+    nav #theme-toggler {
+        position: absolute;
+        right: 70px;
+        top: 0px;
+    }
 
     #main-content article {
         width: 90%;

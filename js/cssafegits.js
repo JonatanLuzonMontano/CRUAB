@@ -22,6 +22,5 @@ function opennav() {
 }
 
 function changetheme() {
-    document.body.classList.toggle("white-mode");
     document.body.classList.toggle("black-mode");
 }
