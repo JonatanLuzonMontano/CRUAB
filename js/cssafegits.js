@@ -9,6 +9,7 @@ function addevents() {
     }
 
     document.getElementById("navbar-toggler").addEventListener('click', opennav);
+    document.getElementById("theme-toggler").addEventListener('click', changetheme);
 }
 
 function clickeffect(e) {
@@ -18,4 +19,9 @@ function clickeffect(e) {
 
 function opennav() {
     document.getElementById("navbuttons").classList.toggle("collapsed");
+}
+
+function changetheme() {
+    document.body.classList.toggle("white-mode");
+    document.body.classList.toggle("black-mode");
 }
