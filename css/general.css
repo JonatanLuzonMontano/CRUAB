@@ -89,7 +89,9 @@ select {
 }
 
 body.white-mode {
-    --theme-maxcontrast: black;
+    --theme-maxcontrast: hsl(0, 0%, 0%);
+    --theme-80contrast: hsl(0, 0%, 20%);
+    --theme-mincontrast: hsl(0, 0%, 100%);
     --accent-color: hsl(0, 84%, 29%);
 
     /*base backgrounds*/
@@ -117,7 +119,7 @@ body.white-mode {
 
 body.black-mode {
     --theme-max-contrast: white;
-
+    --theme-mincontrast: black;
     --body-bg-color: hsl(0, 0%, 20%);
     --nav-bg-color: hsl(0, 0%, 30%);
 }
@@ -134,13 +136,19 @@ body {
     accent-color: var(--accent-color);
 }
 
+::selection {
+    background: var(--theme-80contrast);
+    color: var(--theme-mincontrast);
+}
+
 header {
     width: 100%;
     display: block;
     position: sticky;
     height: 10vh;
-    background-color:var(--nav-bg-color);
-    background-image:var(--nav-bg-image);
+    background-color: var(--nav-bg-color);
+    background-image: var(--nav-bg-image);
+    user-select: none;
 }
 
 header>nav {
@@ -162,10 +170,20 @@ header>nav>.collapse {
 header>nav>.collapse>a {
     display: flex;
     align-items: center;
-    padding-left: 10px;
+    height: 100%;
+    padding: 0 20px;
     font-size: var(--nav-font-size);
     color: var(--h2-color);
     text-decoration: none;
+    background-color: var(--button-bg-base);
+}
+
+header>nav>.collapse>a:hover {
+    background-color: var(--button-bg-hover);
+}
+
+header>nav>.collapse>a.clicked {
+    background-color: var(--button-bg-clicked);
 }
 
 header .navbar-brand {
@@ -202,11 +220,52 @@ header .navbar-brand {
     justify-content: center;
 }
 
-#main-content div {
+#main-content>div,
+#main-content>article {
     margin-top: 10vh;
     width: 80%;
     min-height: 80vh;
 }
+
+#main-content * {
+    outline: 1px dashed red;
+}
+
+#user-page {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+#user-info {
+    width: 300px;
+    height: 500px;
+    margin-left: 100px;
+    padding: 20px 10px;
+}
+
+#user-info * {
+    margin-bottom: 10px;
+}
+
+#user-image {
+    width: 200px;
+    height: 200px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+
+#user-image img {
+    width: 200px;
+    height: 200px;
+    background: lightgray;
+    border-radius: 100%;
+    border: 1px solid rgb(230, 230, 230);
+}
+
 
 #main-content h1 {
     font-size: var(--h1-size);
@@ -256,4 +315,15 @@ input {
     margin-bottom: 10px;
     border: 1px solid var(--input-border);
     border-radius: 3px;
+}
+
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 20vh;
+    background-color: var(--nav-bg-color);
 }
