@@ -124,8 +124,6 @@ body.black-mode {
     --nav-bg-color: hsl(0, 0%, 30%);
 }
 
-
-
 body {
     background-color: var(--body-bg-color);
     width: 100vw;
@@ -142,10 +140,12 @@ body {
 }
 
 header {
+    --nav-height:10vh;
+
     width: 100%;
     display: block;
     position: sticky;
-    height: 10vh;
+    height: var(--nav-height);
     background-color: var(--nav-bg-color);
     background-image: var(--nav-bg-image);
     user-select: none;
@@ -160,14 +160,14 @@ header>nav {
 }
 
 header>nav>a,
-header>nav>.collapse {
+#navbuttons {
     height: 100%;
     margin-block: auto;
     display: flex;
     align-items: center;
 }
 
-header>nav>.collapse>a {
+#navbuttons>a {
     display: flex;
     align-items: center;
     height: 100%;
@@ -178,11 +178,11 @@ header>nav>.collapse>a {
     background-color: var(--button-bg-base);
 }
 
-header>nav>.collapse>a:hover {
+#navbuttons>a:hover {
     background-color: var(--button-bg-hover);
 }
 
-header>nav>.collapse>a.clicked {
+#navbuttons>a.clicked {
     background-color: var(--button-bg-clicked);
 }
 
@@ -193,17 +193,21 @@ header .navbar-brand {
     margin: 0 30px;
 }
 
-
-
-
-
-
-@media screen and (min-width:900px) {
-    .navbar-toggler {
-        display: none;
-    }
-
+nav #navbar-toggler {
+    position:absolute;
+    right:20px;
+    top:10px;
+    display:block;
+    width:50px;
+    height:50px;
 }
+
+
+
+
+
+
+
 
 
 
@@ -233,14 +237,13 @@ header .navbar-brand {
 
 #user-page {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: row;
 }
 
 #user-info {
     width: 300px;
     height: 500px;
-    margin-left: 100px;
     padding: 20px 10px;
 }
 
@@ -249,8 +252,10 @@ header .navbar-brand {
 }
 
 #user-image {
-    width: 200px;
-    height: 200px;
+    --img-size: calc((20vw + 20vh) /2 );
+
+    width: var(--img-size);
+    height: var(--img-size);
 }
 
 input[type="file"] {
@@ -259,8 +264,10 @@ input[type="file"] {
 
 
 #user-image img {
-    width: 200px;
-    height: 200px;
+    min-width: var(--img-size);
+    min-height: var(--img-size);
+    width: var(--img-size);
+    height: var(--img-size);
     background: lightgray;
     border-radius: 100%;
     border: 1px solid rgb(230, 230, 230);
@@ -304,10 +311,81 @@ input[type="file"] {
         --p-size: 15px;
     }
 
+    
+}
+
+@media screen and (min-width:900px) {
+    nav > #navbar-toggler {
+        display: none;
+    }
+}
+
+
+@media screen and (max-width:900px) {
+
+
+    header > nav {
+        flex-direction:column;
+        justify-content: flex-start;
+    }
+    header > nav > #navbuttons {
+        background-color:var(--nav-bg-color);
+        position: absolute;
+        top: var(--nav-height);
+        left:0;
+        height: auto;
+        width:100vw;
+        margin-block: auto;
+        display: flex;
+        flex-direction:column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    
+    header > nav > #navbuttons>a {
+        display: flex;
+        align-items: flex-start;
+        height: 100%;
+        padding: 0 20px;
+        font-size: var(--nav-font-size);
+        color: var(--h2-color);
+        text-decoration: none;
+        background-color: var(--button-bg-base);
+    }
+    
+    header > nav > #navbuttons>a:hover {
+        background-color: var(--button-bg-hover);
+    }
+    
+    header > nav > #navbuttons>a.clicked {
+        background-color: var(--button-bg-clicked);
+    }
+
+    #navbuttons.collapsed {
+        display: none !important;
+    }
+
+    
+
+
     #main-content article {
         width: 90%;
     }
+
+
+    #user-page {
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: column;
+        align-items: center;
+    }
 }
+
+
+
+
+
+
 
 
 

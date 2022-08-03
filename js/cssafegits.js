@@ -7,8 +7,15 @@ function addevents() {
         navbuttons[i].addEventListener('mousedown', clickeffect);
         navbuttons[i].addEventListener('mouseup', clickeffect);
     }
+
+    document.getElementById("navbar-toggler").addEventListener('click', opennav);
 }
 
 function clickeffect(e) {
     e.target.classList.toggle("clicked");
+}
+
+
+function opennav() {
+    document.getElementById("navbuttons").classList.toggle("collapsed");
 }
