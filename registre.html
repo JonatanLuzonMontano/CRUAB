@@ -35,92 +35,115 @@
       <div id="missatge"></div>
 
       <form id="formulari" name="formregistre">
-        <div>
-          <input type="text" id="nom" name="nom" placeholder="Nom" required>
-        </div>
-        <div>
-          <input type="text" id="cognom1" name="cognom1" placeholder="Primer cognom" required>
-        </div>
-        <div>
-          <input type="text" id="cognom2" name="cognom2" placeholder="Segon cognom" required>
-        </div>
-        <div>
-          <input type="text" id="genere" name="genere" placeholder="Génere" required>
-        </div>
-        <div>
-          <input type="email" id="email" name="email" placeholder="exemple@uab.cat" required>
-        </div>
-        <div>
-          <input type="password" id="password" name="password" placeholder="Contrasenya" required>
-        </div>
-        <div>
-          <input type="number" id="telefon" name="telefon" placeholder="Telèfon" required>
-        </div>
-
-        <div>
-          Facultat:
-          <select id="facultat" name="facultat" class="form-select" aria-label="Default select example">
-            <option value="Escola Enginyeria">Escola d'Enginyeria</option>
-            <option value="Escola de Postgrau">Escola de Postgrau</option>
-            <option value="Economia i Empresa">Economia i Empresa</option>
-            <option value="Biociències">Biociències</option>
-            <option value="Biociències">Ciències</option>
-            <option value="Ciències de l'Educació">Ciències de l'Educació</option>
-            <option value="Ciències de la Comunicació">Ciències de la Comunicació</option>
-            <option value="Ciències Polítiques i de Sociologia">Ciències Polítiques i de Sociologia</option>
-            <option value="Dret">Dret</option>
-            <option value="Filosofia i Lletres">Filosofia i Lletres</option>
-            <option value="Medicina">Medicina</option>
-            <option value="Psicologia">Psicologia</option>
-            <option value="Traducció i Interpretació">Traducció i Interpretació</option>
-            <option value="Veterinària">Veterinària</option>
-            <option value="Cap">Cap</option>
-          </select>
-        </div>
-
-        <div>
-          Curs:
-          <select id="curs" name="curs" class="form-select" aria-label="Default select example">
-            <option value="Primer">Primer</option>
-            <option value="Primer">Segon</option>
-            <option value="Primer">Tercer</option>
-            <option value="Primer">Quart</option>
-            <option value="Primer">Cinquè</option>
-            <option value="Intercanvi">Intercanvi</option>
-            <option value="Alumni">Antic estudiant</option>
-            <option value="Altres">Altres</option>
-          </select>
-        </div>
-
-        <div>
-          <label for="start">Data de naixement:</label>
-
-          <input type="date" id="naixement" name="naixement" min="1980-01-01" required>
-        </div>
-
-        <div>
-          Treballes a la universitat?
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="treballador" id="flexRadioDefault1" value="si">
-            <label class="form-check-label" for="flexRadioDefault1">
-              Si
-            </label>
+        <div id="first-column">
+          <div>
+            <label class="form-input-label" for="nom">Nom</label>
+            <br>
+            <input type="text" id="nom" name="nom" required>
           </div>
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="treballador" id="flexRadioDefault2" value="no" checked>
-            <label class="form-check-label" for="flexRadioDefault2">
-              No
-            </label>
+          <div>
+            <label class="form-input-label" for="cognom1">Primer cognom</label>
+            <br>
+            <input type="text" id="cognom1" name="cognom1" required>
+          </div>
+          <div>
+            <label class="form-input-label" for="cognom2">Segon cognom</label>
+            <br>
+            <input type="text" id="cognom2" name="cognom2" required>
+          </div>
+          <div>
+            <label class="form-input-label" for="genere">Génere</label>
+            <br>
+            <input type="text" id="genere" name="genere" required>
+          </div>
+          <div>
+            <label class="form-input-label" for="email">E-mail</label>
+            <br>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+            <label class="form-input-label" for="password">Contrasenya</label>
+            <br>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <div>
+            <label class="form-input-label" for="telefon">Telèfon</label>
+            <br>
+            <input type="number" id="telefon" name="telefon" required>
           </div>
         </div>
-
-        <div>
-          <input type="text" id="mote" name="mote" placeholder="Mote">
+        <div id="second-column">
+          <div>
+            <label class="form-input-label" for="facultat">Facultat:</label>
+            <br>
+            <select id="facultat" name="facultat" class="form-select" aria-label="Default select example">
+              <option value="Escola Enginyeria">Escola d'Enginyeria</option>
+              <option value="Escola de Postgrau">Escola de Postgrau</option>
+              <option value="Economia i Empresa">Economia i Empresa</option>
+              <option value="Biociències">Biociències</option>
+              <option value="Biociències">Ciències</option>
+              <option value="Ciències de l'Educació">Ciències de l'Educació</option>
+              <option value="Ciències de la Comunicació">Ciències de la Comunicació</option>
+              <option value="Ciències Polítiques i de Sociologia">Ciències Polítiques i de Sociologia</option>
+              <option value="Dret">Dret</option>
+              <option value="Filosofia i Lletres">Filosofia i Lletres</option>
+              <option value="Medicina">Medicina</option>
+              <option value="Psicologia">Psicologia</option>
+              <option value="Traducció i Interpretació">Traducció i Interpretació</option>
+              <option value="Veterinària">Veterinària</option>
+              <option value="Cap">Cap</option>
+            </select>
+          </div>
+          <br>
+          <div>
+            <label class="form-input-label" for="curs">Curs:</label>
+            <br>
+            <select id="curs" name="curs" class="form-select" aria-label="Default select example">
+              <option value="Primer">Primer</option>
+              <option value="Primer">Segon</option>
+              <option value="Primer">Tercer</option>
+              <option value="Primer">Quart</option>
+              <option value="Primer">Cinquè</option>
+              <option value="Intercanvi">Intercanvi</option>
+              <option value="Alumni">Antic estudiant</option>
+              <option value="Altres">Altres</option>
+            </select>
+          </div>
+          <br>
+          <div>
+            <label for="naixement">Data de naixement:</label>
+            <br>
+            <input type="date" id="naixement" name="naixement" min="1980-01-01" required>
+          </div>
+          <br>
+          <div>
+            <label class="form-input-label">Treballes a la universitat?</label>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="treballador" id="flexRadioDefault1" value="si">
+              <label class="form-check-label" for="flexRadioDefault1">
+                Si
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="treballador" id="flexRadioDefault2" value="no" checked>
+              <label class="form-check-label" for="flexRadioDefault2">
+                No
+              </label>
+            </div>
+          </div>
+          <br>
+          <div>
+            <label class="form-check-label" for="mote">Sobrenom</label>
+            <br>
+            <input type="text" id="mote" name="mote">
+          </div>
+  
+          <div>
+            <input type="button" onclick="enviarDades()" id="registre" name="submit" value="Enregistrar-se">
+          </div>
         </div>
 
-        <div>
-          <input type="button" onclick="enviarDades()" id="registre" name="submit" value="Enregistrar-se">
-        </div>
+        
 
       </form>
     </article>
