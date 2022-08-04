@@ -2,145 +2,155 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cruab</title>
-    <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="css/general.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cruab</title>
+  <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/estilos.css">-->
+  <link rel="stylesheet" href="css/general.css">
 </head>
 
 <body>
-    <header id="topbar" class="navigation">
-        <nav id="navbar">
-            <a class="navbar-brand" href="index.html">CRUAB</a>
+  <header id="topbar" class="navigation">
+    <nav id="navbar">
+      <a class="navbar-brand" href="index.html">CRUAB</a>
 
-            <div id="navbuttons" class="collapsed">
-                <a class="nav-link" aria-current="page" href="jocstaula.html">Jocs de taula</a>
-                <a class="nav-link" aria-current="page" href="manuals.html">Manuals</a>
-                <a class="nav-link" aria-current="page" href="usuari.html">Usuari</a>
-            </div>
-            <button id="theme-toggler" type="button" data-toggle="theme" data-target="body"><svg
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                    <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-                    <path
-                        d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z" />
-                </svg></button>
-            <button id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbuttons"></button>
-        </nav>
-    </header>
+      <div id="navbuttons" class="collapsed">
+        <a class="nav-link" aria-current="page" href="jocstaula.html">Jocs de taula</a>
+        <a class="nav-link" aria-current="page" href="manuals.html">Manuals</a>
+        <a class="nav-link" aria-current="page" href="usuari.html">Usuari</a>
+      </div>
+      <button id="theme-toggler" type="button" data-toggle="theme" data-target="body"><svg
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+          <path
+            d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z" />
+        </svg></button>
+      <button id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbuttons"></button>
+    </nav>
+  </header>
 
-    <main id="main-content">
-        <article>
-            <div id="missatge"></div>
+  <main id="main-content">
+    <article>
+      <div id="missatge"></div>
 
-            <form id="formulari" name="formregistre">
-                <div>
-                    <input type="text" id="nom" name="nom" placeholder="Nom" required>
-                </div>
-                <div>
-                    <input type="text" id="cognom1" name="cognom1" placeholder="Primer cognom" required>
-                </div>
-                <div>
-                    <input type="text" id="cognom2" name="cognom2" placeholder="Segon cognom" required>
-                </div>
-                <div>
-                    <input type="text" id="genere" name="genere" placeholder="Génere" required>
-                </div>
-                <div>
-                    <input type="email" id="email" name="email" placeholder="exemple@uab.cat" required>
-                </div>
-                <div>
-                    <input type="password" id="password" name="password" placeholder="Contrasenya" required>
-                </div>
-                <div>
-                    <input type="number" id="telefon" name="telefon" placeholder="Telèfon" required>
-                </div>
-
-                <div>
-                    Facultat:
-                    <select id="facultat" name="facultat" class="form-select" aria-label="Default select example">
-                        <option value="Escola Enginyeria">Escola d'Enginyeria</option>
-                        <option value="Escola de Postgrau">Escola de Postgrau</option>
-                        <option value="Economia i Empresa">Economia i Empresa</option>
-                        <option value="Biociències">Biociències</option>
-                        <option value="Biociències">Ciències</option>
-                        <option value="Ciències de l'Educació">Ciències de l'Educació</option>
-                        <option value="Ciències de la Comunicació">Ciències de la Comunicació</option>
-                        <option value="Ciències Polítiques i de Sociologia">Ciències Polítiques i de Sociologia</option>
-                        <option value="Dret">Dret</option>
-                        <option value="Filosofia i Lletres">Filosofia i Lletres</option>
-                        <option value="Medicina">Medicina</option>
-                        <option value="Psicologia">Psicologia</option>
-                        <option value="Traducció i Interpretació">Traducció i Interpretació</option>
-                        <option value="Veterinària">Veterinària</option>
-                        <option value="Cap">Cap</option>
-                    </select>
-                </div>
-
-                <div>
-                    Curs:
-                    <select id="curs" name="curs" class="form-select" aria-label="Default select example">
-                        <option value="Primer">Primer</option>
-                        <option value="Primer">Segon</option>
-                        <option value="Primer">Tercer</option>
-                        <option value="Primer">Quart</option>
-                        <option value="Primer">Cinquè</option>
-                        <option value="Intercanvi">Intercanvi</option>
-                        <option value="Alumni">Antic estudiant</option>
-                        <option value="Altres">Altres</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label for="start">Data de naixement:</label>
-
-                    <input type="date" id="naixement" name="naixement" min="1980-01-01" required>
-                </div>
-
-                <div>
-                    Treballes a la universitat?
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="treballador" id="flexRadioDefault1"
-                            value="si">
-                        <label class="form-check-label" for="flexRadioDefault1">
-                            Si
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="treballador" id="flexRadioDefault2"
-                            value="no" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            No
-                        </label>
-                    </div>
-                </div>
-
-                <div>
-                    <input type="text" id="mote" name="mote" placeholder="Mote">
-                </div>
-
-                <div>
-                    <input type="button" onclick="enviarDades()" id="registre" name="submit" value="Enregistrar-se">
-                </div>
-
-            </form>
-        </article>
+      <form id="formulari" name="formregistre">
+        <div>
+          <input type="text" id="nom" name="nom" placeholder="Nom" required>
+        </div>
+        <div>
+          <input type="text" id="cognom1" name="cognom1" placeholder="Primer cognom" required>
+        </div>
+        <div>
+          <input type="text" id="cognom2" name="cognom2" placeholder="Segon cognom" required>
+        </div>
+        <div>
+          <input type="text" id="genere" name="genere" placeholder="Génere" required>
+        </div>
+        <div>
+          <input type="email" id="email" name="email" placeholder="exemple@uab.cat" required>
+        </div>
+        <div>
+          <input type="password" id="password" name="password" placeholder="Contrasenya" required>
+        </div>
+        <div>
+          <input type="number" id="telefon" name="telefon" placeholder="Telèfon" required>
         </div>
 
+        <div>
+          Facultat:
+          <select id="facultat" name="facultat" class="form-select" aria-label="Default select example">
+            <option value="Escola Enginyeria">Escola d'Enginyeria</option>
+            <option value="Escola de Postgrau">Escola de Postgrau</option>
+            <option value="Economia i Empresa">Economia i Empresa</option>
+            <option value="Biociències">Biociències</option>
+            <option value="Biociències">Ciències</option>
+            <option value="Ciències de l'Educació">Ciències de l'Educació</option>
+            <option value="Ciències de la Comunicació">Ciències de la Comunicació</option>
+            <option value="Ciències Polítiques i de Sociologia">Ciències Polítiques i de Sociologia</option>
+            <option value="Dret">Dret</option>
+            <option value="Filosofia i Lletres">Filosofia i Lletres</option>
+            <option value="Medicina">Medicina</option>
+            <option value="Psicologia">Psicologia</option>
+            <option value="Traducció i Interpretació">Traducció i Interpretació</option>
+            <option value="Veterinària">Veterinària</option>
+            <option value="Cap">Cap</option>
+          </select>
+        </div>
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
-            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-            crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
-        <script src="js/sessions.js"></script>
-        <script src="js/cssafegits.js"></script>
-        <script src="js/login.js"></script>
-        <script src="js/registre.js"></script>
+        <div>
+          Curs:
+          <select id="curs" name="curs" class="form-select" aria-label="Default select example">
+            <option value="Primer">Primer</option>
+            <option value="Primer">Segon</option>
+            <option value="Primer">Tercer</option>
+            <option value="Primer">Quart</option>
+            <option value="Primer">Cinquè</option>
+            <option value="Intercanvi">Intercanvi</option>
+            <option value="Alumni">Antic estudiant</option>
+            <option value="Altres">Altres</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="start">Data de naixement:</label>
+
+          <input type="date" id="naixement" name="naixement" min="1980-01-01" required>
+        </div>
+
+        <div>
+          Treballes a la universitat?
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="treballador" id="flexRadioDefault1" value="si">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Si
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="treballador" id="flexRadioDefault2" value="no" checked>
+            <label class="form-check-label" for="flexRadioDefault2">
+              No
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <input type="text" id="mote" name="mote" placeholder="Mote">
+        </div>
+
+        <div>
+          <input type="button" onclick="enviarDades()" id="registre" name="submit" value="Enregistrar-se">
+        </div>
+
+      </form>
+    </article>
+  </main>
+
+  <footer>
+    <section class="contact">
+      <h2>Contacta amb nosaltres!</h2>
+      <adress property="email">
+        <a href="mailto:juntacruab@gmail.com">juntacruab@gmail.com</a>
+      </adress>
+      <adress property="adress" typeof="PostalAdress">
+        <p property="streetAdress">Plaça Cívica, 08193 Bellaterra, Barcelona</p>
+      </adress>
+    </section>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="js/sessions.js"></script>
+  <script src="js/cssafegits.js"></script>
+  <script src="js/login.js"></script>
+  <script src="js/registre.js"></script>
 </body>
 
 </html>
