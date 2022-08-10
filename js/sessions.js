@@ -12,7 +12,7 @@ function logout(){
             console.log(sessionStorage);
         }
     };
-    xhttp.open('DELETE', 'http://www.cruab.local/api/login.php', true);
+    xhttp.open('DELETE', '/api/login.php', true);
     xhttp.send();
 }
 
@@ -40,6 +40,6 @@ xhttp.onreadystatechange = function() {
     }
 };
 
-xhttp.open('GET', 'http://www.cruab.local/api/login.php', true);
+xhttp.open('GET', '/api/login.php', true);
 xhttp.send();
 console.log(sessionStorage);

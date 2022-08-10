@@ -31,7 +31,7 @@ function obtenirManuals(){
 
         }
     };
-    xhttp.open('GET', 'http://www.cruab.local/api/validarlloguermanual.php', true);
+    xhttp.open('GET', '/api/validarlloguermanual.php', true);
     xhttp.send();
 }
 
@@ -46,7 +46,7 @@ function validarLlogerManual(numlloguer, numsoci){
             location.reload();
         }
     };
-    xhttp.open('POST', 'http://www.cruab.local/api/validarlloguermanual.php', true);
+    xhttp.open('POST', '/api/validarlloguermanual.php', true);
     xhttp.send(JSON.stringify(data));
 }
 
@@ -59,6 +59,6 @@ function rebutjaLlogerManual(numlloguer, numsoci){
             location.reload();
         }
     };
-    xhttp.open('DELETE', 'http://www.cruab.local/api/validarlloguermanual.php?numlloguer='+numlloguer+'&numsoci='+numsoci, true);
+    xhttp.open('DELETE', '/api/validarlloguermanual.php?numlloguer='+numlloguer+'&numsoci='+numsoci, true);
     xhttp.send();
 }

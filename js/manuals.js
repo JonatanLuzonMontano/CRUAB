@@ -73,12 +73,12 @@ function afegirManual(){
                         document.getElementById('missatge').innerHTML += `<p>${data["DeBug"]}</p>`;
                     }
                 } else {
-                    window.location.href = "http://www.cruab.local/manuals.html";
+                    window.location.href = "manuals.html";
                 }
             }
         };
 
-        xhttp.open('POST', 'http://www.cruab.local/api/manuals.php', true);
+        xhttp.open('POST', '/api/manuals.php', true);
         xhttp.setRequestHeader("Content-Type", "multipart/form-data");
         xhttp.send(formData);
 
@@ -93,25 +93,27 @@ function eliminarManual(nom){
                 if((data.hasOwnProperty('Error'))){
                     alert(data["Error"] + " " + data["DeBug"]);
                 } else {
-                    window.location.href = "http://www.cruab.local/manuals.html";
+                    window.location.href = "manuals.html";
                 }
         }
     }
-    xhttp.open('DELETE', 'http://www.cruab.local/api/manuals.php?nom=' + nom, true);
+    xhttp.open('DELETE', '/api/manuals.php?nom=' + nom, true);
     xhttp.send();
 }
 
 function registreManual(){
-    window.location.href = "http://www.cruab.local/afegirmanual.html";
+    window.location.href = "afegirmanual.html";
 }
 
 function getManuals(){
-
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
 
         if (this.readyState == 4 && this.status == 200) {
+            console.log(xhttp.responseText);
             var llista = JSON.parse(xhttp.responseText);
+            console.log(llista);
+            
             if(sessionStorage['numsoci'] != null){
                 if(sessionStorage['juntari'] == 'true'){
                     document.getElementById('registremanual').innerHTML += 
@@ -163,6 +165,6 @@ function getManuals(){
             
         }
     };
-    xhttp.open('GET', 'http://www.cruab.local/api/manuals.php', true);
+    xhttp.open('GET', '/api/manuals.php', true);
     xhttp.send();
 }

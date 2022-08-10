@@ -9,7 +9,7 @@ function eliminarCopiaManual(copia){
             location.reload();
         }
     }
-    xhttpeliminarcopia.open('DELETE', 'http://www.cruab.local/api/manualsindividuals.php?Nom='+nom+'&NumCopia='+copia, true);
+    xhttpeliminarcopia.open('DELETE', '/api/manualsindividuals.php?Nom='+nom+'&NumCopia='+copia, true);
     xhttpeliminarcopia.send();
 }
 
@@ -24,7 +24,7 @@ function afegirCopiaManual(){
             location.reload();
         }
     }
-    xhttpafegircopia.open('POST', 'http://www.cruab.local/api/manualsindividuals.php', true);
+    xhttpafegircopia.open('POST', '/api/manualsindividuals.php', true);
     xhttpafegircopia.send(JSON.stringify(data));
 }
 
@@ -46,7 +46,7 @@ function reservarManual(manual, copia){
             }
         }
     }
-    xhttpreservar.open('POST', 'http://www.cruab.local/api/lloguermanual.php', true);
+    xhttpreservar.open('POST', '/api/lloguermanual.php', true);
     xhttpreservar.send(JSON.stringify(data));
 }
 
@@ -104,12 +104,12 @@ function obtenirManuals(){
                 }
 
             } else {
-                window.location.href = "http://www.cruab.local/login.html";
+                window.location.href = "login.html";
             }
             
         }
     }
 
-    xhttpindividual.open('GET', 'http://www.cruab.local/api/manualsindividuals.php?nom=' + nommanual, true);
+    xhttpindividual.open('GET', '/api/manualsindividuals.php?nom=' + nommanual, true);
     xhttpindividual.send();
 }

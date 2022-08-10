@@ -1,6 +1,6 @@
 
 if(sessionStorage["numsoci"]){
-    window.location.href = "http://www.cruab.local/index.html";
+    window.location.href = "index.html";
 }
 
 function ferLogin(){
@@ -20,11 +20,11 @@ function ferLogin(){
             } else {
                 sessionStorage.setItem("numsoci", data["numsoci"]);
                 sessionStorage.setItem("juntari", data["juntari"]);
-                window.location.href = "http://localhost/CRUAB/index.html";
+                window.location.href = "index.html";
             }
         }
     };
 
-    xhttp.open('POST', 'http://www.cruab.local/api/login.php', true);
+    xhttp.open('POST', '/api/login.php', true);
     xhttp.send(JSON.stringify(data));
 }

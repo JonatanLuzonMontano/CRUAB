@@ -8,7 +8,7 @@ function eliminarCopiaJoc(copia){
             location.reload();
         }
     }
-    xhttpeliminarcopia.open('DELETE', 'http://www.cruab.local/api/jocsindividuals.php?Nom='+nom+'&NumCopia='+copia, true);
+    xhttpeliminarcopia.open('DELETE', '/api/jocsindividuals.php?Nom='+nom+'&NumCopia='+copia, true);
     xhttpeliminarcopia.send();
 }
 
@@ -24,7 +24,7 @@ function afegirCopiaJoc(){
             location.reload();
         }
     }
-    xhttpafegircopia.open('POST', 'http://www.cruab.local/api/jocsindividuals.php', true);
+    xhttpafegircopia.open('POST', '/api/jocsindividuals.php', true);
     xhttpafegircopia.send(JSON.stringify(data));
 }
 
@@ -46,7 +46,7 @@ function reservarJoc(joc, copia){
             }
         }
     }
-    xhttpreservar.open('POST', 'http://www.cruab.local/api/lloguerjoc.php', true);
+    xhttpreservar.open('POST', '/api/lloguerjoc.php', true);
     xhttpreservar.send(JSON.stringify(data));
 }
 
@@ -102,12 +102,12 @@ function obtenirJocs(){
                 }
 
             } else {
-                window.location.href = "http://www.cruab.local/login.html";
+                window.location.href = "login.html";
             }
             
         }
     }
     console.log(nomjoc);
-    xhttpindividual.open('GET', 'http://www.cruab.local/api/jocsindividuals.php?nom=' + nomjoc, true);
+    xhttpindividual.open('GET', '/api/jocsindividuals.php?nom=' + nomjoc, true);
     xhttpindividual.send();
 }

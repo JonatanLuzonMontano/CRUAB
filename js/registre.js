@@ -103,12 +103,12 @@ function enviarDades(){
                         document.getElementById('missatge').innerHTML += `<p>${data["DeBug"]}</p>`;
                     }
                 } else {
-                    window.location.href = "http://www.cruab.local/registrat.html";
+                    window.location.href = "registrat.html";
                 }
             }
         };
 
-        xhttp.open('POST', 'http://www.cruab.local/api/registre.php', true);
+        xhttp.open('POST', '/api/registre.php', true);
         xhttp.send(JSON.stringify(data));
     }
 }
