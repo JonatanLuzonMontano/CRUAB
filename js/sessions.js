@@ -25,22 +25,17 @@ xhttp.onreadystatechange = function() {
         if(data != null){
             sessionStorage.setItem("numsoci", data["numsoci"]);
             sessionStorage.setItem("juntari", data["juntari"]);
-            document.getElementById('seccions').innerHTML += `<li class="nav-item">
+            document.getElementById('navbuttons').innerHTML += `
                         <a class="nav-link active" aria-current="page" href="membre.html">Compte</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="" onclick="logout()">Logout</a>
-                    </li>`;
+                        <a class="nav-link active" aria-current="page" href="" onclick="logout()">Logout</a>`;
             if(sessionStorage.hasOwnProperty('juntari') && sessionStorage['juntari'] == 'true'){
-            document.getElementById('seccions').innerHTML += `<li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="gestio.html">Gestió</a>
-                    </li>`;
+            document.getElementById('navbuttons').innerHTML += `
+                        <a class="nav-link active" aria-current="page" href="gestio.html">Gestió</a>`;
 }
         } else {
             logout();
-            document.getElementById('seccions').innerHTML += `<li class="nav-item">
-                                                                  <a class="nav-link active" aria-current="page" href="login.html">Login</a>
-                                                              </li>`;
+            document.getElementById('navbuttons').innerHTML += `
+                                                                  <a class="nav-link active" aria-current="page" href="login.html">Login</a>`;
         }
     }
 };
