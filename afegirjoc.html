@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--patata-->
 <html lang="es">
 
 <head>
@@ -7,27 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cruab</title>
   <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="css/estilos.css"-->
+  <link rel="stylesheet" href="css/estilos.css">-->
   <link rel="stylesheet" href="css/general.css">
 </head>
 
 <body>
   <header id="topbar" class="navigation">
     <nav id="navbar">
-      <a class="navbar-brand" href="index.html">CRUAB</a>
+      <a class="navbar-brand nav-a" href="index.html">CRUAB</a>
 
       <div id="navbuttons" class="collapsed">
-        <a class="nav-link" aria-current="page" href="jocstaula.html">Jocs de taula</a>
-        <a class="nav-link" aria-current="page" href="manuals.html">Manuals</a>
-        <a class="nav-link" aria-current="page" href="usuari.html">Usuari</a>
+        <a class="nav-link nav-a" aria-current="page" href="jocstaula.html">Jocs de taula</a>
+        <a class="nav-link nav-a" aria-current="page" href="manuals.html">Manuals</a>
+        <a class="nav-link nav-a" aria-current="page" href="usuari.html">Usuari</a>
       </div>
-      <button id="theme-toggler" type="button" data-toggle="theme" data-target="body"><svg
-          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-          <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path
-            d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z" />
-        </svg></button>
-      <button id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbuttons"></button>
+      <div id="rightbuttons">
+        <button id="theme-toggler" type="button" data-toggle="theme" data-target="body"><svg
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path
+              d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z" />
+          </svg></button>
+        <div>
+          <button id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbuttons">
+            <hr>
+            <hr>
+            <hr>
+          </button>
+        </div>
+
+      </div>
     </nav>
   </header>
 
@@ -36,46 +44,65 @@
       <div id="missatge"></div>
 
       <form id="formulari" name="formafegirjoc" action="/api/JocsTaula.php" method="POST" enctype="multipart/form-data">
-        <div>
-          <input type="text" id="nom" name="nom" placeholder="Nom" required>
-        </div>
-        <div>
-          <input type="number" id="minjugadors" name="minjugadors" placeholder="Mínim de jugadors" required>
-        </div>
-        <div>
-          <input type="number" id="maxjugadors" name="maxjugadors" placeholder="Màxim de jugadors" required>
-        </div>
-        <div>
-          <input type="number" id="duracio" name="duracio" placeholder="Duració del joc" required>
-        </div>
-        <div>
-          <input type="number" id="dificultat" name="dificultat" placeholder="Dificultat del joc" required>
-        </div>
-        <div>
-          <input type="text" id="editorial" name="editorial" placeholder="Editorial" required>
+        <div id="first-column">
+          <div>
+            <label class="form-input-label" for="nom">Nom</label>
+            <br>
+            <input type="text" id="nom" name="nom" required>
+          </div>
+          <div>
+            <label class="form-input-label" for="jugadors">Jugadors</label>
+            <div id="jugadors">
+              <div>
+                <label class="form-input-label" for="minjugadors">Mínim</label>
+                <br>
+                <input type="number" id="minjugadors" name="minjugadors" min="1" max="10" required>
+              </div>
+              <div>
+                <label class=" form-input-label" for="maxjugadors">Màxim</label>
+                <br>
+                <input type="number" id="maxjugadors" name="maxjugadors" min="1" max="20" required>
+              </div>
+            </div>
+          </div>
+          <div>
+            <label class="form-input-label" for="duracio">Duració en minuts</label>
+            <br>
+            <input type="number" id="duracio" name="duracio" min="2" max="10" required>
+          </div>
+          <div>
+            <label class="form-input-label" for="dificultat">Dificultat del joc</label>
+            <br>
+            <input type="number" id="dificultat" name="dificultat" required>
+          </div>
+          <div>
+            <label class="form-input-label" for="editorial">Editorial</label>
+            <br>
+            <input type="text" id="editorial" name="editorial" required>
+          </div>
         </div>
 
-        <div>
-          Tipus de joc:
+
+        <div id="segona-columna">
+          <h3>Tipus de joc:</h3>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="tipus" id="flexRadioDefault2" value="Competitiu" checked>
             <label class="form-check-label" for="flexRadioDefault2">
               Competitiu
             </label>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="tipus" id="flexRadioDefault1" value="Cooperatiu">
-              <label class="form-check-label" for="flexRadioDefault1">
-                Cooperatiu
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="tipus" id="flexRadioDefault3" value="Solitari">
-              <label class="form-check-label" for="flexRadioDefault3">
-                Solitari
-              </label>
-            </div>
           </div>
-
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipus" id="flexRadioDefault1" value="Cooperatiu">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Cooperatiu
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="tipus" id="flexRadioDefault3" value="Solitari">
+            <label class="form-check-label" for="flexRadioDefault3">
+              Solitari
+            </label>
+          </div>
           <div>
             <input type="file" id="img-uploader" name="img-uploader" accept="image/png, image/jpeg" required>
           </div>
@@ -83,25 +110,41 @@
           <div>
             <input type="submit" id="afegirjoc" name="submit" value="Afegir joc">
           </div>
-
+        </div>
       </form>
     </article>
-    </div>
+  </main>
 
+  <footer>
+    <section class="contact">
+      <h2>Contacta amb nosaltres!</h2>
+      <adress property="email">
+        <a href="mailto:juntacruab@gmail.com">juntacruab@gmail.com</a>
+      </adress>
+      <adress property="adress" typeof="PostalAdress">
+        <p property="streetAdress">Plaça Cívica, 08193 Bellaterra, Barcelona</p>
+      </adress>
+    </section>
+    <section class="social-links">
+      <a id="instagram" property="instagram" name="@" href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
+      <a property="facebook" name="" href="facebook.com">Facebook</a>
+      <a id="twitter" href="https://twitter.com/cruaboficial?">Twitter</a>
+    </section>
+  </footer>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
-      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
-      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-      crossorigin="anonymous"></script>
-    <script src="js/sessions.js"></script>
-    <script src="js/cssafegits.js"></script>
-    <script src="js/checkjunta.js"></script>
-    <script src="js/jocstaula.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="js/sessions.js"></script>
+  <script src="js/cssafegits.js"></script>
+  <script src="js/checkjunta.js"></script>
+  <script src="js/jocstaula.js"></script>
 </body>
 
 </html>

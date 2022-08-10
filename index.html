@@ -13,20 +13,29 @@
 <body>
   <header id="topbar" class="navigation">
     <nav id="navbar">
-      <a class="navbar-brand" href="index.html">CRUAB</a>
+      <a class="navbar-brand nav-a" href="index.html">CRUAB</a>
 
       <div id="navbuttons" class="collapsed">
-        <a class="nav-link" aria-current="page" href="jocstaula.html">Jocs de taula</a>
-        <a class="nav-link" aria-current="page" href="manuals.html">Manuals</a>
-        <a class="nav-link" aria-current="page" href="usuari.html">Usuari</a>
+        <a class="nav-link nav-a" aria-current="page" href="jocstaula.html">Jocs de taula</a>
+        <a class="nav-link nav-a" aria-current="page" href="manuals.html">Manuals</a>
+        <a class="nav-link nav-a" aria-current="page" href="usuari.html">Usuari</a>
       </div>
-      <button id="theme-toggler" type="button" data-toggle="theme" data-target="body"><svg
-          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-          <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
-          <path
-            d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z" />
-        </svg></button>
-      <button id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbuttons"></button>
+      <div id="rightbuttons">
+        <button id="theme-toggler" type="button" data-toggle="theme" data-target="body"><svg
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <!--! Font Awesome Pro 6.1.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. -->
+            <path
+              d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z" />
+          </svg></button>
+        <div>
+          <button id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbuttons">
+            <hr>
+            <hr>
+            <hr>
+          </button>
+        </div>
+
+      </div>
     </nav>
   </header>
 
@@ -43,12 +52,9 @@
         <br>
         <h2>On trobar-nos?</h2>
         <p>Estém a l'hotel d'entitats de la universitat autónoma de Barcelona, a sobre del restaurant que hi ha a la
-          plaça
-          cívica.</p>
-        <p>Correu electrònic: juntacruab@gmail.com</p>
-        <a href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
+          plaça cívica.</p>
       </article>
-    </div>
+  </main>
   </main>
 
   <footer>
@@ -60,6 +66,11 @@
       <adress property="adress" typeof="PostalAdress">
         <p property="streetAdress">Plaça Cívica, 08193 Bellaterra, Barcelona</p>
       </adress>
+    </section>
+    <section class="social-links">
+      <a id="instagram" property="instagram" name="@" href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
+      <a property="facebook" name="" href="facebook.com">Facebook</a>
+      <a id="twitter" href="https://twitter.com/cruaboficial?">Twitter</a>
     </section>
   </footer>
 
@@ -77,5 +88,3 @@
 </body>
 
 </html>
-
-
