@@ -25,6 +25,21 @@ function addevents() {
         case "jocindividual.html":
             obtenirJocs();
             break;
+        case "lloguersjocs.html":
+            obtenirLloguersJocs();
+            break;
+        case "lloguersmanuals.html":
+            obtenirLloguersManuals();
+            break;
+        case "gestioingresosmembres.html":
+            obtenirMembres();
+            break;
+        case "gestiolloguersjocs.html":
+            obtenirJocs();
+            break;
+        case "gesticolloguersmanuals.html":
+            obtenirManuals();
+            break;
         default:
             break;
     }
