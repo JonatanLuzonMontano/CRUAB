@@ -159,14 +159,12 @@ body.black-mode {
 
 /*#########################   BODY & REGLAS GENERALES   ##########################################*/
 body {
-  position:absolute;
+  position: absolute;
   background-color: var(--body-bg-color);
-  min-width: 100vw;
+  overflow: overlay;
   max-width: 100%;
   min-height: 100vh;
-  overflow: overlay;
-  text-rendering: optimizeLegibility;
-  accent-color: var(--accent-color);
+  min-width: 100vw;
 }
 
 * {
@@ -195,11 +193,12 @@ a::selection {
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 6px solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
-  border-radius: 9999px;
   background-color: hsla(0, 0%, 70%, 0.7);
+  border: 6px solid rgba(0, 0, 0, 0);
+  border-radius: 9999px;
 }
+
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
@@ -212,43 +211,43 @@ a::selection {
 header {
   --nav-height: 10vh;
 
-  width: 100%;
-  display: block;
   position: fixed;
-  top:0px;
-  height: var(--nav-height);
+  top: 0px;
+  z-index: 3;
   background-color: var(--nav-bg-color);
   background-image: var(--nav-bg-image);
-  user-select: none;
-  z-index:3;
+  display: block;
+  height: var(--nav-height);
+  width: 100%;
 }
 
 header>nav {
   display: flex;
-  height: 100%;
-  width: 100%;
   flex-direction: row;
   align-items: center;
+  height: 100%;
+  width: 100%;
 }
 
 header>nav>a,
 #navbuttons {
-  height: 100%;
-  margin-block: auto;
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 #navbuttons>a {
+  background-color: var(--button-bg-base);
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 20px;
-  font-size: var(--nav-font-size);
+  padding: 020px;
   color: var(--h2-color);
+  font-size: var(--nav-font-size);
   text-decoration: none;
-  background-color: var(--button-bg-base);
 }
+
+
 
 #navbuttons>a:hover {
   background-color: var(--button-bg-hover);
@@ -259,105 +258,99 @@ header>nav>a,
 }
 
 header .navbar-brand {
+  margin: 030px;
+  color: var(--h1-color);
   font-size: var(--brand-font-size);
   text-decoration: none;
-  color: var(--h1-color);
-  margin: 0 30px;
 }
 
 #rightbuttons {
   position: absolute;
-  right: 0px;
   top: 0px;
+  right: 0px;
   display: flex;
-
 }
 
-
-
 #rightbuttons>* {
+  z-index: 4;
+  background: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: var(--nav-height);
   height: var(--nav-height);
-  z-index: 4;
+  width: var(--nav-height);
   border: unset;
-  background: none;
 }
-
 
 #navbar-toggler {
   background: none;
-  border: 1px solid var(--theme-70contrast);
-  border-radius: 10px;
   height: 30px;
   width: 30px;
+  border: 1px solid var(--theme-70contrast);
+  border-radius: 10px;
 }
 
 #navbar-toggler hr {
-  margin-block: 4px;
   border-color: var(--theme-maxcontrast);
 }
 
 nav #theme-toggler svg {
-  width: 25px;
   height: 25px;
-  fill: var(--theme-maxcontrast);
+  width: 25px;
 }
+
+
 
 
 /*#########################   CONTENINDO PRINCIPAL   #############################*/
 
 #main-content {
-  width: 100vw;
-  min-height: 60vh;
   display: flex;
   justify-content: center;
+  width: 100vw;
+  min-height: 60vh;
   margin-top: 10vh;
 }
 
 #main-content>div,
 #main-content>article {
-  margin-top: 5vh;
   width: 80%;
   min-height: 50vh;
+  margin-top: 5vh;
 }
 
 #main-content h1 {
-  font-size: var(--h1-size);
   color: var(--h1-color);
+  font-size: var(--h1-size);
 }
 
 #main-content h2 {
-  font-size: var(--h2-size);
   color: var(--h2-color);
+  font-size: var(--h2-size);
 }
 
 #main-content h3 {
-  font-size: var(--h3-size);
   color: var(--h3-color);
+  font-size: var(--h3-size);
 }
 
 #main-content h4 {
-  font-size: var(--h4-size);
   color: var(--h4-color);
+  font-size: var(--h4-size);
 }
 
-#main-content p,
-td {
-  font-size: var(--p-size);
+#main-content p, td {
   color: var(--p-color) !important;
-
+  font-size: var(--p-size);
 }
 
 a:not(.nav-a) {
-  color: var(--a-color);
-  text-decoration: none;
   background-image: linear-gradient(90deg, var(--theme-maxcontrast), var(--theme-maxcontrast));
-  background-size: 0px 2px;
   background-position: left bottom;
   background-repeat: no-repeat;
+  background-size: 0px 2px;
+  color: var(--a-color);
+  text-decoration: none;
   transition: ease-out 200ms;
   transition-property: background-size;
 }
@@ -365,7 +358,6 @@ a:not(.nav-a) {
 a:not(.nav-a):hover {
   background-size: 100% 2px;
 }
-
 
 /*#########################   GESTIÓN   #############################*/
 
@@ -403,12 +395,13 @@ a:not(.nav-a):hover {
     z-index: 5;
   }
 
+
+
 }
 
 /*#########################   PARA MOVIL   #############################*/
 
 @media screen and (max-width:900px) {
-
 
   header>nav {
     flex-direction: column;
@@ -416,28 +409,27 @@ a:not(.nav-a):hover {
   }
 
   header>nav>#navbuttons {
-    background-color: var(--nav-bg-color);
     position: absolute;
     top: var(--nav-height);
     left: 0;
-    height: auto;
-    width: 100vw;
-    margin-block: auto;
+    background-color: var(--nav-bg-color);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    height: auto;
+    width: 100vw;
   }
 
   header>nav>#navbuttons>a {
+    background-color: var(--button-bg-base);
     display: flex;
     align-items: flex-start;
     height: 100%;
-    padding: 0 20px;
-    font-size: var(--nav-font-size);
+    padding: 020px;
     color: var(--h2-color);
+    font-size: var(--nav-font-size);
     text-decoration: none;
-    background-color: var(--button-bg-base);
   }
 
   header>nav>#navbuttons>a:hover {
@@ -456,7 +448,6 @@ a:not(.nav-a):hover {
     width: 50px;
   }
 
-
   #main-content>div,
   #main-content>article {
     width: 90%;
@@ -468,26 +459,29 @@ a:not(.nav-a):hover {
 
   #user-page {
     display: flex;
-    justify-content: space-evenly;
     flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
   }
+
+
 }
 
 
 /*#################################   FORMULARIOS   #################################*/
 
 input {
-  margin-bottom: 10px;
-  border: 1px solid var(--input-border);
-  border-radius: 3px;
   background-color: var(--input-bg-color);
   max-width: 200px;
+  border: 1px solid var(--input-border);
+  border-radius: 3px;
+  margin-bottom: 10px;
 }
 
 select {
   max-width: 200px;
 }
+
 
 /*
 input[type="file"] {
@@ -495,12 +489,10 @@ input[type="file"] {
 }*/
 
 #formulari {
-
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   column-gap: -400px;
-
 }
 
 #jugadors {
@@ -524,24 +516,24 @@ input[type="file"] {
 }
 
 label {
-  font-size: var(--label-size);
   color: var(--theme-maxcontrast);
+  font-size: var(--label-size);
 }
 
 label+div label,
 .form-check>label {
-  font-size: var(--p-size);
   color: var(--p-color);
+  font-size: var(--p-size);
 }
 
 
 /*#########################   TABLAS   #############################*/
 
 table {
-  min-width: 300px;
-  color: var(--p-color);
   z-index: 5;
+  min-width: 300px;
   border-collapse: collapse;
+  color: var(--p-color);
 }
 
 thead {
@@ -549,23 +541,23 @@ thead {
 }
 
 th {
-  font-weight: var(--p-weight-bold);
   font-size: var(--p-size);
+  font-weight: var(--p-weight-bold);
 }
 
 
 /*#########################   FOOTER   #############################*/
 
 footer {
+  z-index: 3;
+  background-color: var(--nav-bg-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  width: 100vw;
   height: 20vh;
-  margin-top:10vh;
-  background-color: var(--nav-bg-color);
+  width: 100vw;
+  margin-top: 10vh;
   color: var(--p-color);
-  z-index:3;
+  text-align: center;
 }
