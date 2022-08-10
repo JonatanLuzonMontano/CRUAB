@@ -11,7 +11,7 @@ function addevents() {
     document.getElementById("navbar-toggler").addEventListener('click', opennav);
     document.getElementById("theme-toggler").addEventListener('click', changetheme);
 
-    console.log(filename());
+    
     switch(filename()){
         case "manuals.html":
             getManuals();
@@ -33,18 +33,14 @@ function addevents() {
 
 function filename(){
     var rutaAbsoluta = self.location.href;
-    console.log(rutaAbsoluta);
     var posicionUltimaBarra = rutaAbsoluta.lastIndexOf("/");
     var posicionInterrogante = rutaAbsoluta.lastIndexOf("?");
     var rutaRelativa;
-    console.log(posicionInterrogante);
     if(posicionInterrogante == -1){
         rutaRelativa = rutaAbsoluta.substring( posicionUltimaBarra + "/".length , rutaAbsoluta.length );
     } else {
-        console.log("else");
         rutaRelativa = rutaAbsoluta.substring( posicionUltimaBarra + "/".length , posicionInterrogante );
     }
-    console.log(rutaRelativa);
     return rutaRelativa;  
 }
 
