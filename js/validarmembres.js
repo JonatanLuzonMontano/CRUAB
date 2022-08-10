@@ -29,7 +29,7 @@ function obtenirMembres(){
             }
         }
     };
-    xhttp.open('GET', 'http://www.cruab.local/api/validarmembres.php', true);
+    xhttp.open('GET', '/api/validarmembres.php', true);
     xhttp.send();
 }
 
@@ -43,7 +43,7 @@ function validarMembres(numsoci){
             location.reload();
         }
     };
-    xhttp.open('PUT', 'http://www.cruab.local/api/validarmembres.php', true);
+    xhttp.open('PUT', '/api/validarmembres.php', true);
     xhttp.send(JSON.stringify(data));
 }
 
@@ -56,6 +56,6 @@ function rebutjaValidacio(numsoci){
             location.reload();
         }
     };
-    xhttp.open('DELETE', 'http://www.cruab.local/api/validarmembres.php?numsoci='+numsoci, true);
+    xhttp.open('DELETE', '/api/validarmembres.php?numsoci='+numsoci, true);
     xhttp.send();
 }
