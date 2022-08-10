@@ -44,7 +44,7 @@ function obtenirLloguersJocs(){
             }
         }
     };
-    xhttp.open('GET', 'http://www.cruab.local/api/lloguerjoc.php?numsoci='+sessionStorage["numsoci"], true);
+    xhttp.open('GET', '/api/lloguerjoc.php?numsoci='+sessionStorage["numsoci"], true);
     xhttp.send();
 }
 
@@ -57,7 +57,7 @@ function recollirLlogerJoc(numlloguer){
             location.reload();
         }
     };
-    xhttp.open('PUT', 'http://www.cruab.local/api/lloguerjoc.php', true);
+    xhttp.open('PUT', '/api/lloguerjoc.php', true);
     xhttp.send(JSON.stringify(data));
 }
 
@@ -68,6 +68,6 @@ function retornaLlogerJoc(numlloguer){
             location.reload();
         }
     };
-    xhttp.open('DELETE', 'http://www.cruab.local/api/lloguerjoc.php?numlloguer='+numlloguer, true);
+    xhttp.open('DELETE', '/api/lloguerjoc.php?numlloguer='+numlloguer, true);
     xhttp.send();
 }

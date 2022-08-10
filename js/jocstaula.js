@@ -83,12 +83,12 @@ function afegirJoc(){
                         document.getElementById('missatge').innerHTML += `<p>${data["DeBug"]}</p>`;
                     }
                 } else {
-                    window.location.href = "http://www.cruab.local/jocstaula.html";
+                    window.location.href = "jocstaula.html";
                 }
             }
         };
 
-        xhttp.open('POST', 'http://www.cruab.local/api/JocsTaula.php', true);
+        xhttp.open('POST', '/api/JocsTaula.php', true);
         xhttp.send(JSON.stringify(data));
     }
 }
@@ -102,16 +102,16 @@ function eliminarJoc(nom){
             if((data.hasOwnProperty('Error'))){
                 alert(data["Error"] + " " + data["DeBug"]);
             } else {
-                window.location.href = "http://www.cruab.local/jocstaula.html";
+                window.location.href = "jocstaula.html";
             }
         }
     }
-    xhttp.open('DELETE', 'http://www.cruab.local/api/jocstaula.php?nom=' + nom, true);
+    xhttp.open('DELETE', '/api/jocstaula.php?nom=' + nom, true);
     xhttp.send();
 }
 
 function registreJoc(){
-    window.location.href = "http://www.cruab.local/afegirjoc.html";
+    window.location.href = "afegirjoc.html";
 }
 
 function getJocsTaula(){
@@ -186,6 +186,6 @@ function getJocsTaula(){
             }
         }
     };
-    xhttp.open('GET', 'http://www.cruab.local/api/jocstaula.php', true);
+    xhttp.open('GET', '/api/jocstaula.php', true);
     xhttp.send();
 }
