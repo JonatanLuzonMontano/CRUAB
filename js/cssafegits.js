@@ -37,7 +37,7 @@ function addevents() {
         case "gestiolloguersjocs.html":
             obtenirJocs();
             break;
-        case "gesticolloguersmanuals.html":
+        case "gestiolloguersmanuals.html":
             obtenirManuals();
             break;
         default:
@@ -56,7 +56,7 @@ function filename(){
     } else {
         rutaRelativa = rutaAbsoluta.substring( posicionUltimaBarra + "/".length , posicionInterrogante );
     }
-    return rutaRelativa;  
+    return rutaRelativa;
 }
 
 function clickeffect(e) {

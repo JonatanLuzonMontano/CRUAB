@@ -7,6 +7,7 @@ include_once('../php/seguretat.php');
 switch($_SERVER['REQUEST_METHOD']){
     
     case'GET':
+        $msg = null;
         $numsoci = assegurarInputs($_GET["numsoci"]);
 
         $query = "SELECT jocstaula.Imatge, llogajoc.NumLloguer, llogajoc.Copia, llogajoc.Recollida, llogajoc.Retorn
@@ -79,7 +80,6 @@ switch($_SERVER['REQUEST_METHOD']){
             $msg["Correcte"] = "Tot ok";
         }
 
-        break;
         break;
     default:
         http_response_code(400);
