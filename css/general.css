@@ -22,8 +22,8 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
 }
 
@@ -68,13 +68,12 @@ select {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+    scroll-behavior: auto;
   }
 }
-
 
 /*#########################   VARIABLES   ##########################################*/
 :root {
@@ -111,7 +110,6 @@ body:not(black-mode) {
   --body-bg-image: none;
   --nav-bg-color: var(--theme-20contrast);
 
-
   --nav-bg-image: none;
 
   /*interactive colors*/
@@ -131,7 +129,6 @@ body:not(black-mode) {
   --p-color: var(--text-color-general);
   --a-color: var(--accent-color);
   --a-selected-color: var(--secondary-accent-color);
-
 }
 
 body.black-mode {
@@ -155,7 +152,6 @@ body.black-mode {
   --accent-color: hsl(170, 100%, 50%);
   --secondary-accent-color: rgb(255, 8, 8);
 }
-
 
 /*#########################   BODY & REGLAS GENERALES   ##########################################*/
 body {
@@ -199,12 +195,10 @@ a::selection {
   border-radius: 9999px;
 }
 
-
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background-color: hsl(0, 0%, 60%);
 }
-
 
 /*#########################   NAVEGACIÓN   #############################*/
 
@@ -219,24 +213,30 @@ header {
   display: block;
   height: var(--nav-height);
   width: 100%;
+  user-select: none;
+}
+* {
+  user-select: none;
 }
 
-header>nav {
+header > nav {
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 100%;
   width: 100%;
+  user-select: none;
 }
 
-header>nav>a,
+header > nav > a,
 #navbuttons {
   display: flex;
   align-items: center;
   height: 100%;
+  user-select: none;
 }
 
-#navbuttons>a {
+#navbuttons > a {
   background-color: var(--button-bg-base);
   display: flex;
   align-items: center;
@@ -245,20 +245,19 @@ header>nav>a,
   color: var(--h2-color);
   font-size: var(--nav-font-size);
   text-decoration: none;
+  user-select: none;
 }
 
-
-
-#navbuttons>a:hover {
+#navbuttons > a:hover {
   background-color: var(--button-bg-hover);
 }
 
-#navbuttons>a.clicked {
+#navbuttons > a.clicked {
   background-color: var(--button-bg-clicked);
 }
 
 header .navbar-brand {
-  margin: 030px;
+  margin: 0 30px;
   color: var(--h1-color);
   font-size: var(--brand-font-size);
   text-decoration: none;
@@ -271,7 +270,7 @@ header .navbar-brand {
   display: flex;
 }
 
-#rightbuttons>* {
+#rightbuttons > * {
   z-index: 4;
   background: none;
   display: flex;
@@ -292,15 +291,13 @@ header .navbar-brand {
 
 #navbar-toggler hr {
   border-color: var(--theme-maxcontrast);
+  margin-block: 5px;
 }
 
 nav #theme-toggler svg {
   height: 25px;
   width: 25px;
 }
-
-
-
 
 /*#########################   CONTENINDO PRINCIPAL   #############################*/
 
@@ -312,40 +309,45 @@ nav #theme-toggler svg {
   margin-top: 10vh;
 }
 
-#main-content>div,
-#main-content>article {
+main > div,
+main > article {
   width: 80%;
   min-height: 50vh;
   margin-top: 5vh;
 }
 
-#main-content h1 {
+main h1 {
   color: var(--h1-color);
   font-size: var(--h1-size);
 }
 
-#main-content h2 {
+main h2 {
   color: var(--h2-color);
   font-size: var(--h2-size);
 }
 
-#main-content h3 {
+main h3 {
   color: var(--h3-color);
   font-size: var(--h3-size);
 }
 
-#main-content h4 {
+main h4 {
   color: var(--h4-color);
   font-size: var(--h4-size);
 }
 
-#main-content p, td {
-  color: var(--p-color) !important;
+main p,
+td {
+  color: var(--p-color);
   font-size: var(--p-size);
 }
 
-a:not(.nav-a) {
-  background-image: linear-gradient(90deg, var(--theme-maxcontrast), var(--theme-maxcontrast));
+a:not(.nav-link) {
+  background-image: linear-gradient(
+    90deg,
+    var(--theme-maxcontrast),
+    var(--theme-maxcontrast)
+  );
   background-position: left bottom;
   background-repeat: no-repeat;
   background-size: 0px 2px;
@@ -355,22 +357,20 @@ a:not(.nav-a) {
   transition-property: background-size;
 }
 
-a:not(.nav-a):hover {
+a:not(.nav-link):hover {
   background-size: 100% 2px;
 }
 
 /*#########################   GESTIÓN   #############################*/
 
-
 .gestio-link {
   font-size: var(--h1-size);
 }
 
-
 /*#########################   MEDIA QUERIES   ##########################################*/
 
 /*#########################   FUENTES PARA MOVIL   #############################*/
-@media screen and (max-width:900px) {
+@media screen and (max-width: 900px) {
   :root {
     --nav-font-size: 20px;
     --h1-size: 30px;
@@ -379,12 +379,11 @@ a:not(.nav-a):hover {
     --h4-size: 16px;
     --p-size: 15px;
   }
-
 }
 
 /*#########################   PARA PC   #############################*/
 
-@media screen and (min-width:900px) {
+@media screen and (min-width: 900px) {
   #navbar-toggler {
     display: none;
   }
@@ -394,21 +393,17 @@ a:not(.nav-a):hover {
     left: var(--nav-height);
     z-index: 5;
   }
-
-
-
 }
 
 /*#########################   PARA MOVIL   #############################*/
 
-@media screen and (max-width:900px) {
-
-  header>nav {
+@media screen and (max-width: 900px) {
+  header > nav {
     flex-direction: column;
     justify-content: flex-start;
   }
 
-  header>nav>#navbuttons {
+  header > nav > #navbuttons {
     position: absolute;
     top: var(--nav-height);
     left: 0;
@@ -421,7 +416,7 @@ a:not(.nav-a):hover {
     width: 100vw;
   }
 
-  header>nav>#navbuttons>a {
+  header > nav > #navbuttons > a {
     background-color: var(--button-bg-base);
     display: flex;
     align-items: flex-start;
@@ -432,29 +427,29 @@ a:not(.nav-a):hover {
     text-decoration: none;
   }
 
-  header>nav>#navbuttons>a:hover {
+  header > nav > #navbuttons > a:hover {
     background-color: var(--button-bg-hover);
   }
 
-  header>nav>#navbuttons>a.clicked {
+  header > nav > #navbuttons > a.clicked {
     background-color: var(--button-bg-clicked);
   }
 
   #navbuttons.collapsed {
-    display: none !important;
+    display: none;
   }
 
   #theme-toggler {
     width: 50px;
   }
 
-  #main-content>div,
-  #main-content>article {
+  #main-content > div,
+  #main-content > article {
     width: 90%;
   }
 
-  #main-content>article {
-    min-height: 10vh !important;
+  main#main-content > article {
+    min-height: 10vh;
   }
 
   #user-page {
@@ -463,10 +458,7 @@ a:not(.nav-a):hover {
     justify-content: space-evenly;
     align-items: center;
   }
-
-
 }
-
 
 /*#################################   FORMULARIOS   #################################*/
 
@@ -481,7 +473,6 @@ input {
 select {
   max-width: 200px;
 }
-
 
 /*
 input[type="file"] {
@@ -501,7 +492,7 @@ input[type="file"] {
   justify-content: space-between;
 }
 
-#formulari>div>div {
+#formulari > div > div {
   max-width: 300px;
 }
 
@@ -520,12 +511,11 @@ label {
   font-size: var(--label-size);
 }
 
-label+div label,
-.form-check>label {
+label + div label,
+.form-check > label {
   color: var(--p-color);
   font-size: var(--p-size);
 }
-
 
 /*#########################   TABLAS   #############################*/
 
@@ -537,13 +527,14 @@ table {
 }
 
 thead {
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--theme-maxcontrast);
 }
 
 th {
   font-size: var(--p-size);
   font-weight: var(--p-weight-bold);
 }
+
 
 
 /*#########################   FOOTER   #############################*/
