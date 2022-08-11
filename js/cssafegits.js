@@ -57,12 +57,7 @@ function filename(){
     } else {
         rutaRelativa = rutaAbsoluta.substring( posicionUltimaBarra + "/".length , posicionInterrogante );
     }
-<<<<<<< HEAD
     return rutaRelativa;
-=======
-    return rutaRelativa;  
-
->>>>>>> ce445ec6baedc5f9dd08323fd1fcd93735278fac
 }
 
 function clickeffect(e) {
