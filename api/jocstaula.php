@@ -59,7 +59,7 @@ switch($_SERVER['REQUEST_METHOD']){
                 $msg["img-error"] = "Possible file upload attack!";
             }
             
-            header('Location: http://www.cruab.local/jocstaula.html');
+            header('Location: /jocstaula.html');
         }
 
         break;
