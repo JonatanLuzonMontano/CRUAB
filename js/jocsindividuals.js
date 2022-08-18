@@ -63,6 +63,10 @@ function obtenirJocs() {
       if (sessionStorage['numsoci'] != null) {
         var llistacopies = document.getElementById('llistacopies');
         const element = llistacopies.getElementsByClassName('joc-copia')[0];
+        console.log(llista.length);
+        if (llista[0] == null) {
+          afegirCopiaJoc();
+        }
         llista.forEach(function (joc) {
           console.log(element);
           const clonelement = element.cloneNode(true);

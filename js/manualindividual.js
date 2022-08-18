@@ -9,7 +9,7 @@ function eliminarCopiaManual(copia) {
       location.reload();
     }
   }
-  xhttpeliminarcopia.open('DELETE', '/api/manualindividual.php?Nom=' + nom + '&NumCopia=' + copia, true);
+  xhttpeliminarcopia.open('DELETE', '/api/manualsindividuals.php?Nom=' + nom + '&NumCopia=' + copia, true);
   xhttpeliminarcopia.send();
 }
 
@@ -24,7 +24,7 @@ function afegirCopiaManual() {
       location.reload();
     }
   }
-  xhttpafegircopia.open('POST', '/api/manualindividual.php', true);
+  xhttpafegircopia.open('POST', '/api/manualsindividuals.php', true);
   xhttpafegircopia.send(JSON.stringify(data));
 }
 
@@ -62,6 +62,10 @@ function obtenirManuals() {
       if (sessionStorage['numsoci'] != null) {
         var llistacopies = document.getElementById('llistacopies');
         const element = llistacopies.getElementsByClassName('manual-copia')[0];
+        console.log(llista[0]);
+        if (llista[0] == null) {
+          afegirCopiaManual();
+        }
         llista.forEach(function (manual) {
           const clonelement = element.cloneNode(true);
           clonelement.id = "clon-" + manual.Numcopia;
@@ -134,6 +138,6 @@ function obtenirManuals() {
     }
   }
 
-  xhttpindividual.open('GET', '/api/manualindividual.php?nom=' + nommanual, true);
+  xhttpindividual.open('GET', '/api/manualsindividuals.php?nom=' + nommanual, true);
   xhttpindividual.send();
 }
