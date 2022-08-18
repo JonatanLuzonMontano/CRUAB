@@ -7,6 +7,7 @@ include_once('../php/seguretat.php');
 switch($_SERVER['REQUEST_METHOD']){
     
     case'GET':
+        $msg = null;
         $numsoci = assegurarInputs($_GET["numsoci"]);
         $query = "SELECT manuals.Imatge, llogamanual.NumLloguer, llogamanual.Copia, llogamanual.Recollida, llogamanual.Retorn
                   FROM (llogamanual INNER JOIN autoritzamanual ON llogamanual.NumLloguer=autoritzamanual.Lloguer) LEFT JOIN manuals ON llogamanual.Nommanual=manuals.Nom

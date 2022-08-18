@@ -57,7 +57,7 @@ switch($_SERVER['REQUEST_METHOD']){
                 $msg["img-error"] = "Possible file upload attack!";
             }
             
-            header('Location: http://www.cruab.local/manuals.html');
+            header('Location: /manuals.html');
 
         }
 
