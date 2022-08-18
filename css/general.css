@@ -79,7 +79,7 @@ select {
 :root {
   /*fonts*/
   --brand-font-size: 35px;
-  --nav-font-size: 27px;
+  --nav-font-size: 23px;
   --h1-size: 35px;
   --h2-size: 27px;
   --h3-size: 25px;
@@ -87,10 +87,25 @@ select {
   --label-size: var(--h4-size);
   --p-size: 20px;
   --p-weight-normal: 100;
+  --p-weight-semi: 450;
   --p-weight-bold: 900;
 }
 
-body:not(black-mode) {
+body {
+  /*text color*/
+  --text-color-general: var(--theme-80contrast);
+  --header-color-general: var(--text-color-general);
+  --nav-color: var(--theme-80contrast);
+  --h1-color: var(--header-color-general);
+  --h2-color: var(--header-color-general);
+  --h3-color: var(--header-color-general);
+  --h4-color: var(--header-color-general);
+  --p-color: var(--text-color-general);
+  --a-color: var(--accent-color);
+  --a-selected-color: var(--secondary-accent-color);
+}
+
+body.clar {
   --theme-maxcontrast: hsl(0, 0%, 0%);
   --theme-90contrast: hsl(0, 0%, 10%);
   --theme-80contrast: hsl(0, 0%, 20%);
@@ -109,7 +124,7 @@ body:not(black-mode) {
   --body-bg-color: var(--theme-mincontrast);
   --body-bg-image: none;
   --nav-bg-color: var(--theme-20contrast);
-
+  --nav-link-bg-hover: var(--theme-20contrast);
   --nav-bg-image: none;
 
   /*interactive colors*/
@@ -131,7 +146,7 @@ body:not(black-mode) {
   --a-selected-color: var(--secondary-accent-color);
 }
 
-body.black-mode {
+body.fosc {
   --theme-maxcontrast: hsl(0, 0%, 100%);
   --theme-90contrast: hsl(0, 0%, 90%);
   --theme-80contrast: hsl(0, 0%, 80%);
@@ -147,10 +162,76 @@ body.black-mode {
   --body-bg-color: var(--theme-20contrast);
   --nav-bg-color: var(--theme-30contrast);
   --button-bg-hover: var(--theme-40contrast);
+  --nav-link-bg-hover: var(--theme-40contrast);
   --button-bg-clicked: var(--theme-50contrast);
 
   --accent-color: hsl(170, 100%, 50%);
   --secondary-accent-color: rgb(255, 8, 8);
+
+  /*interactive colors*/
+  --button-bg-base: var(--nav-bg-color);
+  --input-border: var(--theme-maxcontrast);
+  --input-bg-color: hsl(0, 0%, 80%);
+}
+
+body.pergami {
+  --HB-bg-color: #2c3e50;
+  --PHB-bg-color: #f2ece4;
+  --PHB-h1-color: #58180d;
+  --PHB-td-color: #e0e5c1;
+  --PHB-logo-color: #ed1c24;
+  --PHB-underline-color: #f0bf48;
+  --PHB-statblocklines: #9c2b1b;
+  --redscroll: url(https://i.imgur.com/YvYGqOX.jpg);
+  --bluescroll: url(https://i.imgur.com/w2m4BgW.jpg);
+  --seascroll: url(https://i.imgur.com/dKciX3y.jpg);
+
+  --theme-maxcontrast: hsl(0, 0%, 0%);
+  --theme-90contrast: hsl(0, 0%, 10%);
+  --theme-80contrast: hsl(0, 0%, 20%);
+  --theme-70contrast: hsl(0, 0%, 30%);
+  --theme-60contrast: hsl(0, 0%, 40%);
+  --theme-50contrast: hsl(0, 0%, 50%);
+  --theme-40contrast: hsl(0, 0%, 60%);
+  --theme-30contrast: hsl(0, 0%, 70%);
+  --theme-20contrast: hsl(0, 0%, 80%);
+  --theme-10contrast: hsl(0, 0%, 90%);
+  --theme-mincontrast: hsl(0, 0%, 100%);
+  --accent-color: var(--PHB-statblocklines);
+  --secondary-accent-color: var(--PHB-underline-color);
+
+  /*base backgrounds*/
+  --body-bg-color: var(--HB-bg-color);
+  --body-bg-image: ;
+  --content-bg-image: url("http://cruab/img/temes/scroll.jfif");
+  --nav-bg-color: var(--theme-20contrast);
+
+  --nav-bg-image: url("http://cruab/img/temes/redscroll.jpg");
+  --footer-bg-image: var(--seascroll);
+  --nav-shadow: 0px 0px 14px #000;
+
+  /*interactive colors*/
+  --button-bg-base: var(--PHB-td-color);
+  --button-bg-hover: var(--PHB-underline-color);
+  --button-bg-clicked: var(--PHB-statblocklines);
+  --input-border: var(--theme-maxcontrast);
+  --input-bg-color: var(--PHB-bg-color);
+
+  /*text color*/
+  --text-color-general: var(--theme-80contrast);
+  --header-color-general: var(--PHB-h1-color);
+  --nav-color: var(--PHB-bg-color);
+  --p-color: var(--text-color-general);
+  --a-color: var(--accent-color);
+  --a-selected-color: var(--secondary-accent-color);
+
+  /*fonts*/
+  --header-font-family-general: mr_eaves_small_caps-webfont;
+  --h1-font: var(--header-font-family-general);
+  --h2-font: var(--header-font-family-general);
+  --h3-font: var(--header-font-family-general);
+  --h4-font: var(--header-font-family-general);
+  --h5-font: var(--header-font-family-general);
 }
 
 /*#########################   BODY & REGLAS GENERALES   ##########################################*/
@@ -203,7 +284,7 @@ a::selection {
 /*#########################   NAVEGACIÓN   #############################*/
 
 header {
-  --nav-height: 10vh;
+  --nav-height: 7vh;
 
   position: fixed;
   top: 0px;
@@ -214,7 +295,9 @@ header {
   height: var(--nav-height);
   width: 100%;
   user-select: none;
+  box-shadow: var(--nav-shadow);
 }
+
 * {
   user-select: none;
 }
@@ -228,7 +311,7 @@ header > nav {
   user-select: none;
 }
 
-header > nav > a,
+.navbar-brand,
 #navbuttons {
   display: flex;
   align-items: center;
@@ -236,31 +319,34 @@ header > nav > a,
   user-select: none;
 }
 
-#navbuttons > a {
-  background-color: var(--button-bg-base);
+.nav-link {
+  background-color: unset;
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 020px;
-  color: var(--h2-color);
+  padding: 20px;
+  color: var(--nav-color);
   font-size: var(--nav-font-size);
-  text-decoration: none;
+  text-decoration: unset;
   user-select: none;
+  -webkit-user-drag: none;
 }
 
-#navbuttons > a:hover {
-  background-color: var(--button-bg-hover);
+.nav-link:hover {
+  background-color: var(--nav-link-bg-hover);
+  backdrop-filter: brightness(150%);
 }
 
-#navbuttons > a.clicked {
+.nav-link.clicked,
+.nav-link.active {
   background-color: var(--button-bg-clicked);
 }
 
-header .navbar-brand {
+.navbar-brand {
   margin: 0 30px;
-  color: var(--h1-color);
+  color: var(--nav-color);
   font-size: var(--brand-font-size);
-  text-decoration: none;
+  text-decoration: unset;
 }
 
 #rightbuttons {
@@ -272,7 +358,7 @@ header .navbar-brand {
 
 #rightbuttons > * {
   z-index: 4;
-  background: none;
+  background: unset;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -282,7 +368,7 @@ header .navbar-brand {
 }
 
 #navbar-toggler {
-  background: none;
+  background: unset;
   height: 30px;
   width: 30px;
   border: 1px solid var(--theme-70contrast);
@@ -294,14 +380,42 @@ header .navbar-brand {
   margin-block: 5px;
 }
 
-nav #theme-toggler svg {
+nav .temes-boto svg {
   height: 25px;
   width: 25px;
+  pointer-events: none;
+  fill: var(--secondary-accent-color);
+}
+
+#rightbuttons > .espai-temes {
+  display: none;
+  background-color: lightcoral;
+  position: absolute;
+  top: var(--nav-height);
+  right: 0;
+  min-width: 250px;
+  min-height: 50px;
+  width: fit-content;
+  height: fit-content;
+  grid-template-columns: auto auto auto;
+  gap: 10px;
+  border-radius: 10px;
+}
+
+#espaitemes.open {
+  display: grid;
+}
+
+.espai-temes .temes-boto {
+  min-width: 50px;
+  min-height: 20px;
+  width: fit-content;
+  height: fit-content;
 }
 
 /*#########################   CONTENINDO PRINCIPAL   #############################*/
 
-#main-content {
+.main-content {
   display: flex;
   justify-content: center;
   width: 100vw;
@@ -309,20 +423,31 @@ nav #theme-toggler svg {
   margin-top: 10vh;
 }
 
+.main-content > div,
+.main-content > article {
+  position: relative;
+  background-image: var(--content-bg-image);
+}
+
 main > div,
 main > article {
   width: 80%;
   min-height: 50vh;
   margin-top: 5vh;
+  padding: 10px;
+  border-radius: 0px;
+  box-shadow: var(--nav-shadow);
 }
 
 main h1 {
   color: var(--h1-color);
+  font-family: var(--h1-font);
   font-size: var(--h1-size);
 }
 
 main h2 {
   color: var(--h2-color);
+  font-family: var(--h2-font);
   font-size: var(--h2-size);
 }
 
@@ -336,13 +461,18 @@ main h4 {
   font-size: var(--h4-size);
 }
 
+main h4 {
+  color: var(--h2-color);
+  font-size: var(--h2-size);
+}
+
 main p,
 td {
   color: var(--p-color);
   font-size: var(--p-size);
 }
 
-a:not(.nav-link) {
+a:not(.nav-link, .user-button) {
   background-image: linear-gradient(
     90deg,
     var(--theme-maxcontrast),
@@ -352,13 +482,37 @@ a:not(.nav-link) {
   background-repeat: no-repeat;
   background-size: 0px 2px;
   color: var(--a-color);
-  text-decoration: none;
+  text-decoration: unset;
   transition: ease-out 200ms;
   transition-property: background-size;
 }
 
-a:not(.nav-link):hover {
+a:not(.nav-link, .user-button):hover {
   background-size: 100% 2px;
+}
+
+button:not([disabled]),
+input[type="button"]:not([disabled]),
+input[type="submit"]:not([disabled]) {
+  background: var(--button-bg-base);
+  border-radius: 5px;
+  border: 1px solid var(--theme-maxcontrast);
+  color: var(--theme-maxcontrast);
+}
+
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  background-color: var(--button-bg-hover);
+  border-radius: 10px;
+}
+
+.missatge {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 46%;
+  text-align: center;
 }
 
 /*#########################   GESTIÓN   #############################*/
@@ -384,30 +538,26 @@ a:not(.nav-link):hover {
 /*#########################   PARA PC   #############################*/
 
 @media screen and (min-width: 900px) {
-  #navbar-toggler {
+  #navbar-toggler-parent {
     display: none;
-  }
-
-  #theme-toggler {
-    position: relative;
-    left: var(--nav-height);
-    z-index: 5;
   }
 }
 
 /*#########################   PARA MOVIL   #############################*/
 
 @media screen and (max-width: 900px) {
-  header > nav {
+  #navbar {
     flex-direction: column;
     justify-content: flex-start;
   }
 
-  header > nav > #navbuttons {
+  #navbuttons {
     position: absolute;
     top: var(--nav-height);
     left: 0;
     background-color: var(--nav-bg-color);
+    background-image: var(--nav-bg-image);
+    background-position-y: calc(var(--nav-height) * -1);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -416,39 +566,25 @@ a:not(.nav-link):hover {
     width: 100vw;
   }
 
-  header > nav > #navbuttons > a {
-    background-color: var(--button-bg-base);
-    display: flex;
+  .nav-link:not(.navbar-brand) {
     align-items: flex-start;
-    height: 100%;
-    padding: 020px;
-    color: var(--h2-color);
-    font-size: var(--nav-font-size);
-    text-decoration: none;
-  }
-
-  header > nav > #navbuttons > a:hover {
-    background-color: var(--button-bg-hover);
-  }
-
-  header > nav > #navbuttons > a.clicked {
-    background-color: var(--button-bg-clicked);
+    width: 100%;
   }
 
   #navbuttons.collapsed {
     display: none;
   }
 
-  #theme-toggler {
+  .temes-boto {
     width: 50px;
   }
 
-  #main-content > div,
-  #main-content > article {
+  .main-content > div,
+  .main-content > article {
     width: 90%;
   }
 
-  main#main-content > article {
+  main.main-content > article {
     min-height: 10vh;
   }
 
@@ -470,6 +606,14 @@ input {
   margin-bottom: 10px;
 }
 
+input:not(:placeholder-shown):invalid {
+  border-color: red;
+}
+
+input[type="radio"] {
+  accent-color: var(--accent-color);
+}
+
 select {
   max-width: 200px;
 }
@@ -478,6 +622,13 @@ select {
 input[type="file"] {
     display: none;
 }*/
+
+#loginform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 #formulari {
   display: flex;
@@ -517,7 +668,7 @@ label + div label,
   font-size: var(--p-size);
 }
 
-/*#########################   TABLAS   #############################*/
+/*#########################   TABLAS Y CONTENIDO DE LA BASE DE DATOS   #############################*/
 
 table {
   z-index: 5;
@@ -533,15 +684,131 @@ thead {
 th {
   font-size: var(--p-size);
   font-weight: var(--p-weight-bold);
+  padding: 0 5px;
+}
+
+table td {
+  text-align: center;
+}
+
+table .tableImageHolder {
+  display: flex;
+  justify-content: center;
+}
+
+table .tableImageHolder img {
+  max-width: 10.3vw;
+}
+
+article > h1 {
+  text-align: center;
 }
 
 
+
+.flex-parent {
+  display: flex;
+}
+
+.columns {
+  flex-direction: row;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+.space-between {
+  justify-content: space-between;
+}
+.center {
+  justify-content: center;
+  align-items: center;
+}
+.rows {
+  flex-direction: column;
+}
+
+.jocmanual-pare {
+  width:60%;
+}
+
+.manual-copia, .joc-copia {
+  width: 400px;
+  margin-bottom: 10px;
+}
+
+#afegircopia {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  min-width: 100px;
+  max-width: 150px;
+  margin-left: 125px;
+}
+
+#llistamanuals, #llistajocs {
+  align-items: center;
+  width:70%;
+}
+.hidden {
+  display: none !important;
+}
+
+.manual-copia .boto-reserva:nth-of-type(2):not([Id]),
+.joc-copia .boto-reserva:nth-of-type(2):not([Id]) {
+  display: none;
+}
+
+.manual,
+.joc {
+  margin-bottom: 30px;
+}
+
+.manual > .flex-parent,
+.joc > .flex-parent {
+  position: relative;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: fit-content;
+  min-width: 50%;
+  max-width: 50%;
+  width: 50vw;
+}
+.manual > .flex-parent > *,
+.joc > .flex-parent > * {
+  width:20vw;
+}
+
+.contingut {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  /*position: absolute;
+  left: 320px;*/
+  height: 100%;
+  min-height: 150px;
+  width: 300px;
+}
+
+.image-holder {
+  max-width: 20vw;
+  margin-right: 30px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.image-holder img:hover {
+  transform: scale(1.1);
+  transition: transform 250ms ease-in-out;
+}
 
 /*#########################   FOOTER   #############################*/
 
 footer {
   z-index: 3;
   background-color: var(--nav-bg-color);
+  background-image: var(--footer-bg-image);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -549,6 +816,15 @@ footer {
   height: 20vh;
   width: 100vw;
   margin-top: 10vh;
-  color: var(--p-color);
+  color: var(--nav-color);
   text-align: center;
+  box-shadow: var(--nav-shadow);
+}
+
+footer a:hover {
+  background-image: linear-gradient(
+    90deg,
+    var(--secondary-accent-color),
+    var(--secondary-accent-color)
+  );
 }

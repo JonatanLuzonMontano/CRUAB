@@ -53,7 +53,7 @@ switch($_SERVER['REQUEST_METHOD']){
             }
 
             
-            if (move_uploaded_file(assegurarInputs($_FILES['img-uploader']['tmp_name']), $uploadfile)) {
+            if (move_uploaded_file($_FILES['img-uploader']['tmp_name'], $uploadfile)) {
                 $msg["img-correcte"] = "File is valid, and was successfully uploaded.";
             } else {
                 $msg["img-error"] = "Possible file upload attack!";
@@ -67,11 +67,11 @@ switch($_SERVER['REQUEST_METHOD']){
         $nom = assegurarInputs($_GET['nom']);
         $query = "DELETE FROM jocstaula WHERE Nom='$nom'";
         $resultat = dbconndelete($query);
-        unlink('../img/jocs/'.$nom.'.jpg');
         if(substr($resultat, 0, 5) == "Error"){
             $msg["Error"] = "Error al esborrar les dades. comproba que tot estigui correcte";
             $msg["DeBug"] = $resultat;
         } else {
+            unlink('../img/jocs/'.$nom.'.jpg');
             $msg["Correcte"] = "Tot ok";
         }
         break;

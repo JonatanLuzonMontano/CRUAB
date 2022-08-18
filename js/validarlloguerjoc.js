@@ -17,7 +17,6 @@ function obtenirJocs(){
                 td[4].getElementsByTagName("button")[0].id=data[i]["NumLloguer"];
                 td[4].getElementsByTagName("button")[1].innerText="Rebutjar";
                 td[4].getElementsByTagName("button")[1].id=-data[i]["NumLloguer"];
-                console.log(td);
                 // Clonar la nueva fila e insertarla en la tabla
                 var tb = document.querySelector("tbody");
                 var clone = document.importNode(t.content, true);
