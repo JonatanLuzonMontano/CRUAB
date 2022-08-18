@@ -222,7 +222,7 @@ body.pergami {
   --header-color-general: var(--PHB-h1-color);
   --nav-color: var(--PHB-bg-color);
   --p-color: var(--text-color-general);
-  --a-color: var(--accent-color);
+  --a-color: var(--PHB-logo-color);
   --a-selected-color: var(--secondary-accent-color);
 
   /*fonts*/
@@ -259,6 +259,7 @@ a::selection {
 
 :focus {
   z-index: 100;
+  outline: none;
 }
 
 ::-webkit-scrollbar {
@@ -298,10 +299,6 @@ header {
   box-shadow: var(--nav-shadow);
 }
 
-* {
-  user-select: none;
-}
-
 header > nav {
   display: flex;
   flex-direction: row;
@@ -312,7 +309,7 @@ header > nav {
 }
 
 .navbar-brand,
-#navbuttons {
+#botonsnavegacio {
   display: flex;
   align-items: center;
   height: 100%;
@@ -332,7 +329,8 @@ header > nav {
   -webkit-user-drag: none;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus {
   background-color: var(--nav-link-bg-hover);
   backdrop-filter: brightness(150%);
 }
@@ -349,14 +347,14 @@ header > nav {
   text-decoration: unset;
 }
 
-#rightbuttons {
+#botonsdreta {
   position: absolute;
   top: 0px;
   right: 0px;
   display: flex;
 }
 
-#rightbuttons > * {
+#botonsdreta > * {
   z-index: 4;
   background: unset;
   display: flex;
@@ -387,7 +385,7 @@ nav .temes-boto svg {
   fill: var(--secondary-accent-color);
 }
 
-#rightbuttons > .espai-temes {
+#botonsdreta > .espai-temes {
   display: none;
   background-color: lightcoral;
   position: absolute;
@@ -472,7 +470,7 @@ td {
   font-size: var(--p-size);
 }
 
-a:not(.nav-link, .user-button) {
+a:not(.nav-link, .user-button, .social-link) {
   background-image: linear-gradient(
     90deg,
     var(--theme-maxcontrast),
@@ -487,7 +485,8 @@ a:not(.nav-link, .user-button) {
   transition-property: background-size;
 }
 
-a:not(.nav-link, .user-button):hover {
+a:not(.nav-link, .user-button):hover,
+a:not(.nav-link, .user-button):focus {
   background-size: 100% 2px;
 }
 
@@ -501,8 +500,11 @@ input[type="submit"]:not([disabled]) {
 }
 
 button:hover,
+button:focus,
 input[type="button"]:hover,
-input[type="submit"]:hover {
+input[type="button"]:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus {
   background-color: var(--button-bg-hover);
   border-radius: 10px;
 }
@@ -551,7 +553,7 @@ input[type="submit"]:hover {
     justify-content: flex-start;
   }
 
-  #navbuttons {
+  #botonsnavegacio {
     position: absolute;
     top: var(--nav-height);
     left: 0;
@@ -571,7 +573,7 @@ input[type="submit"]:hover {
     width: 100%;
   }
 
-  #navbuttons.collapsed {
+  #botonsnavegacio.collapsed {
     display: none;
   }
 
@@ -704,8 +706,6 @@ article > h1 {
   text-align: center;
 }
 
-
-
 .flex-parent {
   display: flex;
 }
@@ -729,10 +729,11 @@ article > h1 {
 }
 
 .jocmanual-pare {
-  width:60%;
+  width: 60%;
 }
 
-.manual-copia, .joc-copia {
+.manual-copia,
+.joc-copia {
   width: 400px;
   margin-bottom: 10px;
 }
@@ -746,9 +747,10 @@ article > h1 {
   margin-left: 125px;
 }
 
-#llistamanuals, #llistajocs {
+#llistamanuals,
+#llistajocs {
   align-items: center;
-  width:70%;
+  width: 70%;
 }
 .hidden {
   display: none !important;
@@ -776,7 +778,7 @@ article > h1 {
 }
 .manual > .flex-parent > *,
 .joc > .flex-parent > * {
-  width:20vw;
+  width: 20vw;
 }
 
 .contingut {
@@ -798,7 +800,8 @@ article > h1 {
   border-radius: 10px;
 }
 
-.image-holder img:hover {
+.image-holder img:hover,
+.image-holder img:focus {
   transform: scale(1.1);
   transition: transform 250ms ease-in-out;
 }
@@ -821,10 +824,22 @@ footer {
   box-shadow: var(--nav-shadow);
 }
 
-footer a:hover {
+footer .social-link {
   background-image: linear-gradient(
     90deg,
     var(--secondary-accent-color),
     var(--secondary-accent-color)
   );
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 0px 2px;
+  color: var(--a-color);
+  text-decoration: unset;
+  transition: ease-out 200ms;
+  transition-property: background-size;
+}
+
+footer .social-link:hover,
+footer .social-link:focus {
+  background-size: 100% 2px;
 }

@@ -55,10 +55,10 @@ function alCarregar() {
 }
 
 function afegeixListeners() {
-  var navbuttons = document.getElementsByClassName("nav-link");
-  for (i = 0; i < navbuttons.length; i++) {
-    navbuttons[i].addEventListener('mousedown', clickeffect);
-    navbuttons[i].addEventListener('mouseup', clickeffect);
+  var botonsnavegacio = document.getElementsByClassName("nav-link");
+  for (i = 0; i < botonsnavegacio.length; i++) {
+    botonsnavegacio[i].addEventListener('mousedown', clickeffect);
+    botonsnavegacio[i].addEventListener('mouseup', clickeffect);
   }
 
   document.getElementById("navbar-toggler").addEventListener('click', opennav);

@@ -27,7 +27,7 @@ function clickeffect(e) { /*efecte de clic als botons*/
 }
 
 function opennav() { /* obre i tanca la navegació en mòbil*/
-  document.getElementById("navbuttons").classList.toggle("collapsed");
+  document.getElementById("botonsnavegacio").classList.toggle("collapsed");
 }
 
 function obrirTemes() {
