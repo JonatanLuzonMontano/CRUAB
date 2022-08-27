@@ -55,7 +55,7 @@
           <div>
             <label class="form-input-label" for="nom">Nom del joc</label>
             <br>
-            <input type="text" id="nom" name="nom" placeholder="Lords Of Waterdeep" pattern="[A-Za-z0-9 ]+" title="Nom del joc de taula"
+            <input type="text" id="nom" name="nom" placeholder="Lords Of Waterdeep" pattern="[A-Za-zÀ-ÖØ-öø-ÿ&' 0-9]+" title="Nom del joc de taula"
               required>
           </div>
           <div>
@@ -88,7 +88,7 @@
           <div>
             <label class="form-input-label" for="editorial">Editorial</label>
             <br>
-            <input type="text" id="editorial" name="editorial" placeholder="Wizards of the Coast" title="Nom de l'editorial" required>
+            <input type="text" id="editorial" name="editorial" pattern="[A-Za-zÀ-ÖØ-öø-ÿ&' 0-9]+" placeholder="Wizards of the Coast" title="Nom de l'editorial" required>
           </div>
         </div>
 
@@ -118,7 +118,7 @@
           </div>
 
           <div>
-            <input type="submit" id="afegirjoc" name="submit" value="Afegir joc">
+            <input type="submit" id="afegirjoc" name="submit" class="constructiu" value="Afegir joc">
           </div>
         </div>
       </form>

@@ -55,49 +55,49 @@
           <div>
             <label for="nom" class="form-input-label">Nom</label>
             <br>
-            <input type="text" id="nom" name="nom" placeholder="Player's Handbook 5e" pattern="[A-Za-z& ]+" title="Nom del manual" required>
+            <input id="nom" type="text" name="nom" placeholder="Player's Handbook 5e" pattern="[A-Za-zÀ-ÖØ-öø-ÿ&' 0-9]+" title="Nom del manual" required>
             <!--required-->
           </div>
           <div>
             <label for="genere" class="form-input-label">Gènere</label>
             <br>
-            <input type="text" id="genere" name="genere" placeholder="Alta fantasia" pattern="[A-Za-z0-9]+" title="Gènere del manual" required>
+            <input id="genere" type="text" name="genere" placeholder="Alta fantasia" pattern="[A-Za-z ]+" title="Gènere del manual" required>
             <!--required-->
           </div>
           <div>
             <label for="ambientacio" class="form-input-label">Ambientació</label>
             <br>
-            <input type="text" id="ambientacio" name="ambientacio" placeholder="Medieval" title="Ambientació del joc" pattern="[A-Za-z0-9]+" required>
+            <input id="ambientacio" type="text" name="ambientacio" placeholder="Medieval" title="Ambientació del joc" pattern="[A-Za-z0-9 ]+" required>
             <!--required-->
           </div>
           <div>
             <label for="editorial" class="form-input-label">Editorial</label>
             <br>
-            <input type="text" id="editorial" name="editorial" placeholder="Wizards Of The Coast" title="Nom de l'editorial" pattern="[A-Za-z0-9&]+" required>
+            <input id="editorial" type="text" name="editorial" placeholder="Wizards Of The Coast" title="Nom de l'editorial" pattern="[A-Za-zÀ-ÖØ-öø-ÿ&' 0-9]+" required>
             <!--required-->
           </div>
           <div>
             <label for="coleccio" class="form-input-label">Colleció</label>
             <br>
-            <input type="text" id="coleccio" name="coleccio" placeholder="Dungeons and Dragons 5e" title="Collecció, si en forma part">
+            <input id="coleccio" type="text" name="coleccio" placeholder="Dungeons and Dragons 5e" title="Collecció, si en forma part">
           </div>
         </div>
         <div id="second-column">
           <div>
-            <label for="start">Data d'adquisició:</label>
+            <label for="adquirit">Data d'adquisició:</label>
             <br>
-            <input type="date" id="adquirit" name="adquirit" min="1960-01-01" title="Data en que es va comprar" required>
+            <input id="adquirit" type="date" name="adquirit" min="1960-01-01" title="Data en que es va comprar" required>
             <!--required-->
           </div>
           <br>
           <div>
-            <input type="file" id="img-uploader" name="img-uploader" accept="image/png, image/jpeg" required>
+            <input id="img-uploader" type="file" name="img-uploader" accept="image/png, image/jpeg" required>
           </div>
           <br>
           <div id="previsualitzar"></div>
 
           <div>
-            <input type="submit" id="afegirmanual" name="submit" value="Afegir Manual">
+            <input id="afegirmanual" type="submit" name="submit" class="constructiu" value="Afegir Manual">
           </div>
         </div>
       </form>

@@ -108,55 +108,37 @@ function registreManual() {
 function getManuals() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
-
     if (this.readyState == 4 && this.status == 200) {
       console.log(xhttp.responseText);
       var llista = JSON.parse(xhttp.responseText);
-      console.log(llista);
-      console.log(sessionStorage);
-      if (sessionStorage['numsoci'] != null) {
-
-        llista.forEach(function (manual) {
-          var llistamanuals = document.getElementById("llistamanuals");
-          const element = document.getElementsByClassName("manual")[0];
-          const clonelement = element.cloneNode(true);
-
-          if (element.querySelector(".nom").textContent == "") {
-            var copiaactual = element;
-            copiaactual.id = manual.Nom;
-            copiaactual.getElementsByClassName("nom")[0].textContent = manual.Nom;
-            copiaactual.querySelector("a").href = "manualindividual.html?nom=" + manual.Nom;
-            copiaactual.querySelector("img").src = manual.Imatge;
-            copiaactual.querySelector(".detalls").textContent = "Ambientació: " + manual.Ambientacio;
-
-            if (sessionStorage['juntari'] == 'true') {
-              document.getElementById("boto-afegir").addEventListener('click', function() {registreManual();}); /* esto no tendria que estar aqui, sino fuera del foreach*/
-              document.getElementById("boto-afegir").textContent = "Afegir manual";
-              document.getElementById("boto-afegir").classList.remove("hidden");
-              copiaactual.getElementsByClassName("eliminarboto")[0].textContent = "Eliminar manual";
-              copiaactual.getElementsByClassName("eliminarboto")[0].classList.remove("hidden");
-              copiaactual.getElementsByClassName("eliminarboto")[0].addEventListener('click', function () { eliminarManual(manual.Nom); });
-            }
-
-          } else {
-            llistamanuals.appendChild(clonelement);
-            var copiaactual = document.querySelector(".manual:last-child");
-            copiaactual.id = manual.Nom;
-            copiaactual.getElementsByClassName("nom")[0].textContent = manual.Nom;
-            copiaactual.querySelector("a").href = "manualindividual.html?nom=" + manual.Nom;
-            copiaactual.querySelector("img").src = manual.Imatge;
-            copiaactual.querySelector(".detalls").textContent = "Ambientació: " + manual.Ambientacio;
-
-            if (sessionStorage['juntari'] == 'true') {
-              copiaactual.getElementsByClassName("eliminarboto")[0].textContent = "Eliminar manual";
-              copiaactual.getElementsByClassName("eliminarboto")[0].classList.remove("hidden");
-              copiaactual.getElementsByClassName("eliminarboto")[0].addEventListener('click', function () { eliminarManual(manual.Nom); });
-            }
-          }
-        });
-      } else {
-        document.querySelector("main article").innerHTML += '<h3 style="position:absolute; bottom:0px; left:0px; transform:translate(35vw, -50vh);">Inicia sessió per poder veure els manuals</h3>';
+      const element = document.getElementsByClassName("manual")[0];
+      if (sessionStorage['juntari'] == 'true') {
+        document.getElementById("boto-afegir").addEventListener('click', function () { registreManual(); }); /* esto no tendria que estar aqui, sino fuera del foreach*/
+        document.getElementById("boto-afegir").textContent = "Afegir manual";
+        document.getElementById("boto-afegir").classList.remove("hidden");
       }
+      llista.forEach(function (manual) {
+        const clonelement = element.cloneNode(true);
+        var llistamanuals = document.getElementById("llistamanuals");
+        if (manual !== llista[0]) {
+          llistamanuals.appendChild(clonelement);
+        }
+        var manualactual = document.querySelector(".manual:last-child");
+        manualactual.id = manual.Nom;
+        manualactual.getElementsByClassName("nom")[0].textContent = manual.Nom;
+        manualactual.querySelector("a").href = "manualindividual.html?nom=" + manual.Nom;
+        manualactual.querySelector("img").src = manual.Imatge;
+        manualactual.querySelector(".editorial").textContent = "Publicat per " + manual.Editorial + ".";
+        manualactual.querySelector(".ambientacio").textContent = "Ambientació: " + manual.Ambientacio + ".";
+        manualactual.querySelector(".coleccio").textContent = "Part de la col·leció " + manual.Coleccio + ".";
+        manualactual.querySelector(".adquirit").textContent = "A la taquilla des del " + manual.Adquirit + ".";
+
+        if (sessionStorage['juntari'] == 'true') {
+          manualactual.getElementsByClassName("eliminarboto")[0].textContent = "Eliminar manual";
+          manualactual.getElementsByClassName("eliminarboto")[0].classList.remove("hidden");
+          manualactual.getElementsByClassName("eliminarboto")[0].addEventListener('click', function () { eliminarManual(manual.Nom); });
+        }
+      });
     }
   };
   xhttp.open('GET', '/api/manuals.php', true);

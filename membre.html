@@ -49,14 +49,14 @@
   <main class="main-content">
     <div>
       <div class="button-holder">
-        <a id="usuariboto" class="user-button active">usuari</a>
-        <a id="prestecsboto" class="user-button">prestecs</a>
+        <a id="usuariboto" class="user-button hidden">usuari</a>
+        <a id="prestecsboto" class="user-button active">prestecs</a>
       </div>
-      <article id="prestecsmembre"  class="user-content-article prestecsboto">
+      <article id="prestecsmembre"  class="user-content-article open prestecsboto">
         <a href="lloguersjocs.html">Préstecs de jocs</a>
         <a href="lloguersmanuals.html">Préstecs de manuals</a>
       </article>
-      <article id="user-page" class="user-content-article usuariboto open">
+      <article id="user-page" class="user-content-article usuariboto">
         <div id="user-image">
           <img>
           <input type="file" id="img-uploader" name="img-uploader" accept="image/png, image/jpeg" required>
@@ -93,6 +93,7 @@
 
   
   <script src="js/sessions.js"></script>
+  <script src="js/membre.js"></script>
   <script src="js/temesimenus.js"></script>
   <script src="js/onload.js"></script>
   <script src="js/checkmembre.js"></script>

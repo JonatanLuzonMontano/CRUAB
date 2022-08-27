@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cruab</title>
-  
+
   <link rel="stylesheet" href="css/general.css">
 </head>
 
@@ -25,7 +25,8 @@
       <div id="botonsdreta">
         <button id="temes" class="temes-boto" type="button" data-target="espaitemes">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z"/>
+            <path
+              d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z" />
           </svg>
         </button>
         <div id="espaitemes" class="espai-temes">
@@ -46,19 +47,22 @@
   </header>
 
   <main class="main-content">
-    <article>
-      <button id="boto-afegir" class="hidden"></button>
-      <div id="llistamanuals" class="flex-parent rows">
-        <div class="manual">
+    <article class="flex-parent rows center">
+      <button id="boto-afegir" class="constructiu hidden"></button>
+      <div id="llistamanuals" class="llistaelements">
+        <div class="manual element">
           <h3 class="nom"></h3>
-          <div class="flex-parent columns">
+          <div class="contingut">
             <div class="image-holder">
               <a><img></a>
             </div>
-            <div class="contingut flex-parent rows space-between">
-              <p class="detalls"></p>
-              <button class="eliminarboto hidden"></button>
-            </div>
+              <div class="detalls">
+                <p class="editorial"></p>
+                <p class="ambientacio"></p>
+                <p class="coleccio"></p>
+                <p class="adquirit"></p>
+                <button class="eliminarboto destructiu hidden"></button>
+              </div>
           </div>
         </div>
       </div>
@@ -76,13 +80,14 @@
       </adress>
     </section>
     <section class="social-links">
-      <a id="instagram" class="social-link"  property="instagram" name="@" href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
+      <a id="instagram" class="social-link" property="instagram" name="@"
+        href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
       <a id="facebook" class="social-link" property="facebook" name="" href="facebook.com">Facebook</a>
-      <a id="twitter" class="social-link"  href="https://twitter.com/cruaboficial?">Twitter</a>
+      <a id="twitter" class="social-link" href="https://twitter.com/cruaboficial?">Twitter</a>
     </section>
   </footer>
 
-  
+
   <script src="js/sessions.js"></script>
   <script src="js/manuals.js"></script>
   <script src="js/temesimenus.js"></script>
