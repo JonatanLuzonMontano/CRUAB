@@ -53,6 +53,7 @@ function afegirManual() {
   data['editorial'] = document.getElementById("editorial").value;
   data['adquirit'] = document.getElementById("adquirit").value;
   data['coleccio'] = document.getElementById("coleccio").value;
+  data['id'] = ...;
 
   if (validarFormulariManual(data, imatge)) {
 
