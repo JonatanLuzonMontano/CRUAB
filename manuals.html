@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cruab</title>
-  
+
   <link rel="stylesheet" href="css/general.css">
 </head>
 
@@ -14,7 +14,7 @@
     <nav id="navbar">
       <a class="navbar-brand nav-link" href="index.html">CRUAB</a>
 
-      <div id="navbuttons" class="collapsed">
+      <div id="botonsnavegacio" class="collapsed">
         <a id="paginajocs" class="nav-link" aria-current="page" href="jocstaula.html">Jocs de taula</a>
         <a id="paginamanuals" class="nav-link" aria-current="page" href="manuals.html">Manuals</a>
         <a id="paginagestio" class="nav-link hidden" aria-current="page" href="gestio.html">Gestió</a>
@@ -22,10 +22,11 @@
         <a id="paginalogout" class="nav-link hidden" aria-current="page" href="">Tancar sessió</a>
         <a id="paginalogin" class="nav-link hidden" aria-current="page" href="login.html">Iniciar sessió</a>
       </div>
-      <div id="rightbuttons">
+      <div id="botonsdreta">
         <button id="temes" class="temes-boto" type="button" data-target="espaitemes">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z"/>
+            <path
+              d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z" />
           </svg>
         </button>
         <div id="espaitemes" class="espai-temes">
@@ -34,7 +35,7 @@
           <button id="pergami" class="canvi-tema" type="button" data-toggle="theme" data-target="body">Pergami</button>
         </div>
         <div id="navbar-toggler-parent">
-          <button id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbuttons">
+          <button id="navbar-toggler" type="button" data-toggle="collapse" data-target="#botonsnavegacio">
             <hr>
             <hr>
             <hr>
@@ -46,19 +47,22 @@
   </header>
 
   <main class="main-content">
-    <article>
-      <button id="boto-afegir" class="hidden"></button>
-      <div id="llistamanuals" class="flex-parent rows">
-        <div class="manual">
+    <article class="flex-parent rows center">
+      <button id="boto-afegir" class="constructiu hidden"></button>
+      <div id="llistamanuals" class="llistaelements">
+        <div class="manual element">
           <h3 class="nom"></h3>
-          <div class="flex-parent columns">
+          <div class="contingut">
             <div class="image-holder">
               <a><img></a>
             </div>
-            <div class="contingut flex-parent rows space-between">
-              <p class="detalls"></p>
-              <button class="eliminarboto hidden"></button>
-            </div>
+              <div class="detalls">
+                <p class="editorial"></p>
+                <p class="ambientacio"></p>
+                <p class="coleccio"></p>
+                <p class="adquirit"></p>
+                <button class="eliminarboto destructiu hidden"></button>
+              </div>
           </div>
         </div>
       </div>
@@ -69,20 +73,21 @@
     <section class="contact">
       <h2>Contacta amb nosaltres!</h2>
       <adress property="email">
-        <a href="mailto:juntacruab@gmail.com">juntacruab@gmail.com</a>
+        <a id="email" class="social-link" href="mailto:juntacruab@gmail.com">juntacruab@gmail.com</a>
       </adress>
       <adress property="adress" typeof="PostalAdress">
         <p property="streetAdress">Plaça Cívica, 08193 Bellaterra, Barcelona</p>
       </adress>
     </section>
     <section class="social-links">
-      <a id="instagram" property="instagram" name="@" href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
-      <a property="facebook" name="" href="facebook.com">Facebook</a>
-      <a id="twitter" href="https://twitter.com/cruaboficial?">Twitter</a>
+      <a id="instagram" class="social-link" property="instagram" name="@"
+        href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
+      <a id="facebook" class="social-link" property="facebook" name="" href="facebook.com">Facebook</a>
+      <a id="twitter" class="social-link" href="https://twitter.com/cruaboficial?">Twitter</a>
     </section>
   </footer>
 
-  
+
   <script src="js/sessions.js"></script>
   <script src="js/manuals.js"></script>
   <script src="js/temesimenus.js"></script>

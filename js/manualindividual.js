@@ -37,6 +37,7 @@ function reservarManual(manual, copia) {
       console.log(xhttpreservar.responseText);
       let resultat = JSON.parse(xhttpreservar.responseText);
       if (resultat.hasOwnProperty("Correcte")) {
+        console.log(document.getElementById(copia));
         document.getElementById(copia).disabled = true;
         alert("Reserva sol·licitada");
         location.reload();
@@ -61,83 +62,54 @@ function obtenirManuals() {
       console.log(llista);
       if (sessionStorage['numsoci'] != null) {
         var llistacopies = document.getElementById('llistacopies');
-        const element = llistacopies.getElementsByClassName('manual-copia')[0];
+        const element = llistacopies.getElementsByClassName('element-copia')[0];
         console.log(llista[0]);
         if (llista[0] == null) {
           afegirCopiaManual();
         }
         llista.forEach(function (manual) {
           const clonelement = element.cloneNode(true);
-          clonelement.id = "clon-" + manual.Numcopia;
-          document.getElementById('imageHolder').getElementsByTagName("img")[0].src = manual.Imatge;
-
-          if (element.querySelector(".num-copia").textContent == "") {
-            var copiaactual = element;
-            let botoreserva = copiaactual.getElementsByClassName("boto-reserva")[0];
-            copiaactual.querySelector(".num-copia").textContent = "Copia " + manual.Numcopia;
-            botoreserva.id = manual.Numcopia;
-            botoreserva.textContent = "Reserva";
-            botoreserva.addEventListener('click', function () {reservarManual(nommanual, manual.Numcopia);});
-
-            if (sessionStorage['juntari'] == "true") {
-              let botonelimina = copiaactual.getElementsByClassName("boto-reserva")[1];
-              botonelimina.textContent = "Elimina còpia";
-              botonelimina.id = "-" + manual.Numcopia;
-
-              botonelimina.addEventListener('click', function () {eliminarCopiaManual(manual.Numcopia);});
-
-              if (manual.Retorn == null && manual.NumLloguer != null) {
-                document.getElementById(-manual.Numcopia).disabled = true;
-              }
-              if (manual.Retorn == null && manual.NumLloguer != null) {
-                document.getElementById(manual.Numcopia).disabled = true;
-                document.getElementById(manual.Numcopia).innerHTML = "Reservat";
-              }
-            }
-          } else {
+          if (manual != llista[0]) {
             llistacopies.appendChild(clonelement);
-            var copiaactual = llistacopies.querySelector(".manual-copia:last-child");
-            let botoreserva = copiaactual.getElementsByClassName("boto-reserva")[0];
-            copiaactual.querySelector(".num-copia").textContent = "Copia " + manual.Numcopia;
-            botoreserva.id = manual.Numcopia;
-            botoreserva.textContent = "Reserva";
-            botoreserva.addEventListener('click', function () {reservarManual(nommanual, manual.Numcopia);});
+          }
+          var copiaactual = llistacopies.querySelector(".element-copia:last-child");
+          document.getElementById('imageHolder').querySelector("img").src = manual.Imatge;
+          copiaactual.id = "copia" + manual.Numcopia;
+          copiaactual.querySelector(".num-copia").textContent = "Copia " + manual.Numcopia;
+          let botoreserva = copiaactual.querySelector(".boto-reserva");
+          botoreserva.id = manual.Numcopia;
+          botoreserva.textContent = "Reserva";
+          botoreserva.disabled = false;
+          botoreserva.addEventListener('click', function () { reservarManual(nommanual, manual.Numcopia); });
 
-            if (sessionStorage['juntari'] == "true") {
-              let botonelimina = copiaactual.getElementsByClassName("boto-reserva")[1];
-              botonelimina.textContent = "Elimina còpia";
-              botonelimina.id = "-" + manual.Numcopia;
-              botonelimina.addEventListener('click', function () {eliminarCopiaManual(manual.Numcopia);});
-
-              if (manual.Retorn == null && manual.NumLloguer != null) {
-                document.getElementById(-manual.Numcopia).disabled = true;
-              }
-              if (manual.Retorn == null && manual.NumLloguer != null) {
-                document.getElementById(manual.Numcopia).disabled = true;
-                document.getElementById(manual.Numcopia).innerHTML = "Reservat";
-              }
-            }
-
+          if (manual.Retorn == null && manual.NumLloguer != null) {
+            botoreserva.disabled = true;
+            botoreserva.innerHTML = "Reservada";
           }
 
+          if (sessionStorage['juntari'] == "true") {
+            let botoelimina = copiaactual.querySelector(".boto-elimina");
+            botoelimina.textContent = "Elimina còpia";
+            botoelimina.disabled = false;
+            botoelimina.classList.remove('hidden');
+            botoelimina.id = "-" + manual.Numcopia;
+            botoelimina.addEventListener('click', function () { eliminarCopiaManual(manual.Numcopia); });
 
+            if (manual.Retorn == null && manual.NumLloguer != null) {
+              botoelimina.classList.add('hidden');
+            }
+          }
         });
-              
-
         if (sessionStorage['juntari'] == 'true') { /*añade el boton afegir copia*/
-          document.getElementById('afegircopia').textContent = "Afegir Còpia";
-          document.getElementById('afegircopia').classList.remove("hidden");
-          document.getElementById('afegircopia').addEventListener('click', function () {afegirCopiaManual();});
-
+          document.getElementById('boto-afegir').textContent = "Afegir Còpia";
+          document.getElementById('boto-afegir').classList.remove("hidden");
+          document.getElementById('boto-afegir').addEventListener('click', function () { afegirCopiaManual(); });
         }
-
-      } else {
+      } else { /*si no es membre, que inicii sessió*/
         window.location.href = "login.html";
       }
-
     }
   }
-
   xhttpindividual.open('GET', '/api/manualsindividuals.php?nom=' + nommanual, true);
   xhttpindividual.send();
 }

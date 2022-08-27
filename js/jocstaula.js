@@ -116,128 +116,100 @@ function registreJoc() {
   window.location.href = "afegirjoc.html";
 }
 
+
+
+
+
 function getJocsTaula() {
   var xhttp = new XMLHttpRequest();
-
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttp.responseText);
+      //console.log(xhttp.responseText);
       var llista = JSON.parse(xhttp.responseText);
-      if (sessionStorage['numsoci'] != null) {
-
-
-        if (sessionStorage['juntari'] == 'true') {
-          document.getElementById('boto-afegir').classList.remove('hidden');
-          document.getElementById('boto-afegir').textContent = "Afegir Joc";
-          document.getElementById('boto-afegir').addEventListener('click', function () { registreJoc(); });
-        }
-        llista.forEach(function (joc) {
-          var llistajocs = document.getElementById('llistajocs');
-
-          const element = document.querySelector(".joc:last-child");
-          var clonelement = element.cloneNode(true);
-          
-          if (llistajocs.querySelector(".nom").textContent == "") {
-            const jocactual = llistajocs.querySelector(".joc");
-            jocactual.id = joc.Nom;
-            jocactual.querySelector(".nom").textContent = joc.Nom;
-            jocactual.querySelector("img").src = joc.Imatge;
-            jocactual.querySelector("a").href = "jocindividual.html?nom=" + joc.Nom;
-            jocactual.querySelector("p").textContent = joc.Editorial;
-
-            if (sessionStorage['juntari'] == 'true') {
-              jocactual.querySelector(".eliminarboto").classList.remove('hidden');
-              jocactual.querySelector(".eliminarboto").textContent = "Eliminar joc";
-              jocactual.querySelector(".eliminarboto").addEventListener('click', function () { eliminarJoc(joc.Nom); });
-            }
-          } else {
-            llistajocs.appendChild(clonelement);
-            let jocactual = document.querySelector(".joc:last-child");
-            jocactual.id = joc.Nom;
-            jocactual.querySelector(".nom").textContent = joc.Nom;
-            jocactual.querySelector("img").src = joc.Imatge;
-            jocactual.querySelector("a").href = "jocindividual.html?nom=" + joc.Nom;
-            jocactual.querySelector("p").textContent = joc.Editorial;
-
-            if (sessionStorage['juntari'] == 'true') {
-              jocactual.querySelector(".eliminarboto").classList.remove('hidden');
-              jocactual.querySelector(".eliminarboto").textContent = "Eliminar joc";
-              jocactual.querySelector(".eliminarboto").addEventListener('click', function () { eliminarJoc(joc.Nom); });
-            }
-          }
-        });
-      } else {
-        document.querySelector("main article").innerHTML += '<h3 style="position:absolute; bottom:0px; left:0px; transform:translate(35vw, -50vh);">Inicia sessió per poder veure els manuals</h3>';
+      const element = document.querySelector(".joc:last-child");
+      if (sessionStorage['juntari'] == 'true') {
+        document.getElementById('boto-afegir').classList.remove('hidden');
+        document.getElementById('boto-afegir').textContent = "Afegir Joc";
+        document.getElementById('boto-afegir').addEventListener('click', function () { registreJoc(); });
       }
+      llista.forEach(function (joc) {
+        var clonelement = element.cloneNode(true);
+        var llistajocs = document.getElementById('llistajocs');
+        if (joc !== llista[0]) {
+          llistajocs.appendChild(clonelement);
+        }
+        let jocactual = document.querySelector(".joc:last-child");
+        jocactual.id = joc.Nom;
+        jocactual.querySelector(".nom").textContent = joc.Nom;
+        jocactual.querySelector("img").src = joc.Imatge;
+        jocactual.querySelector("a").href = "jocindividual.html?nom=" + joc.Nom;
+        jocactual.querySelector(".editorial").textContent = "Publicat per " + joc.Editorial + ".";
+        jocactual.querySelector(".tipus").textContent = "Tipus " + joc.Tipus + ".";
+        jocactual.querySelector(".duracio").textContent = "Duració promitja de " + joc.Duracio + " minuts.";
+        jocactual.querySelector(".jugadors").textContent = "De " + joc.MinJugadors + " a " + joc.MaxJugadors + " persones.";
+
+        let dificultat = jocactual.querySelector(".dificultat");
+        switch (joc.Dificultat) {
+          case 1:
+            dificultat.textContent = "fàcil";
+            dificultat.style = "background-color: green;";
+            break;
+          case 2:
+            dificultat.textContent = "mitjà";
+            dificultat.style = "background-color: rgb(223, 223, 6);";
+            break;
+          case 3:
+            dificultat.textContent = "dificil";
+            dificultat.style = "background-color: orange;";
+            break;
+          case 4:
+            dificultat.textContent = "molt dificil";
+            dificultat.style = "background-color: red;";
+            break;
+          default:
+            break;
+        }
+        if (sessionStorage['juntari'] == 'true') {
+          jocactual.querySelector(".eliminarboto").classList.remove('hidden');
+          jocactual.querySelector(".eliminarboto").textContent = "Eliminar joc";
+          jocactual.querySelector(".eliminarboto").addEventListener('click', function () { eliminarJoc(joc.Nom); });
+        }
+      });
     }
   };
   xhttp.open('GET', '/api/jocstaula.php', true);
   xhttp.send();
 }
 
+function filtrar() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      //console.log(xhttp.responseText);
+      var llista = JSON.parse(xhttp.responseText);
+      console.log(llista);
+    }
+  }
 
-/*
-        if(sessionStorage['juntari'] == 'true'){
-            document.getElementById('boto-afegir').classList.remove('hidden');
-            document.getElementById('boto-afegir').addEventListener('click', function(){registreJoc();});
+  /*const numbers = document.getElementById('numbers');
+  const filtresActius = numbers.querySelectorAll('input:checked');
+  var num = (function () {
+    if (filtresActius.length == 1) {
+      const a = filtresActius[0].value;
+      return (a);
+    }
+  });
+  var min = null;
+  var max = null;*/
 
-              llista.forEach(function(joc){
-                  let estrellas = '';
-                  for(let i = 0; i < joc.Dificultat; i++){
-                      estrellas += '*';
-                  }
-                  document.getElementById('jocs').innerHTML += 
-                  `<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                      <div class="card">
-                          <a class="card-body" href="jocindividual.html?nom=${joc.Nom}">
-                              <img src="${joc.Imatge}" class="card-img-top" alt="...">
-                              <h5 class="card-title">${joc.Nom}</h5>
-                              <p class="card-text">Editorial: ${joc.Editorial}</p>
-                              <div>${estrellas}</div>
-                          </a>
-                          <button onclick="eliminarJoc('${joc.Nom}')">Eliminar joc</button>
-                      </div>
-                   </div>`;
-              });
-          } else {
-              llista.forEach(function(joc){
-                  let estrellas = '';
-                  for(let i = 0; i < joc.Dificultat; i++){
-                      estrellas += '*';
-                  }
-                  console.log(joc.Nom);
-                  document.getElementById('jocs').innerHTML += 
-                  `<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                      <a class="card" href="jocindividual.html?nom=${joc.Nom}">
-                          <img src="${joc.Imatge}" class="card-img-top" alt="...">
-                          <div class="card-body">
-                              <h5 class="card-title">${joc.Nom}</h5>
-                              <p class="card-text">Editorial: ${joc.Editorial}</p>
-                              <div>${estrellas}</div>
-                          </div>
-                      </a>
-                   </div>`;
-                  
-              });
-          }
+  const totsElements = document.querySelectorAll(".element");
+  console.log(totsElements.type);
 
-      } else {
-          llista.forEach(function(joc){
-              let estrellas = '';
-              for(let i = 0; i < joc.Dificultat; i++){
-                  estrellas += '*';
-              }
-  
-              document.getElementById('jocs').innerHTML += 
-              `<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
-                  <a class="card">
-                      <img src="${joc.Imatge}" class="card-img-top" alt="...">
-                      <div class="card-body">
-                          <h5 class="card-title">${joc.Nom}</h5>
-                          <p class="card-text">Editorial: ${joc.Editorial}</p>
-                          <div>${estrellas}</div>
-                      </div>
-                  </a>
-               </div>`;
-          });
-      }*/
+  /*for (i = 0; i < totsElements; i++) {
+    let numjugadors = totsElements[i].querySelector('.jugadors').textContent;
+    let nummaxim = numjugadors.replace(/^\D+/g, '');
+    console.log(numjugadors, nummaxim);
+    //if(element.querySelector('.jugadors').textContent){}
+  }*/
+
+}

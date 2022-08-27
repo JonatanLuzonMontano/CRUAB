@@ -41,6 +41,8 @@ switch($_SERVER['REQUEST_METHOD']){
                     }
                     
                     $msg["Correcte"] = "Tot ok";
+                    $msg["numsoci"] = $_SESSION["usuari"];
+                    $msg["juntari"] = $_SESSION["juntari"];
 
                 } else {
                     $msg["Error"] = "L'usuari no s'ha validat encara";
@@ -49,8 +51,7 @@ switch($_SERVER['REQUEST_METHOD']){
                 $msg["Error"] = "Usuari i/o contrasenya incorrectes";
             }
             
-            $msg["numsoci"] = $_SESSION["usuari"]; 
-            $msg["juntari"] = $_SESSION["juntari"];
+            
         
         }catch(Exception $e){
             die("Error: " . $e->getMessage());
