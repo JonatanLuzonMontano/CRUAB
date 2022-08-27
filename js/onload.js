@@ -4,9 +4,9 @@ window.onload = alCarregar;
 function alCarregar() {
   canviaTema();
 
-  afegeixListeners();
 
-  afegirIdAMain();
+
+  afegirClassAMain();
 
   switch (nomArxiu()) { /*carga los eventos onload para la pagina correspondiente*/
     case "manuals.html":
@@ -52,14 +52,20 @@ function alCarregar() {
     default:
       break;
   }
+
+  afegeixListeners();
 }
 
 function afegeixListeners() {
-  var navbuttons = document.getElementsByClassName("nav-link");
-  for (i = 0; i < navbuttons.length; i++) {
-    navbuttons[i].addEventListener('mousedown', clickeffect);
-    navbuttons[i].addEventListener('mouseup', clickeffect);
+  var botonsnavegacio = document.getElementsByClassName("nav-link");
+  for (i = 0; i < botonsnavegacio.length; i++) {
+    botonsnavegacio[i].addEventListener('mousedown', clickeffect);
+    botonsnavegacio[i].addEventListener('mouseup', clickeffect);
   }
+  ifSubmmit();
+  ifFiltre();
+
+  window.addEventListener('scroll', function () { ifScrollNavBg(); });
 
   document.getElementById("navbar-toggler").addEventListener('click', opennav);
 
@@ -71,19 +77,29 @@ function afegeixListeners() {
     });
   });
 
-  document.querySelectorAll(".user-button").forEach(element => {
+  /*
+  document.querySelectorAll(".user-button").forEach(function (element) {
     element.addEventListener('click', function () { toggleuserpagecontent(this.id); });
   });
+  */
   if (nomArxiu() == "login.html") {
     document.getElementById("login").addEventListener('click', ferLogin); /*boton de login*/
+    document.getElementById("login").addEventListener('click', function () { inputError(); });
     window.addEventListener("keydown", checkKeyPressed, false); /*al pulsar enter, mira que tecla es*/
 
     function checkKeyPressed(e) {
       if (e.keyCode == "13") { /*si es enter( cualquiera de los dos) haz login*/
         ferLogin();
+        inputError();
       }
     }
   }
+  if (nomArxiu() == "registre.html") {
+    document.getElementById("registre").addEventListener('click', function () { enviarDades() });
+    document.getElementById("registre").addEventListener('click', function () { inputError(); });
+  }
+
+
 }
 
 function nomArxiu() { /*da el nombre del archivo extrayendolo de la url*/
@@ -99,3 +115,14 @@ function nomArxiu() { /*da el nombre del archivo extrayendolo de la url*/
   return rutaRelativa;
 }
 
+function ifSubmmit() {
+  if (document.querySelector('input[type="submit"]') != undefined) {
+    document.querySelector('input[type="submit"]').addEventListener('click', function () { inputError(); });
+  }
+}
+
+function ifFiltre() {
+  if (document.getElementById("filtrar") != undefined) {
+    document.getElementById('filtrar').addEventListener('click', function () { filtrar(); });
+  }
+}
