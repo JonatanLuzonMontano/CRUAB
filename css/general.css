@@ -406,21 +406,34 @@ nav .temes-boto svg {
 
 #botonsdreta > .espai-temes {
   display: none;
-  background-color: lightcoral;
+  background-color: var(--theme-30contrast);
   position: absolute;
   top: var(--nav-height);
-  right: 0;
-  min-width: 250px;
-  min-height: 50px;
+  right: 3.5vw;
   width: fit-content;
   height: fit-content;
   grid-template-columns: auto auto auto;
   gap: 10px;
-  border-radius: 10px;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 #espaitemes.open {
   display: grid;
+}
+
+#espaitemes.open::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 0px solid transparent;
+  border-bottom: 20px solid var(--theme-30contrast);
 }
 
 .espai-temes .temes-boto {
@@ -439,7 +452,10 @@ nav .temes-boto svg {
   min-height: 60vh;
   margin-top: 10vh;
 }
-
+.main-content.gestio {
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
 .main-content > div,
 .main-content > article {
   position: relative;
@@ -725,7 +741,7 @@ table {
   color: var(--p-color);
 }
 
-*:not(#llistes) thead {
+thead {
   border-bottom: 1px solid var(--theme-maxcontrast);
 }
 
@@ -886,18 +902,6 @@ article > h1 {
     transform: scale(1.1);
     transition: transform 250ms ease-in-out;
   }
-}
-
-#llistes table thead {
-  border: none;
-}
-
-#llistes table th {
-  border-bottom: 1px solid black;
-}
-
-.votar {
-  margin-left: 30px;
 }
 
 /*#########################   FOOTER   #############################*/
