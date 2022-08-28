@@ -1,15 +1,15 @@
 function logout() {
-  console.log("entra logout");
+  //console.log("entra logout");
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var data = JSON.parse(xhttp.responseText);
-      console.log(data);
-      console.log(sessionStorage);
+      //console.log(data);
+      //console.log(sessionStorage);
       sessionStorage.removeItem("numsoci");
       sessionStorage.removeItem("juntari");
       sessionStorage.clear();
-      console.log(sessionStorage);
+      //console.log(sessionStorage);
     }
   };
   xhttp.open('DELETE', '/api/login.php', true);
@@ -20,7 +20,7 @@ var xhttp = new XMLHttpRequest();
 
 xhttp.onreadystatechange = function () {
   if (this.readyState == 4 && this.status == 200) {
-    console.log(xhttp.responseText);
+    //console.log(xhttp.responseText);
     var data = JSON.parse(xhttp.responseText);
     if (data != null) {
       sessionStorage.setItem("numsoci", data["numsoci"]);
@@ -29,6 +29,7 @@ xhttp.onreadystatechange = function () {
       document.getElementById("paginacompte").classList.remove("hidden");
       document.getElementById("paginalogout").classList.remove("hidden");
       document.getElementById("paginalogout").addEventListener('click', function () { logout(); });
+      
 
 
       if (sessionStorage.hasOwnProperty('juntari') && sessionStorage['juntari'] == 'true') {
@@ -44,4 +45,4 @@ xhttp.onreadystatechange = function () {
 
 xhttp.open('GET', '/api/login.php', true);
 xhttp.send();
-console.log(sessionStorage);
+//console.log(sessionStorage);

@@ -7,7 +7,13 @@ include_once('../php/seguretat.php');
 switch($_SERVER['REQUEST_METHOD']){
     
     case 'GET':
-        
+        $query='SELECT guanyadora FROM llistes';
+        $result = dbconnselect($query);
+        $msg = array();
+
+        while($values = mysqli_fetch_assoc($result)){
+          $msg[] = $values;
+      }
         break;
 
     case 'PUT':

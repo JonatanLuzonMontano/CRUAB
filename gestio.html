@@ -20,6 +20,7 @@
         <a id="paginagestio" class="nav-link hidden" aria-current="page" href="gestio.html">Gestió</a>
         <a id="paginacompte" class="nav-link hidden" aria-current="page" href="membre.html">Compte</a>
         <a id="paginalogout" class="nav-link hidden" aria-current="page" href="">Tancar sessió</a>
+        <a id="paginaeleccions" class="nav-link hidden" aria-current="page" href="eleccions.html">Eleccions</a>
         <a id="paginalogin" class="nav-link hidden" aria-current="page" href="login.html">Iniciar sessió</a>
       </div>
       <div id="botonsdreta">
@@ -45,7 +46,7 @@
     </nav>
   </header>
 
-  <main class="main-content">
+  <main class="main-content gestio">
     <article>
       <a class="gestio-link" href="gestioingresosmembres.html">Ingresos membres</a><br>
       <br>
@@ -53,6 +54,12 @@
       <br>
       <a class="gestio-link" href="gestiolloguersmanuals.html">Gestió lloguers manuals</a><br>
     </article>
+    <article class="flex-parent rows center">
+      <button id="obrireleccions" class="neutre">Obrir període d'Eleccions</button>
+      <br>
+      <button id="obrirrenovacio" class="neutre">Obrir període de renovació de membres</button>
+    </article>
+
   </main>
 
   <footer>
@@ -74,6 +81,7 @@
 
   
   <script src="js/sessions.js"></script>
+  <script src="js/gestio.js"></script>
   <script src="js/temesimenus.js"></script>
   <script src="js/onload.js"></script>
   <script src="js/checkjunta.js"></script>

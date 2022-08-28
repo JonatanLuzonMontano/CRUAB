@@ -96,20 +96,22 @@ function afegirJoc() {
 }
 
 function eliminarJoc(nom) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttp.responseText);
-      var data = JSON.parse(xhttp.responseText);
-      if ((data.hasOwnProperty('Error'))) {
-        alert(data["Error"] + " " + data["DeBug"]);
-      } else {
-        window.location.href = "jocstaula.html";
+  if (confirm("Estas segur?")) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(xhttp.responseText);
+        var data = JSON.parse(xhttp.responseText);
+        if ((data.hasOwnProperty('Error'))) {
+          alert(data["Error"] + " " + data["DeBug"]);
+        } else {
+          window.location.href = "jocstaula.html";
+        }
       }
     }
+    xhttp.open('DELETE', '/api/jocstaula.php?nom=' + nom, true);
+    xhttp.send();
   }
-  xhttp.open('DELETE', '/api/jocstaula.php?nom=' + nom, true);
-  xhttp.send();
 }
 
 function registreJoc() {
