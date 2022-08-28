@@ -725,7 +725,7 @@ table {
   color: var(--p-color);
 }
 
-thead {
+*:not(#llistes) thead {
   border-bottom: 1px solid var(--theme-maxcontrast);
 }
 
@@ -886,6 +886,18 @@ article > h1 {
     transform: scale(1.1);
     transition: transform 250ms ease-in-out;
   }
+}
+
+#llistes table thead {
+  border: none;
+}
+
+#llistes table th {
+  border-bottom: 1px solid black;
+}
+
+.votar {
+  margin-left: 30px;
 }
 
 /*#########################   FOOTER   #############################*/
