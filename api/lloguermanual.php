@@ -80,7 +80,6 @@ switch($_SERVER['REQUEST_METHOD']){
         }
 
         break;
-        break;
     default:
         http_response_code(400);
         echo "wrong method";
