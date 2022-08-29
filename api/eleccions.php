@@ -7,21 +7,44 @@ include_once('../php/seguretat.php');
 switch($_SERVER['REQUEST_METHOD']){
     
     case 'GET':
-        $query='SELECT guanyadora FROM llistes';
-        $result = dbconnselect($query);
-        $msg = array();
+        switch($_GET['opcio']){
+            case 'eleccio':
+                $pas = assegurarInputs($_GET['pas']);
+                $query="SELECT * FROM events WHERE paseleccions = 'proces electoral';";
+                
+                $result = dbconnselect($query);
+                $msg = array();
 
-        while($values = mysqli_fetch_assoc($result)){
-          $msg[] = $values;
-      }
-        break;
+                while($values = mysqli_fetch_assoc($result)){
+                    $msg[$values['paseleccions']] = $values['valor'];
+                }
 
-    case 'PUT':
-    
+                break;
+            case 'passos':
+                $pas = assegurarInputs($_GET['pas']);
+                $query="SELECT * FROM events WHERE paseleccions != 'proces electoral';";
+
+                $result = dbconnselect($query);
+                $msg = array();
+
+                while($values = mysqli_fetch_assoc($result)){
+                    $msg[$values['paseleccions']] = $values['valor'];
+                }
+
+                break;
+            default:
+                $query = "";
+                break;
+        }
+
         break;
 
     case 'POST':
         
+        break;
+
+    case 'PUT':
+    
         break;
 
     case 'DELETE':
