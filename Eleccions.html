@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cruab</title>
-  
+
   <link rel="stylesheet" href="css/general.css">
 </head>
 
@@ -26,7 +26,8 @@
       <div id="botonsdreta">
         <button id="temes" class="temes-boto" type="button" data-target="espaitemes">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z"/>
+            <path
+              d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 64V448C362 448 448 362 448 256C448 149.1 362 64 256 64z" />
           </svg>
         </button>
         <div id="espaitemes" class="espai-temes">
@@ -47,31 +48,62 @@
   </header>
 
   <main class="main-content">
-    <div>
-      <article id="llistes">
-        <table>
-          <thead>
-            <tr>
-              <th>President</th>
-              <th>Vicepresident</th>
-              <th>Tresorer</th>
-              <th>Secretari</th>
-              <th>Vocals</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td id="president"></td>
-              <td id="vicepresident"></td>
-              <td id="tresorer"></td>
-              <td id="secretari"></td>
-              <td id="vocals"></td>
-              <td><button class="votar neutre hidden">Voto</button></td>
-            </tr>
-            
-          </tbody>
-        </table>
-      </article>
+    <article id="llistes">
+      <table>
+        <thead>
+          <tr>
+            <th>President</th>
+            <th>Vicepresident</th>
+            <th>Tresorer</th>
+            <th>Secretari</th>
+            <th>Vocals</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="president"></td>
+            <td id="vicepresident"></td>
+            <td id="tresorer"></td>
+            <td id="secretari"></td>
+            <td id="vocals"></td>
+            <td><button class="votar neutre hidden">Voto</button></td>
+          </tr>
+        </tbody>
+        <button id="afegirllista" class="constructiu hidden">Afegir una llista electoral</button>
+      </table>
+      <br>
+      <br>
+      <form id="formllista" class="flex-parent columns gap hidden" action="" method="post">
+        <div>
+          <label for="president">President</label>
+          <br>
+          <select id="president" name="vicepresident" aria-label="Default select example"></select>
+        </div>
+        <div>
+          <label for="vicepresident">Vicepresident</label>
+          <br>
+          <select id="vicepresident" name="vicepresident" aria-label="Default select example"></select>
+        </div>
+        <div>
+          <label for="Tresorer">Tresorer</label>
+          <br>
+          <select id="Tresorer" name="Tresorer" aria-label="Default select example"></select>
+        </div>
+        <div>
+          <label for="secretari">Secretari</label>
+          <br>
+          <select id="secretari" name="secretari" aria-label="Default select example"></select>
+        </div>
+        <div>
+          <label for="vocals">Vocals</label>
+          <br>
+          <select id="vocals" name="vocals" aria-label="Default select example"></select>
+          <button id="afegirvocal">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M432 256c0 17.69-14.33 32.01-32 32.01H256v144c0 17.69-14.33 31.99-32 31.99s-32-14.3-32-31.99v-144H48c-17.67 0-32-14.32-32-32.01s14.33-31.99 32-31.99H192v-144c0-17.69 14.33-32.01 32-32.01s32 14.32 32 32.01v144h144C417.7 224 432 238.3 432 256z"/></svg>
+          </button>
+        </div>
+      </form>
+    </article>
   </main>
 
   <footer>
@@ -85,13 +117,14 @@
       </adress>
     </section>
     <section class="social-links">
-      <a id="instagram" class="social-link"  property="instagram" name="@" href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
+      <a id="instagram" class="social-link" property="instagram" name="@"
+        href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
       <a id="facebook" class="social-link" property="facebook" name="" href="facebook.com">Facebook</a>
-      <a id="twitter" class="social-link"  href="https://twitter.com/cruaboficial?">Twitter</a>
+      <a id="twitter" class="social-link" href="https://twitter.com/cruaboficial?">Twitter</a>
     </section>
   </footer>
 
-  
+  <script src="js/checkmembre.js"></script>
   <script src="js/sessions.js"></script>
   <script src="js/eleccions.js"></script>
   <script src="js/temesimenus.js"></script>
