@@ -1,16 +1,14 @@
 <?php
 
-//header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: *');
 include_once('../php/connexiobd.php');
 include_once('../php/seguretat.php');
 
 switch($_SERVER['REQUEST_METHOD']){
     
     case 'GET':
-<<<<<<< HEAD
-        
-        switch($_GET['pas']){
-            case 'eleccions':
+        switch($_GET['opcio']){
+            case 'eleccio':
                 $pas = assegurarInputs($_GET['pas']);
                 $query="SELECT * FROM events WHERE paseleccions = 'proces electoral';";
                 
@@ -22,7 +20,7 @@ switch($_SERVER['REQUEST_METHOD']){
                 }
 
                 break;
-            case 'pasos':
+            case 'passos':
                 $pas = assegurarInputs($_GET['pas']);
                 $query="SELECT * FROM events WHERE paseleccions != 'proces electoral';";
 
@@ -38,16 +36,6 @@ switch($_SERVER['REQUEST_METHOD']){
                 $query = "";
                 break;
         }
-=======
-        $query='SELECT guanyadora FROM llistes';
-        $result = dbconnselect($query);
-        $msg = array();
-
-        while($values = mysqli_fetch_assoc($result)){
-          $msg[] = $values;
-      }
-        break;
->>>>>>> 457274107b7e8c9abf0615212b6a7a085333c843
 
         break;
 
