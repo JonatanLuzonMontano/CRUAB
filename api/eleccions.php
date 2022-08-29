@@ -7,6 +7,7 @@ include_once('../php/seguretat.php');
 switch($_SERVER['REQUEST_METHOD']){
     
     case 'GET':
+<<<<<<< HEAD
         
         switch($_GET['pas']){
             case 'eleccions':
@@ -37,6 +38,16 @@ switch($_SERVER['REQUEST_METHOD']){
                 $query = "";
                 break;
         }
+=======
+        $query='SELECT guanyadora FROM llistes';
+        $result = dbconnselect($query);
+        $msg = array();
+
+        while($values = mysqli_fetch_assoc($result)){
+          $msg[] = $values;
+      }
+        break;
+>>>>>>> 457274107b7e8c9abf0615212b6a7a085333c843
 
         break;
 

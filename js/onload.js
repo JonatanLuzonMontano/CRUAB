@@ -4,7 +4,8 @@ window.onload = alCarregar;
 function alCarregar() {
   canviaTema();
 
-
+  checkPresentarLlistes();
+  checkEleccions();
 
   afegirClassAMain();
 
@@ -49,6 +50,9 @@ function alCarregar() {
     case "membre.html":
       document.getElementById('paginacompte').classList.add("active");
       break;
+    case "eleccions.html":
+      obtenirLlistes();
+      break;
     default:
       break;
   }
@@ -82,22 +86,41 @@ function afegeixListeners() {
     element.addEventListener('click', function () { toggleuserpagecontent(this.id); });
   });
   */
-  if (nomArxiu() == "login.html") {
-    document.getElementById("login").addEventListener('click', ferLogin); /*boton de login*/
-    document.getElementById("login").addEventListener('click', function () { inputError(); });
-    window.addEventListener("keydown", checkKeyPressed, false); /*al pulsar enter, mira que tecla es*/
+  switch (nomArxiu()) {
+    case "login.html":
+      document.getElementById("login").addEventListener('click', function () { ferLogin(); }); /*boton de login*/
+      document.getElementById("login").addEventListener('click', function () { inputError(); });
+      window.addEventListener("keydown", checkKeyPressed, false); /*al pulsar enter, mira que tecla es*/
 
-    function checkKeyPressed(e) {
-      if (e.keyCode == "13") { /*si es enter( cualquiera de los dos) haz login*/
-        ferLogin();
-        inputError();
+      function checkKeyPressed(e) {
+        if (e.keyCode == "13") { /*si es enter( cualquiera de los dos) haz login*/
+          ferLogin();
+          inputError();
+        }
       }
-    }
+      break;
+    case "registre.html":
+      document.getElementById("registre").addEventListener('click', function () { enviarDades(); });
+      document.getElementById("registre").addEventListener('click', function () { inputError(); });
+      break;
+    case "gestio.html":
+      if(sessionStorage.eleccions === "true") {
+        document.getElementById('obrireleccions').disabled = true;
+      } else {
+        document.getElementById('obrireleccions').addEventListener('click', function () { obrirEleccions(); });
+      }
+      /*if(sessionStorage.renovacio === "true") {
+        document.getElementById('obrirenovacio').disabled = true;
+      } else {
+        document.getElementById('obrirrenovacio').addEventListener('click', function () { obrirRenovacio(); });
+      }*/
+      
+      
+      break;
+    default:
+      break;
   }
-  if (nomArxiu() == "registre.html") {
-    document.getElementById("registre").addEventListener('click', function () { enviarDades() });
-    document.getElementById("registre").addEventListener('click', function () { inputError(); });
-  }
+
 
 
 }
@@ -125,4 +148,33 @@ function ifFiltre() {
   if (document.getElementById("filtrar") != undefined) {
     document.getElementById('filtrar').addEventListener('click', function () { filtrar(); });
   }
+}
+
+function checkEleccions() {
+  var xhttpcheckeleccions = new XMLHttpRequest();
+  xhttpcheckeleccions.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      var llista = JSON.parse(xhttpcheckeleccions.responseText);
+      console.log(llista);
+      for (i = 0; i < llista.length; i++) {
+        let element = llista[i];
+        if (element.guanyadora == 1) {
+          sessionStorage.setItem('eleccions', false);
+          break;
+        } else {
+          sessionStorage.setItem('eleccions', true);
+          if (sessionStorage['numsoci'] != null) {
+            document.getElementById('paginaeleccions').classList.remove('hidden');
+          }
+        }
+      }
+    }
+  }
+  xhttpcheckeleccions.open('GET', '/api/eleccions.php', true);
+  xhttpcheckeleccions.send();
+}
+
+function checkPresentarLlistes() {
+  console.log("mirando si toca presentar listas");
+
 }

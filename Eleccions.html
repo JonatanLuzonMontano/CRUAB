@@ -47,34 +47,31 @@
   </header>
 
   <main class="main-content">
-    <article>
-      <table id="producttable">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Cognom</th>
-            <th>E-mail</th>
-            <th>Sobrenom</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- datos opcionales pueden incluirse aquí opcionalmente -->
-        </tbody>
-      </table>
-
-      <template id="productrow">
-        <tr>
-          <td class="record"></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <button class="constructiu"></button>
-            <button class="destructiu"></button>
-          </td>
-        </tr>
-      </template>
-    </article>
+    <div>
+      <article id="llistes">
+        <table>
+          <thead>
+            <tr>
+              <th>President</th>
+              <th>Vicepresident</th>
+              <th>Tresorer</th>
+              <th>Secretari</th>
+              <th>Vocals</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="president"></td>
+              <td id="vicepresident"></td>
+              <td id="tresorer"></td>
+              <td id="secretari"></td>
+              <td id="vocals"></td>
+              <td><button class="votar neutre hidden">Voto</button></td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </article>
   </main>
 
   <footer>
@@ -96,10 +93,9 @@
 
   
   <script src="js/sessions.js"></script>
+  <script src="js/eleccions.js"></script>
   <script src="js/temesimenus.js"></script>
   <script src="js/onload.js"></script>
-  <script src="js/checkjunta.js"></script>
-  <script src="js/validarmembres.js"></script>
 </body>
 
 </html>

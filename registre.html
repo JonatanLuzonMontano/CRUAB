@@ -20,6 +20,7 @@
         <a id="paginagestio" class="nav-link hidden" aria-current="page" href="gestio.html">Gestió</a>
         <a id="paginacompte" class="nav-link hidden" aria-current="page" href="membre.html">Compte</a>
         <a id="paginalogout" class="nav-link hidden" aria-current="page" href="">Tancar sessió</a>
+        <a id="paginaeleccions" class="nav-link hidden" aria-current="page" href="eleccions.html">Eleccions</a>
         <a id="paginalogin" class="nav-link hidden" aria-current="page" href="login.html">Iniciar sessió</a>
       </div>
       <div id="botonsdreta">
@@ -74,12 +75,12 @@
           <div>
             <label class="form-input-label" errormessage="El email és obligatori" for="email">E-mail</label>
             <br>
-            <input name="email" type="email" id="email" placeholder="david@uab.cat" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+            <input name="email" type="email" id="email" placeholder="david@uab.cat" pattern="^[A-Za-z0-9._%+-&]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
           </div>
           <div>
             <label class="form-input-label" errormessage="La contrasenya és obligatoria" for="password">Contrasenya</label>
             <br>
-            <input id="password" type="password" name="password" placeholder="Daeneryseslamillor" pattern="[A-Za-z0-9.-_ ].{3,}" required>
+            <input id="password" type="password" name="password" placeholder="Daeneryseslamillor" pattern="[A-Za-z0-9.-_ /+*&%].{3,}" required>
           </div>
           <div>
             <label class="form-input-label" errormessage="El telefon és obligatori" for="telefon">Telèfon</label>

@@ -87,19 +87,21 @@ function afegirManual() {
 }*/
 
 function eliminarManual(nom) {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      var data = JSON.parse(xhttp.responseText);
-      if ((data.hasOwnProperty('Error'))) {
-        alert(data["Error"] + " " + data["DeBug"]);
-      } else {
-        window.location.href = "manuals.html";
+  if (confirm("Estas segur?")) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        var data = JSON.parse(xhttp.responseText);
+        if ((data.hasOwnProperty('Error'))) {
+          alert(data["Error"] + " " + data["DeBug"]);
+        } else {
+          window.location.href = "manuals.html";
+        }
       }
     }
+    xhttp.open('DELETE', '/api/manuals.php?nom=' + nom, true);
+    xhttp.send();
   }
-  xhttp.open('DELETE', '/api/manuals.php?nom=' + nom, true);
-  xhttp.send();
 }
 
 function registreManual() {
