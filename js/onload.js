@@ -4,7 +4,6 @@ window.onload = alCarregar;
 function alCarregar() {
   canviaTema();
 
-  checkPresentarLlistes();
   checkEleccions();
 
   afegirClassAMain();
@@ -51,7 +50,7 @@ function alCarregar() {
       document.getElementById('paginacompte').classList.add("active");
       break;
     case "eleccions.html":
-      obtenirLlistes();
+      pasEleccions();
       break;
     default:
       break;
@@ -104,18 +103,17 @@ function afegeixListeners() {
       document.getElementById("registre").addEventListener('click', function () { inputError(); });
       break;
     case "gestio.html":
-      if(sessionStorage.eleccions === "true") {
+      if (sessionStorage.presentaciollistes === "true") {
         document.getElementById('obrireleccions').disabled = true;
       } else {
-        document.getElementById('obrireleccions').addEventListener('click', function () { obrirEleccions(); });
+        document.getElementById('obrireleccions').addEventListener('click', function () { obrirLlistes(); });
       }
-      /*if(sessionStorage.renovacio === "true") {
-        document.getElementById('obrirenovacio').disabled = true;
+      if (sessionStorage.votacio === "true") {
+        document.getElementById('obrirvotacio').disabled = true;
       } else {
-        document.getElementById('obrirrenovacio').addEventListener('click', function () { obrirRenovacio(); });
-      }*/
-      
-      
+        document.getElementById('obrirvotacio').addEventListener('click', function () { obrirVotacio(); });
+      }
+
       break;
     default:
       break;
@@ -156,17 +154,8 @@ function checkEleccions() {
     if (this.readyState == 4 && this.status == 200) {
       var llista = JSON.parse(xhttpcheckeleccions.responseText);
       console.log(llista);
-      for (i = 0; i < llista.length; i++) {
-        let element = llista[i];
-        if (element.guanyadora == 1) {
-          sessionStorage.setItem('eleccions', false);
-          break;
-        } else {
-          sessionStorage.setItem('eleccions', true);
-          if (sessionStorage['numsoci'] != null) {
-            document.getElementById('paginaeleccions').classList.remove('hidden');
-          }
-        }
+      if (llista['proces electoral'] === 1) {
+        document.getElementById('paginaeleccions').classList.remove('hidden');
       }
     }
   }
@@ -174,7 +163,3 @@ function checkEleccions() {
   xhttpcheckeleccions.send();
 }
 
-function checkPresentarLlistes() {
-  console.log("mirando si toca presentar listas");
-
-}

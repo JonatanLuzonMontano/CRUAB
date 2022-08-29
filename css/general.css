@@ -776,6 +776,11 @@ article > h1 {
 .rows {
   flex-direction: column;
 }
+
+.gap {
+  gap: 30px;
+}
+
 .detalls {
   line-height: 1em;
   display: flex;
