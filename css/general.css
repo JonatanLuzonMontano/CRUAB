@@ -170,7 +170,14 @@ body.fosc {
 
   --body-bg-color: var(--theme-20contrast);
   --nav-bg-color: var(--theme-30contrast);
-  --button-bg-hover: var(--theme-40contrast);
+
+  --button-bg-fallback: hsl(60, 70%, 50%);
+  --button-bg-base1: hsl(0, 50%, 35%);
+  --button-bg-hover1: hsl(0, 50%, 55%);
+  --button-bg-base2: hsl(125, 50%, 26%);
+  --button-bg-hover2: hsl(125, 50%, 40%);
+  --button-bg-base3: hsl(200, 50%, 38%);
+  --button-bg-hover3: hsl(200, 50%, 55%);
   --nav-link-bg-hover: 130%;
   --nav-link-bg-clicked: var(--theme-50contrast);
 
@@ -178,7 +185,7 @@ body.fosc {
   --secondary-accent-color: rgb(255, 8, 8);
 
   /*interactive colors*/
-  --button-bg-base: var(--nav-bg-color);
+
   --input-border: var(--theme-maxcontrast);
   --input-bg-color: hsl(0, 0%, 80%);
 }
@@ -221,7 +228,13 @@ body.pergami {
   --nav-shadow: 0px 0px 14px #000;
 
   /*interactive colors*/
-  --button-bg-base: var(--PHB-td-color);
+  --button-bg-fallback: yellow;
+  --button-bg-base1: hsl(0, 91%, 35%);
+  --button-bg-hover1: hsl(0, 91%, 55%);
+  --button-bg-base2: hsl(125, 91%, 26%);
+  --button-bg-hover2: hsl(125, 91%, 40%);
+  --button-bg-base3: hsl(0, 0%, 20%);
+  --button-bg-hover3: hsl(0, 0%, 40%);
   --button-bg-hover: var(--PHB-underline-color);
   --nav-link-bg-clicked: var(--PHB-statblocklines);
   --input-border: var(--theme-maxcontrast);
@@ -293,6 +306,16 @@ a::selection {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background-color: hsl(0, 0%, 60%);
+}
+
+
+header *,
+input,
+button,
+#filterbox *,
+img
+{
+  user-select:none;
 }
 
 /*#########################   NAVEGACIÓN   #############################*/
@@ -436,11 +459,9 @@ nav .temes-boto svg {
   border-bottom: 20px solid var(--theme-30contrast);
 }
 
-.espai-temes .temes-boto {
-  min-width: 50px;
-  min-height: 20px;
-  width: fit-content;
-  height: fit-content;
+.canvi-tema {
+  background-color:var(--theme-70contrast);
+  color:var(--theme-mincontrast);
 }
 
 /*#########################   CONTENINDO PRINCIPAL   #############################*/
@@ -466,7 +487,7 @@ main > div,
 main > article {
   width: 80%;
   min-height: 50vh;
-  margin-top: 5vh;
+  margin-top: 7vh;
   padding: 10px;
   border-radius: 0px;
   box-shadow: var(--nav-shadow);
@@ -539,6 +560,9 @@ a:not(.nav-link, .user-button):is(:hover, :focus) {
 }
 
 /*#################################   FORMULARIOS   #################################*/
+button {
+  background:var(--button-bg-fallback);
+}
 
 :is(button, input:is([type="button"], [type="submit"])):not([disabled]),
 input[type="file"]::file-selector-button {
@@ -551,16 +575,13 @@ input[type="file"]::file-selector-button {
   color: var(--theme-mincontrast);
   width: fit-content;
   height: fit-content;
+  min-height: 27px;
 }
 input[type="file"] {
   border: none;
   width: 300px;
   background: none;
   color: var(--theme-maxcontrast);
-}
-
-:is(button, input:is([type="button"], [type="submit"])):not([disabled]):is(:hover, :focus) {
-  border-radius: 10px;
 }
 
 input {
@@ -570,6 +591,10 @@ input {
   border: 1px solid var(--input-border);
   border-radius: 3px;
   margin-bottom: 10px;
+}
+
+:is(button, input:is([type="button"], [type="submit"])):not([disabled]):is(:hover, :focus) {
+  border-radius: 7px;
 }
 
 .constructiu,
@@ -603,7 +628,7 @@ input:-internal-autofill-selected:invalid {
   border-color: red;
 }
 
-input.error:is([type], [name]):not(:placeholder-shown) {
+input.error:is([type], [name]) {
   background-color: var(--input-bg-incorrect) !important;
   border-color: red !important;
   animation: shake 0.5s;
@@ -631,7 +656,7 @@ input.error:is([type], [name]):not(:placeholder-shown) {
   }
 }
 
-input:not(:placeholder-shown):valid,
+input:not(:placeholder-shown, [type="submit"]):valid,
 input:-internal-autofill-selected:valid {
   background-color: var(--input-bg-correct) !important;
   border-color: green !important;
@@ -858,6 +883,14 @@ article > h1 {
   width: 100%;
 }
 
+.element h3 {
+  white-space: nowrap;
+  overflow:hidden;
+  width:100%;
+  height:min-content;
+  text-overflow: ellipsis;
+}
+
 .contingut {
   display: flex;
   flex-direction: row;
@@ -881,7 +914,7 @@ article > h1 {
 
 .detalls .dificultat {
   display: block;
-  color: white;
+  color: hsl(0, 0%, 0%);
   font-weight: bolder;
   padding: 0 10px;
   border-radius: 3px;
@@ -916,7 +949,7 @@ footer {
   align-items: center;
   height: 20vh;
   width: 100vw;
-  margin-top: 10vh;
+  margin-top: 10vh;/*si se toca, comprobar que en index no haya espacio entre este y el final de pagina*/
   color: var(--nav-color);
   text-align: center;
   box-shadow: var(--nav-shadow);
@@ -998,6 +1031,8 @@ footer .social-link:is(:hover, :focus) {
   .temes-boto {
     width: 50px;
   }
+  
+  
 
   .main-content > div,
   .main-content > article {
