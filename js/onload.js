@@ -106,6 +106,9 @@ function afegeixListeners() {
       document.getElementById("registre").addEventListener('click', function () { enviarDades(); });
       document.getElementById("registre").addEventListener('click', function () { inputError(); });
       break;
+    case "gestio.html":
+      document.getElementById('obrireleccions').addEventListener('click', function(){ obrirEleccions();})
+    break;
     default:
       break;
   }
