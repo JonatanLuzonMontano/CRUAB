@@ -90,6 +90,8 @@ select {
   --p-weight-semi: 450;
   --p-weight-bold: 900;
   --button-font-size: 18px;
+  width: 100vw;
+  height: 100%;
 }
 
 body {
@@ -250,14 +252,16 @@ body {
   background-color: var(--body-bg-color);
   background-image: var(--body-bg-image);
   overflow: overlay;
+  overflow-x: hidden;
   scroll-behavior: smooth;
-  max-width: 100%;
-  width: 100vw;
+  max-width: 100vw;
+  width: 100%;
   min-height: 100vh;
   min-width: 100vw;
 }
 
 * {
+  outline: 1px dashed red;
   transition: 200ms;
 }
 
@@ -308,6 +312,7 @@ header {
   display: block;
   height: var(--nav-height);
   width: 100%;
+  max-width: 100vw;
   user-select: none;
   box-shadow: var(--nav-shadow);
 }
@@ -319,12 +324,12 @@ header > nav {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   height: 100%;
   width: 100%;
   user-select: none;
 }
 
-.navbar-brand,
 #botonsnavegacio {
   display: flex;
   align-items: center;
@@ -357,19 +362,20 @@ header > nav {
 
 .navbar-brand {
   margin: 0 30px;
-  color: hsla(0, 0%, 0%, 0);
-  font-size: var(--brand-font-size);
-  text-decoration: unset;
-  background-image: url(http://cruab/img/temes/Logo-box.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  mix-blend-mode: multiply;
+  width: 70px;
+  padding: 0;
+  user-select: none;
+  height: unset;
+  aspect-ratio: 100/111;
+}
+
+.navbar-brand svg {
+  height: 100%;
+  width: 100%;
 }
 
 #botonsdreta {
-  position: absolute;
-  top: 0px;
-  right: 0px;
+  margin-left: auto;
   display: flex;
 }
 
@@ -438,6 +444,9 @@ nav .temes-boto svg {
   width: 100vw;
   min-height: 60vh;
   margin-top: 10vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: fit-content;
 }
 
 .main-content > div,
@@ -615,7 +624,7 @@ input.error:is([type], [name]):not(:placeholder-shown) {
   }
 }
 
-input:not(:placeholder-shown):valid,
+input:not(:placeholder-shown, [type="submit"]):valid,
 input:-internal-autofill-selected:valid {
   background-color: var(--input-bg-correct) !important;
   border-color: green !important;
@@ -717,12 +726,16 @@ label + div label,
 #filterbox #filtrar {
   margin-block: auto;
 }
+.table-holder {
+  overflow-x: auto;
+}
 
 table {
   z-index: 5;
   min-width: 300px;
   border-collapse: collapse;
   color: var(--p-color);
+  width: 100%;
 }
 
 thead {
@@ -937,7 +950,7 @@ footer .social-link:is(:hover, :focus) {
   :root {
     --nav-font-size: 20px;
     --h1-size: 30px;
-    --h2-size: 20px;
+    --h2-size: 30px;
     --h3-size: 30px;
     --h4-size: 17px;
     --p-size: 25px;
@@ -950,11 +963,18 @@ footer .social-link:is(:hover, :focus) {
   #navbar-toggler-parent {
     display: none;
   }
+  .pc-columns-mobile-rows {
+    flex-direction: row;
+  }
 }
 
 /*#########################   PARA MOVIL   #############################*/
 
 @media screen and (max-width: 900px) {
+  header {
+    --nav-height: 12vh;
+  }
+
   nav {
     flex-direction: column;
     justify-content: flex-start;
@@ -1044,5 +1064,9 @@ footer .social-link:is(:hover, :focus) {
   .element {
     border-bottom: 1px dashed hsla(0, 0%, 70%, 0.7);
     padding-bottom: 10px;
+  }
+
+  .pc-columns-mobile-rows {
+    flex-direction: column;
   }
 }
