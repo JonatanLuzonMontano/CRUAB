@@ -64,6 +64,7 @@ function obtenirJocs() {
       if (sessionStorage['numsoci'] != null) {
         var llistacopies = document.getElementById('llistacopies');
         const element = llistacopies.querySelector('.element-copia');
+        document.querySelector('article h1').textContent = nomjoc;
         if (llista[0] == null) {
           afegirCopiaJoc();
         }
