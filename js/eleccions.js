@@ -73,7 +73,7 @@ function enviarLlista() {
   const vocals = document.getElementsByClassName('vocal');
   for (let i = 0; i < vocals.length; i++) {
     const element = vocals[i].querySelector('select');
-    data["vocal" + (i + 1)] = element.value;
+    data["vocal " + (i + 1)] = element.value;
   }
 
   console.log(data);

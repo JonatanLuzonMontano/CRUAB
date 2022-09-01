@@ -22,7 +22,19 @@ function dbconnselect($query){
     $dbname = "cruab";
     $conexion = new mysqli($servername, $username, $password, $dbname);
     mysqli_set_charset($conexion, "utf8");
+    // Check connection
+    if ($conexion->connect_error) {
+        die("Connection failed: " . $conexion->connect_error);
+    }
+    
+    if ($conexion->query($query) === TRUE) {
+        return $conexion->query($query);
+    } else {
+        return "Error: " . $query . " / " . $conexion->error;
+    }
 
+    $conexion->close();
+    /*
     if ($conexion->connect_error) {
         die("Connection failed: " . $conexion->connect_error);
     }
@@ -31,7 +43,7 @@ function dbconnselect($query){
 
     mysqli_close($conexion);
     
-    return $result;
+    return $result;*/
 }
 
 function dbconninsert($query){
