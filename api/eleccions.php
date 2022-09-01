@@ -51,7 +51,7 @@ switch($_SERVER['REQUEST_METHOD']){
                 assegurarInputs($_POST["vicepresident"]),
                 assegurarInputs($_POST["tresorer"]),
                 assegurarInputs($_POST["secretari"]),
-                assegurarInputs($_POST["vocal"])// hay que hacer este por cada vocal que haya, keys: vocal1, vocal2, vocal3, etc
+                assegurarInputs($_POST["vocal"]),// hay que hacer este por cada vocal que haya, keys: vocal1, vocal2, vocal3, etc
                 $any
             );
             
@@ -64,31 +64,123 @@ switch($_SERVER['REQUEST_METHOD']){
                 $msg["Correcte"] = "Tot ok";
             }
 
-        }
+        
         
         break;
 
     case 'PUT':
-      $query = "UPDATE `events` SET `valor` = '1' WHERE `events`.`paseleccions` = 'proces electoral';";
-      $resultinsert = dbconnupdate($query);
+      switch($_GET['opcio']){
+        case 'obrireleccions':
+            $pas = assegurarInputs($_GET['opcio']);
+            $query = "UPDATE `events` SET `valor` = '1' WHERE `events`.`paseleccions` = 'proces electoral';";
+            $resultinsert = dbconnupdate($query);
 
-      if(substr($resultinsert, 0, 5) == "Error"){
-        $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
-        $msg["DeBug"] = $resultinsert;
-    } else {
-        $msg["Correcte"] = "Tot ok";
-    }
+            if(substr($resultinsert, 0, 5) == "Error"){
+                $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
+                $msg["DeBug"] = $resultinsert;
+            } else {
+                $msg["Correcte"] = "Tot ok";
+            }
 
-        break;
+            break;
+        case 'obrirllistes':
+          $pas = assegurarInputs($_GET['opcio']);
+            $query = "UPDATE `events` SET `valor` = '1' WHERE `events`.`paseleccions` = 'presentacio de llistes';";
+            $resultinsert = dbconnupdate($query);
+
+            if(substr($resultinsert, 0, 5) == "Error"){
+                $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
+                $msg["DeBug"] = $resultinsert;
+            } else {
+                $msg["Correcte"] = "Tot ok";
+            }
+            break;
+        case 'obrirvotacio':
+          $pas = assegurarInputs($_GET['opcio']);
+            $query = "UPDATE `events` SET `valor` = '1' WHERE `events`.`paseleccions` = 'votacio';";
+            $resultinsert = dbconnupdate($query);
+
+            if(substr($resultinsert, 0, 5) == "Error"){
+                $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
+                $msg["DeBug"] = $resultinsert;
+            } else {
+                $msg["Correcte"] = "Tot ok";
+            }
+            break;
+        case 'obriractivacio':
+          $pas = assegurarInputs($_GET['opcio']);
+            $query = "UPDATE `events` SET `valor` = '1' WHERE `events`.`paseleccions` = 'activacio membres';";
+            $resultinsert = dbconnupdate($query);
+
+            if(substr($resultinsert, 0, 5) == "Error"){
+                $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
+                $msg["DeBug"] = $resultinsert;
+            } else {
+                $msg["Correcte"] = "Tot ok";
+            }
+            break;
+        case 'tancareleccions':
+          $pas = assegurarInputs($_GET['opcio']);
+            $query = "UPDATE `events` SET `valor` = '0' WHERE `events`.`paseleccions` = 'proces electoral';";
+            $resultinsert = dbconnupdate($query);
+
+            if(substr($resultinsert, 0, 5) == "Error"){
+                $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
+                $msg["DeBug"] = $resultinsert;
+            } else {
+                $msg["Correcte"] = "Tot ok";
+            }
+            break;
+        case 'tancarllistes':
+          $pas = assegurarInputs($_GET['opcio']);
+            $query = "UPDATE `events` SET `valor` = '0' WHERE `events`.`paseleccions` = 'presentacio de llistes';";
+            $resultinsert = dbconnupdate($query);
+
+            if(substr($resultinsert, 0, 5) == "Error"){
+                $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
+                $msg["DeBug"] = $resultinsert;
+            } else {
+                $msg["Correcte"] = "Tot ok";
+            }
+            break;
+        case 'tancarvotacio':
+          $pas = assegurarInputs($_GET['opcio']);
+            $query = "UPDATE `events` SET `valor` = '0' WHERE `events`.`paseleccions` = 'votacio';";
+            $resultinsert = dbconnupdate($query);
+
+            if(substr($resultinsert, 0, 5) == "Error"){
+                $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
+                $msg["DeBug"] = $resultinsert;
+            } else {
+                $msg["Correcte"] = "Tot ok";
+            }
+            break;
+        case 'tancaractivacio':
+          $pas = assegurarInputs($_GET['opcio']);
+            $query = "UPDATE `events` SET `valor` = '0' WHERE `events`.`paseleccions` = 'activacio membres';";
+            $resultinsert = dbconnupdate($query);
+
+            if(substr($resultinsert, 0, 5) == "Error"){
+                $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
+                $msg["DeBug"] = $resultinsert;
+            } else {
+                $msg["Correcte"] = "Tot ok";
+            }
+            break;
+        default:
+            http_response_code(400);
+            echo "wrong method";
+            break;
+      }
 
     case 'DELETE':
         
         break;
 
     default:
-        http_response_code(400);
-        echo "wrong method";
-        break;
+            http_response_code(400);
+            echo "wrong method";
+            break;
 }
 
 echo json_encode($msg, JSON_NUMERIC_CHECK, JSON_UNESCAPED_UNICODE);
