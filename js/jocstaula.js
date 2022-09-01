@@ -127,7 +127,9 @@ function getJocsTaula() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       //console.log(xhttp.responseText);
+      console.log(xhttp.responseText);
       var llista = JSON.parse(xhttp.responseText);
+      console.log(llista);
       const element = document.querySelector(".joc:last-child");
       if (sessionStorage['juntari'] == 'true') {
         document.getElementById('boto-afegir').classList.remove('hidden');
@@ -192,26 +194,5 @@ function filtrar() {
       console.log(llista);
     }
   }
-
-  /*const numbers = document.getElementById('numbers');
-  const filtresActius = numbers.querySelectorAll('input:checked');
-  var num = (function () {
-    if (filtresActius.length == 1) {
-      const a = filtresActius[0].value;
-      return (a);
-    }
-  });
-  var min = null;
-  var max = null;*/
-
-  const totsElements = document.querySelectorAll(".element");
-  console.log(totsElements.type);
-
-  /*for (i = 0; i < totsElements; i++) {
-    let numjugadors = totsElements[i].querySelector('.jugadors').textContent;
-    let nummaxim = numjugadors.replace(/^\D+/g, '');
-    console.log(numjugadors, nummaxim);
-    //if(element.querySelector('.jugadors').textContent){}
-  }*/
 
 }
