@@ -170,6 +170,13 @@ body.fosc {
   --theme-10contrast: hsl(0, 0%, 10%);
   --theme-mincontrast: hsl(0, 0%, 0%);
 
+  --button-bg-base1: hsl(0, 91%, 35%);
+  --button-bg-hover1: hsl(0, 91%, 55%);
+  --button-bg-base2: hsl(125, 91%, 26%);
+  --button-bg-hover2: hsl(125, 91%, 40%);
+  --button-bg-base3: hsl(200, 91%, 35%);
+  --button-bg-hover3: hsl(200, 91%, 55%);
+
   --body-bg-color: var(--theme-20contrast);
   --nav-bg-color: var(--theme-30contrast);
 
@@ -203,6 +210,13 @@ body.pergami {
   --redscroll: url(https://i.imgur.com/YvYGqOX.jpg);
   --bluescroll: url(https://i.imgur.com/w2m4BgW.jpg);
   --seascroll: url(https://i.imgur.com/dKciX3y.jpg);
+
+  --button-bg-base1: hsl(0, 91%, 35%);
+  --button-bg-hover1: hsl(0, 91%, 55%);
+  --button-bg-base2: hsl(125, 91%, 26%);
+  --button-bg-hover2: hsl(125, 91%, 40%);
+  --button-bg-base3: hsl(200, 91%, 35%);
+  --button-bg-hover3: hsl(200, 91%, 55%);
 
   --theme-maxcontrast: hsl(0, 0%, 0%);
   --theme-90contrast: hsl(0, 0%, 10%);
@@ -496,8 +510,8 @@ main > div,
 main > article {
   width: 80%;
   min-height: 50vh;
-  margin-top: 7vh;
-  padding: calc((80vw - (300px * 3)) / 3);
+  margin-top: 9vh;
+  padding: 10px;
   border-radius: 0px;
   box-shadow: var(--nav-shadow);
 }
