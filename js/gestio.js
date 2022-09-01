@@ -7,7 +7,7 @@ function obrirEleccions() {
         location.reload();
       }
     };
-    xhttpobrireleccions.open('PUT', '/api/eleccions.php', true);
+    xhttpobrireleccions.open('PUT', '/api/eleccions.php?opcio=obrireleccions', true);
     xhttpobrireleccions.send();
   }
 }
@@ -20,7 +20,7 @@ function obrirLlistes() {
         location.reload();
       }
     };
-    xhttpobrirllistes.open('PUT', '/api/eleccions.php', true);
+    xhttpobrirllistes.open('PUT', '/api/eleccions.php?opcio=obrirllistes', true);
     xhttpobrirllistes.send();
   }
 }
@@ -33,7 +33,7 @@ function obrirVotacio() {
         location.reload();
       }
     };
-    xhttpobrirvotacio.open('PUT', '/api/eleccions.php', true);
+    xhttpobrirvotacio.open('PUT', '/api/eleccions.php?opcio=obrirvotacio', true);
     xhttpobrirvotacio.send();
   }
 }
@@ -45,7 +45,7 @@ function obrirActivacio() {
         location.reload();
       }
     };
-    xhttpobriractivacio.open('PUT', '/api/eleccions.php', true);
+    xhttpobriractivacio.open('PUT', '/api/eleccions.php?opcio=obriractivacio', true);
     xhttpobriractivacio.send();
   }
 }
@@ -59,7 +59,7 @@ function tancarEleccions() {
         location.reload();
       }
     };
-    xhttptancareleccions.open('PUT', '/api/eleccions.php', true);
+    xhttptancareleccions.open('PUT', '/api/eleccions.php?opcio=tancareleccions', true);
     xhttptancareleccions.send();
   }
 }
@@ -72,7 +72,7 @@ function tancarLlistes() {
         location.reload();
       }
     };
-    xhttptancarllistes.open('PUT', '/api/eleccions.php', true);
+    xhttptancarllistes.open('PUT', '/api/eleccions.php?opcio=tancarllistes', true);
     xhttptancarllistes.send();
   }
 }
@@ -85,10 +85,11 @@ function tancarVotacio() {
         location.reload();
       }
     };
-    xhttptancarvotacio.open('PUT', '/api/eleccions.php', true);
+    xhttptancarvotacio.open('PUT', '/api/eleccions.php?opcio=tancarvotacio', true);
     xhttptancarvotacio.send();
   }
 }
+
 function tancarActivacio() {
   if (confirm("Estas segur?")) {
     var xhttptancaractivacio = new XMLHttpRequest;
@@ -97,7 +98,7 @@ function tancarActivacio() {
         location.reload();
       }
     };
-    xhttptancaractivacio.open('PUT', '/api/eleccions.php', true);
+    xhttptancaractivacio.open('PUT', '/api/eleccions.php?opcio=tancaractivacio', true);
     xhttptancaractivacio.send();
   }
 }
