@@ -107,7 +107,14 @@ function afegeixListeners() {
       document.getElementById("registre").addEventListener('click', function () { inputError(); });
       break;
     case "gestio.html":
-      document.getElementById('obrireleccions').addEventListener('click', function(){ obrirEleccions();})
+      document.getElementById('obrireleccions').addEventListener('click', function(){ obrirEleccions();});
+      document.getElementById('obrirllistes').addEventListener('click', function(){ obrirLlistes();});
+      document.getElementById('obrirvotacio').addEventListener('click', function(){ obrirVotacio();});
+      document.getElementById('obriractivacio').addEventListener('click', function(){ obrirActivacio();});
+      document.getElementById('tancareleccions').addEventListener('click', function(){ tancarEleccions();});
+      document.getElementById('tancarllistes').addEventListener('click', function(){ tancarLlistes();});
+      document.getElementById('tancarvotacio').addEventListener('click', function(){ tancarVotacio();});
+      document.getElementById('tancaractivacio').addEventListener('click', function(){ tancarActivacio();});
     break;
     default:
       break;
