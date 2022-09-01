@@ -1,0 +1,184 @@
+/*#########################   VARIABLES   ##########################################*/
+:root {
+  /*fonts*/
+  --brand-font-size: 35px;
+  --nav-font-size: 23px;
+  --h1-size: 35px;
+  --h2-size: 27px;
+  --h3-size: 25px;
+  --h4-size: 22px;
+  --label-size: var(--h4-size);
+  --p-size: 20px;
+  --p-weight-normal: 100;
+  --p-weight-semi: 450;
+  --p-weight-bold: 900;
+  --button-font-size: 18px;
+  width: 100vw;
+  height: 100%;
+}
+
+body {
+  /*text color*/
+  --text-color-general: var(--theme-80contrast);
+  --header-color-general: var(--text-color-general);
+  --nav-color: var(--theme-80contrast);
+  --h1-color: var(--header-color-general);
+  --h2-color: var(--header-color-general);
+  --h3-color: var(--header-color-general);
+  --h4-color: var(--header-color-general);
+  --p-color: var(--text-color-general);
+  --a-color: var(--accent-color);
+  --a-selected-color: var(--secondary-accent-color);
+
+  --input-bg-correct: hsl(102, 16%, 64%);
+  --input-bg-incorrect: hsl(0, 23%, 70%);
+}
+
+body.clar {
+  --theme-maxcontrast: hsl(0, 0%, 0%);
+  --theme-90contrast: hsl(0, 0%, 10%);
+  --theme-80contrast: hsl(0, 0%, 20%);
+  --theme-70contrast: hsl(0, 0%, 30%);
+  --theme-60contrast: hsl(0, 0%, 40%);
+  --theme-50contrast: hsl(0, 0%, 50%);
+  --theme-40contrast: hsl(0, 0%, 60%);
+  --theme-30contrast: hsl(0, 0%, 70%);
+  --theme-20contrast: hsl(0, 0%, 80%);
+  --theme-10contrast: hsl(0, 0%, 90%);
+  --theme-mincontrast: hsl(0, 0%, 100%);
+  --accent-color: hsl(0, 84%, 29%);
+  --secondary-accent-color: yellow;
+
+  /*base backgrounds*/
+  --body-bg-color: var(--theme-mincontrast);
+  --body-bg-image: url(https://www.dndbeyond.com/content/1-0-2187-0/skins/waterdeep/images/background_texture.png);
+  --nav-bg-color: var(--theme-10contrast);
+  --nav-link-bg-hover: 90%;
+  --nav-bg-image: none;
+
+  /*interactive colors*/
+  --button-bg-fallback: yellow;
+  --button-bg-base1: hsl(0, 91%, 35%);
+  --button-bg-hover1: hsl(0, 91%, 55%);
+  --button-bg-base2: hsl(125, 91%, 26%);
+  --button-bg-hover2: hsl(125, 91%, 40%);
+  --button-bg-base3: hsl(200, 91%, 35%);
+  --button-bg-hover3: hsl(200, 91%, 55%);
+  --nav-link-bg-clicked: var(--theme-40contrast);
+  --input-border: var(--theme-maxcontrast);
+  --input-bg-color: hsl(0, 0%, 80%);
+
+  /*text color*/
+  --text-color-general: var(--theme-80contrast);
+  --header-color-general: var(--text-color-general);
+  --h1-color: var(--header-color-general);
+  --h2-color: var(--header-color-general);
+  --h3-color: var(--header-color-general);
+  --h4-color: var(--header-color-general);
+  --p-color: var(--text-color-general);
+  --a-color: var(--accent-color);
+  --a-selected-color: var(--secondary-accent-color);
+}
+
+body.fosc {
+  --theme-maxcontrast: hsl(0, 0%, 100%);
+  --theme-90contrast: hsl(0, 0%, 90%);
+  --theme-80contrast: hsl(0, 0%, 80%);
+  --theme-70contrast: hsl(0, 0%, 70%);
+  --theme-60contrast: hsl(0, 0%, 60%);
+  --theme-50contrast: hsl(0, 0%, 50%);
+  --theme-40contrast: hsl(0, 0%, 40%);
+  --theme-30contrast: hsl(0, 0%, 30%);
+  --theme-20contrast: hsl(0, 0%, 20%);
+  --theme-10contrast: hsl(0, 0%, 10%);
+  --theme-mincontrast: hsl(0, 0%, 0%);
+
+
+  --body-bg-color: var(--theme-20contrast);
+  --nav-bg-color: var(--theme-30contrast);
+
+  --button-bg-fallback: hsl(60, 70%, 50%);
+  --button-bg-base1: hsl(0, 50%, 35%);
+  --button-bg-hover1: hsl(0, 50%, 55%);
+  --button-bg-base2: hsl(125, 50%, 26%);
+  --button-bg-hover2: hsl(125, 50%, 40%);
+  --button-bg-base3: hsl(200, 50%, 38%);
+  --button-bg-hover3: hsl(200, 50%, 55%);
+  --nav-link-bg-hover: 130%;
+  --nav-link-bg-clicked: var(--theme-50contrast);
+
+  --accent-color: hsl(170, 100%, 50%);
+  --secondary-accent-color: rgb(255, 8, 8);
+
+  /*interactive colors*/
+
+  --input-border: var(--theme-maxcontrast);
+  --input-bg-color: hsl(0, 0%, 80%);
+}
+
+body.pergami {
+  --HB-bg-color: #2c3e50;
+  --PHB-bg-color: #f2ece4;
+  --PHB-h1-color: #58180d;
+  --PHB-td-color: #e0e5c1;
+  --PHB-logo-color: #ed1c24;
+  --PHB-underline-color: #f0bf48;
+  --PHB-statblocklines: #9c2b1b;
+  --redscroll: url(https://i.imgur.com/YvYGqOX.jpg);
+  --bluescroll: url(https://i.imgur.com/w2m4BgW.jpg);
+  --seascroll: url(https://i.imgur.com/dKciX3y.jpg);
+
+  --theme-maxcontrast: hsl(0, 0%, 0%);
+  --theme-90contrast: hsl(0, 0%, 10%);
+  --theme-80contrast: hsl(0, 0%, 20%);
+  --theme-70contrast: hsl(0, 0%, 30%);
+  --theme-60contrast: hsl(0, 0%, 40%);
+  --theme-50contrast: hsl(0, 0%, 50%);
+  --theme-40contrast: hsl(0, 0%, 60%);
+  --theme-30contrast: hsl(0, 0%, 70%);
+  --theme-20contrast: hsl(0, 0%, 80%);
+  --theme-10contrast: hsl(0, 0%, 90%);
+  --theme-mincontrast: hsl(0, 0%, 100%);
+  --accent-color: var(--PHB-statblocklines);
+  --secondary-accent-color: var(--PHB-underline-color);
+
+  /*base backgrounds*/
+  --body-bg-color: var(--HB-bg-color);
+  --body-bg-image: ;
+  --content-bg-image: url("http://cruab/img/temes/scroll.jfif");
+  --nav-bg-color: var(--theme-20contrast);
+  --nav-link-bg-hover: 150%;
+
+  --nav-bg-image: url("http://cruab/img/temes/redscroll.jpg");
+  --footer-bg-image: var(--seascroll);
+  --nav-shadow: 0px 0px 14px #000;
+
+  /*interactive colors*/
+  --button-bg-fallback: yellow;
+  --button-bg-base1: hsl(0, 91%, 35%);
+  --button-bg-hover1: hsl(0, 91%, 55%);
+  --button-bg-base2: hsl(125, 91%, 26%);
+  --button-bg-hover2: hsl(125, 91%, 40%);
+  --button-bg-base3: hsl(0, 0%, 20%);
+  --button-bg-hover3: hsl(0, 0%, 40%);
+  --button-bg-hover: var(--PHB-underline-color);
+  --nav-link-bg-clicked: var(--PHB-statblocklines);
+  --input-border: var(--theme-maxcontrast);
+  --input-bg-color: var(--PHB-bg-color);
+
+  /*text color*/
+  --text-color-general: var(--theme-80contrast);
+  --header-color-general: var(--PHB-h1-color);
+  --nav-color: var(--PHB-bg-color);
+  --p-color: var(--text-color-general);
+  --a-color: var(--PHB-logo-color);
+  --a-selected-color: var(--secondary-accent-color);
+
+  /*fonts*/
+  --header-font-family-general: mr_eaves_small_caps-webfont;
+  --h1-font: var(--header-font-family-general);
+  --h2-font: var(--header-font-family-general);
+  --h3-font: var(--header-font-family-general);
+  --h4-font: var(--header-font-family-general);
+  --h5-font: var(--header-font-family-general);
+}
