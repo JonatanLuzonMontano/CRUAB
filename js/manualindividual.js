@@ -65,6 +65,7 @@ function obtenirManuals() {
       if (sessionStorage['numsoci'] != null) {
         var llistacopies = document.getElementById('llistacopies');
         const element = llistacopies.getElementsByClassName('element-copia')[0];
+        document.querySelector('article h1').textContent = nommanual;
         console.log(llista[0]);
         if (llista[0] == null) {
           afegirCopiaManual();
