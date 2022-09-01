@@ -488,7 +488,7 @@ main > article {
   width: 80%;
   min-height: 50vh;
   margin-top: 7vh;
-  padding: 10px;
+  padding: calc((80vw - (300px * 3)) / 3);
   border-radius: 0px;
   box-shadow: var(--nav-shadow);
 }
@@ -833,31 +833,32 @@ article > h1 {
 }
 
 .llistaelements {
+  --column-gap: calc((80vw - (300px * 3)) / 4);
   display: grid;
   grid-template-columns: repeat(3, 300px);
-  column-gap: calc((80vw - (300px * 3)) / 3);
+  column-gap: var(--column-gap);
   row-gap: 2vh;
-  width: 80vw;
-  max-width: 90%;
+  width: fit-content;
+  overflow:hidden;
 }
 
 @media screen and (max-width: 1320px) {
   .llistaelements {
+  --column-gap:calc((80vw - (300px * 2)) / 3)
     grid-template-columns: repeat(2, 300px);
-    column-gap: calc((80vw - (300px * 2)) / 2);
   }
 }
 
 @media screen and (min-width: 1980px) {
   .llistaelements {
+    --column-gap:calc((80vw - (300px * 4)) / 5)
     grid-template-columns: repeat(4, 300px);
-    column-gap: calc((80vw - (300px * 4)) / 4);
   }
 }
 @media screen and (min-width: 2500px) {
   .llistaelements {
+    --column-gap:calc((80vw - (300px * 5)) / 6)
     grid-template-columns: repeat(5, 300px);
-    column-gap: calc((80vw - (300px * 5)) / 5);
   }
 }
 
@@ -904,12 +905,14 @@ article > h1 {
   display: flex;
   flex-direction: column;
   text-align: left;
-  width: 100%;
-  min-width: 150px;
+  width: 60%;
+  min-width: 100px;
 }
 .detalls p {
   font-size: calc(var(--p-size) * 0.8);
   padding: 2px 5px;
+  width:100%;
+  word-wrap: break-word;
 }
 
 .detalls .dificultat {
@@ -924,7 +927,7 @@ article > h1 {
 
 .image-holder {
   font-size: var(--p-size);
-  width: 9vw;
+  width: 40%;
   max-width: 20vw;
   margin-right: 1em;
   overflow: hidden;
@@ -1036,8 +1039,8 @@ footer .social-link:is(:hover, :focus) {
 
   .main-content > div,
   .main-content > article {
-    width: 100vw;
-    max-width: 100%;
+    width: 90%;
+    padding: 10px 20px;
   }
 
   .main-content > article {
@@ -1056,11 +1059,24 @@ footer .social-link:is(:hover, :focus) {
     justify-content: center;
     align-items: center;
     width: 100%;
+    gap:5vh;
   }
 
-  .main-content:is(.jocstaula, .manuals) > article {
-    width: 90%;
+  .element {
+    margin-bottom: 0;
+    height: 40vh;
+    padding-bottom: 10px;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
   }
+  .element h3 {
+    max-width:90%;
+  }
+  .element p {
+    line-height: var(--p-size);
+  }
+
   .element > .flex-parent {
     flex-direction: column;
   }
@@ -1083,12 +1099,9 @@ footer .social-link:is(:hover, :focus) {
     justify-content: center;
     text-align: center;
     align-items: center;
+    width:80%;
   }
   .nom {
     text-align: center;
-  }
-  .element {
-    border-bottom: 1px dashed hsla(0, 0%, 70%, 0.7);
-    padding-bottom: 10px;
   }
 }
