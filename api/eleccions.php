@@ -40,11 +40,45 @@ switch($_SERVER['REQUEST_METHOD']){
         break;
 
     case 'POST':
+      $_POST = json_decode(file_get_contents('php://input'), true);
+
+
+        
+          $any = date("Y");
+          $query = sprintf(
+              "INSERT INTO llista (Any, Convocatoria Nom  VALUES ('%s', '%s', '%s', %d, '%s', '%s', '%s', '%s', '%s', '%s', %d, '%s', '%s', '%s')", // esto hay que rehacerlo
+                assegurarInputs($_POST["president"]),
+                assegurarInputs($_POST["vicepresident"]),
+                assegurarInputs($_POST["tresorer"]),
+                assegurarInputs($_POST["secretari"]),
+                assegurarInputs($_POST["vocal"])// hay que hacer este por cada vocal que haya, keys: vocal1, vocal2, vocal3, etc
+                $any
+            );
+            
+            $resultat = dbconninsert($query);
+
+            if(substr($resultat, 0, 5) == "Error"){
+                $msg["Error"] = "Error al inserir les dades. comproba que tot estigui correcte";
+                $msg["DeBug"] = $resultat;
+            } else {
+                $msg["Correcte"] = "Tot ok";
+            }
+
+        }
         
         break;
 
     case 'PUT':
-    
+      $query = "UPDATE `events` SET `valor` = '1' WHERE `events`.`paseleccions` = 'proces electoral';";
+      $resultinsert = dbconnupdate($query);
+
+      if(substr($resultinsert, 0, 5) == "Error"){
+        $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
+        $msg["DeBug"] = $resultinsert;
+    } else {
+        $msg["Correcte"] = "Tot ok";
+    }
+
         break;
 
     case 'DELETE':

@@ -90,6 +90,8 @@ select {
   --p-weight-semi: 450;
   --p-weight-bold: 900;
   --button-font-size: 18px;
+  width: 100vw;
+  height: 100%;
 }
 
 body {
@@ -170,7 +172,14 @@ body.fosc {
 
   --body-bg-color: var(--theme-20contrast);
   --nav-bg-color: var(--theme-30contrast);
-  --button-bg-hover: var(--theme-40contrast);
+
+  --button-bg-fallback: hsl(60, 70%, 50%);
+  --button-bg-base1: hsl(0, 50%, 35%);
+  --button-bg-hover1: hsl(0, 50%, 55%);
+  --button-bg-base2: hsl(125, 50%, 26%);
+  --button-bg-hover2: hsl(125, 50%, 40%);
+  --button-bg-base3: hsl(200, 50%, 38%);
+  --button-bg-hover3: hsl(200, 50%, 55%);
   --nav-link-bg-hover: 130%;
   --nav-link-bg-clicked: var(--theme-50contrast);
 
@@ -178,7 +187,7 @@ body.fosc {
   --secondary-accent-color: rgb(255, 8, 8);
 
   /*interactive colors*/
-  --button-bg-base: var(--nav-bg-color);
+
   --input-border: var(--theme-maxcontrast);
   --input-bg-color: hsl(0, 0%, 80%);
 }
@@ -221,7 +230,13 @@ body.pergami {
   --nav-shadow: 0px 0px 14px #000;
 
   /*interactive colors*/
-  --button-bg-base: var(--PHB-td-color);
+  --button-bg-fallback: yellow;
+  --button-bg-base1: hsl(0, 91%, 35%);
+  --button-bg-hover1: hsl(0, 91%, 55%);
+  --button-bg-base2: hsl(125, 91%, 26%);
+  --button-bg-hover2: hsl(125, 91%, 40%);
+  --button-bg-base3: hsl(0, 0%, 20%);
+  --button-bg-hover3: hsl(0, 0%, 40%);
   --button-bg-hover: var(--PHB-underline-color);
   --nav-link-bg-clicked: var(--PHB-statblocklines);
   --input-border: var(--theme-maxcontrast);
@@ -250,14 +265,16 @@ body {
   background-color: var(--body-bg-color);
   background-image: var(--body-bg-image);
   overflow: overlay;
+  overflow-x: hidden;
   scroll-behavior: smooth;
-  max-width: 100%;
-  width: 100vw;
+  max-width: 100vw;
+  width: 100%;
   min-height: 100vh;
   min-width: 100vw;
 }
 
 * {
+  outline: 1px dashed red;
   transition: 200ms;
 }
 
@@ -295,6 +312,16 @@ a::selection {
   background-color: hsl(0, 0%, 60%);
 }
 
+
+header *,
+input,
+button,
+#filterbox *,
+img
+{
+  user-select:none;
+}
+
 /*#########################   NAVEGACIÓN   #############################*/
 
 header {
@@ -308,6 +335,7 @@ header {
   display: block;
   height: var(--nav-height);
   width: 100%;
+  max-width: 100vw;
   user-select: none;
   box-shadow: var(--nav-shadow);
 }
@@ -319,12 +347,12 @@ header > nav {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: flex-start;
   height: 100%;
   width: 100%;
   user-select: none;
 }
 
-.navbar-brand,
 #botonsnavegacio {
   display: flex;
   align-items: center;
@@ -357,19 +385,20 @@ header > nav {
 
 .navbar-brand {
   margin: 0 30px;
-  color: hsla(0, 0%, 0%, 0);
-  font-size: var(--brand-font-size);
-  text-decoration: unset;
-  background-image: url(http://cruab/img/temes/Logo-box.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  mix-blend-mode: multiply;
+  width: 70px;
+  padding: 0;
+  user-select: none;
+  height: unset;
+  aspect-ratio: 100/111;
+}
+
+.navbar-brand svg {
+  height: 100%;
+  width: 100%;
 }
 
 #botonsdreta {
-  position: absolute;
-  top: 0px;
-  right: 0px;
+  margin-left: auto;
   display: flex;
 }
 
@@ -406,28 +435,39 @@ nav .temes-boto svg {
 
 #botonsdreta > .espai-temes {
   display: none;
-  background-color: lightcoral;
+  background-color: var(--theme-30contrast);
   position: absolute;
   top: var(--nav-height);
-  right: 0;
-  min-width: 250px;
-  min-height: 50px;
+  right: 3.5vw;
   width: fit-content;
   height: fit-content;
   grid-template-columns: auto auto auto;
   gap: 10px;
-  border-radius: 10px;
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 #espaitemes.open {
   display: grid;
 }
 
-.espai-temes .temes-boto {
-  min-width: 50px;
-  min-height: 20px;
-  width: fit-content;
-  height: fit-content;
+#espaitemes.open::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 0px solid transparent;
+  border-bottom: 20px solid var(--theme-30contrast);
+}
+
+.canvi-tema {
+  background-color:var(--theme-70contrast);
+  color:var(--theme-mincontrast);
 }
 
 /*#########################   CONTENINDO PRINCIPAL   #############################*/
@@ -438,8 +478,14 @@ nav .temes-boto svg {
   width: 100vw;
   min-height: 60vh;
   margin-top: 10vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height: fit-content;
 }
-
+.main-content.gestio {
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
 .main-content > div,
 .main-content > article {
   position: relative;
@@ -450,8 +496,8 @@ main > div,
 main > article {
   width: 80%;
   min-height: 50vh;
-  margin-top: 5vh;
-  padding: 10px;
+  margin-top: 7vh;
+  padding: calc((80vw - (300px * 3)) / 3);
   border-radius: 0px;
   box-shadow: var(--nav-shadow);
 }
@@ -523,6 +569,9 @@ a:not(.nav-link, .user-button):is(:hover, :focus) {
 }
 
 /*#################################   FORMULARIOS   #################################*/
+button {
+  background:var(--button-bg-fallback);
+}
 
 :is(button, input:is([type="button"], [type="submit"])):not([disabled]),
 input[type="file"]::file-selector-button {
@@ -535,16 +584,13 @@ input[type="file"]::file-selector-button {
   color: var(--theme-mincontrast);
   width: fit-content;
   height: fit-content;
+  min-height: 27px;
 }
 input[type="file"] {
   border: none;
   width: 300px;
   background: none;
   color: var(--theme-maxcontrast);
-}
-
-:is(button, input:is([type="button"], [type="submit"])):not([disabled]):is(:hover, :focus) {
-  border-radius: 10px;
 }
 
 input {
@@ -554,6 +600,10 @@ input {
   border: 1px solid var(--input-border);
   border-radius: 3px;
   margin-bottom: 10px;
+}
+
+:is(button, input:is([type="button"], [type="submit"])):not([disabled]):is(:hover, :focus) {
+  border-radius: 7px;
 }
 
 .constructiu,
@@ -587,7 +637,7 @@ input:-internal-autofill-selected:invalid {
   border-color: red;
 }
 
-input.error:is([type], [name]):not(:placeholder-shown) {
+input.error:is([type], [name]) {
   background-color: var(--input-bg-incorrect) !important;
   border-color: red !important;
   animation: shake 0.5s;
@@ -615,7 +665,7 @@ input.error:is([type], [name]):not(:placeholder-shown) {
   }
 }
 
-input:not(:placeholder-shown):valid,
+input:not(:placeholder-shown, [type="submit"]):valid,
 input:-internal-autofill-selected:valid {
   background-color: var(--input-bg-correct) !important;
   border-color: green !important;
@@ -717,12 +767,16 @@ label + div label,
 #filterbox #filtrar {
   margin-block: auto;
 }
+.table-holder {
+  overflow-x: auto;
+}
 
 table {
   z-index: 5;
   min-width: 300px;
   border-collapse: collapse;
   color: var(--p-color);
+  width: 100%;
 }
 
 thead {
@@ -776,6 +830,11 @@ article > h1 {
 .rows {
   flex-direction: column;
 }
+
+.gap {
+  gap: 30px;
+}
+
 .detalls {
   line-height: 1em;
   display: flex;
@@ -792,31 +851,32 @@ article > h1 {
 }
 
 .llistaelements {
+  --column-gap: calc((80vw - (300px * 3)) / 4);
   display: grid;
   grid-template-columns: repeat(3, 300px);
-  column-gap: calc((80vw - (300px * 3)) / 3);
+  column-gap: var(--column-gap);
   row-gap: 2vh;
-  width: 80vw;
-  max-width: 90%;
+  width: fit-content;
+  overflow:hidden;
 }
 
 @media screen and (max-width: 1320px) {
   .llistaelements {
+  --column-gap:calc((80vw - (300px * 2)) / 3)
     grid-template-columns: repeat(2, 300px);
-    column-gap: calc((80vw - (300px * 2)) / 2);
   }
 }
 
 @media screen and (min-width: 1980px) {
   .llistaelements {
+    --column-gap:calc((80vw - (300px * 4)) / 5)
     grid-template-columns: repeat(4, 300px);
-    column-gap: calc((80vw - (300px * 4)) / 4);
   }
 }
 @media screen and (min-width: 2500px) {
   .llistaelements {
+    --column-gap:calc((80vw - (300px * 5)) / 6)
     grid-template-columns: repeat(5, 300px);
-    column-gap: calc((80vw - (300px * 5)) / 5);
   }
 }
 
@@ -842,6 +902,14 @@ article > h1 {
   width: 100%;
 }
 
+.element h3 {
+  white-space: nowrap;
+  overflow:hidden;
+  width:100%;
+  height:min-content;
+  text-overflow: ellipsis;
+}
+
 .contingut {
   display: flex;
   flex-direction: row;
@@ -855,17 +923,19 @@ article > h1 {
   display: flex;
   flex-direction: column;
   text-align: left;
-  width: 100%;
-  min-width: 150px;
+  width: 60%;
+  min-width: 100px;
 }
 .detalls p {
   font-size: calc(var(--p-size) * 0.8);
   padding: 2px 5px;
+  width:100%;
+  word-wrap: break-word;
 }
 
 .detalls .dificultat {
   display: block;
-  color: white;
+  color: hsl(0, 0%, 0%);
   font-weight: bolder;
   padding: 0 10px;
   border-radius: 3px;
@@ -875,7 +945,7 @@ article > h1 {
 
 .image-holder {
   font-size: var(--p-size);
-  width: 9vw;
+  width: 40%;
   max-width: 20vw;
   margin-right: 1em;
   overflow: hidden;
@@ -900,7 +970,7 @@ footer {
   align-items: center;
   height: 20vh;
   width: 100vw;
-  margin-top: 10vh;
+  margin-top: 10vh;/*si se toca, comprobar que en index no haya espacio entre este y el final de pagina*/
   color: var(--nav-color);
   text-align: center;
   box-shadow: var(--nav-shadow);
@@ -932,7 +1002,7 @@ footer .social-link:is(:hover, :focus) {
   :root {
     --nav-font-size: 20px;
     --h1-size: 30px;
-    --h2-size: 20px;
+    --h2-size: 30px;
     --h3-size: 30px;
     --h4-size: 17px;
     --p-size: 25px;
@@ -945,11 +1015,18 @@ footer .social-link:is(:hover, :focus) {
   #navbar-toggler-parent {
     display: none;
   }
+  .pc-columns-mobile-rows {
+    flex-direction: row;
+  }
 }
 
 /*#########################   PARA MOVIL   #############################*/
 
 @media screen and (max-width: 900px) {
+  header {
+    --nav-height: 12vh;
+  }
+
   nav {
     flex-direction: column;
     justify-content: flex-start;
@@ -982,11 +1059,13 @@ footer .social-link:is(:hover, :focus) {
   .temes-boto {
     width: 50px;
   }
+  
+  
 
   .main-content > div,
   .main-content > article {
-    width: 100vw;
-    max-width: 100%;
+    width: 90%;
+    padding: 10px 20px;
   }
 
   .main-content > article {
@@ -1005,11 +1084,24 @@ footer .social-link:is(:hover, :focus) {
     justify-content: center;
     align-items: center;
     width: 100%;
+    gap:5vh;
   }
 
-  .main-content:is(.jocstaula, .manuals) > article {
-    width: 90%;
+  .element {
+    margin-bottom: 0;
+    height: 40vh;
+    padding-bottom: 10px;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
   }
+  .element h3 {
+    max-width:90%;
+  }
+  .element p {
+    line-height: var(--p-size);
+  }
+
   .element > .flex-parent {
     flex-direction: column;
   }
@@ -1028,16 +1120,19 @@ footer .social-link:is(:hover, :focus) {
     max-width: 100px;
     margin-right: 0.5em;
   }
+  
   .detalls {
     justify-content: center;
     text-align: center;
     align-items: center;
+    width:80%;
   }
+  
   .nom {
     text-align: center;
   }
-  .element {
-    border-bottom: 1px dashed hsla(0, 0%, 70%, 0.7);
-    padding-bottom: 10px;
+
+  .pc-columns-mobile-rows {
+    flex-direction: column;
   }
 }

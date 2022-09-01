@@ -1,9 +1,18 @@
 
 function obrirEleccions() {
-  var confirmar;
   if (confirm("Estas segur?")) {
-    alert("abriendo elecciones");
-    //aqui hay que ahcer una http request con un 
-    //put o post de llistes para hacer que nignuna sea ganadora
+    var xhttpobrireleccions = new XMLHttpRequest;
+    xhttpobrireleccions.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        location.reload();
+      }
+    };
+    xhttpobrireleccions.open('PUT', '/api/eleccions.php', true);
+    xhttpobrireleccions.send();
   }
 }
+
+
+
+
+
