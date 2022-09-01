@@ -1,16 +1,18 @@
 function eliminarCopiaManual(copia) {
-  console.log(copia);
-  var xhttpeliminarcopia = new XMLHttpRequest();
-  const params = new URLSearchParams(window.location.search)
-  var nom = params.get("nom");
-  xhttpeliminarcopia.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttpeliminarcopia.responseText);
-      location.reload();
+  if (confirm("Estas segur?")) {
+    console.log(copia);
+    var xhttpeliminarcopia = new XMLHttpRequest();
+    const params = new URLSearchParams(window.location.search)
+    var nom = params.get("nom");
+    xhttpeliminarcopia.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(xhttpeliminarcopia.responseText);
+        location.reload();
+      }
     }
+    xhttpeliminarcopia.open('DELETE', '/api/manualsindividuals.php?Nom=' + nom + '&NumCopia=' + copia, true);
+    xhttpeliminarcopia.send();
   }
-  xhttpeliminarcopia.open('DELETE', '/api/manualsindividuals.php?Nom=' + nom + '&NumCopia=' + copia, true);
-  xhttpeliminarcopia.send();
 }
 
 function afegirCopiaManual() {

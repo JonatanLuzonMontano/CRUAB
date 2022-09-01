@@ -1,21 +1,23 @@
 function eliminarCopiaJoc(copia) {
-  var xhttpeliminarcopia = new XMLHttpRequest();
-  const params = new URLSearchParams(window.location.search)
-  var nom = params.get("nom");
-  xhttpeliminarcopia.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttpeliminarcopia.responseText);
-      location.reload();
+  if (confirm("Estas segur?")) {
+    var xhttpeliminarcopia = new XMLHttpRequest();
+    const params = new URLSearchParams(window.location.search)
+    var nom = params.get("nom");
+    xhttpeliminarcopia.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(xhttpeliminarcopia.responseText);
+        location.reload();
+      }
     }
+    xhttpeliminarcopia.open('DELETE', '/api/jocsindividuals.php?Nom=' + nom + '&NumCopia=' + copia, true);
+    xhttpeliminarcopia.send();
   }
-  xhttpeliminarcopia.open('DELETE', '/api/jocsindividuals.php?Nom=' + nom + '&NumCopia=' + copia, true);
-  xhttpeliminarcopia.send();
 }
 
 function afegirCopiaJoc() {
 
   var xhttpafegircopia = new XMLHttpRequest();
-  const params = new URLSearchParams(window.location.search)
+  const params = new URLSearchParams(window.location.search);
   var nom = params.get("nom");
   var data = { "nom": nom };
   xhttpafegircopia.onreadystatechange = function () {
@@ -80,7 +82,7 @@ function obtenirJocs() {
           botoreserva.textContent = "Reserva";
           botoreserva.disabled = false;
           botoreserva.addEventListener('click', function () { reservarJoc(nomjoc, joc.Numcopia); });
-          
+
           if (joc.Retorn == null && joc.NumLloguer != null) {
             botoreserva.textContent = "Reservada";
             botoreserva.disabled = true;
@@ -93,7 +95,7 @@ function obtenirJocs() {
             botoelimina.classList.remove('hidden');
             botoelimina.id = -joc.Numcopia;
             botoelimina.addEventListener('click', function () { eliminarCopiaJoc(joc.Numcopia); });
-            
+
             if (joc.Retorn == null && joc.NumLloguer != null) {
               botoelimina.classList.add('hidden');
             }

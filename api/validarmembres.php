@@ -7,7 +7,7 @@ include_once('../php/seguretat.php');
 switch($_SERVER['REQUEST_METHOD']){
     
     case'GET':
-        $query = "SELECT numsoci, nom, primercognom, email
+        $query = "SELECT numsoci, nom, primercognom, email, pseudonim
                   FROM membres
                   WHERE membres.validat=0";
 

@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cruab</title>
-  
-  
+
   <link rel="stylesheet" href="css/general.css">
 </head>
 
@@ -83,7 +82,6 @@
           </g>
         </svg>
       </a>
-
       <div id="botonsnavegacio" class="collapsed">
         <a id="paginajocs" class="nav-link" aria-current="page" href="jocstaula.html">Jocs de taula</a>
         <a id="paginamanuals" class="nav-link" aria-current="page" href="manuals.html">Manuals</a>
@@ -118,28 +116,97 @@
   </header>
 
   <main class="main-content">
-    <article id="loginform" class="form">
-      <a rel="stylesheet" href="registre.html">Registrar-se</a>
+    <article id="llistes">
+      <div class="table-holder">
+        <table>
+          <thead>
+            <tr>
+              <th>President</th>
+              <th>Vicepresident</th>
+              <th>Tresorer</th>
+              <th>Secretari</th>
+              <th>Vocals</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="taulapresident"></td>
+              <td id="taulavicepresident"></td>
+              <td id="taulatresorer"></td>
+              <td id="taulasecretari"></td>
+              <td id="taulavocals"></td>
+              <td><button class="votar neutre hidden">Voto</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
       <br>
-      <p id="missatgelogin"></p>
-
-      <form name="formlogin" autocomplete="on">
-        <div>
-          <label class="form-input-label" for="email">E-mail</label>
+      <button id="afegirllista" class="constructiu hidden">Afegir
+        una llista electoral</button>
+      <br>
+      <br>
+      <form id="formllista" class="flex-parent pc-columns-mobile-rows gap hidden" action="" method="post">
+        <div class="flex-parent rows gap">
+          <div>
+            <label for="president">President/a</label>
             <br>
-          <input id="email" type="email" name="email" placeholder="exemple@uab.cat" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-        </div>
-        <div>
-          <label class="form-input-label" for="password">Contrasenya</label>
+            <select id="president" name="president" aria-label="Default select example" required>
+              <option disabled selected value> --
+                escull un/a
+                president/a --
+              </option>
+            </select>
+          </div>
+          <div>
+            <label for="vicepresident">Vicepresident/a</label>
             <br>
-          <input id="password" type="password" name="password" placeholder="Contrasenya" autocomplete="current-password" pattern="[A-Za-z0-9.-_ ].{3,}" title="4 caracters minim, siusplau.">
+            <select id="vicepresident" name="vicepresident" aria-label="Default select example">
+              <option disabled selected value> --
+                escull un/a
+                vicepresident/a --
+              </option>
+            </select>
+          </div>
+          <div>
+            <label for="Tresorer">Tresorer/a</label>
+            <br>
+            <select id="tresorer" name="Tresorer" aria-label="Default select example" required>
+              <option disabled selected value> --
+                escull un/a
+                tresorer/a --
+              </option>
+            </select>
+          </div>
         </div>
+        <div id="vocals" class="flex-parent rows gap">
+          <div>
+            <label for="secretari">Secretari/a</label>
+            <br>
+            <select id="secretari" name="secretari" aria-label="Default select example" required>
+              <option disabled selected value> --
+                escull un/a
+                secretari/a --
+              </option>
+            </select>
+          </div>
+          <div id="vocal-1" class="vocal">
+            <label for="vocal">Vocal</label>
+            <br>
+            <select name="vocal" aria-label="Default select example">
+              <option disabled selected value> --
+                escull un/a vocal --
+              </option>
+            </select>
+          </div>
 
-        <div>
-          <input id="login" type="button" class="neutre" name="submit" value="Entrar">
         </div>
-
+        <div class="flex-parent rows center">
+          <button type="button" id="afegirvocal" class="neutre flex-parent center">Afegir un/a vocal</button>
+          <br>
+          <input id="crearllista" type="button" class="constructiu" name="submit" value="crear la llista">
+        </div>
       </form>
+
     </article>
   </main>
 
@@ -150,19 +217,22 @@
         <a id="email" class="social-link" href="mailto:juntacruab@gmail.com">juntacruab@gmail.com</a>
       </adress>
       <adress property="adress" typeof="PostalAdress">
-        <p property="streetAdress">Plaça Cívica, 08193 Bellaterra, Barcelona</p>
+        <p property="streetAdress">Plaça
+          Cívica, 08193 Bellaterra,
+          Barcelona</p>
       </adress>
     </section>
     <section class="social-links">
-      <a id="instagram" class="social-link"  property="instagram" name="@" href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
+      <a id="instagram" class="social-link" property="instagram" name="@"
+        href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
       <a id="facebook" class="social-link" property="facebook" name="" href="facebook.com">Facebook</a>
-      <a id="twitter" class="social-link"  href="https://twitter.com/cruaboficial?">Twitter</a>
+      <a id="twitter" class="social-link" href="https://twitter.com/cruaboficial?">Twitter</a>
     </section>
   </footer>
 
-  
+  <script src="js/checkmembre.js"></script>
   <script src="js/sessions.js"></script>
-  <script src="js/login.js"></script>
+  <script src="js/eleccions.js"></script>
   <script src="js/temesimenus.js"></script>
   <script src="js/onload.js"></script>
 </body>
