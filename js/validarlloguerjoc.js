@@ -13,9 +13,9 @@ function obtenirJocs(){
                 td[1].textContent = data[i]["primercognom"];
                 td[2].getElementsByTagName("img")[0].src = "../" + data[i]["Imatge"];
                 td[3].textContent = data[i]["Copia"];
-                td[4].getElementsByTagName("button")[0].innerText="Validar";
+                td[4].getElementsByTagName("button")[0].textContent="Validar";
                 td[4].getElementsByTagName("button")[0].id=data[i]["NumLloguer"];
-                td[4].getElementsByTagName("button")[1].innerText="Rebutjar";
+                td[4].getElementsByTagName("button")[1].textContent="Rebutjar";
                 td[4].getElementsByTagName("button")[1].id=-data[i]["NumLloguer"];
                 // Clonar la nueva fila e insertarla en la tabla
                 var tb = document.querySelector("tbody");
