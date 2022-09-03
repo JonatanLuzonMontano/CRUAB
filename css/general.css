@@ -409,7 +409,7 @@ input:-internal-autofill-selected:invalid {
 
 input.error:is([type], [name]) {
   background-color: var(--input-bg-incorrect);
-  border-color: red !important;
+  border-color: red ;
   animation: shake 0.5s;
   animation-iteration-count: 1;
 }
@@ -442,8 +442,8 @@ input.error:is([type], [name]) {
 
 input:not(:placeholder-shown, [type="submit"]):valid,
 input:-internal-autofill-selected:valid {
-  background-color: var(--input-bg-correct) !important;
-  border-color: green !important;
+  background-color: var(--input-bg-correct);
+  border-color: green;
 }
 
 input[type="radio"] {
@@ -657,7 +657,7 @@ article > h1 {
 }
 
 .hidden {
-  display: none !important;
+  display: none;
 }
 
 .element-copia .boto-reserva:nth-of-type(2):not([Id]) {
