@@ -1,10 +1,7 @@
-
 @import "css-reset.css";
-
 @import "variables.css";
 
-
-
+@import "media-q-movil.css";
 
 /*#########################   BODY & REGLAS GENERALES   ##########################################*/
 body {
@@ -21,7 +18,7 @@ body {
 }
 
 * {
-  outline: 1px dashed red;
+  /*outline: 1px dashed red;*/
   transition: 200ms;
 }
 
@@ -59,7 +56,6 @@ a::selection {
   background-color: hsl(0, 0%, 60%);
 }
 
-
 header *,
 input,
 button,
@@ -69,10 +65,8 @@ img {
 }
 
 /*#########################   NAVEGACIÓN   #############################*/
-
 header {
   --nav-height: 15vh;
-
   position: fixed;
   top: 0px;
   z-index: 3;
@@ -218,7 +212,6 @@ nav .temes-boto svg {
 }
 
 /*#########################   CONTENINDO PRINCIPAL   #############################*/
-
 .main-content {
   display: flex;
   justify-content: center;
@@ -310,7 +303,6 @@ a:not(.nav-link, .user-button):is(:hover, :focus) {
 }
 
 /*#########################   GESTIÓN   #############################*/
-
 .gestio-link {
   font-size: var(--h1-size);
 }
@@ -350,6 +342,22 @@ input {
   margin-bottom: 10px;
 }
 
+div:has(input:required) > label::before {
+  content: '* ';
+  color: red;
+  font-size: 20px;
+  position: absolute;
+  right: -20px;
+}
+
+label {
+  pointer-events: none;
+}
+
+label::before {
+  pointer-events: all;
+}
+
 :is(button, input:is([type="button"], [type="submit"])):not([disabled]):is(:hover, :focus) {
   border-radius: 7px;
 }
@@ -383,7 +391,7 @@ input[type="file"]:invalid:is(:hover, :focus)::file-selector-button {
   background-color: var(--button-bg-hover3);
 }
 
-input:is(:not(:placeholder-shown, [type="file"]):invalid, :out-of-range),
+input:is(:not(:placeholder-shown, [type="date"], [type="file"]):invalid, :out-of-range),
 input:-internal-autofill-selected:invalid {
   background-color: var(--input-bg-incorrect);
   border-color: red;
@@ -398,7 +406,7 @@ input.error:is([type], [name]) {
 
 @keyframes shake {
   0% {
-    transform: translateX(1px);
+    transform: translateX(0px);
   }
 
   20% {
@@ -406,7 +414,7 @@ input.error:is([type], [name]) {
   }
 
   40% {
-    transform: translateX(-3px);
+    transform: translateX(-4px);
   }
 
   60% {
@@ -414,7 +422,7 @@ input.error:is([type], [name]) {
   }
 
   80% {
-    transform: translateX(-3px);
+    transform: translateX(-4px);
   }
 
   100% {
@@ -464,7 +472,7 @@ label.error::after {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  column-gap: -400px;
+  column-gap: 10px;
 }
 
 #jugadors {
@@ -496,6 +504,11 @@ label + div label,
 .form-check > label {
   color: var(--p-color);
   font-size: var(--p-size);
+}
+
+#missatgelogin {
+  position: absolute;
+  bottom: 5px;
 }
 
 /*#########################   TABLAS Y CONTENIDO DE LA BASE DE DATOS   #############################*/
@@ -592,7 +605,6 @@ article > h1 {
   gap: 30px;
 }
 
-
 .jocmanual-pare {
   width: 60%;
 }
@@ -609,7 +621,7 @@ article > h1 {
   column-gap: var(--column-gap);
   row-gap: 5vh;
   width: fit-content;
-  margin-bottom:20px;
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 1320px) {
@@ -662,7 +674,7 @@ article > h1 {
 }
 
 .contingut {
-  position:relative;
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -700,9 +712,9 @@ article > h1 {
 }
 
 .eliminarboto {
-  position:absolute;
-  bottom:0;
-  left:0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .image-holder {
@@ -714,15 +726,12 @@ article > h1 {
   border-radius: 10px;
 }
 
-@media (hover: hover) {
-  .image-holder img:is(:hover, :focus) {
-    transform: scale(1.1);
-    transition: transform 250ms ease-in-out;
-  }
+.image-holder img:is(:hover, :focus) {
+  transform: scale(1.1);
+  transition: transform 250ms ease-in-out;
 }
 
 /*#########################   FOOTER   #############################*/
-
 footer {
   z-index: 3;
   background-color: var(--nav-bg-color);
@@ -758,21 +767,7 @@ footer .social-link:is(:hover, :focus) {
 }
 
 /*#########################   MEDIA QUERIES   ##########################################*/
-
-/*#########################   FUENTES PARA MOVIL   #############################*/
-@media screen and (max-width: 900px) {
-  :root {
-    --nav-font-size: 20px;
-    --h1-size: 30px;
-    --h2-size: 30px;
-    --h3-size: 30px;
-    --h4-size: 17px;
-    --p-size: 25px;
-  }
-}
-
 /*#########################   PARA PC   #############################*/
-
 @media screen and (min-width: 900px) {
   #navbar-toggler-parent {
     display: none;
@@ -780,127 +775,5 @@ footer .social-link:is(:hover, :focus) {
 
   .pc-columns-mobile-rows {
     flex-direction: row;
-  }
-}
-
-/*#########################   PARA MOVIL   #############################*/
-
-@media screen and (max-width: 900px) {
-  header {
-    --nav-height: 12vh;
-  }
-
-  nav {
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-
-  #botonsnavegacio {
-    position: absolute;
-    top: var(--nav-height);
-    left: 0;
-    background-color: var(--nav-bg-color);
-    background-image: var(--nav-bg-image);
-    background-position-y: calc(var(--nav-height) * -1);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    height: auto;
-    width: 100vw;
-  }
-
-  .nav-link:not(.navbar-brand) {
-    align-items: flex-start;
-    width: 100%;
-  }
-
-  #botonsnavegacio.collapsed {
-    display: none;
-  }
-
-  .temes-boto {
-    width: 50px;
-  }
-
-
-
-  .main-content > div,
-  .main-content > article {
-    width: 90%;
-    padding: 10px 20px;
-  }
-
-  .main-content > article {
-    min-height: 10vh;
-  }
-
-  #user-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-  }
-
-  .llistaelements {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    gap: 5vh;
-    margin-bottom:20px;
-  }
-
-  .element {
-    margin-bottom: 0;
-    height: 40vh;
-    padding-bottom: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .element h3 {
-    max-width: 90%;
-  }
-
-  .element p {
-    line-height: var(--p-size);
-  }
-
-  .element > .flex-parent {
-    flex-direction: column;
-  }
-
-  .contingut {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    height: 100%;
-    min-height: 150px;
-    width: 100%;
-  }
-
-  .image-holder {
-    width: 50vw;
-    max-width: 100px;
-    margin-right: 0.5em;
-  }
-
-  .detalls {
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    width: 80%;
-  }
-
-  .nom {
-    text-align: center;
-  }
-
-  .pc-columns-mobile-rows {
-    flex-direction: column;
   }
 }
