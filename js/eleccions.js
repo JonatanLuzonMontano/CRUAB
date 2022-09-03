@@ -100,3 +100,22 @@ function enviarLlista() {
     xhttp.send(JSON.stringify(data));
   }
 }
+
+function obtenirLlistes() {
+  var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(xhttp.responseText);
+        var data = JSON.parse(xhttp.responseText);
+        console.log(data);
+
+       const llistesdiferents = new Set(data.Nom);
+       const Llistes = [...llistesdiferents];
+       console.log(Llistes);
+
+      }
+    }
+    xhttp.open('GET', '/api/llistes.php', true);
+    xhttp.send();
+}
