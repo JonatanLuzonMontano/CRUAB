@@ -1,17 +1,30 @@
+
+
+
 /*#########################   VARIABLES   ##########################################*/
 :root {
   /*fonts*/
   --brand-font-size: 35px;
   --nav-font-size: 23px;
+  --header-font-family:'Libre Baskerville', serif;
+  /*family*/
+  --h1-font: var(--header-font-family);
+  --h2-font: var(--header-font-family);
+  --h3-font: var(--header-font-family);
+  --h4-font: var(--header-font-family);
+  --h5-font: var(--header-font-family);
+  --p-font: 'Verdana', sans-serif;
+  /*size*/
   --h1-size: 35px;
   --h2-size: 27px;
   --h3-size: 25px;
   --h4-size: 22px;
   --label-size: var(--h4-size);
   --p-size: 20px;
+
   --p-weight-normal: 100;
-  --p-weight-semi: 450;
-  --p-weight-bold: 900;
+  --p-weight-semi: 400;
+  --p-weight-bold: 700;
   --button-font-size: 18px;
   width: 100vw;
   height: 100%;
@@ -173,12 +186,4 @@ body.pergami {
   --p-color: var(--text-color-general);
   --a-color: var(--PHB-logo-color);
   --a-selected-color: var(--secondary-accent-color);
-
-  /*fonts*/
-  --header-font-family-general: mr_eaves_small_caps-webfont;
-  --h1-font: var(--header-font-family-general);
-  --h2-font: var(--header-font-family-general);
-  --h3-font: var(--header-font-family-general);
-  --h4-font: var(--header-font-family-general);
-  --h5-font: var(--header-font-family-general);
 }
