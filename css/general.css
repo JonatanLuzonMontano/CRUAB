@@ -1,13 +1,8 @@
 @import "css-reset.css";
-
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
 @import url('http://fonts.cdnfonts.com/css/verdana');
-
 @import "variables.css";
-
 @import "media-q-movil.css";
-
-
 
 /*#########################   BODY & REGLAS GENERALES   ##########################################*/
 body {
@@ -126,6 +121,7 @@ body.pergami .nav-link:not(.navbar-brand):is(:hover, :focus) {
   backdrop-filter: brightness(var(--nav-link-bg-hover));
   z-index: 100;
 }
+
 header:not(.background) .nav-link:is(:hover, :focus) {
   text-shadow: 0 0 10px var(--nav-color);
 }
@@ -255,7 +251,6 @@ main > article {
   box-shadow: var(--nav-shadow);
 }
 
-
 main h1 {
   color: var(--h1-color);
   font-family: var(--h1-font);
@@ -286,7 +281,7 @@ main h4 {
 main p,
 td {
   color: var(--p-color);
-  font-family:var(--p-font);
+  font-family: var(--p-font);
   font-size: var(--p-size);
 }
 
@@ -325,6 +320,7 @@ button {
   background: var(--button-bg-fallback);
 }
 
+/* botons actius */
 :is(button, input:is([type="button"], [type="submit"])):not([disabled]),
 input[type="file"]::file-selector-button {
   border-radius: 5px;
@@ -356,6 +352,7 @@ input {
 }
 
 div:has(input:required) > label::before {
+  /* asterisc de required*/
   content: '* ';
   color: red;
   font-size: 20px;
