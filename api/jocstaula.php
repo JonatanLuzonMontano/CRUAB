@@ -3,7 +3,7 @@
 header('Access-Control-Allow-Origin: *');
 include_once('../php/connexiobd.php');
 include_once('../php/seguretat.php');
-
+//$msg = $_SERVER['HTTP_REFERER'];
 switch($_SERVER['REQUEST_METHOD']){
     
     case'GET':

@@ -6,7 +6,7 @@ function obtenirJocs(){
             var data = JSON.parse(xhttp.responseText);
             console.log(data);
 
-            var t = document.querySelector('#productrow'),
+            var t = document.querySelector('#jocsdetaula'),
             td = t.content.querySelectorAll("td");
             for(let i = 0; i < data.length; i++){
                 td[0].textContent = data[i]["nom"];

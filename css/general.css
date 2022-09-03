@@ -320,6 +320,7 @@ button {
   background: var(--button-bg-fallback);
 }
 
+/* botons actius */
 :is(button, input:is([type="button"], [type="submit"])):not([disabled]),
 input[type="file"]::file-selector-button {
   border-radius: 5px;
@@ -351,6 +352,7 @@ input {
 }
 
 div:has(input:required) > label::before {
+  /* asterisc de required*/
   content: '* ';
   color: red;
   font-size: 20px;

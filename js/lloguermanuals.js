@@ -5,10 +5,10 @@ function obtenirLloguersManuals(){
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(xhttp.responseText);
             console.log(data);
-            var t = document.querySelector('#productrow'),
+            var t = document.querySelector('#manuals'),
             td = t.content.querySelectorAll("td");
             if(data == null){
-                document.getElementById("producttable").textContent = "No tens cap reserva feta o aprovada per junta";
+                document.querySelector('table').textContent = "No tens cap reserva feta o aprovada per junta";
             } else {
                 for(let i = 0; i < data.length; i++){
                     td[0].getElementsByTagName("img")[0].src = "../" + data[i]["Imatge"];
