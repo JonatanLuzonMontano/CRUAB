@@ -93,9 +93,9 @@ function enviarLlista() {
         console.log(xhttp.responseText);
         var data = JSON.parse(xhttp.responseText);
         if ((data.hasOwnProperty('Error'))) {
-          document.getElementById('missatge').innerHTML = `<p>${data["Error"]}</p>`;
+          document.getElementById('missatge').textContent = data["Error"];
           if (data.hasOwnProperty('DeBug')) {
-            document.getElementById('missatge').innerHTML += `<p>${data["DeBug"]}</p>`;
+            document.getElementById('missatge').textContent += data["DeBug"];
           }
         } else {
           location.reload;

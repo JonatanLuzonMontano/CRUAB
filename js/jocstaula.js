@@ -53,7 +53,7 @@ function getRadioCheckedValue(radio_name) {
 
   return '';
 }
-
+/*
 function afegirJoc() {
 
   var data = {};
@@ -93,7 +93,7 @@ function afegirJoc() {
     xhttp.open('POST', '/api/JocsTaula.php', true);
     xhttp.send(JSON.stringify(data));
   }
-}
+}*/
 
 function eliminarJoc(nom) {
   if (confirm("Estas segur?")) {
