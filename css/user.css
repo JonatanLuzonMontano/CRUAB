@@ -1,5 +1,4 @@
 /*#########################   PAGINA DE USUARIO   #############################*/
-
 #user-page {
   height: 100%;
   display: flex;
@@ -19,10 +18,20 @@
 
 #user-image {
   --img-size: calc((20vw + 20vh) / 2);
-
   width: var(--img-size);
   height: var(--img-size);
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
   user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
 #user-image img {
@@ -42,11 +51,11 @@
 
 .main-content .button-holder {
   display: flex;
-  border-bottom:2px solid var(--accent-color);
+  border-bottom: 2px solid var(--accent-color);
 }
 
 .main-content .button-holder > a {
-  background-color:var(--theme-50contrast);
+  background-color: var(--theme-50contrast);
   clip-path: polygon(0 0, 80% 0, 100% 100%, 0% 100%);
   display: flex;
   color: var(--theme-mincontrast);
@@ -56,20 +65,29 @@
   margin-right: 10px;
   cursor: pointer;
   padding: 0 20px 0 10px;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
   user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
 .main-content .button-holder > a:hover,
 .main-content .button-holder > a.active {
-  background-color:var(--accent-color);
+  background-color: var(--accent-color);
   color: var(--theme-mincontrast);
 }
 
 .user-content-article:not(.open) {
   display: none !important;
 }
-
-
 
 #prestecsmembre {
   display: flex;
