@@ -51,15 +51,16 @@ function toggleuserpagecontent(id) {  a la pagina d'usuari, canvia entre menus
 function inputError() {
   const form = document.querySelector("form");
   const inputs = form.querySelectorAll("input");
+  const labels = form.querySelectorAll("label");
 
-  inputs.forEach(function (element) {
+  inputs.forEach(function (element, index) {
     if (element.validity.valid == false || element.value == "") {
       element.classList.add('error');
       setTimeout(() => { element.classList.remove('error'); }, 501);
+      labels[index].classList.add('error');
     }
   });
 }
-
 
 function ifScrollNavBg() {
   const nav = document.getElementById('topbar');

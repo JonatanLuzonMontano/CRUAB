@@ -62,7 +62,18 @@ input,
 button,
 #filterbox *,
 img {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
   user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
 /*#########################   NAVEGACIÓN   #############################*/
@@ -77,7 +88,18 @@ header {
   height: var(--nav-height);
   width: 100%;
   max-width: 100vw;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
   user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
   box-shadow: var(--nav-shadow);
 }
 
@@ -92,14 +114,36 @@ header > nav {
   justify-content: flex-start;
   height: 100%;
   width: 100%;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
   user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
 #botonsnavegacio {
   display: flex;
   align-items: center;
   height: 100%;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
   user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
 .nav-link {
@@ -112,7 +156,18 @@ header > nav {
   font-size: var(--nav-font-size);
   font-family: var(--header-font-family);
   text-decoration: unset;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
   user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
   -webkit-user-drag: none;
 }
 
@@ -135,7 +190,18 @@ header:not(.background) .nav-link:is(:hover, :focus) {
   margin: 0 30px;
   width: 70px;
   padding: 0;
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
   user-select: none;
+  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
   height: unset;
   aspect-ratio: 100/111;
 }
@@ -213,9 +279,19 @@ nav .temes-boto svg {
   border-bottom: 20px solid var(--theme-30contrast);
 }
 
-.canvi-tema {
-  background-color: var(--theme-70contrast);
-  color: var(--theme-mincontrast);
+#clar {
+  --button-bg: white;
+  color: hsl(0, 0%, 20%);
+}
+
+#fosc {
+  --button-bg: hsl(0, 0%, 20%);
+  color: hsl(0, 0%, 80%);
+}
+
+#pergami {
+  background-image: var(--scroll);
+  color: #58180d;
 }
 
 /*#########################   CONTENINDO PRINCIPAL   #############################*/
@@ -324,6 +400,7 @@ button {
 :is(button, input:is([type="button"], [type="submit"])):not([disabled]),
 input[type="file"]::file-selector-button {
   border-radius: 5px;
+  background-color: var(--button-bg);
   border: none;
   font-size: var(--button-font-size);
   font-weight: bolder;
@@ -342,16 +419,16 @@ input[type="file"] {
   color: var(--theme-maxcontrast);
 }
 
-input {
+input:not([type="button"], [type="submit"]) {
   position: relative;
-  background-color: var(--input-bg-color);
+  background-color: var(--input-bg);
   max-width: fit-content;
   border: 1px solid var(--input-border);
   border-radius: 3px;
   margin-bottom: 10px;
 }
 
-div:has(input:required) > label::before {
+div:has(input:required) > label:not(.sense-asterisc)::before {
   /* asterisc de required*/
   content: '* ';
   color: red;
@@ -374,80 +451,81 @@ label::before {
 
 .constructiu,
 input[type="file"]:valid::file-selector-button {
-  background-color: var(--button-bg-base2);
+  --button-bg: var(--constructiu);
 }
 
 .constructiu:is(:hover, :focus),
 input[type="file"]:valid:is(:hover, :focus)::file-selector-button {
-  background-color: var(--button-bg-hover2);
+  --button-bg: var(--constructiu-hover);
 }
 
 .destructiu,
 input[type="file"].error:invalid::file-selector-button {
-  background-color: var(--button-bg-base1);
+  --button-bg: var(--destructiu);
 }
 
 .destructiu:not([disabled]):is(:hover, :focus) {
-  background-color: var(--button-bg-hover1);
+  --button-bg: var(--destructiu-hover);
 }
 
 .neutre,
 input[type="file"]:invalid::file-selector-button {
-  background-color: var(--button-bg-base3);
+  --button-bg: var(--neutre);
 }
 
 .neutre:not([disabled]):is(:hover, :focus),
 input[type="file"]:invalid:is(:hover, :focus)::file-selector-button {
-  background-color: var(--button-bg-hover3);
+  --button-bg: var(--neutre-hover);
 }
 
-input:is(:not(:placeholder-shown, [type="date"], [type="file"]):invalid, :out-of-range),
-input:-internal-autofill-selected:invalid {
-  background-color: var(--input-bg-incorrect);
-  border-color: red;
-}
-
+input:is(:not(:placeholder-shown, [type="date"], [type="file"], :focus):invalid, :out-of-range),
+input:-internal-autofill-selected:invalid,
 input.error:is([type], [name]) {
-  background-color: var(--input-bg-incorrect) !important;
-  border-color: red !important;
+  --input-bg: var(--input-bg-incorrect);
+  --input-border: var(--input-border-incorrect);
   animation: shake 0.5s;
   animation-iteration-count: 1;
 }
 
 @keyframes shake {
-  0% {
+
+  0%,
+  100% {
     transform: translateX(0px);
   }
 
-  20% {
-    transform: translateX(4px);
-  }
-
-  40% {
-    transform: translateX(-4px);
-  }
-
+  20%,
   60% {
     transform: translateX(4px);
   }
 
+  40%,
   80% {
     transform: translateX(-4px);
   }
+}
 
-  100% {
-    transform: translateX(0px);
-  }
+input:not([type="radio"], [type="submit"], [type="button"]):focus {
+  --input-bg: var(--input-bg-focus);
+  --input-border: var(--input-border-focus);
 }
 
 input:not(:placeholder-shown, [type="submit"]):valid,
 input:-internal-autofill-selected:valid {
-  background-color: var(--input-bg-correct) !important;
-  border-color: green !important;
+  --input-bg: var(--input-bg-correct);
+  --input-border: var(--input-border-correct);
 }
 
 input[type="radio"] {
   accent-color: var(--accent-color);
+}
+
+input[type="password"] {
+  -webkit-text-security: none;
+}
+
+form.show-passwords input[type="password"] {
+  -webkit-text-security: none;
 }
 
 select {
@@ -495,12 +573,12 @@ label.error::after {
   max-width: 500px;
 }
 
-#first-column {
+#primera-columna {
   position: relative;
   left: 50px;
 }
 
-#second-column {
+#segona-columna {
   position: relative;
   right: 50px;
 }
@@ -576,28 +654,25 @@ th {
   padding: 0 5px;
 }
 
-table td {
+td {
   text-align: center;
 }
 
-table .tableImageHolder {
+.tableImageHolder {
   display: flex;
   justify-content: center;
 }
 
-table .tableImageHolder img {
+.tableImageHolder img {
   max-width: 10.3vw;
 }
 
-article > h1 {
+h1 {
   text-align: center;
 }
 
-.flex-parent {
-  display: flex;
-}
-
 .columns {
+  display: flex;
   flex-direction: row;
 }
 
@@ -623,6 +698,7 @@ article > h1 {
 }
 
 .rows {
+  display: flex;
   flex-direction: column;
 }
 
@@ -672,7 +748,7 @@ article > h1 {
 }
 
 .hidden {
-  display: none !important;
+  display: none;
 }
 
 .element-copia .boto-reserva:nth-of-type(2):not([Id]) {
@@ -681,13 +757,6 @@ article > h1 {
 
 .element {
   margin-bottom: 30px;
-}
-
-.element > .flex-parent {
-  position: relative;
-  align-items: center;
-  min-height: fit-content;
-  width: 100%;
 }
 
 .element h3 {
@@ -799,6 +868,7 @@ footer .social-link:is(:hover, :focus) {
   }
 
   .pc-columns-mobile-rows {
+    display: flex;
     flex-direction: row;
   }
 }

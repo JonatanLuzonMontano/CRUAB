@@ -1,12 +1,9 @@
-
-
-
 /*#########################   VARIABLES   ##########################################*/
 :root {
   /*fonts*/
   --brand-font-size: 35px;
   --nav-font-size: 23px;
-  --header-font-family:'Libre Baskerville', serif;
+  --header-font-family: 'Libre Baskerville', serif;
   /*family*/
   --h1-font: var(--header-font-family);
   --h2-font: var(--header-font-family);
@@ -21,13 +18,14 @@
   --h4-size: 22px;
   --label-size: var(--h4-size);
   --p-size: 20px;
-
   --p-weight-normal: 100;
   --p-weight-semi: 400;
   --p-weight-bold: 700;
   --button-font-size: 18px;
   width: 100vw;
   height: 100%;
+
+  --scroll: url("http://cruab/img/temes/scroll.jfif");
 }
 
 body {
@@ -42,9 +40,15 @@ body {
   --p-color: var(--text-color-general);
   --a-color: var(--accent-color);
   --a-selected-color: var(--secondary-accent-color);
-
+  --input-bg-base: hsl(0, 0%, 80%);
+  --input-bg: var(--input-bg-base);
   --input-bg-correct: hsl(102, 16%, 64%);
   --input-bg-incorrect: hsl(0, 23%, 70%);
+  --input-bg-focus: hsl(41, 23%, 70%);
+  --input-border: var(--theme-maxcontrast);
+  --input-border-incorrect:red;
+  --input-border-correct:green;
+  --input-border-focus:orange;
 }
 
 body.clar {
@@ -61,26 +65,23 @@ body.clar {
   --theme-mincontrast: hsl(0, 0%, 100%);
   --accent-color: hsl(0, 84%, 29%);
   --secondary-accent-color: yellow;
-
   /*base backgrounds*/
   --body-bg-color: var(--theme-mincontrast);
   --body-bg-image: url(https://www.dndbeyond.com/content/1-0-2187-0/skins/waterdeep/images/background_texture.png);
   --nav-bg-color: var(--theme-10contrast);
   --nav-link-bg-hover: 90%;
   --nav-bg-image: none;
-
   /*interactive colors*/
   --button-bg-fallback: yellow;
-  --button-bg-base1: hsl(0, 91%, 35%);
-  --button-bg-hover1: hsl(0, 91%, 55%);
-  --button-bg-base2: hsl(125, 91%, 26%);
-  --button-bg-hover2: hsl(125, 91%, 40%);
-  --button-bg-base3: hsl(200, 91%, 35%);
-  --button-bg-hover3: hsl(200, 91%, 55%);
+  --destructiu: hsl(0, 91%, 35%);
+  --destructiu-hover: hsl(0, 91%, 55%);
+  --constructiu: hsl(125, 91%, 26%);
+  --constructiu-hover: hsl(125, 91%, 40%);
+  --neutre: hsl(200, 91%, 35%);
+  --neutre-hover: hsl(200, 91%, 55%);
+  --button-bg: var(--button-bg-fallback);
   --nav-link-bg-clicked: var(--theme-40contrast);
   --input-border: var(--theme-maxcontrast);
-  --input-bg-color: hsl(0, 0%, 80%);
-
   /*text color*/
   --text-color-general: var(--theme-80contrast);
   --header-color-general: var(--text-color-general);
@@ -105,28 +106,20 @@ body.fosc {
   --theme-20contrast: hsl(0, 0%, 20%);
   --theme-10contrast: hsl(0, 0%, 10%);
   --theme-mincontrast: hsl(0, 0%, 0%);
-
-
   --body-bg-color: var(--theme-20contrast);
   --nav-bg-color: var(--theme-30contrast);
-
   --button-bg-fallback: hsl(60, 70%, 50%);
-  --button-bg-base1: hsl(0, 50%, 35%);
-  --button-bg-hover1: hsl(0, 50%, 55%);
-  --button-bg-base2: hsl(125, 50%, 26%);
-  --button-bg-hover2: hsl(125, 50%, 40%);
-  --button-bg-base3: hsl(200, 50%, 38%);
-  --button-bg-hover3: hsl(200, 50%, 55%);
+  --destructiu: hsl(0, 50%, 35%);
+  --destructiu-hover: hsl(0, 50%, 55%);
+  --constructiu: hsl(125, 50%, 26%);
+  --constructiu-hover: hsl(125, 50%, 40%);
+  --neutre: hsl(200, 50%, 38%);
+  --neutre-hover: hsl(200, 50%, 55%);
+  --button-bg: var(--button-bg-fallback);
   --nav-link-bg-hover: 130%;
   --nav-link-bg-clicked: var(--theme-50contrast);
-
   --accent-color: hsl(170, 100%, 50%);
   --secondary-accent-color: rgb(255, 8, 8);
-
-  /*interactive colors*/
-
-  --input-border: var(--theme-maxcontrast);
-  --input-bg-color: hsl(0, 0%, 80%);
 }
 
 body.pergami {
@@ -140,7 +133,6 @@ body.pergami {
   --redscroll: url(https://i.imgur.com/YvYGqOX.jpg);
   --bluescroll: url(https://i.imgur.com/w2m4BgW.jpg);
   --seascroll: url(https://i.imgur.com/dKciX3y.jpg);
-
   --theme-maxcontrast: hsl(0, 0%, 0%);
   --theme-90contrast: hsl(0, 0%, 10%);
   --theme-80contrast: hsl(0, 0%, 20%);
@@ -154,31 +146,26 @@ body.pergami {
   --theme-mincontrast: hsl(0, 0%, 100%);
   --accent-color: var(--PHB-statblocklines);
   --secondary-accent-color: var(--PHB-underline-color);
-
   /*base backgrounds*/
   --body-bg-color: var(--HB-bg-color);
   --body-bg-image: ;
   --content-bg-image: url("http://cruab/img/temes/scroll.jfif");
   --nav-bg-color: var(--theme-20contrast);
   --nav-link-bg-hover: 150%;
-
   --nav-bg-image: url("http://cruab/img/temes/redscroll.jpg");
   --footer-bg-image: var(--seascroll);
   --nav-shadow: 0px 0px 14px #000;
-
   /*interactive colors*/
   --button-bg-fallback: yellow;
-  --button-bg-base1: hsl(0, 91%, 35%);
-  --button-bg-hover1: hsl(0, 91%, 55%);
-  --button-bg-base2: hsl(125, 91%, 26%);
-  --button-bg-hover2: hsl(125, 91%, 40%);
-  --button-bg-base3: hsl(0, 0%, 20%);
-  --button-bg-hover3: hsl(0, 0%, 40%);
-  --button-bg-hover: var(--PHB-underline-color);
+  --destructiu: hsl(0, 91%, 35%);
+  --destructiu-hover: hsl(0, 91%, 55%);
+  --constructiu: hsl(125, 91%, 26%);
+  --constructiu-hover: hsl(125, 91%, 40%);
+  --neutre: hsl(0, 0%, 20%);
+  --neutre-hover: hsl(0, 0%, 40%);
+  --button-bg: var(--button-bg-fallback);
   --nav-link-bg-clicked: var(--PHB-statblocklines);
   --input-border: var(--theme-maxcontrast);
-  --input-bg-color: var(--PHB-bg-color);
-
   /*text color*/
   --text-color-general: var(--theme-80contrast);
   --header-color-general: var(--PHB-h1-color);
