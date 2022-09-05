@@ -153,6 +153,7 @@ function getJocsTaula() {
         jocactual.querySelector(".jugadors").textContent = "De " + joc.MinJugadors + " a " + joc.MaxJugadors + " persones.";
         jocactual.setAttribute("minjugadors", joc.MinJugadors);
         jocactual.setAttribute("maxjugadors", joc.MaxJugadors);
+        jocactual.setAttribute("minuts", joc.Duracio);
 
         let dificultat = jocactual.querySelector(".dificultat");
         switch (joc.Dificultat) {
@@ -187,8 +188,15 @@ function getJocsTaula() {
   xhttp.send();
 }
 
-function onlyOne(checkbox) {
-  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+function onlyOneMinuts(checkbox) {
+  var checkboxes = document.querySelectorAll('#minuts input[type="checkbox"]');
+  checkboxes.forEach((item) => {
+    if (item !== checkbox) item.checked = false;
+  });
+}
+
+function onlyOneJugadors(checkbox) {
+  var checkboxes = document.querySelectorAll('#jugadors input[type="checkbox"]');
   checkboxes.forEach((item) => {
     if (item !== checkbox) item.checked = false;
   });
@@ -196,14 +204,14 @@ function onlyOne(checkbox) {
 
 function filtrarJugadors() {
   const jocs = document.getElementsByClassName('element');
-  if (document.querySelector("#filterbox input:checked") != null) {
-    const numjugadors = document.querySelector("#filterbox input:checked").value;
+  if (document.querySelector("#jugadors input:checked") != null) {
+    const numjugadors = document.querySelector("#jugadors input:checked").value;
     var atleastone = false;
     for (i = 0; i < jocs.length; i++) {
       const element = jocs[i];
-      element.classList.remove('hidden');
+      //element.classList.remove('hidden');
       if (numjugadors === "10+") {
-        if (element.getAttribute("maxjugadors") < 10) {
+        if (element.getAttribute("minjugadors") < 10) {
           element.classList.add('hidden');
         }
       } else {
@@ -227,4 +235,58 @@ function filtrarJugadors() {
       document.getElementById('message').textContent = "";
     }
   }
+}
+//const minutsfiltrereal = 
+
+function filtrarMinuts() {
+  const jocs = document.getElementsByClassName('element');
+  if (document.querySelector("#minuts input:checked") != null) {
+    const minutsfiltre = document.querySelector("#minuts input:checked").value;
+    var atleastone = false;
+    const minutsfiltrereal = [];
+    switch (minutsfiltre) {
+      case "-10":
+        break;
+      case "10+":
+        break;
+      default:
+        const index = minutsfiltre.indexOf("-");
+        minutsfiltrereal.push(minutsfiltre.substring(0, index));
+        minutsfiltrereal.push(minutsfiltre.substring(index + 1));
+        console.log(minutsfiltrereal);
+
+        const totsminuts = [];
+        for (i = minutsfiltrereal[0]; i <= minutsfiltrereal[1]; i++) {
+          totsminuts.push(i);
+        }
+
+        console.log("tots els minuts: " + totsminuts);
+
+        for (i = 0; i < jocs.length; i++) {
+          if (!totsminuts.includes(parseInt(jocs[i].getAttribute("minuts")))) {
+            console.log("el joc amb duracio de " + jocs[i].getAttribute("minuts") + " no esta dins de la llista " + totsminuts);
+            jocs[i].classList.add('hidden');
+          }
+        }
+        break;
+    }
+
+
+
+    for (i = 0; i < jocs.length; i++) {
+      if (!jocs[i].classList.contains('hidden')) {
+        atleastone = true;
+        break;
+      }
+    }
+    if (atleastone == false) {
+      document.getElementById('message').textContent = "No hi ha cap joc de " + minutsfiltre + " minuts.";
+    }
+  } else {
+    for (i = 0; i < jocs.length; i++) {
+      jocs[i].classList.remove('hidden');
+      document.getElementById('message').textContent = "";
+    }
+  }
+
 }

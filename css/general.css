@@ -677,15 +677,18 @@ h1 {
 }
 
 .space-around {
+  display:flex;
   justify-content: space-around;
 }
 
 .space-between {
+  display:flex;
   justify-content: space-between;
 }
 
 .space-evenly {
-  
+  display:flex;
+  justify-content: space-evenly;  
 }
 
 .center {

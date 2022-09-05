@@ -148,9 +148,13 @@ function ifSubmmit() {
 function ifFiltre() {
   if (document.getElementById("filtrarJugadors") != undefined) {
     document.getElementById('filtrarJugadors').addEventListener('click', function () { filtrarJugadors(); });
+    document.getElementById('filtrarMinuts').addEventListener('click', function () { filtrarMinuts(); });
 
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach((e) => { e.addEventListener('click', function () { onlyOne(this); }); });
+    const checkboxesminuts = document.querySelectorAll('#minuts input[type="checkbox"]');
+    checkboxesminuts.forEach((e) => { e.addEventListener('click', function () { onlyOneMinuts(this); }); });
+
+    const checkboxesjugadors = document.querySelectorAll('#jugadors input[type="checkbox"]');
+    checkboxesjugadors.forEach((e) => { e.addEventListener('click', function () { onlyOneJugadors(this); }); });
   }
 }
 
