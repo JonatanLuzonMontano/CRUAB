@@ -527,7 +527,7 @@ label + div label,
 }
 
 #filterbox > div {
-  width: 70%;
+  width: 80%;
 }
 
 #filterbox label {
@@ -535,11 +535,22 @@ label + div label,
   text-align: center;
 }
 
-#filterbox .numbers > div {
+#filterbox #jugadors > div {
   margin: 0 2px;
 }
 
-#filterbox #filtrar {
+#filterbox #minuts > div {
+  margin: 0 9px;
+}
+#filterbox #minuts > div > input {
+  margin-inline:auto;
+}
+
+#filterbox #minuts label {
+  font-size:calc(var(--p-size) * 0.80);
+}
+
+#filterbox *:where(#filtrarJugadors, #filtrarMinuts) {
   margin-block: auto;
 }
 
@@ -596,6 +607,10 @@ article > h1 {
 
 .space-between {
   justify-content: space-between;
+}
+
+.space-evenly {
+  
 }
 
 .center {

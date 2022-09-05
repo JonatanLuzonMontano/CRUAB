@@ -146,8 +146,11 @@ function ifSubmmit() {
 }
 
 function ifFiltre() {
-  if (document.getElementById("filtrar") != undefined) {
-    document.getElementById('filtrar').addEventListener('click', function () { filtrar(); });
+  if (document.getElementById("filtrarJugadors") != undefined) {
+    document.getElementById('filtrarJugadors').addEventListener('click', function () { filtrarJugadors(); });
+
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((e) => { e.addEventListener('click', function () { onlyOne(this); }); });
   }
 }
 
