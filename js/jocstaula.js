@@ -151,6 +151,8 @@ function getJocsTaula() {
         jocactual.querySelector(".tipus").textContent = "Tipus " + joc.Tipus + ".";
         jocactual.querySelector(".duracio").textContent = "Duració promitja de " + joc.Duracio + " minuts.";
         jocactual.querySelector(".jugadors").textContent = "De " + joc.MinJugadors + " a " + joc.MaxJugadors + " persones.";
+        jocactual.setAttribute("minjugadors", joc.MinJugadors);
+        jocactual.setAttribute("maxjugadors", joc.MaxJugadors);
 
         let dificultat = jocactual.querySelector(".dificultat");
         switch (joc.Dificultat) {
@@ -185,14 +187,44 @@ function getJocsTaula() {
   xhttp.send();
 }
 
-function filtrar() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      //console.log(xhttp.responseText);
-      var llista = JSON.parse(xhttp.responseText);
-      console.log(llista);
+function onlyOne(checkbox) {
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach((item) => {
+    if (item !== checkbox) item.checked = false;
+  });
+}
+
+function filtrarJugadors() {
+  const jocs = document.getElementsByClassName('element');
+  if (document.querySelector("#filterbox input:checked") != null) {
+    const numjugadors = document.querySelector("#filterbox input:checked").value;
+    var atleastone = false;
+    for (i = 0; i < jocs.length; i++) {
+      const element = jocs[i];
+      element.classList.remove('hidden');
+      if (numjugadors === "10+") {
+        if (element.getAttribute("maxjugadors") < 10) {
+          element.classList.add('hidden');
+        }
+      } else {
+        if (numjugadors < element.getAttribute("minjugadors") || numjugadors > element.getAttribute("maxjugadors")) {
+          element.classList.add('hidden');
+        }
+      }
+    }
+    for (i = 0; i < jocs.length; i++) {
+      if (!jocs[i].classList.contains('hidden')) {
+        atleastone = true;
+        break;
+      }
+    }
+    if (atleastone == false) {
+      document.getElementById('message').textContent = "No hi ha cap joc per " + numjugadors + " jugadors.";
+    }
+  } else {
+    for (i = 0; i < jocs.length; i++) {
+      jocs[i].classList.remove('hidden');
+      document.getElementById('message').textContent = "";
     }
   }
-
 }

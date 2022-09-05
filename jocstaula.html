@@ -119,9 +119,37 @@
 
     <article class="flex-parent rows center">
       <aside id="filterbox" class="filterbox flex-parent rows center">
-        <div class="flex-parent columns center"></div>
+        <div class="flex-parent columns space-evenly">
+          <div id="minuts" class="numbers flex-parent columns center">
+            <div class="flex-parent rows space-between">
+              <label for="-10">menys de 10 minuts</label>
+              <input id="-10" type="checkbox" name="-10" value="-10">
+            </div>
+            <div class="flex-parent rows space-between">
+              <label for="10-30">de 10 a 30 minuts</label>
+              <input id="10-30" type="checkbox" name="10-30" value="10-30">
+            </div>
+            <div class="flex-parent rows space-between">
+              <label for="20-30">de 20 a 30 minuts</label>
+              <input id="20-30" type="checkbox" name="20-30" value="20-30">
+            </div>
+            <div class="flex-parent rows space-between">
+              <label for="30-60">de 30 minuts a 1 hora</label>
+              <input id="30-60" type="checkbox" name="30-60" value="30-60">
+            </div>
+            <div class="flex-parent rows space-between">
+              <label for="60-120">de 1 a 2 hores</label>
+              <input id="60-120" type="checkbox" name="60-120" value="60-120">
+            </div>
+            <div class="flex-parent rows space-between">
+              <label for="120+">més de 2 hores</label>
+              <input id="120+" type="checkbox" name="120+" value="120+">
+            </div>
+          </div>
+          <button id="filtrarMinuts" class="neutre">Filtrar</button>
+        </div>
         <div class="flex-parent columns space-around">
-          <div id="numbers" class="numbers flex-parent columns center">
+          <div id="jugadors" class="numbers flex-parent columns center">
             <div class="flex-parent rows space-between">
               <label for="1">1</label>
               <input id="1" type="checkbox" name="1" value="1">
@@ -163,15 +191,16 @@
               <input id="10+" type="checkbox" name="10+" value="10+">
             </div>
           </div>
-          <button id="filtrar" class="neutre">Filtrar</button>
+          <button id="filtrarJugadors" class="neutre">Filtrar</button>
 
 
 
         </div>
       </aside>
       <button id="boto-afegir" class="constructiu hidden"></button>
+      <p id="message"></p>
       <div id="llistajocs" class="llistaelements">
-        <div class="joc element">
+        <div class="joc element" minjugadors="" maxjugadors="">
           <h3 class="nom"></h3>
           <div class="contingut">
             <div class="image-holder">
