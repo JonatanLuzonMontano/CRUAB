@@ -120,24 +120,24 @@
       <div id="missatge"></div>
 
       <form id="formulari" name="formafegirjoc" action="/api/JocsTaula.php" method="POST" enctype="multipart/form-data">
-        <div id="first-column">
+        <div id="primera-columna">
           <div>
-            <label class="form-input-label" for="nom">Nom del joc</label>
+            <label class="form-input-label" title="Aquest camp es obligatori" for="nom">Nom del joc</label>
             <br>
-            <input type="text" id="nom" name="nom" placeholder="Lords Of Waterdeep" pattern="[A-Za-zÀ-ÖØ-öø-ÿ&' 0-9]+" title="Nom del joc de taula"
+            <input type="text" id="nom" name="nom" autocomplete="off" placeholder="Lords Of Waterdeep" pattern="[A-Za-zÀ-ÖØ-öø-ÿ&' 0-9]+" title="Nom del joc de taula"
               required>
           </div>
           <div>
-            <label class="form-input-label" for="jugadors">Jugadors</label>
+            <label class="form-input-label sense-asterisc" for="jugadors">Jugadors</label>
             <div id="jugadors">
               <div>
-                <label class="form-input-label" for="minjugadors">Mínim</label>
+                <label class="form-input-label" title="Aquest camp es obligatori" for="minjugadors">Mínim</label>
                 <br>
                 <input type="number" id="minjugadors" name="minjugadors" min="1" max="10" placeholder="2"
                   title="Mínim de jugadors" required>
               </div>
               <div>
-                <label class=" form-input-label" for="maxjugadors">Màxim</label>
+                <label class=" form-input-label" title="Aquest camp es obligatori" for="maxjugadors">Màxim</label>
                 <br>
                 <input type="number" id="maxjugadors" name="maxjugadors" min="1" max="20" placeholder="5"
                   title="Máxim de jugadors" required>
@@ -145,17 +145,17 @@
             </div>
           </div>
           <div>
-            <label class="form-input-label" for="duracio">Duració en minuts</label>
+            <label class="form-input-label" title="Aquest camp es obligatori" for="duracio">Duració en minuts</label>
             <br>
-            <input type="number" id="duracio" name="duracio" min="2" max="360" placeholder="60" title="Duració del joc promitja" required>
+            <input type="number" id="duracio" name="duracio" min="2" max="360" placeholder="120+" title="Duració del joc promitja" required>
           </div>
           <div>
-            <label class="form-input-label" for="dificultat">Dificultat del joc</label>
+            <label class="form-input-label" title="Aquest camp es obligatori" for="dificultat">Dificultat del joc</label>
             <br>
             <input type="number" id="dificultat" name="dificultat" placeholder="2" title="Dificultat del joc" required>
           </div>
           <div>
-            <label class="form-input-label" for="editorial">Editorial</label>
+            <label class="form-input-label" title="Aquest camp es obligatori" for="editorial">Editorial</label>
             <br>
             <input type="text" id="editorial" name="editorial" pattern="[A-Za-zÀ-ÖØ-öø-ÿ&' 0-9]+" placeholder="Wizards of the Coast" title="Nom de l'editorial" required>
           </div>
@@ -163,7 +163,7 @@
 
 
         <div id="segona-columna">
-          <h3>Tipus de joc:</h3>
+          <label class="form-input-label" title="Aquest camp es obligatori">Tipus de joc:</label>
           <div class="form-check">
             <input class="form-check-input" type="radio" name="tipus" id="flexRadioDefault2" value="Competitiu" checked>
             <label class="form-check-label" for="flexRadioDefault2">
@@ -182,10 +182,12 @@
               Solitari
             </label>
           </div>
+          <br>
           <div>
             <input type="file" id="img-uploader" name="img-uploader" accept="image/png, image/jpeg, image/jpg" title="Afegeix una imatge del joc, en jpg, jpeg o png" required>
           </div>
-
+          <br>
+          <br>
           <div>
             <input type="submit" id="afegirjoc" name="submit" class="constructiu" value="Afegir joc">
           </div>

@@ -14,6 +14,13 @@ function pasEleccions() {
         document.getElementById('afegirvocal').addEventListener('click', function () { afegirVocal(); });
         document.getElementById('crearllista').addEventListener('click', function () { enviarLlista(); })
       }
+      if (llista['votacio'] === 1) {
+        const botovotar = document.getElementsByClassName('votar');
+        botovotar.forEach(element => {
+          element.classList.remove('hidden');
+          element.addEventListener('click', function () { /*votar();*/ });
+        });
+      }
     }
   }
   xhttpcheckeleccions.open('GET', '/api/eleccions.php?opcio=passos', true);
@@ -56,7 +63,7 @@ function validarFormulari(dades) {
     registreLabels[3].classList.add('error');
     return false
   } else { registreLabels[3].classList.remove('error'); }
-  
+
   return true;
 
 }
@@ -86,9 +93,9 @@ function enviarLlista() {
         console.log(xhttp.responseText);
         var data = JSON.parse(xhttp.responseText);
         if ((data.hasOwnProperty('Error'))) {
-          document.getElementById('missatge').innerHTML = `<p>${data["Error"]}</p>`;
+          document.getElementById('missatge').textContent = data["Error"];
           if (data.hasOwnProperty('DeBug')) {
-            document.getElementById('missatge').innerHTML += `<p>${data["DeBug"]}</p>`;
+            document.getElementById('missatge').textContent += data["DeBug"];
           }
         } else {
           location.reload;
@@ -99,4 +106,32 @@ function enviarLlista() {
     xhttp.open('POST', '/api/eleccions.php', true);
     xhttp.send(JSON.stringify(data));
   }
+}
+
+function obtenirLlistes() {
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(xhttp.responseText);
+      var data = JSON.parse(xhttp.responseText);
+      console.log(data);
+
+      const llistesdiferents = new Set(data.Nom);
+      const Llistes = [...llistesdiferents];
+      console.log(Llistes);
+
+      const taula = document.getElementsByTagName('tbody')[0];
+      Llistes.forEach( function(){
+        const filera = taula.querySelector('tr:last-child').cloneNode(true);
+        if (taula.querySelector('tr:last-child td:first-child') != "") {
+          taula.appendChild(filera);
+        }
+        taula.querySelector('tr:last-child').id = "llista-" + Llistes['Nom'];
+      });
+      
+    }
+  }
+  xhttp.open('GET', '/api/llistes.php', true);
+  xhttp.send();
 }

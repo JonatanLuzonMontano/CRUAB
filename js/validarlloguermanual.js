@@ -6,16 +6,16 @@ function obtenirManuals(){
             var data = JSON.parse(xhttp.responseText);
             console.log(data);
 
-            var t = document.querySelector('#productrow'),
+            var t = document.querySelector('#manuals'),
             td = t.content.querySelectorAll("td");
             for(let i = 0; i < data.length; i++){
                 td[0].textContent = data[i]["nom"];
                 td[1].textContent = data[i]["primercognom"];
                 td[2].getElementsByTagName("img")[0].src = "../" + data[i]["Imatge"];
                 td[3].textContent = data[i]["Copia"];
-                td[4].getElementsByTagName("button")[0].innerText="Validar";
+                td[4].getElementsByTagName("button")[0].textContent="Validar";
                 td[4].getElementsByTagName("button")[0].id=data[i]["NumLloguer"];
-                td[4].getElementsByTagName("button")[1].innerText="Rebutjar";
+                td[4].getElementsByTagName("button")[1].textContent="Rebutjar";
                 td[4].getElementsByTagName("button")[1].id=-data[i]["NumLloguer"];
                 // Clonar la nueva fila e insertarla en la tabla
                 var tb = document.querySelector("tbody");
