@@ -87,7 +87,7 @@ function obtenirManuals() {
 
           if (manual.Retorn == null && manual.NumLloguer != null) {
             botoreserva.disabled = true;
-            botoreserva.innerHTML = "Reservada";
+            botoreserva.textContent = "Reservada";
           }
 
           if (sessionStorage['juntari'] == "true") {

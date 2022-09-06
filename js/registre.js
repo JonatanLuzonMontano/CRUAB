@@ -34,12 +34,12 @@ function validarFormulari(dades) {
   } else { registreLabels[6].classList.remove('error'); }
   if (dades['facultat'] == "") { /*esto es posible??*/
     document.forms["formregistre"]["facultat"].focus();
-    document.getElementById('missatge').innerHTML = `<p>La facultat és obligatoria</p>`;
+    document.getElementById('missatge').textContent = "La facultat és obligatoria";
     return false
   }
   if (dades['curs'] == "") {
     document.forms["formregistre"]["curs"].focus();
-    document.getElementById('missatge').innerHTML = `<p>El curs és obligatori</p>`;
+    document.getElementById('missatge').textContent = "El curs és obligatori";
     return false
   }
   if (dades['naixement'] == "") {
@@ -53,12 +53,12 @@ function validarFormulari(dades) {
   var datanaixement = Date.parse(dades['naixement']);
   if (data < datanaixement) {
     document.forms["formregistre"]["naixement"].focus();
-    document.getElementById('missatge').innerHTML = `<p>La data de naixement ha de ser anterior a la data actual</p>`;
+    document.getElementById('missatge').textContent = "La data de naixement ha de ser anterior a la data actual";
     return false
   }
   if (dades['treballador'] == "") {
     document.forms["formregistre"]["treballador"].focus();
-    document.getElementById('missatge').innerHTML = `<p>Has d'indicar si treballes a la universitat o no</p>`;
+    document.getElementById('missatge').textContent = "Has d'indicar si treballes a la universitat o no";
     return false
   }
 
@@ -105,9 +105,9 @@ function enviarDades() {
         console.log(xhttp.responseText);
         var data = JSON.parse(xhttp.responseText);
         if ((data.hasOwnProperty('Error'))) {
-          document.getElementById('missatge').innerHTML = `<p>${data["Error"]}</p>`;
+          document.getElementById('missatge').textContent = data["Error"];
           if (data.hasOwnProperty('DeBug')) {
-            document.getElementById('missatge').innerHTML += `<p>${data["DeBug"]}</p>`;
+            document.getElementById('missatge').textContent += data["DeBug"];
           }
         } else {
           window.location.href = "registrat.html";

@@ -5,10 +5,10 @@ function obtenirLloguersJocs(){
             console.log(xhttp.responseText);
             var data = JSON.parse(xhttp.responseText);
 
-            var t = document.querySelector('#productrow'),
+            var t = document.querySelector('#jocsdetaula'),
             td = t.content.querySelectorAll("td");
             if(data == null){
-                document.getElementById("producttable").textContent = "No tens cap reserva feta o aprovada per junta";
+                document.querySelector('table').textContent = "No tens cap reserva feta o aprovada per junta";
             } else {
                 for(let i = 0; i < data.length; i++){
                     td[0].getElementsByTagName("img")[0].src = "../" + data[i]["Imatge"];
