@@ -7,6 +7,7 @@ function pasEleccions() {
       var llista = JSON.parse(xhttpcheckeleccions.responseText);
       console.log(llista);
       if (llista['presentacio de llistes'] === 1) {
+        obtenirLlistes();
         document.getElementById('afegirllista').classList.remove('hidden');
         document.getElementById('afegirllista').addEventListener('click', function () {
           document.getElementById('formllista').classList.remove('hidden');
@@ -15,11 +16,14 @@ function pasEleccions() {
         document.getElementById('crearllista').addEventListener('click', function () { enviarLlista(); })
       }
       if (llista['votacio'] === 1) {
+        obtenirLlistes();
+
+
         const botovotar = document.getElementsByClassName('votar');
-        botovotar.forEach(element => {
+        /*botovotar.forEach(element => {
           element.classList.remove('hidden');
-          element.addEventListener('click', function () { /*votar();*/ });
-        });
+          element.addEventListener('click', function () { votar(); });
+        });*/
       }
     }
   }
