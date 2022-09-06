@@ -41,19 +41,15 @@ switch($_SERVER['REQUEST_METHOD']){
 
     case 'POST':
         $any = date("Y");
-        $queryselect = "SELECT MAX(eleccions.Convocatoria)
+        $queryselect = "SELECT MAX(eleccions.Convocatoria) as Convocatoria
                         FROM eleccions
                         WHERE eleccions.any = $any;";
-        
         $result = dbconnselect($queryselect);
-        $msg["result"] = $result;
         if($values = mysqli_fetch_assoc($result)){
-            $values = mysqli_fetch_array($result);
             $convocatoria = $values['Convocatoria'] + 1;
         } else {
             $convocatoria = 1;
         }
-        $msg["Convocatoria"] = $convocatoria;
 
         $queryinsert = sprintf(
             "INSERT INTO `cruab`.`eleccions` (`Any`, `Convocatoria`, `Tipus`) VALUES ('%s', '%d', 1);",
@@ -187,6 +183,6 @@ switch($_SERVER['REQUEST_METHOD']){
             break;
 }
 
-echo(json_encode($msg, JSON_NUMERIC_CHECK, JSON_UNESCAPED_UNICODE));
-
+echo json_encode($msg, JSON_NUMERIC_CHECK, JSON_UNESCAPED_UNICODE);
+//var_dump($msg);
 ?>
