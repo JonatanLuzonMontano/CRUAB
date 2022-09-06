@@ -183,11 +183,6 @@ switch($_SERVER['REQUEST_METHOD']){
             break;
 }
 
-<<<<<<< HEAD
 echo(json_encode($msg, JSON_NUMERIC_CHECK, JSON_UNESCAPED_UNICODE));
-
-=======
-echo json_encode($msg, JSON_NUMERIC_CHECK, JSON_UNESCAPED_UNICODE);
 //var_dump($msg);
->>>>>>> 846daef4ffebe100608ee7b5fe0516bf095edb9b
 ?>
