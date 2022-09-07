@@ -21,6 +21,9 @@
   --p-weight-normal: 100;
   --p-weight-semi: 400;
   --p-weight-bold: 700;
+
+  --td-size: 18px;
+
   --button-font-size: 18px;
   width: 100vw;
   height: 100%;

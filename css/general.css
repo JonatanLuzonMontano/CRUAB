@@ -331,6 +331,7 @@ main h1 {
   color: var(--h1-color);
   font-family: var(--h1-font);
   font-size: var(--h1-size);
+  text-align: center;
 }
 
 main h2 {
@@ -354,8 +355,7 @@ main h4 {
   font-size: var(--h2-size);
 }
 
-main p,
-td {
+main p {
   color: var(--p-color);
   font-family: var(--p-font);
   font-size: var(--p-size);
@@ -620,12 +620,13 @@ label + div label,
 #filterbox #minuts > div {
   margin: 0 9px;
 }
+
 #filterbox #minuts > div > input {
-  margin-inline:auto;
+  margin-inline: auto;
 }
 
 #filterbox #minuts label {
-  font-size:calc(var(--p-size) * 0.80);
+  font-size: calc(var(--p-size) * 0.80);
 }
 
 #filterbox *:where(#filtrarJugadors, #filtrarMinuts) {
@@ -656,6 +657,7 @@ th {
 
 td {
   text-align: center;
+  font-size: var(--td-size);
 }
 
 .tableImageHolder {
@@ -667,28 +669,24 @@ td {
   max-width: 10.3vw;
 }
 
-h1 {
-  text-align: center;
-}
-
 .columns {
   display: flex;
   flex-direction: row;
 }
 
 .space-around {
-  display:flex;
+  display: flex;
   justify-content: space-around;
 }
 
 .space-between {
-  display:flex;
+  display: flex;
   justify-content: space-between;
 }
 
 .space-evenly {
-  display:flex;
-  justify-content: space-evenly;  
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .center {
@@ -707,6 +705,19 @@ h1 {
 
 .gap {
   gap: 30px;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.filter-parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .jocmanual-pare {
@@ -748,17 +759,6 @@ h1 {
 
 .element {
   width: 100%;
-}
-
-.hidden {
-  display: none;
-}
-
-.element-copia .boto-reserva:nth-of-type(2):not([Id]) {
-  display: none;
-}
-
-.element {
   margin-bottom: 30px;
 }
 
@@ -768,6 +768,10 @@ h1 {
   width: 100%;
   height: min-content;
   text-overflow: ellipsis;
+}
+
+.element-copia .boto-reserva:nth-of-type(2):not([Id]) {
+  display: none;
 }
 
 .contingut {
@@ -826,6 +830,10 @@ h1 {
 .image-holder img:is(:hover, :focus) {
   transform: scale(1.1);
   transition: transform 250ms ease-in-out;
+}
+
+.hidden {
+  display: none;
 }
 
 /*#########################   FOOTER   #############################*/
