@@ -7,16 +7,32 @@ include_once('../php/seguretat.php');
 switch($_SERVER['REQUEST_METHOD']){
 
     case 'GET':
+      switch($_GET['tipus']) {
+        case 'actius':
+          $query = "SELECT membres.nom, membres.pseudonim, membres.primercognom, membres.numsoci
+          FROM membres WHERE membres.validat = 1 AND membres.estat = 'actiu';";
+    
+          $result = dbconnselect($query);
+          $msg = array();
+    
+          while($values = mysqli_fetch_assoc($result)) {
+            $msg[] = $values;
+          }
 
-      $any = date("Y");
-      $query = "SELECT membres.nom, membres.pseudonim, membres.primercognom, membres.numsoci
-      FROM membres WHERE membres.validat = 1 AND membres.estat = actiu;";
+          break;
 
-      $result = dbconnselect($query);
-      $msg = array();
+        case 'actiusono':
+          $query = "SELECT membres.numsoci, membres.estat
+          FROM membres WHERE membres.validat = 1;";
+    
+          $result = dbconnselect($query);
+          $msg = array();
+    
+          while($values = mysqli_fetch_assoc($result)) {
+            $msg[] = $values;
+          }
 
-      while($values = mysqli_fetch_assoc($result)) {
-        $msg[] = $values;
+          break;
       }
 
       break;

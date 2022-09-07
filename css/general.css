@@ -759,20 +759,6 @@ td {
 
 .element {
   width: 100%;
-<<<<<<< HEAD
-}
-
-.hidden.hidden {
-  display: none;
-}
-
-.element-copia .boto-reserva:nth-of-type(2):not([Id]) {
-  display: none;
-}
-
-.element {
-=======
->>>>>>> 9e00d4f4d4a569bc4cc69584c06d786987231d66
   margin-bottom: 30px;
 }
 
@@ -846,7 +832,7 @@ td {
   transition: transform 250ms ease-in-out;
 }
 
-.hidden {
+.hidden.hidden {
   display: none;
 }
 

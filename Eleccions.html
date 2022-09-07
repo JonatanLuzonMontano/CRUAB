@@ -141,40 +141,36 @@
         </table>
       </div>
       <br>
-      <button id="afegirllista" class="constructiu hidden">Afegir
-        una llista electoral</button>
+      <button id="afegirllista" class="constructiu hidden">Afegir una llista electoral</button>
       <br>
       <br>
-      <form id="formllista" class="pc-columns-mobile-rows gap hidden" action="" method="post">
+      <form id="formllista" class="pc-columns-mobile-rows gap hidden">
         <div class="rows gap">
+          <div>
+            <label for="nom">Nom de la llista:</label>
+            <br>
+            <input id="nom" type="text" placeholder="Llista de Baillo" pattern="[A-Za-z0-9 ].{4,}" name="nom de la llista" title="Escriu el nom de la llista, siusplau" required>
+          </div>
           <div>
             <label for="president">President/a</label>
             <br>
             <select id="president" name="president" aria-label="Default select example" required>
-              <option disabled selected value> --
-                escull un/a
-                president/a --
+              <option disabled selected value> -- escull un/a president/a --
               </option>
             </select>
           </div>
           <div>
             <label for="vicepresident">Vicepresident/a</label>
             <br>
-            <select id="vicepresident" name="vicepresident" aria-label="Default select example">
-              <option disabled selected value> --
-                escull un/a
-                vicepresident/a --
-              </option>
+            <select id="vicepresident" name="vicepresident" aria-label="Default select example" required>
+              <option disabled selected value> -- escull un/a vicepresident/a -- </option>
             </select>
           </div>
           <div>
             <label for="Tresorer">Tresorer/a</label>
             <br>
             <select id="tresorer" name="Tresorer" aria-label="Default select example" required>
-              <option disabled selected value> --
-                escull un/a
-                tresorer/a --
-              </option>
+              <option disabled selected value> -- escull un/a tresorer/a -- </option>
             </select>
           </div>
         </div>
@@ -183,19 +179,14 @@
             <label for="secretari">Secretari/a</label>
             <br>
             <select id="secretari" name="secretari" aria-label="Default select example" required>
-              <option disabled selected value> --
-                escull un/a
-                secretari/a --
-              </option>
+              <option disabled selected value> -- escull un/a secretari/a -- </option>
             </select>
           </div>
           <div id="vocal-1" class="vocal">
             <label for="vocal">Vocal</label>
             <br>
             <select name="vocal" aria-label="Default select example">
-              <option disabled selected value> --
-                escull un/a vocal --
-              </option>
+              <option disabled selected value> -- escull un/a vocal -- </option>
             </select>
           </div>
 

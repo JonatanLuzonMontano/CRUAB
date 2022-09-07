@@ -23,20 +23,21 @@ switch($_SERVER['REQUEST_METHOD']){
         break;
 
     case 'POST':
-     /* $_POST = json_decode(file_get_contents('php://input'), true);
+      $_POST = json_decode(file_get_contents('php://input'), true);
 
 
         
           $any = date("Y");
-          $query = sprintf(
-              "INSERT INTO llista (Any, Convocatoria Nom  VALUES ('%s', '%s', '%s', %d, '%s', '%s', '%s', '%s', '%s', '%s', %d, '%s', '%s', '%s')", // esto hay que rehacerlo
-                assegurarInputs($_POST["president"]),
-                assegurarInputs($_POST["vicepresident"]),
-                assegurarInputs($_POST["tresorer"]),
-                assegurarInputs($_POST["secretari"]),
-                assegurarInputs($_POST["vocal"]),// hay que hacer este por cada vocal que haya, keys: vocal1, vocal2, vocal3, etc
-                $any
-            );
+          $query = 
+              "INSERT INTO llista
+              SELECT Any, Convocatoria
+              FROM eleccions
+              WHERE Convocatoria =(SELECT MAX(Convocatoria) FROM eleccions WHERE Any =(SELECT MAX(Any) FROM eleccions));";
+              
+
+              // agafar l'ultim element de la taula eleccions, any, convocatoria
+              //afegir aixo i el nom de la llista i un 0 per guanyadora
+
             
             $resultat = dbconninsert($query);
 
@@ -47,7 +48,7 @@ switch($_SERVER['REQUEST_METHOD']){
                 $msg["Correcte"] = "Tot ok";
             }
 
-        */
+        
         
         break;
 

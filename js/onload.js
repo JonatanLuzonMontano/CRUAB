@@ -48,6 +48,7 @@ function alCarregar() {
       break;
     case "membre.html":
       document.getElementById('paginacompte').classList.add("active");
+      actiuInactiu();
       break;
     case "eleccions.html":
       console.log("Session storage = " + sessionStorage.eleccions);
