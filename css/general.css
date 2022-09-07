@@ -832,7 +832,7 @@ td {
   transition: transform 250ms ease-in-out;
 }
 
-.hidden {
+.hidden.hidden {
   display: none;
 }
 

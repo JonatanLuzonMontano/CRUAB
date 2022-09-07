@@ -119,24 +119,23 @@
 
   <main class="main-content">
     <div>
-      <div class="button-holder">
-        <a id="usuariboto" class="user-button hidden">usuari</a>
-        <a id="prestecsboto" class="user-button active">prestecs</a>
-      </div>
-      <article id="prestecsmembre"  class="user-content-article open prestecsboto">
-        <a href="lloguersjocs.html">Préstecs de jocs</a>
-        <a href="lloguersmanuals.html">Préstecs de manuals</a>
+      <article>
+        <section id="prestecsmembre" class="user-content-article open prestecsboto">
+          <a href="lloguersjocs.html">Préstecs de jocs</a>
+          <a href="lloguersmanuals.html">Préstecs de manuals</a>
+        </section>
+        <section id="user-page" class="user-content-article usuariboto">
+          <div id="user-info">
+            <a class="hidden">editar el meu perfil</a>
+            <button class="hidden" disabled>deixar de ser membre</button>
+            <p id="activitat"></p>
+            <br>
+            <br>
+            <button id="activarmembre" class="hidden">Vull ser soci actiu</button>
+          </div>
+        </section>
       </article>
-      <article id="user-page" class="user-content-article usuariboto">
-        <div id="user-info">
-          <a>editar el meu perfil</a>
-          <a>deixar de ser membre</a>
-          <a>Actiu o inactiu</a>
-          <br>
-          <br>
-          <button id="activarmembre" class="hidden">Vull ser soci actiu</button>
-        </div>
-      </article>
+
     </div>
   </main>
 
@@ -153,13 +152,14 @@
       </adress>
     </section>
     <section class="social-links">
-      <a id="instagram" class="social-link"  property="instagram" name="@" href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
+      <a id="instagram" class="social-link" property="instagram" name="@"
+        href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
       <a id="facebook" class="social-link" property="facebook" name="" href="facebook.com">Facebook</a>
-      <a id="twitter" class="social-link"  href="https://twitter.com/cruaboficial?">Twitter</a>
+      <a id="twitter" class="social-link" href="https://twitter.com/cruaboficial?">Twitter</a>
     </section>
   </footer>
 
-  
+
   <script src="js/sessions.js"></script>
   <script src="js/membre.js"></script>
   <script src="js/temesimenus.js"></script>
