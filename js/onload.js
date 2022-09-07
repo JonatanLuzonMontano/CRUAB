@@ -55,7 +55,6 @@ function alCarregar() {
         window.location.href = "index.html";
       } else {
         pasEleccions();
-        obtenirLlistes();
       }
       break;
     default:

@@ -8,17 +8,17 @@ switch($_SERVER['REQUEST_METHOD']){
     
     case 'GET':
       $any = date("Y");
-      $query = "SELECT llista.Carreg, llista.Nom, llista.Membre, membres.nom, membres.pseudonim, membres.primercognom
+      $query = "SELECT llista.Nom, llista.Carreg, llista.Membre, membres.nom, membres.pseudonim, membres.primercognom
       FROM ( llista LEFT JOIN llistes ON llista.Any = llistes.Any AND llista.Convocatoria = llistes.Convocatoria AND llista.Nom = llistes.Nom )
       LEFT JOIN membres ON membres.numsoci = llista.Membre
-      WHERE llista.ANY = 2021;"
+      WHERE llista.ANY = 2021;";
 
       $result = dbconnselect($query);
       $msg = array();
 
       while($values = mysqli_fetch_assoc($result)) {
         $msg[] = $values;
-      }     
+      }
 
         break;
 

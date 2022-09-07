@@ -7,6 +7,7 @@ function pasEleccions() {
       var llista = JSON.parse(xhttpcheckeleccions.responseText);
       console.log(llista);
       if (llista['presentacio de llistes'] === 1) {
+        obtenirLlistes();
         document.getElementById('afegirllista').classList.remove('hidden');
         document.getElementById('afegirllista').addEventListener('click', function () {
           document.getElementById('formllista').classList.remove('hidden');
@@ -15,11 +16,14 @@ function pasEleccions() {
         document.getElementById('crearllista').addEventListener('click', function () { enviarLlista(); })
       }
       if (llista['votacio'] === 1) {
+        obtenirLlistes();
+
+
         const botovotar = document.getElementsByClassName('votar');
-        botovotar.forEach(element => {
-          element.classList.remove('hidden');
-          element.addEventListener('click', function () { /*votar();*/ });
-        });
+        for (i = 0; i < botovotar.length; i++) {
+          botovotar[i].classList.remove('hidden');
+          //element.addEventListener('click', function () { votar(); });
+        }
       }
     }
   }
@@ -117,21 +121,22 @@ function obtenirLlistes() {
       var data = JSON.parse(xhttp.responseText);
       console.log(data);
 
-      const llistesdiferents = new Set(data.Nom);
-      const Llistes = [...llistesdiferents];
-      console.log(Llistes);
-
       const taula = document.getElementsByTagName('tbody')[0];
-      Llistes.forEach( function(){
-        const filera = taula.querySelector('tr:last-child').cloneNode(true);
-        if (taula.querySelector('tr:last-child td:first-child') != "") {
-          taula.appendChild(filera);
+      data.forEach(function (element) {
+        const filera = taula.querySelector('tr:last-child');
+        const fileraclon = filera.cloneNode(true);
+        if (taula.querySelector('tr:last-child').id == "") {
+          taula.querySelector('tr:last-child').id = element.Nom;
+        } else {
+          taula.appendChild(fileraclon);
+          taula.querySelector('tr:last-child').id = element.Nom;
         }
-        taula.querySelector('tr:last-child').id = "llista-" + Llistes['Nom'];
+
+        const fileraactual = document.getElementById(element.Nom);
+        fileraactual.getElementsByClassName(element.Carreg)[0].textContent = element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
       });
-      
     }
-  }
+  };
   xhttp.open('GET', '/api/llistes.php', true);
   xhttp.send();
 }
