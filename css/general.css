@@ -386,9 +386,16 @@ a:not(.nav-link, .user-button):is(:hover, :focus) {
   text-align: center;
 }
 
-/*#########################   GESTIÓN   #############################*/
+/*###############################   GESTIÓN   #############################*/
 .gestio-link {
   font-size: var(--h1-size);
+}
+/*###############################   MEMBRE   ##############################*/
+.stretch {
+  justify-content: stretch; 
+}
+.stretch > * {
+  flex-grow: 1;
 }
 
 /*#################################   FORMULARIOS   #################################*/
