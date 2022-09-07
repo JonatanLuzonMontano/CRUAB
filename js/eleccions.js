@@ -113,12 +113,12 @@ function enviarLlista() {
 }
 
 function obtenirLlistes() {
-  var xhttp = new XMLHttpRequest();
+  var xhttpllistes = new XMLHttpRequest();
 
-  xhttp.onreadystatechange = function () {
+  xhttpllistes.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttp.responseText);
-      var data = JSON.parse(xhttp.responseText);
+      console.log(xhttpllistes.responseText);
+      var data = JSON.parse(xhttpllistes.responseText);
       console.log(data);
 
       const taula = document.getElementsByTagName('tbody')[0];
@@ -137,6 +137,19 @@ function obtenirLlistes() {
       });
     }
   };
-  xhttp.open('GET', '/api/llistes.php', true);
-  xhttp.send();
+  xhttpllistes.open('GET', '/api/llistes.php', true);
+  xhttpllistes.send();
+}
+
+function obtenirMembres() {
+  var xhttpmembres = new XMLHttpRequest();
+
+  xhttpmembres.onreadystatechange = function () {
+    console.log(xhttpmembres.responseText);
+    var data = JSON.parse(xhttpmembres.responseText);
+    console.log(data);
+
+  };
+  xhttpmembres.open('GET', '/api/registre.php', true);
+  xhttpmembres.send();
 }

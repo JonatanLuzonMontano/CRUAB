@@ -750,7 +750,7 @@ h1 {
   width: 100%;
 }
 
-.hidden {
+.hidden.hidden {
   display: none;
 }
 
