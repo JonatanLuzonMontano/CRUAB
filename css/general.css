@@ -325,6 +325,10 @@ main > article {
   padding: 10px;
   border-radius: 0px;
   box-shadow: var(--nav-shadow);
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -o-border-radius: 0px;
 }
 
 main h1 {
@@ -362,9 +366,7 @@ main p {
 }
 
 a:not(.nav-link, .user-button, .social-link) {
-  background-image: linear-gradient(90deg,
-      var(--theme-maxcontrast),
-      var(--theme-maxcontrast));
+  background-image: linear-gradient(90deg, var(--theme-maxcontrast), var(--theme-maxcontrast));
   background-position: left bottom;
   background-repeat: no-repeat;
   background-size: 0px 2px;
@@ -372,6 +374,10 @@ a:not(.nav-link, .user-button, .social-link) {
   text-decoration: unset;
   transition: ease-out 200ms;
   transition-property: background-size;
+  -webkit-transition: ease-out 200ms;
+  -moz-transition: ease-out 200ms;
+  -ms-transition: ease-out 200ms;
+  -o-transition: ease-out 200ms;
 }
 
 a:not(.nav-link, .user-button):is(:hover, :focus) {
@@ -417,6 +423,10 @@ input[type="file"]::file-selector-button {
   width: fit-content;
   height: fit-content;
   min-height: 27px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }
 
 input[type="file"] {
@@ -433,6 +443,10 @@ input:not([type="button"], [type="submit"]) {
   border: 1px solid var(--input-border);
   border-radius: 3px;
   margin-bottom: 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
 }
 
 div:has(input:required) > label:not(.sense-asterisc)::before {
@@ -454,6 +468,10 @@ label::before {
 
 :is(button, input:is([type="button"], [type="submit"])):not([disabled]):is(:hover, :focus) {
   border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
 }
 
 .constructiu,
@@ -492,24 +510,25 @@ input.error:is([type], [name]) {
   --input-border: var(--input-border-incorrect);
   animation: shake 0.5s;
   animation-iteration-count: 1;
+  -webkit-animation: shake 0.5s;
 }
 
 @keyframes shake {
 
   0%,
   100% {
-    transform: translateX(0px);
-  }
+    translate: 0px;
+}
 
   20%,
   60% {
-    transform: translateX(4px);
-  }
+    translate: 4px;
+}
 
   40%,
   80% {
-    transform: translateX(-4px);
-  }
+    translate: -4px;
+}
 }
 
 input:not([type="radio"], [type="submit"], [type="button"]):focus {
@@ -525,14 +544,6 @@ input:-internal-autofill-selected:valid {
 
 input[type="radio"] {
   accent-color: var(--accent-color);
-}
-
-input[type="password"] {
-  -webkit-text-security: none;
-}
-
-form.show-passwords input[type="password"] {
-  -webkit-text-security: none;
 }
 
 select {
@@ -817,6 +828,10 @@ td {
   border-radius: 3px;
   margin-left: 10px;
   width: fit-content;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
 }
 
 .eliminarboto {
@@ -832,11 +847,19 @@ td {
   margin-right: 1em;
   overflow: hidden;
   border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .image-holder img:is(:hover, :focus) {
-  transform: scale(1.1);
-  transition: transform 250ms ease-in-out;
+  scale: 1.1;
+  transition: scale 250ms ease-in-out;
+  -webkit-transition: scale 250ms ease-in-out;
+  -moz-transition: scale 250ms ease-in-out;
+  -ms-transition: scale 250ms ease-in-out;
+  -o-transition: scale 250ms ease-in-out;
 }
 
 .hidden.hidden {
@@ -862,9 +885,7 @@ footer {
 }
 
 footer .social-link {
-  background-image: linear-gradient(90deg,
-      var(--secondary-accent-color),
-      var(--secondary-accent-color));
+  background-image: linear-gradient(90deg,      var(--secondary-accent-color),      var(--secondary-accent-color));
   background-position: left bottom;
   background-repeat: no-repeat;
   background-size: 0px 2px;
@@ -872,6 +893,10 @@ footer .social-link {
   text-decoration: unset;
   transition: ease-out 200ms;
   transition-property: background-size;
+  -webkit-transition: ease-out 200ms;
+  -moz-transition: ease-out 200ms;
+  -ms-transition: ease-out 200ms;
+  -o-transition: ease-out 200ms;
 }
 
 footer .social-link:is(:hover, :focus) {
