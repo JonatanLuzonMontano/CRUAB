@@ -66,7 +66,7 @@ function alCarregar() {
 }
 
 function afegeixListeners() {
-  var botonsnavegacio = document.getElementsByClassName("nav-link");
+  var botonsnavegacio = document.getElementsByClassName("enllaç-navegació");
   for (i = 0; i < botonsnavegacio.length; i++) {
     botonsnavegacio[i].addEventListener('mousedown', clickeffect);
     botonsnavegacio[i].addEventListener('mouseup', clickeffect);
@@ -76,7 +76,7 @@ function afegeixListeners() {
 
   window.addEventListener('scroll', function () { ifScrollNavBg(); });
 
-  document.getElementById("navbar-toggler").addEventListener('click', opennav);
+  document.getElementById("boto-navegacio").addEventListener('click', opennav);
 
   document.getElementById("temes").addEventListener('click', obrirTemes); /*TEMES*/
   document.querySelectorAll(".canvi-tema").forEach(element => {

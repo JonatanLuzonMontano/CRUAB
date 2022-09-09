@@ -63,10 +63,10 @@ function inputError() {
 }
 
 function ifScrollNavBg() {
-  const nav = document.getElementById('topbar');
+  const nav = document.getElementById('capçalera');
   if (window.pageYOffset < 20) {
-    nav.classList.remove("background");
+    nav.classList.remove("opac");
   } else {
-    nav.classList.add("background");
+    nav.classList.add("opac");
   }
 }
