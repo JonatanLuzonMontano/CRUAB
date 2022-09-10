@@ -48,6 +48,7 @@ function alCarregar() {
       break;
     case "membre.html":
       document.getElementById('paginacompte').classList.add("active");
+      checkPeriodeaActivacio();
       actiuInactiu();
       break;
     case "eleccions.html":
