@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cruab</title>
-
+  
   <link rel="stylesheet" href="css/general.css">
 </head>
 
@@ -116,38 +116,33 @@
     </nav>
   </header>
 
-  <main class="main-content gestio">
-    <article class="pc-columns-mobile-rows space-between">
-      <section id="links">
-        <a class="gestio-link" href="gestioingresosmembres.html">Ingresos membres</a>
-        <br>
-        <br>
-        <a class="gestio-link" href="gestiolloguersjocs.html">Gestió lloguers jocs</a>
-        <br>
-        <br>
-        <a class="gestio-link" href="gestiolloguersmanuals.html">Gestió lloguers manuals</a>
-        <br>
-        <br>
-        <a class="gestio-link" href="gestiomembres.html">Gestió de membres</a>
-      </section>
-      <section class="rows center">
-        <button id="obrireleccions" class="neutre">Obrir eleccions</button>
-        <br>
-        <button id="obrirllistes" class="neutre">Obrir llistes</button>
-        <br>
-        <button id="obrirvotacio" class="neutre">Obrir votacio</button>
-        <br>
-        <button id="obriractivacio" class="neutre">Obrir activacio de membres</button>
-        <br>
-        <button id="tancareleccions" class="destructiu">Tancar eleccions</button>
-        <br>
-        <button id="tancarllistes" class="destructiu">Tancar llistes</button>
-        <br>
-        <button id="tancarvotacio" class="destructiu">Tancar votacio</button>
-        <br>
-        <button id="tancaractivacio" class="destructiu">Tancar activacio de membres</button>
-      </section>
+  <main class="main-content">
+    <article>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Cognom</th>
+            <th>E-mail</th>
+            <th>Sobrenom</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- datos opcionales pueden incluirse aquí opcionalmente -->
+        </tbody>
+      </table>
 
+      <template id="membres">
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button class="destructiu">Eliminar membres</button>
+          </td>
+        </tr>
+      </template>
     </article>
 
     <button id="pujar" class="especial hidden">
@@ -170,19 +165,18 @@
       </adress>
     </section>
     <section class="social-links">
-      <a id="instagram" class="social-link" property="instagram" name="@"
-        href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
+      <a id="instagram" class="social-link"  property="instagram" name="@" href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
       <a id="facebook" class="social-link" property="facebook" name="" href="facebook.com">Facebook</a>
-      <a id="twitter" class="social-link" href="https://twitter.com/cruaboficial?">Twitter</a>
+      <a id="twitter" class="social-link"  href="https://twitter.com/cruaboficial?">Twitter</a>
     </section>
   </footer>
 
-
+  
   <script src="js/sessions.js"></script>
-  <script src="js/gestio.js"></script>
   <script src="js/temesimenus.js"></script>
   <script src="js/onload.js"></script>
   <script src="js/checkjunta.js"></script>
+  <script src="js/validarmembres.js"></script>
 </body>
 
 </html>
