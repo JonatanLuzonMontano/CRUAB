@@ -118,8 +118,31 @@
 
   <main class="main-content">
     <article>
-      <p class="missatge">S'ha guardat el registre. Quan un membre de junta el validi, podras iniciar sessió com a membre del club</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Cognom</th>
+            <th>E-mail</th>
+            <th>Sobrenom</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- datos opcionales pueden incluirse aquí opcionalmente -->
+        </tbody>
+      </table>
 
+      <template id="membres">
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button class="destructiu">Eliminar membres</button>
+          </td>
+        </tr>
+      </template>
     </article>
 
     <button id="pujar" class="especial hidden">
@@ -152,6 +175,8 @@
   <script src="js/sessions.js"></script>
   <script src="js/temesimenus.js"></script>
   <script src="js/onload.js"></script>
+  <script src="js/checkjunta.js"></script>
+  <script src="js/validarmembres.js"></script>
 </body>
 
 </html>
