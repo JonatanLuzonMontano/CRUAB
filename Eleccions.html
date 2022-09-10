@@ -149,7 +149,8 @@
           <div>
             <label for="nom">Nom de la llista:</label>
             <br>
-            <input id="nom" type="text" placeholder="Llista de Baillo" pattern="[A-Za-z0-9 ].{4,}" name="nom de la llista" title="Escriu el nom de la llista, siusplau" required>
+            <input id="nom" type="text" placeholder="Llista de Baillo" pattern="[A-Za-z0-9 ].{4,}"
+              name="nom de la llista" title="Escriu el nom de la llista, siusplau" required>
           </div>
           <div>
             <label for="president">President/a</label>
@@ -166,6 +167,8 @@
               <option disabled selected value> -- escull un/a vicepresident/a -- </option>
             </select>
           </div>
+        </div>
+        <div id="vocals" class="rows gap">
           <div>
             <label for="Tresorer">Tresorer/a</label>
             <br>
@@ -173,8 +176,6 @@
               <option disabled selected value> -- escull un/a tresorer/a -- </option>
             </select>
           </div>
-        </div>
-        <div id="vocals" class="rows gap">
           <div>
             <label for="secretari">Secretari/a</label>
             <br>
@@ -199,6 +200,14 @@
       </form>
 
     </article>
+
+    <button id="pujar" class="especial hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+        <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 
+          45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 
+          12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+      </svg>
+    </button>
   </main>
 
   <footer>

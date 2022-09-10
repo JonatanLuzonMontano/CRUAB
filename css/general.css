@@ -368,37 +368,54 @@ main p {
   text-align: center;
 }
 
-#pujar {
-  --edge-size: .8em;
+.especial {
   display: block;
   position: fixed;
   bottom: 100px;
   right: 50px;
-  width: 50px;
+  width: 40px;
   aspect-ratio: 1;
-  clip-path: polygon(      /*top left 1*/      0% var(--edge-size),      /*top left 2*/      var(--edge-size) 0%,      /*top right 1*/      calc(100% - var(--edge-size)) 0,      /*top right 2*/      100% var(--edge-size),      /*bottom right 1*/      100% calc(100% - var(--edge-size)),      /*bottom right 1*/      calc(100% - var(--edge-size)) 100%,      /*bottom left 1*/      var(--edge-size) 100%,      /*bottom left 2*/      0% calc(100% - var(--edge-size)));
 }
 
-#pujar:not(.hidden) svg {
+#pujar {
+  --edge-size: .65em;
+  clip-path: polygon(
+      /*top left 1*/
+      0% var(--edge-size),
+      /*top left 2*/
+      var(--edge-size) 0%,
+      /*top right 1*/
+      calc(100% - var(--edge-size)) 0,
+      /*top right 2*/
+      100% var(--edge-size),
+      /*bottom right 1*/
+      100% calc(100% - var(--edge-size)),
+      /*bottom right 1*/
+      calc(100% - var(--edge-size)) 100%,
+      /*bottom left 1*/
+      var(--edge-size) 100%,
+      /*bottom left 2*/
+      0% calc(100% - var(--edge-size)));
+}
+
+.especial:not(.hidden) svg {
   animation: rotate1sec 20s linear infinite normal;
   -webkit-animation: rotate1sec 20s linear infinite reverse;
 }
 
-#pujar:not(.hidden) {
+.especial:not(.hidden) {
   animation: rotate1sec 20s linear infinite normal;
   -webkit-animation: rotate1sec 20s linear infinite normal;
 }
 
-
-
 @keyframes rotate1sec {
   0% {
-    rotate:0;
+    rotate: 0;
   }
+
   100% {
-    rotate:360deg;
+    rotate: 360deg;
   }
-  
 }
 
 /*###############################   GESTIÓN   #############################*/
@@ -952,6 +969,10 @@ footer .social-link {
 
 footer .social-link:is(:hover, :focus) {
   background-size: 100% 2px;
+}
+
+footer h2 {
+  color: var(--nav-color);
 }
 
 /*#########################   MEDIA QUERIES   ##########################################*/

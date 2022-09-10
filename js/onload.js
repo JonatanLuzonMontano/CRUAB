@@ -74,7 +74,12 @@ function afegeixListeners() {
   ifSubmmit();
   ifFiltre();
 
-  window.addEventListener('scroll', function () { ifScrollNavBg(); });
+  window.addEventListener('scroll', function () {
+    ifScrollNavBg();
+    ifScrollMostrarPujar();
+  });
+
+  document.getElementById("pujar").addEventListener('click', function () { scrollTop(); });
 
   document.getElementById("boto-navegacio").addEventListener('click', opennav);
 
@@ -156,7 +161,7 @@ function ifFiltre() {
     const checkboxes = document.querySelectorAll('#filterbox input[type="checkbox"]');
     checkboxes.forEach((e) => { e.addEventListener('click', function () { filtrar(); }); });
 
-    
+
   }
 }
 
