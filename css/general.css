@@ -19,8 +19,9 @@ body {
 }
 
 * {
-  /*outline: 1px dashed red;*/
-  transition: 200ms;
+  /*outline: 1px dashed red;
+  */
+  transition: all 200ms;
 }
 
 ::selection {
@@ -37,14 +38,17 @@ a::selection {
   outline: none;
 }
 
+/*scroll en general*/
 ::-webkit-scrollbar {
   width: 19px;
 }
 
+/*scroll, fons*/
 ::-webkit-scrollbar-track {
   background: #00000000;
 }
 
+/*scroll, barra*/
 ::-webkit-scrollbar-thumb {
   background-clip: padding-box;
   background-color: hsla(0, 0%, 70%, 0.7);
@@ -57,7 +61,7 @@ a::selection {
   background-color: hsl(0, 0%, 60%);
 }
 
-header *,
+#capçalera *,
 input,
 button,
 #filterbox *,
@@ -77,7 +81,7 @@ img {
 }
 
 /*#########################   NAVEGACIÓN   #############################*/
-header {
+#capçalera {
   --nav-height: 15vh;
   position: fixed;
   top: 0px;
@@ -103,11 +107,12 @@ header {
   box-shadow: var(--nav-shadow);
 }
 
-header.background {
+#capçalera.opac {
   background-color: var(--nav-bg-color);
 }
 
-header > nav {
+/*llista de botons de navegacio*/
+#capçalera > nav {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -132,21 +137,9 @@ header > nav {
   display: flex;
   align-items: center;
   height: 100%;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
-.nav-link {
+.enllaç-navegació {
   background-color: unset;
   display: flex;
   align-items: center;
@@ -156,37 +149,25 @@ header > nav {
   font-size: var(--nav-font-size);
   font-family: var(--header-font-family);
   text-decoration: unset;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
-  -webkit-user-drag: none;
 }
 
-.background .nav-link:not(.navbar-brand):is(:hover, :focus),
-body.pergami .nav-link:not(.navbar-brand):is(:hover, :focus) {
-  backdrop-filter: brightness(var(--nav-link-bg-hover));
+/*enllaços de navegació quan hover o focus si la navegacio te fons opac*/
+.opac .enllaç-navegació:not(.logo):is(:hover, :focus),
+body.pergami .enllaç-navegació:not(.logo):is(:hover, :focus) {
+  backdrop-filter: brightness(var(--enllaç-navegació-bg-hover));
   z-index: 100;
 }
 
-header:not(.background) .nav-link:is(:hover, :focus) {
+#capçalera:not(.opac) .enllaç-navegació:is(:hover, :focus) {
   text-shadow: 0 0 10px var(--nav-color);
 }
 
-.nav-link.clicked,
-.nav-link.active {
-  background-color: var(--nav-link-bg-clicked);
+.enllaç-navegació.clicked,
+.enllaç-navegació.active {
+  background-color: var(--enllaç-navegació-bg-clicked);
 }
 
-.navbar-brand {
+.logo {
   margin: 0 30px;
   width: 70px;
   padding: 0;
@@ -206,7 +187,7 @@ header:not(.background) .nav-link:is(:hover, :focus) {
   aspect-ratio: 100/111;
 }
 
-.navbar-brand svg {
+.logo svg {
   height: 100%;
   width: 100%;
 }
@@ -227,7 +208,7 @@ header:not(.background) .nav-link:is(:hover, :focus) {
   border: unset;
 }
 
-#navbar-toggler {
+#boto-navegacio {
   background: unset;
   height: 30px;
   width: 30px;
@@ -235,7 +216,7 @@ header:not(.background) .nav-link:is(:hover, :focus) {
   border-radius: 10px;
 }
 
-#navbar-toggler hr {
+#boto-navegacio hr {
   border-color: var(--theme-maxcontrast);
   margin-block: 5px;
 }
@@ -323,36 +304,35 @@ main > article {
   min-height: 50vh;
   margin-top: 9vh;
   padding: 10px;
-  border-radius: 0px;
   box-shadow: var(--nav-shadow);
 }
 
-main h1 {
+h1 {
   color: var(--h1-color);
   font-family: var(--h1-font);
   font-size: var(--h1-size);
   text-align: center;
 }
 
-main h2 {
+h2 {
   color: var(--h2-color);
   font-family: var(--h2-font);
   font-size: var(--h2-size);
 }
 
-main h3 {
+h3 {
   color: var(--h3-color);
   font-size: var(--h3-size);
 }
 
-main h4 {
+h4 {
   color: var(--h4-color);
   font-size: var(--h4-size);
 }
 
-main h4 {
-  color: var(--h2-color);
-  font-size: var(--h2-size);
+h5 {
+  color: var(--h5-color);
+  font-size: var(--h5-size);
 }
 
 main p {
@@ -361,23 +341,25 @@ main p {
   font-size: var(--p-size);
 }
 
-a:not(.nav-link, .user-button, .social-link) {
-  background-image: linear-gradient(90deg,
-      var(--theme-maxcontrast),
-      var(--theme-maxcontrast));
-  background-position: left bottom;
-  background-repeat: no-repeat;
-  background-size: 0px 2px;
+/* enllaços al contingut principal*/
+.main-content a {
+  background: linear-gradient(90deg, var(--theme-maxcontrast), var(--theme-maxcontrast)) left bottom 0px 2px no-repeat;
   color: var(--a-color);
   text-decoration: unset;
   transition: ease-out 200ms;
   transition-property: background-size;
+  -webkit-transition: ease-out 200ms;
+  -moz-transition: ease-out 200ms;
+  -ms-transition: ease-out 200ms;
+  -o-transition: ease-out 200ms;
 }
 
-a:not(.nav-link, .user-button):is(:hover, :focus) {
+/* enllaços al contingut principal quan hover*/
+.main-content a:is(:hover, :focus) {
   background-size: 100% 2px;
 }
 
+/*missatges d'error als formularis de login*/
 .missatge {
   width: 100%;
   height: 100%;
@@ -386,36 +368,100 @@ a:not(.nav-link, .user-button):is(:hover, :focus) {
   text-align: center;
 }
 
+.especial {
+  display: block;
+  position: fixed;
+  bottom: 100px;
+  right: 50px;
+  width: 40px;
+  aspect-ratio: 1;
+}
+
+#pujar {
+  --edge-size: .65em;
+  clip-path: polygon(
+      /*top left 1*/
+      0% var(--edge-size),
+      /*top left 2*/
+      var(--edge-size) 0%,
+      /*top right 1*/
+      calc(100% - var(--edge-size)) 0,
+      /*top right 2*/
+      100% var(--edge-size),
+      /*bottom right 1*/
+      100% calc(100% - var(--edge-size)),
+      /*bottom right 1*/
+      calc(100% - var(--edge-size)) 100%,
+      /*bottom left 1*/
+      var(--edge-size) 100%,
+      /*bottom left 2*/
+      0% calc(100% - var(--edge-size)));
+}
+
+.especial:not(.hidden) svg {
+  animation: rotate1sec 20s linear infinite normal;
+  -webkit-animation: rotate1sec 20s linear infinite reverse;
+}
+
+.especial:not(.hidden) {
+  animation: rotate1sec 20s linear infinite normal;
+  -webkit-animation: rotate1sec 20s linear infinite normal;
+}
+
+@keyframes rotate1sec {
+  0% {
+    rotate: 0;
+  }
+
+  100% {
+    rotate: 360deg;
+  }
+}
+
 /*###############################   GESTIÓN   #############################*/
 .gestio-link {
   font-size: var(--h1-size);
 }
+
 /*###############################   MEMBRE   ##############################*/
 .stretch {
-  justify-content: stretch; 
+  justify-content: stretch;
 }
+
 .stretch > * {
   flex-grow: 1;
 }
 
 /*#################################   FORMULARIOS   #################################*/
-button {
+/* botons actius o inactius */
+:is(button, input:is([type="button"], [type="submit"])) {
+  --edge-size: .45em;
   background: var(--button-bg-fallback);
+  clip-path: polygon(
+      /*top left 1*/
+      0% var(--edge-size),
+      /*top left 2*/
+      var(--edge-size) 0%,
+      /*top right*/
+      100% 0,
+      /*bottom right 1*/
+      100% calc(100% - var(--edge-size)),
+      /*bottom right 1*/
+      calc(100% - var(--edge-size)) 100%,
+      /*bottom left*/
+      0% 100%);
 }
 
-/* botons actius */
+/* botons que estan actius */
 :is(button, input:is([type="button"], [type="submit"])):not([disabled]),
 input[type="file"]::file-selector-button {
-  border-radius: 5px;
   background-color: var(--button-bg);
   border: none;
   font-size: var(--button-font-size);
   font-weight: bolder;
   letter-spacing: 0.1em;
-  padding: 0 10px;
+  padding: .2em .5em;
   color: var(--theme-mincontrast);
-  width: fit-content;
-  height: fit-content;
   min-height: 27px;
 }
 
@@ -426,65 +472,92 @@ input[type="file"] {
   color: var(--theme-maxcontrast);
 }
 
+/* botons en general quan hover*/
+:is(button, input:is([type="button"], [type="submit"])):not([disabled]):is(:hover, :focus) {
+  --edge-size: .45em;
+  clip-path: polygon(
+      /*top left 1*/
+      0% var(--edge-size),
+      /*top left 2*/
+      var(--edge-size) 0%,
+      /*top right 1*/
+      calc(100% - var(--edge-size)) 0,
+      /*top right 2*/
+      100% var(--edge-size),
+      /*bottom right 1*/
+      100% calc(100% - var(--edge-size)),
+      /*bottom right 1*/
+      calc(100% - var(--edge-size)) 100%,
+      /*bottom left 1*/
+      var(--edge-size) 100%,
+      /*bottom left 2*/
+      0% calc(100% - var(--edge-size)));
+}
+
+/*botons verds, que afegeixen alguna cosa i son "segurs"*/
+.constructiu,
+input[type="file"]:valid::file-selector-button {
+  --button-bg: var(--constructiu);
+}
+
+/*botons verds quan hover o focus*/
+.constructiu:is(:hover, :focus),
+input[type="file"]:valid:is(:hover, :focus)::file-selector-button {
+  --button-bg: var(--constructiu-hover);
+}
+
+/*botons vermells, que eliminen alguna cosa i son "perillosos"*/
+.destructiu,
+input[type="file"].error:invalid::file-selector-button {
+  --button-bg: var(--destructiu);
+}
+
+/*botons vermells quan hover o focus*/
+.destructiu:not([disabled]):is(:hover, :focus) {
+  --button-bg: var(--destructiu-hover);
+}
+
+/*botons neutres, que no afegeixen ni eliminen*/
+.neutre,
+input[type="file"]:invalid::file-selector-button {
+  --button-bg: var(--neutre);
+}
+
+/*botons neutres quan hover o focus*/
+.neutre:not([disabled]):is(:hover, :focus),
+input[type="file"]:invalid:is(:hover, :focus)::file-selector-button {
+  --button-bg: var(--neutre-hover);
+}
+
+/*inputs de tipus text, password, i tal, mai botons*/
 input:not([type="button"], [type="submit"]) {
   position: relative;
   background-color: var(--input-bg);
   max-width: fit-content;
+  margin-bottom: 10px;
   border: 1px solid var(--input-border);
   border-radius: 3px;
-  margin-bottom: 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
 }
 
 div:has(input:required) > label:not(.sense-asterisc)::before {
-  /* asterisc de required*/
+  /* asterisc de required field */
   content: '* ';
   color: red;
   font-size: 20px;
   position: absolute;
   right: -20px;
+  pointer-events: all;
 }
 
 label {
   pointer-events: none;
 }
 
-label::before {
-  pointer-events: all;
-}
-
-:is(button, input:is([type="button"], [type="submit"])):not([disabled]):is(:hover, :focus) {
-  border-radius: 7px;
-}
-
-.constructiu,
-input[type="file"]:valid::file-selector-button {
-  --button-bg: var(--constructiu);
-}
-
-.constructiu:is(:hover, :focus),
-input[type="file"]:valid:is(:hover, :focus)::file-selector-button {
-  --button-bg: var(--constructiu-hover);
-}
-
-.destructiu,
-input[type="file"].error:invalid::file-selector-button {
-  --button-bg: var(--destructiu);
-}
-
-.destructiu:not([disabled]):is(:hover, :focus) {
-  --button-bg: var(--destructiu-hover);
-}
-
-.neutre,
-input[type="file"]:invalid::file-selector-button {
-  --button-bg: var(--neutre);
-}
-
-.neutre:not([disabled]):is(:hover, :focus),
-input[type="file"]:invalid:is(:hover, :focus)::file-selector-button {
-  --button-bg: var(--neutre-hover);
-}
-
+/*inputs de text o de data o arxiu erronis*/
 input:is(:not(:placeholder-shown, [type="date"], [type="file"], :focus):invalid, :out-of-range),
 input:-internal-autofill-selected:invalid,
 input.error:is([type], [name]) {
@@ -492,31 +565,34 @@ input.error:is([type], [name]) {
   --input-border: var(--input-border-incorrect);
   animation: shake 0.5s;
   animation-iteration-count: 1;
+  -webkit-animation: shake 0.5s;
 }
 
 @keyframes shake {
 
   0%,
   100% {
-    transform: translateX(0px);
+    translate: 0px;
   }
 
   20%,
   60% {
-    transform: translateX(4px);
+    translate: 4px;
   }
 
   40%,
   80% {
-    transform: translateX(-4px);
+    translate: -4px;
   }
 }
 
+/*inputs quan escrius*/
 input:not([type="radio"], [type="submit"], [type="button"]):focus {
   --input-bg: var(--input-bg-focus);
   --input-border: var(--input-border-focus);
 }
 
+/*inputs quan son bons*/
 input:not(:placeholder-shown, [type="submit"]):valid,
 input:-internal-autofill-selected:valid {
   --input-bg: var(--input-bg-correct);
@@ -525,14 +601,6 @@ input:-internal-autofill-selected:valid {
 
 input[type="radio"] {
   accent-color: var(--accent-color);
-}
-
-input[type="password"] {
-  -webkit-text-security: none;
-}
-
-form.show-passwords input[type="password"] {
-  -webkit-text-security: none;
 }
 
 select {
@@ -544,6 +612,7 @@ label {
   width: fit-content;
 }
 
+/*missatge d'error*/
 label.error::after {
   display: block;
   position: absolute;
@@ -662,9 +731,19 @@ th {
   padding: 0 5px;
 }
 
+.clar tr:not(:last-child),
+.fosc tr:not(:last-child) {
+  border-bottom: 1px solid var(--theme-maxcontrast);
+}
+
+.pergami tbody tr:nth-child(odd) {
+  background-color: var(--PHB-td-color);
+}
+
 td {
   text-align: center;
   font-size: var(--td-size);
+  transition: 100ms;
 }
 
 .tableImageHolder {
@@ -817,6 +896,10 @@ td {
   border-radius: 3px;
   margin-left: 10px;
   width: fit-content;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
 }
 
 .eliminarboto {
@@ -832,11 +915,19 @@ td {
   margin-right: 1em;
   overflow: hidden;
   border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
 }
 
 .image-holder img:is(:hover, :focus) {
-  transform: scale(1.1);
-  transition: transform 250ms ease-in-out;
+  scale: 1.1;
+  transition: scale 250ms ease-in-out;
+  -webkit-transition: scale 250ms ease-in-out;
+  -moz-transition: scale 250ms ease-in-out;
+  -ms-transition: scale 250ms ease-in-out;
+  -o-transition: scale 250ms ease-in-out;
 }
 
 .hidden.hidden {
@@ -862,9 +953,7 @@ footer {
 }
 
 footer .social-link {
-  background-image: linear-gradient(90deg,
-      var(--secondary-accent-color),
-      var(--secondary-accent-color));
+  background-image: linear-gradient(90deg, var(--secondary-accent-color), var(--secondary-accent-color));
   background-position: left bottom;
   background-repeat: no-repeat;
   background-size: 0px 2px;
@@ -872,16 +961,24 @@ footer .social-link {
   text-decoration: unset;
   transition: ease-out 200ms;
   transition-property: background-size;
+  -webkit-transition: ease-out 200ms;
+  -moz-transition: ease-out 200ms;
+  -ms-transition: ease-out 200ms;
+  -o-transition: ease-out 200ms;
 }
 
 footer .social-link:is(:hover, :focus) {
   background-size: 100% 2px;
 }
 
+footer h2 {
+  color: var(--nav-color);
+}
+
 /*#########################   MEDIA QUERIES   ##########################################*/
 /*#########################   PARA PC   #############################*/
 @media screen and (min-width: 900px) {
-  #navbar-toggler-parent {
+  #boto-navegacio-parent {
     display: none;
   }
 

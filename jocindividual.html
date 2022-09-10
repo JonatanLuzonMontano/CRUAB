@@ -10,9 +10,9 @@
 </head>
 
 <body>
-  <header id="topbar" class="navigation">
+  <header id="capçalera" class="navigation">
     <nav id="navbar">
-      <a class="navbar-brand nav-link" href="index.html">
+      <a class="logo enllaç-navegació" href="index.html">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 30 450 450">
           <defs>
             <style>
@@ -84,13 +84,13 @@
       </a>
 
       <div id="botonsnavegacio" class="collapsed">
-        <a id="paginajocs" class="nav-link" aria-current="page" href="jocstaula.html">Jocs de taula</a>
-        <a id="paginamanuals" class="nav-link" aria-current="page" href="manuals.html">Manuals</a>
-        <a id="paginagestio" class="nav-link hidden" aria-current="page" href="gestio.html">Gestió</a>
-        <a id="paginacompte" class="nav-link hidden" aria-current="page" href="membre.html">Compte</a>
-        <a id="paginalogout" class="nav-link hidden" aria-current="page" href="">Tancar sessió</a>
-        <a id="paginaeleccions" class="nav-link hidden" aria-current="page" href="eleccions.html">Eleccions</a>
-        <a id="paginalogin" class="nav-link hidden" aria-current="page" href="login.html">Iniciar sessió</a>
+        <a id="paginajocs" class="enllaç-navegació" aria-current="page" href="jocstaula.html">Jocs de taula</a>
+        <a id="paginamanuals" class="enllaç-navegació" aria-current="page" href="manuals.html">Manuals</a>
+        <a id="paginagestio" class="enllaç-navegació hidden" aria-current="page" href="gestio.html">Gestió</a>
+        <a id="paginacompte" class="enllaç-navegació hidden" aria-current="page" href="membre.html">Compte</a>
+        <a id="paginalogout" class="enllaç-navegació hidden" aria-current="page" href="">Tancar sessió</a>
+        <a id="paginaeleccions" class="enllaç-navegació hidden" aria-current="page" href="eleccions.html">Eleccions</a>
+        <a id="paginalogin" class="enllaç-navegació hidden" aria-current="page" href="login.html">Iniciar sessió</a>
       </div>
       <div id="botonsdreta">
         <button id="temes" class="temes-boto" type="button" data-target="espaitemes">
@@ -105,8 +105,8 @@
           <button id="fosc" class="canvi-tema" type="button" data-toggle="theme" data-target="body">Fosc</button>
           <button id="pergami" class="canvi-tema" type="button" data-toggle="theme" data-target="body">Pergami</button>
         </div>
-        <div id="navbar-toggler-parent">
-          <button id="navbar-toggler" type="button" data-toggle="collapse" data-target="#botonsnavegacio">
+        <div id="boto-navegacio-parent">
+          <button id="boto-navegacio" type="button" data-toggle="collapse" data-target="#botonsnavegacio">
             <hr>
             <hr>
             <hr>
@@ -137,11 +137,19 @@
       </div>
 
     </article>
+
+    <button id="pujar" class="especial hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+        <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 
+          45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 
+          12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+      </svg>
+    </button>
   </main>
 
 
   <footer>
-    <section class="contact">
+    <section class="contacte">
       <h2>Contacta amb nosaltres!</h2>
       <adress property="email">
         <a id="email" class="social-link" href="mailto:juntacruab@gmail.com">juntacruab@gmail.com</a>

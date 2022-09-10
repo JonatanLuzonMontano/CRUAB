@@ -37,7 +37,7 @@
     width: 100vw;
   }
 
-  .nav-link:not(.navbar-brand) {
+  .enllaç-navegació:not(.logo) {
     align-items: flex-start;
     width: 100%;
   }

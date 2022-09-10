@@ -67,7 +67,7 @@ function alCarregar() {
 }
 
 function afegeixListeners() {
-  var botonsnavegacio = document.getElementsByClassName("nav-link");
+  var botonsnavegacio = document.getElementsByClassName("enllaç-navegació");
   for (i = 0; i < botonsnavegacio.length; i++) {
     botonsnavegacio[i].addEventListener('mousedown', clickeffect);
     botonsnavegacio[i].addEventListener('mouseup', clickeffect);
@@ -75,9 +75,14 @@ function afegeixListeners() {
   ifSubmmit();
   ifFiltre();
 
-  window.addEventListener('scroll', function () { ifScrollNavBg(); });
+  window.addEventListener('scroll', function () {
+    ifScrollNavBg();
+    ifScrollMostrarPujar();
+  });
 
-  document.getElementById("navbar-toggler").addEventListener('click', opennav);
+  document.getElementById("pujar").addEventListener('click', function () { scrollTop(); });
+
+  document.getElementById("boto-navegacio").addEventListener('click', opennav);
 
   document.getElementById("temes").addEventListener('click', obrirTemes); /*TEMES*/
   document.querySelectorAll(".canvi-tema").forEach(element => {
@@ -157,7 +162,7 @@ function ifFiltre() {
     const checkboxes = document.querySelectorAll('#filterbox input[type="checkbox"]');
     checkboxes.forEach((e) => { e.addEventListener('click', function () { filtrar(); }); });
 
-    
+
   }
 }
 

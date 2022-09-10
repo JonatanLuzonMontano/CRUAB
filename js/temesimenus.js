@@ -34,23 +34,9 @@ function obrirTemes() {
   document.getElementById("espaitemes").classList.toggle('open');
 }
 
-/*
-function toggleuserpagecontent(id) {  a la pagina d'usuari, canvia entre menus 
-  console.log(id);
-  document.querySelectorAll(".user-content-article").forEach(element => {
-    element.classList.remove("open");
-  });
-  document.getElementsByClassName(id)[0].classList.toggle("open");
-  document.querySelectorAll(".user-button").forEach(element => {
-      element.classList.remove("active");
-  });
-  document.getElementById(id).classList.add("active");
-}
-*/
-
 function inputError() {
   const form = document.querySelector("form");
-  const inputs = form.querySelectorAll("input");
+  const inputs = form.querySelectorAll("input:required");
   const labels = form.querySelectorAll("label");
 
   inputs.forEach(function (element, index) {
@@ -63,10 +49,23 @@ function inputError() {
 }
 
 function ifScrollNavBg() {
-  const nav = document.getElementById('topbar');
+  const nav = document.getElementById('capçalera');
   if (window.pageYOffset < 20) {
-    nav.classList.remove("background");
+    nav.classList.remove("opac");
   } else {
-    nav.classList.add("background");
+    nav.classList.add("opac");
   }
+}
+
+function ifScrollMostrarPujar() {
+  const boto = document.getElementById('pujar');
+  if (window.pageYOffset > 400) {
+    boto.classList.remove("hidden");
+  } else {
+    boto.classList.add("hidden");
+  }
+}
+
+function scrollTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
