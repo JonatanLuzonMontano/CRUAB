@@ -38,6 +38,10 @@ function alCarregar() {
       document.getElementById('paginagestio').classList.add("active");
       obtenirMembres();
       break;
+    case "gestiomembres.html":
+      document.getElementById('paginagestio').classList.add("active");
+      getMembres();
+      break;
     case "gestiolloguersjocs.html":
       document.getElementById('paginagestio').classList.add("active");
       obtenirJocs();

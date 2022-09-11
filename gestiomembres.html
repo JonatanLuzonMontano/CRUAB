@@ -118,11 +118,15 @@
 
   <main class="main-content">
     <article>
-      <table>
+      <br>
+      <h1>Membres Actius</h1>
+      <table id="actius">
         <thead>
           <tr>
+            <th>Numero de soci</th>
             <th>Nom</th>
-            <th>Cognom</th>
+            <th>Primer cognom</th>
+            <th>Segon cognom</th>
             <th>E-mail</th>
             <th>Sobrenom</th>
           </tr>
@@ -132,14 +136,37 @@
         </tbody>
       </table>
 
+      <br>
+      <br>
+    <h1>Membres Inactius</h1>
+      <table id="inactius">
+        <thead>
+          <tr>
+            <th>Numero de soci</th>
+            <th>Nom</th>
+            <th>Primer cognom</th>
+            <th>Segon cognom</th>
+            <th>E-mail</th>
+            <th>Sobrenom</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- datos opcionales pueden incluirse aquí opcionalmente -->
+        </tbody>
+      </table>
+      <br>
+      <br>
+
       <template id="membres">
         <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>
-            <button class="destructiu">Eliminar membres</button>
+          <td class="numsoci"></td>
+          <td class="nom"></td>
+          <td class="primercognom"></td>
+          <td class="segoncognom"></td>
+          <td class="email"></td>
+          <td class="pseudonim"></td>
+          <td class="boto">
+            <button class="destructiu">Eliminar membre</button>
           </td>
         </tr>
       </template>
@@ -174,9 +201,9 @@
   
   <script src="js/sessions.js"></script>
   <script src="js/temesimenus.js"></script>
+  <script src="js/membre.js"></script>
   <script src="js/onload.js"></script>
   <script src="js/checkjunta.js"></script>
-  <script src="js/validarmembres.js"></script>
 </body>
 
 </html>
