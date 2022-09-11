@@ -282,9 +282,8 @@ nav .temes-boto svg {
   width: 100vw;
   min-height: 60vh;
   margin-top: 10vh;
-  overflow-x: hidden;
-  overflow-y: hidden;
   height: fit-content;
+  z-index:5;
 }
 
 .main-content.gestio {

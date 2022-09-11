@@ -33,6 +33,22 @@ switch($_SERVER['REQUEST_METHOD']){
           }
 
           break;
+        case 'tots':
+          $query = "SELECT membres.numsoci, membres.estat, membres.nom, membres.primercognom, membres.segoncognom, membres.email, membres.pseudonim
+          FROM membres WHERE membres.validat = 1;";
+    
+          $result = dbconnselect($query);
+          $msg = array();
+    
+          while($values = mysqli_fetch_assoc($result)) {
+            $msg[] = $values;
+          }
+          
+          break;
+        default:
+          http_response_code(400);
+          $msg["Error"]="wrong GET method option";
+          break;
       }
 
       break;

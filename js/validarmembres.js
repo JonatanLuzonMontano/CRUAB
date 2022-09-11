@@ -52,14 +52,16 @@ function validarMembres(numsoci) {
 }
 
 function rebutjaValidacio(numsoci) {
-  var xhttp = new XMLHttpRequest();
-  var data = {};
-  xhttp.onreadystatechange = function () {
-    console.log(xhttp.responseText);
-    if (this.readyState == 4 && this.status == 200) {
-      location.reload();
-    }
-  };
-  xhttp.open('DELETE', '/api/validarmembres.php?numsoci=' + numsoci, true);
-  xhttp.send();
+  if (confirm('Estas segur que vols rebutjar aquesta valoració?')) {
+    var xhttp = new XMLHttpRequest();
+    var data = {};
+    xhttp.onreadystatechange = function () {
+      console.log(xhttp.responseText);
+      if (this.readyState == 4 && this.status == 200) {
+        location.reload();
+      }
+    };
+    xhttp.open('DELETE', '/api/validarmembres.php?numsoci=' + numsoci, true);
+    xhttp.send();
+  }
 }

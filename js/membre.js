@@ -71,3 +71,82 @@ function desactivar() {
     xhttpactivar.send();
   }
 }
+
+function getMembres() {
+  var xhttpmembres = new XMLHttpRequest();
+  xhttpmembres.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(xhttpmembres.responseText);
+      var membres = JSON.parse(xhttpmembres.responseText);
+      console.log(membres);
+
+
+
+      var t = document.querySelector('#membres');
+      var td = t.content.querySelectorAll("td");
+
+
+
+      for (let i = 0; i < membres.length; i++) {
+        const membre = membres[i];
+        var tb = null;
+        if (membre['estat'] === 'actiu') {
+          tb = document.querySelector("#actius tbody");
+        } else {
+          tb = document.querySelector("#inactius tbody");
+        }
+
+        for (const [key, value] of Object.entries(membre)) {
+          if (key == "pseudonim" && value == "" || key == "pseudonim" && value == " ") {
+            for (let j = 0; j < td.length; j++) {
+              const tdactual = td[j];
+              if (tdactual.classList.contains(key)) {
+                tdactual.textContent = "-";
+              }
+            }
+          } else {
+            for (let j = 0; j < td.length; j++) {
+              const tdactual = td[j];
+              if (tdactual.classList.contains(key)) {
+                tdactual.textContent = value;
+              }
+            }
+          }
+        }
+
+        for (let j = 0; j < td.length; j++) {
+          const tdactual = td[j];
+          if (tdactual.classList.contains("boto")) {
+            tdactual.id = membres[i]['numsoci'];
+          }
+        }
+
+        // Clonar la nueva fila e insertarla en la tabla
+        var clone = document.importNode(t.content, true);
+        tb.appendChild(clone);
+        document.getElementById(membres[i]['numsoci']).addEventListener("click", function () {
+          eliminarMembre(membres[i]["numsoci"], membres[i]);
+        });
+      }
+    }
+
+  }
+  xhttpmembres.open('GET', '/api/registre.php?tipus=tots', true);
+  xhttpmembres.send();
+
+}
+
+function eliminarMembre(numsoci) {
+  if (confirm('estas segur que vols eliminar el soci de numero ' + numsoci + "?")) {
+    var data = { key: 'numsoci', value: numsoci };
+    var xhttpmembreeliminat = new XMLHttpRequest();
+    xhttpmembreeliminat.onreadystatechange = function () {
+      console.log(xhttpmembreeliminat.responseText);
+      if (this.readyState == 4 && this.status == 200) {
+        location.reload;
+      }
+    }
+    xhttpmembreeliminat.open('DELETE', '/api/registre.php', true);
+    xhttpmembreeliminat.send(JSON.stringify(data));
+  }
+}
