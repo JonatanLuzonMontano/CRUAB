@@ -4,8 +4,6 @@ header('Access-Control-Allow-Origin: *');
 include_once('../php/connexiobd.php');
 include_once('../php/seguretat.php');
 
-print_r("hola");
-
 switch($_SERVER['REQUEST_METHOD']){
     
     case 'GET':

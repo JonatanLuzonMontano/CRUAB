@@ -52,16 +52,16 @@ function obtenirLlistes() {
 
       const taula = document.getElementsByTagName('tbody')[0];
       const filera = taula.querySelector('tr:last-child');
-     
+
       data.forEach(function (element) {
         let fileraclon = filera.cloneNode(true);
         let td = fileraclon.querySelectorAll('td:not(:last-child)');
-        td.forEach( function(element) {
+        td.forEach(function (element) {
           if (element.textContent != "") {
             element.textContent = "";
           }
         });
-        
+
         if (taula.querySelector('tr:last-child').id !== "" && taula.querySelector('tr:last-child').id !== element.Nom) {
           taula.appendChild(fileraclon);
         }
@@ -84,7 +84,6 @@ function eliminarLlista(index) {
   const llistallistes = document.querySelectorAll('.table-holder .llista');
   llistallistes[index].classList.add('hidden');
 }
-
 
 function obtenirMembres() {
   var xhttpmembres = new XMLHttpRequest();
@@ -151,25 +150,26 @@ function validarFormulari(dades) {
     registreLabels[3].classList.add('error');
     return false
   } else { registreLabels[3].classList.remove('error'); }
-
   return true;
 
 }
 
 function enviarLlista() {
-
   var data = {};
+  data['nom'] = document.getElementById('nom').value;
 
-  data['president'] = document.getElementById("president").value;
-  data['vicepresident'] = document.getElementById("vicepresident").value;
-  data['tresorer'] = document.getElementById("tresorer").value;
-  data['secretari'] = document.getElementById("secretari").value;
+  var carregs = {};
+  carregs['president'] = document.getElementById("president").value;
+  carregs['vicepresident'] = document.getElementById("vicepresident").value;
+  carregs['tresorer'] = document.getElementById("tresorer").value;
+  carregs['secretari'] = document.getElementById("secretari").value;
 
   const vocals = document.getElementsByClassName('vocal');
   for (let i = 0; i < vocals.length; i++) {
     const element = vocals[i].querySelector('select');
-    data["vocal " + (i + 1)] = element.value;
+    carregs["vocal " + (i + 1)] = element.value;
   }
+  data['carregs'] = carregs;
 
   console.log(data);
   //if (validarFormulari(data)) {
@@ -194,7 +194,7 @@ function enviarLlista() {
   };
 
   xhttp.open('POST', '/api/llistes.php', true);
-  xhttp.send(/*JSON.stringify(data)*/);
+  xhttp.send(JSON.stringify(data));
   //}
 }
 
