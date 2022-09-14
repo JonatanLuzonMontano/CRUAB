@@ -51,10 +51,12 @@ function alCarregar() {
       break;
     case "eleccions.html":
       console.log("Session storage = " + sessionStorage.eleccions);
-      if(sessionStorage.eleccions == "false") {
+      if (sessionStorage.eleccions == "false") {
         window.location.href = "index.html";
+      } else {
+        pasEleccions();
+        obtenirLlistes();
       }
-      pasEleccions();
       break;
     default:
       break;
@@ -107,15 +109,15 @@ function afegeixListeners() {
       document.getElementById("registre").addEventListener('click', function () { inputError(); });
       break;
     case "gestio.html":
-      document.getElementById('obrireleccions').addEventListener('click', function(){ obrirEleccions();});
-      document.getElementById('obrirllistes').addEventListener('click', function(){ obrirLlistes();});
-      document.getElementById('obrirvotacio').addEventListener('click', function(){ obrirVotacio();});
-      document.getElementById('obriractivacio').addEventListener('click', function(){ obrirActivacio();});
-      document.getElementById('tancareleccions').addEventListener('click', function(){ tancarEleccions();});
-      document.getElementById('tancarllistes').addEventListener('click', function(){ tancarLlistes();});
-      document.getElementById('tancarvotacio').addEventListener('click', function(){ tancarVotacio();});
-      document.getElementById('tancaractivacio').addEventListener('click', function(){ tancarActivacio();});
-    break;
+      document.getElementById('obrireleccions').addEventListener('click', function () { obrirEleccions(); });
+      document.getElementById('obrirllistes').addEventListener('click', function () { obrirLlistes(); });
+      document.getElementById('obrirvotacio').addEventListener('click', function () { obrirVotacio(); });
+      document.getElementById('obriractivacio').addEventListener('click', function () { obrirActivacio(); });
+      document.getElementById('tancareleccions').addEventListener('click', function () { tancarEleccions(); });
+      document.getElementById('tancarllistes').addEventListener('click', function () { tancarLlistes(); });
+      document.getElementById('tancarvotacio').addEventListener('click', function () { tancarVotacio(); });
+      document.getElementById('tancaractivacio').addEventListener('click', function () { tancarActivacio(); });
+      break;
     default:
       break;
   }
@@ -144,8 +146,17 @@ function ifSubmmit() {
 }
 
 function ifFiltre() {
-  if (document.getElementById("filtrar") != undefined) {
-    document.getElementById('filtrar').addEventListener('click', function () { filtrar(); });
+  if (document.getElementById("filterbox") != undefined) {
+    const checkboxesminuts = document.querySelectorAll('#minuts input[type="checkbox"]');
+    checkboxesminuts.forEach((e) => { e.addEventListener('click', function () { onlyOneMinuts(this); }); });
+
+    const checkboxesjugadors = document.querySelectorAll('#jugadors input[type="checkbox"]');
+    checkboxesjugadors.forEach((e) => { e.addEventListener('click', function () { onlyOneJugadors(this); }); });
+
+    const checkboxes = document.querySelectorAll('#filterbox input[type="checkbox"]');
+    checkboxes.forEach((e) => { e.addEventListener('click', function () { filtrar(); }); });
+
+    
   }
 }
 

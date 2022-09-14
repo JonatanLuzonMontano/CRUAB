@@ -5,21 +5,21 @@ function obtenirLloguersManuals(){
         if (this.readyState == 4 && this.status == 200) {
             var data = JSON.parse(xhttp.responseText);
             console.log(data);
-            var t = document.querySelector('#productrow'),
+            var t = document.querySelector('#manuals'),
             td = t.content.querySelectorAll("td");
             if(data == null){
-                document.getElementById("producttable").innerText = "No tens cap reserva feta o aprovada per junta";
+                document.querySelector('table').textContent = "No tens cap reserva feta o aprovada per junta";
             } else {
                 for(let i = 0; i < data.length; i++){
                     td[0].getElementsByTagName("img")[0].src = "../" + data[i]["Imatge"];
                     td[1].textContent = data[i]["Copia"];
-                    td[2].getElementsByTagName("button")[0].innerText="Recollir";
+                    td[2].getElementsByTagName("button")[0].textContent="Recollir";
                     td[2].getElementsByTagName("button")[0].id=data[i]["NumLloguer"];
      
                     if(data[i]["Recollida"] == null){
-                        td[2].getElementsByTagName("button")[1].innerText="Cancel·la lloguer";
+                        td[2].getElementsByTagName("button")[1].textContent="Cancel·la lloguer";
                     } else {
-                        td[2].getElementsByTagName("button")[1].innerText="Retorna Joc";
+                        td[2].getElementsByTagName("button")[1].textContent="Retorna Joc";
                     }
                     
                     td[2].getElementsByTagName("button")[1].id=-data[i]["NumLloguer"];
