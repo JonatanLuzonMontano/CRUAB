@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cruab</title>
-  
+
   <link rel="stylesheet" href="css/general.css">
 </head>
 
@@ -118,6 +118,12 @@
 
   <main class="main-content">
     <div>
+      <button id="editar" class="constructiu hidden">Editar</button>
+      <div class="editor rows hidden">
+        <label for="titol">Títol</label>
+        <input id="titol" type="text">
+        <textarea></textarea>
+      </div>
       <article id="qui_som">
         <h2>Quí sóm?</h2>
         <p>Som un col·lectiu de la universitat autònoma de Barcelona fundat l'any 1994. Aquest club té per objectiu
@@ -132,13 +138,13 @@
           plaça cívica.</p>
       </article>
 
-    <button id="pujar" class="especial hidden">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-        <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 
+      <button id="pujar" class="especial hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+          <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 
           45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 
           12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
-      </svg>
-    </button>
+        </svg>
+      </button>
   </main>
 
   <footer>
@@ -152,13 +158,14 @@
       </adress>
     </section>
     <section class="social-links">
-      <a id="instagram" class="social-link"  property="instagram" name="@" href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
+      <a id="instagram" class="social-link" property="instagram" name="@"
+        href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
       <a id="facebook" class="social-link" property="facebook" name="" href="facebook.com">Facebook</a>
-      <a id="twitter" class="social-link"  href="https://twitter.com/cruaboficial?">Twitter</a>
+      <a id="twitter" class="social-link" href="https://twitter.com/cruaboficial?">Twitter</a>
     </section>
   </footer>
 
-  
+
   <script src="js/sessions.js"></script>
   <script src="js/temesimenus.js"></script>
   <script src="js/onload.js"></script>
