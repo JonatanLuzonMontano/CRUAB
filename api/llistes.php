@@ -35,41 +35,45 @@ switch($_SERVER['REQUEST_METHOD']){
           $any = $value["Any"];
           $convocatoria = $value["Convocatoria"];
 
-          $queryinsertllistes = "INSERT INTO `cruab`.`llistes` (`Any`, `Convocatoria`, `Nom`)
+          $queryinsertllistes = "INSERT INTO `cruab`.`llistes` (`Any`, `Convocatoria`, `Nom`, `Guanyadora`)
           VALUES ('$any', '$convocatoria', '" . assegurarinputs($_POST["nom"]) . "', 0);";
 
           $result = dbconninsert($queryinsertllistes);
 
-          if(substr($resultat, 0, 5) == "Error"){
+          if(substr($result, 0, 5) == "Error"){
             $msg["Error"] = "Error al inserir les dades de la llista. comproba que tot estigui correcte";
-            $msg["DeBug"] = $resultat;
+            $msg["DeBug"] = $result;
           } else {
               $queryinsertllista = "";
-              for($i = 0; $i < count($_POST["carregs"]); $i++){
-                $query = sprintf(
-                  "INSERT INTO `cruab`.`llista` (`Any`, `Convocatoria`, `Nom`, `Carreg`, `Membre`, `JuntaActual`)
-                    VALUES ('%d', '%d', '%s', '%s', '%d', '0');",
+              $carregs = array_keys($_POST["carregs"]);
+              foreach ($carregs as $key) {
+                $queryinsertllista = sprintf(
+                  "INSERT INTO `llista` (`Any`, `Convocatoria`, `Nom`, `Carreg`, `Membre`, `JuntaActual`)
+                    VALUES ('%d', '%d', '%s', '%s', '%d', 0);",
                   $any,
                   $convocatoria,
                   assegurarInputs($_POST["nom"]),
-                  assegurarInputs(array_keys($_POST["carregs"][$i])),
-                  assegurarInputs(($_POST["carregs"][$i])),
-              );
+                  assegurarInputs($key),
+                  assegurarInputs($_POST["carregs"][$key]),
+                );
 
-              $result = dbconninsert($queryinsertllista);
-              if(substr($resultat, 0, 5) == "Error"){
-                $msg["Error"] = "Error al inserir les dades dels membres de la llista. comproba que tot estigui correcte";
-                $msg["DeBug"] = $resultat;
-              } else {
-                $msg["Correcte"] = "Tot ok";
+                $result = dbconninsert($queryinsertllista);
+                if(substr($result, 0, 5) == "Error"){
+                  $msg["Error"] = "Error al inserir les dades dels membres de la llista. comproba que tot estigui correcte";
+                  $msg["DeBug"] = $result;
+                } else {
+                  $msg["Correcte"] = "Tot ok";
+                }
               }
+              //for($i = 0; $i < count($_POST["carregs"]); $i++){
+                
+              //}
             }
-          }
 
 
         } else {
           $msg["Error"] = "Error al consultar les dades. Comproba que tot estigui correcte";
-          $msg["DeBug"] = $resultat;
+          $msg["DeBug"] = $result;
         }
 
         break;
