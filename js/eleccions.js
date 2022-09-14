@@ -68,10 +68,30 @@ function obtenirLlistes() {
         taula.querySelector('tr:last-child').id = element.Nom;
 
         const fileraactual = document.getElementById(element.Nom);
-        if (element.pseudonim != "") {
-          fileraactual.getElementsByClassName(element.Carreg)[0].textContent = element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
-        } else {
-          fileraactual.getElementsByClassName(element.Carreg)[0].textContent = element.nom + ' ' + element.primercognom;
+        const carreg = element.Carreg;
+        console.log(carreg);
+        if (carreg.startsWith("Vocal")) {
+          if (fileraactual.getElementsByClassName('Vocals')[0].textContent === "") {
+            if (element.pseudonim != "") {
+              fileraactual.getElementsByClassName('Vocals')[0].textContent = element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
+            } else {
+              fileraactual.getElementsByClassName('Vocals')[0].textContent = element.nom + ' ' + element.primercognom;
+            }
+          } else {
+            if (element.pseudonim != "") {
+              fileraactual.getElementsByClassName('Vocals')[0].textContent +=', ' + element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
+            } else {
+              fileraactual.getElementsByClassName('Vocals')[0].textContent +=', ' + element.nom + ' ' + element.primercognom;
+            }
+          }
+          
+         }
+        else {
+          if (element.pseudonim != "") {
+            fileraactual.getElementsByClassName(element.Carreg)[0].textContent = element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
+          } else {
+            fileraactual.getElementsByClassName(element.Carreg)[0].textContent = element.nom + ' ' + element.primercognom;
+          }
         }
       });
     }
@@ -159,15 +179,15 @@ function enviarLlista() {
   data['nom'] = document.getElementById('nom').value;
 
   var carregs = {};
-  carregs['president'] = document.getElementById("president").value;
-  carregs['vicepresident'] = document.getElementById("vicepresident").value;
-  carregs['tresorer'] = document.getElementById("tresorer").value;
-  carregs['secretari'] = document.getElementById("secretari").value;
+  carregs['President'] = document.getElementById("president").value;
+  carregs['Vicepresident'] = document.getElementById("vicepresident").value;
+  carregs['Tresorer'] = document.getElementById("tresorer").value;
+  carregs['Secretari'] = document.getElementById("secretari").value;
 
   const vocals = document.getElementsByClassName('vocal');
   for (let i = 0; i < vocals.length; i++) {
     const element = vocals[i].querySelector('select');
-    carregs["vocal " + (i + 1)] = element.value;
+    carregs["Vocal " + (i + 1)] = element.value;
   }
   data['carregs'] = carregs;
 
