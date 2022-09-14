@@ -25,12 +25,9 @@ switch($_SERVER['REQUEST_METHOD']){
     case 'POST':
       $_POST = json_decode(file_get_contents('php://input'), true);
 
-
-        
           $any = date("Y");
           $query = 
-              "INSERT INTO llista
-              SELECT Any, Convocatoria
+              "SELECT Any, Convocatoria
               FROM eleccions
               WHERE Convocatoria =(SELECT MAX(Convocatoria) FROM eleccions WHERE Any =(SELECT MAX(Any) FROM eleccions));";
               

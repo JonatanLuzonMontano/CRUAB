@@ -471,6 +471,13 @@ input[type="file"] {
   color: var(--theme-maxcontrast);
 }
 
+/*
+*:first-of-type >input[type="text"] {
+  background-color:white !important;
+  box-shadow:inset 0 0 5px 0;
+  border:unset !important;
+}*/
+
 /* botons en general quan hover*/
 :is(button, input:is([type="button"], [type="submit"])):not([disabled]):is(:hover, :focus) {
   --edge-size: .45em;
