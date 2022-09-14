@@ -7,8 +7,10 @@ function obrirEleccions() {
         location.reload();
       }
     };
-    xhttpobrireleccions.open('PUT', '/api/eleccions.php?opcio=obrireleccions', true);
-    xhttpobrireleccions.send();
+    data = {};
+    data['opcio'] = "obrireleccions";
+    xhttpobrireleccions.open('PUT', '/api/eleccions.php', true);
+    xhttpobrireleccions.send(JSON.stringify(data));
   }
 }
 
@@ -20,8 +22,10 @@ function obrirLlistes() {
         location.reload();
       }
     };
-    xhttpobrirllistes.open('PUT', '/api/eleccions.php?opcio=obrirllistes', true);
-    xhttpobrirllistes.send();
+    data = {};
+    data['opcio'] = "obrirllistes";
+    xhttpobrirllistes.open('PUT', '/api/eleccions.php', true);
+    xhttpobrirllistes.send(JSON.stringify(data));
   }
 }
 
@@ -33,8 +37,10 @@ function obrirVotacio() {
         location.reload();
       }
     };
-    xhttpobrirvotacio.open('PUT', '/api/eleccions.php?opcio=obrirvotacio', true);
-    xhttpobrirvotacio.send();
+    data = {};
+    data['opcio'] = "obrirvotacio";
+    xhttpobrirvotacio.open('PUT', '/api/eleccions.php', true);
+    xhttpobrirvotacio.send(JSON.stringify(data));
   }
 }
 function obrirActivacio() {
@@ -45,8 +51,10 @@ function obrirActivacio() {
         location.reload();
       }
     };
-    xhttpobriractivacio.open('PUT', '/api/eleccions.php?opcio=obriractivacio', true);
-    xhttpobriractivacio.send();
+    data = {};
+    data['opcio'] = "obriractivacio";
+    xhttpobriractivacio.open('PUT', '/api/eleccions.php', true);
+    xhttpobriractivacio.send(JSON.stringify(data));
   }
 }
 //#####################################   TANCAR   ##################################################
@@ -59,8 +67,10 @@ function tancarEleccions() {
         location.reload();
       }
     };
-    xhttptancareleccions.open('PUT', '/api/eleccions.php?opcio=tancareleccions', true);
-    xhttptancareleccions.send();
+    data = {};
+    data['opcio'] = "tancareleccions";
+    xhttptancareleccions.open('PUT', '/api/eleccions.php', true);
+    xhttptancareleccions.send(JSON.stringify(data));
   }
 }
 
@@ -72,8 +82,10 @@ function tancarLlistes() {
         location.reload();
       }
     };
-    xhttptancarllistes.open('PUT', '/api/eleccions.php?opcio=tancarllistes', true);
-    xhttptancarllistes.send();
+    data = {};
+    data['opcio'] = "tancarllistes";
+    xhttptancarllistes.open('PUT', '/api/eleccions.php', true);
+    xhttptancarllistes.send(JSON.stringify(data));
   }
 }
 
@@ -85,8 +97,10 @@ function tancarVotacio() {
         location.reload();
       }
     };
-    xhttptancarvotacio.open('PUT', '/api/eleccions.php?opcio=tancarvotacio', true);
-    xhttptancarvotacio.send();
+    data = {};
+    data['opcio'] = "tancarvotacio";
+    xhttptancarvotacio.open('PUT', '/api/eleccions.php', true);
+    xhttptancarvotacio.send(JSON.stringify(data));
   }
 }
 
@@ -98,8 +112,10 @@ function tancarActivacio() {
         location.reload();
       }
     };
-    xhttptancaractivacio.open('PUT', '/api/eleccions.php?opcio=tancaractivacio', true);
-    xhttptancaractivacio.send();
+    data = {};
+    data['opcio'] = "tancaractivacio";
+    xhttptancaractivacio.open('PUT', '/api/eleccions.php', true);
+    xhttptancaractivacio.send(JSON.stringify(data));
   }
 }
 
