@@ -674,6 +674,11 @@ label + div label,
   bottom: 5px;
 }
 
+textarea {
+  max-width: 100%;
+  resize:vertical;
+}
+
 /*#########################   TABLAS Y CONTENIDO DE LA BASE DE DATOS   #############################*/
 #filterbox {
   width: 70%;
