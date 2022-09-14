@@ -6,6 +6,53 @@ include_once('../php/seguretat.php');
 
 switch($_SERVER['REQUEST_METHOD']){
 
+    case 'GET':
+      switch($_GET['tipus']) {
+        case 'actius':
+          $query = "SELECT membres.nom, membres.pseudonim, membres.primercognom, membres.numsoci
+          FROM membres WHERE membres.validat = 1 AND membres.estat = 'actiu';";
+    
+          $result = dbconnselect($query);
+          $msg = array();
+    
+          while($values = mysqli_fetch_assoc($result)) {
+            $msg[] = $values;
+          }
+
+          break;
+
+        case 'actiusono':
+          $query = "SELECT membres.numsoci, membres.estat
+          FROM membres WHERE membres.validat = 1;";
+    
+          $result = dbconnselect($query);
+          $msg = array();
+    
+          while($values = mysqli_fetch_assoc($result)) {
+            $msg[] = $values;
+          }
+
+          break;
+        case 'tots':
+          $query = "SELECT membres.numsoci, membres.estat, membres.nom, membres.primercognom, membres.segoncognom, membres.email, membres.pseudonim
+          FROM membres WHERE membres.validat = 1;";
+    
+          $result = dbconnselect($query);
+          $msg = array();
+    
+          while($values = mysqli_fetch_assoc($result)) {
+            $msg[] = $values;
+          }
+          
+          break;
+        default:
+          http_response_code(400);
+          $msg["Error"]="wrong GET method option";
+          break;
+      }
+
+      break;
+
     case 'POST':
         $_POST = json_decode(file_get_contents('php://input'), true);
 

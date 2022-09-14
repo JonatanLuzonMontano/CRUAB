@@ -38,6 +38,10 @@ function alCarregar() {
       document.getElementById('paginagestio').classList.add("active");
       obtenirMembres();
       break;
+    case "gestiomembres.html":
+      document.getElementById('paginagestio').classList.add("active");
+      getMembres();
+      break;
     case "gestiolloguersjocs.html":
       document.getElementById('paginagestio').classList.add("active");
       obtenirJocs();
@@ -48,6 +52,8 @@ function alCarregar() {
       break;
     case "membre.html":
       document.getElementById('paginacompte').classList.add("active");
+      checkPeriodeaActivacio();
+      actiuInactiu();
       break;
     case "eleccions.html":
       console.log("Session storage = " + sessionStorage.eleccions);
@@ -55,7 +61,6 @@ function alCarregar() {
         window.location.href = "index.html";
       } else {
         pasEleccions();
-        obtenirLlistes();
       }
       break;
     default:
@@ -66,7 +71,7 @@ function alCarregar() {
 }
 
 function afegeixListeners() {
-  var botonsnavegacio = document.getElementsByClassName("nav-link");
+  var botonsnavegacio = document.getElementsByClassName("enllaç-navegació");
   for (i = 0; i < botonsnavegacio.length; i++) {
     botonsnavegacio[i].addEventListener('mousedown', clickeffect);
     botonsnavegacio[i].addEventListener('mouseup', clickeffect);
@@ -74,9 +79,14 @@ function afegeixListeners() {
   ifSubmmit();
   ifFiltre();
 
-  window.addEventListener('scroll', function () { ifScrollNavBg(); });
+  window.addEventListener('scroll', function () {
+    ifScrollNavBg();
+    ifScrollMostrarPujar();
+  });
 
-  document.getElementById("navbar-toggler").addEventListener('click', opennav);
+  document.getElementById("pujar").addEventListener('click', function () { scrollTop(); });
+
+  document.getElementById("boto-navegacio").addEventListener('click', opennav);
 
   document.getElementById("temes").addEventListener('click', obrirTemes); /*TEMES*/
   document.querySelectorAll(".canvi-tema").forEach(element => {
@@ -156,7 +166,7 @@ function ifFiltre() {
     const checkboxes = document.querySelectorAll('#filterbox input[type="checkbox"]');
     checkboxes.forEach((e) => { e.addEventListener('click', function () { filtrar(); }); });
 
-    
+
   }
 }
 
