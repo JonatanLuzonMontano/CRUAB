@@ -167,6 +167,26 @@ switch($_SERVER['REQUEST_METHOD']){
         }
 
     case 'DELETE':
+        $_POST = json_decode(file_get_contents('php://input'), true);
+        $nomllista = assegurarInputs($_POST['nom']);
+
+        $any = date("Y");
+
+        $query = "DELETE FROM llistes WHERE Nom='$nomllista' AND `Any`=$any;";
+        $resultdelete = dbconndelete($query);
+        if(substr($resultdelete, 0, 5) == "Error") {
+            $msg["Error"] = "Error al esborrar les dades. comproba que tot estigui correcte";
+            $msg["DeBug"] = $resultdelete;
+        } else {
+                $query = "DELETE FROM llista WHERE Nom='$nomllista' AND `Any`=$any;";
+                $resultdelete = dbconndelete($query);
+            if(substr($resultdelete, 0, 5) == "Error"){
+                $msg["Error"] = "Error al esborrar les dades. comproba que tot estigui correcte";
+                $msg["DeBug"] = $resultdelete;
+            } else {
+                $msg["Correcte"] = "Tot ok";
+            }
+        }
         
         break;
 
@@ -178,4 +198,3 @@ switch($_SERVER['REQUEST_METHOD']){
 
 echo(json_encode($msg, JSON_NUMERIC_CHECK, JSON_UNESCAPED_UNICODE));
 //var_dump($msg);
-?>

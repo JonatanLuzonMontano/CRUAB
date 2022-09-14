@@ -3,28 +3,18 @@ function pasEleccions() {
   var xhttpcheckeleccions = new XMLHttpRequest();
   xhttpcheckeleccions.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttpcheckeleccions.responseText);
+      //console.log(xhttpcheckeleccions.responseText);
       var llista = JSON.parse(xhttpcheckeleccions.responseText);
       console.log(llista);
       if (llista['presentacio de llistes'] === 1) {
         obtenirLlistes();
         document.getElementById('afegirllista').classList.remove('hidden');
-        let botoelimina = document.getElementsByClassName('eliminar');
-        console.log(botoelimina);
-        for (let i = 0; i < botoelimina.length; i++) {
-          console.log("I = " + i + ", element es: " + botoelimina[i]);
-          const element = botoelimina[i];
-          element.classList.remove('hidden');
-          console.log(element);
-          element.addEventListener('click', function () { eliminarLlista(i); });
-        }
         document.getElementById('afegirllista').addEventListener('click', function () {
           document.getElementById('formllista').classList.remove('hidden');
           obtenirMembres();
         });
         document.getElementById('afegirvocal').addEventListener('click', function () { afegirVocal(); });
-        document.getElementById('crearllista').addEventListener('click', function () { enviarLlista(); })
-        console.log(botoelimina);
+        document.getElementById('crearllista').addEventListener('click', function () { enviarLlista(); });
       }
       if (llista['votacio'] === 1) {
         obtenirLlistes();
@@ -46,7 +36,7 @@ function obtenirLlistes() {
   var xhttpllistes = new XMLHttpRequest();
   xhttpllistes.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttpllistes.responseText);
+      //console.log(xhttpllistes.responseText);
       var data = JSON.parse(xhttpllistes.responseText);
       console.log(data);
 
@@ -69,7 +59,6 @@ function obtenirLlistes() {
 
         const fileraactual = document.getElementById(element.Nom);
         const carreg = element.Carreg;
-        console.log(carreg);
         if (carreg.startsWith("Vocal")) {
           if (fileraactual.getElementsByClassName('Vocals')[0].textContent === "") {
             if (element.pseudonim != "") {
@@ -79,13 +68,13 @@ function obtenirLlistes() {
             }
           } else {
             if (element.pseudonim != "") {
-              fileraactual.getElementsByClassName('Vocals')[0].textContent +=', ' + element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
+              fileraactual.getElementsByClassName('Vocals')[0].textContent += ', ' + element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
             } else {
-              fileraactual.getElementsByClassName('Vocals')[0].textContent +=', ' + element.nom + ' ' + element.primercognom;
+              fileraactual.getElementsByClassName('Vocals')[0].textContent += ', ' + element.nom + ' ' + element.primercognom;
             }
           }
-          
-         }
+
+        }
         else {
           if (element.pseudonim != "") {
             fileraactual.getElementsByClassName(element.Carreg)[0].textContent = element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
@@ -94,6 +83,15 @@ function obtenirLlistes() {
           }
         }
       });
+      let botoelimina = document.getElementsByClassName('eliminar');
+      console.log(botoelimina);
+      for (let i = 0; i < botoelimina.length; i++) {
+        console.log("I = " + i + ", element es: " + botoelimina[i]);
+        const element = botoelimina[i];
+        element.classList.remove('hidden');
+        console.log(element);
+        element.addEventListener('click', function () { eliminarLlista(i); });
+      }
     }
   };
   xhttpllistes.open('GET', '/api/llistes.php', true);
@@ -101,8 +99,22 @@ function obtenirLlistes() {
 }
 
 function eliminarLlista(index) {
-  const llistallistes = document.querySelectorAll('.table-holder .llista');
-  llistallistes[index].classList.add('hidden');
+  if (confirm("Estas segur?")) {
+    const llistallistes = document.querySelectorAll('.table-holder .llista');
+    //llistallistes[index].classList.add('hidden');
+    var data = {};
+    data['nom'] = llistallistes[index].id;
+
+    var xhttpeliminarllista = new XMLHttpRequest;
+    xhttpeliminarllista.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(xhttpeliminarllista.responseText);
+        location.reload;
+      }
+    };
+    xhttpeliminarllista.open('DELETE', '/api/eleccions.php', true);
+    xhttpeliminarllista.send(JSON.stringify(data));
+  }
 }
 
 function obtenirMembres() {
