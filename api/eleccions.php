@@ -4,15 +4,12 @@ header('Access-Control-Allow-Origin: *');
 include_once('../php/connexiobd.php');
 include_once('../php/seguretat.php');
 
-print_r("hola");
-
 switch($_SERVER['REQUEST_METHOD']){
     
     case 'GET':
         $opcio = assegurarInputs($_GET['opcio']);
         switch($opcio){
             case 'eleccio':
-                $pas = assegurarInputs($_GET['opcio']);
                 $query="SELECT * FROM events WHERE paseleccions = 'proces electoral';";
                 
                 $result = dbconnselect($query);
@@ -24,7 +21,6 @@ switch($_SERVER['REQUEST_METHOD']){
 
                 break;
             case 'passos':
-                $pas = assegurarInputs($_GET['opcio']);
                 $query="SELECT * FROM events WHERE paseleccions != 'proces electoral';";
 
                 $result = dbconnselect($query);
