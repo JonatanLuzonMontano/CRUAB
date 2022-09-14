@@ -10,7 +10,6 @@ switch($_SERVER['REQUEST_METHOD']){
         $opcio = assegurarInputs($_GET['opcio']);
         switch($opcio){
             case 'eleccio':
-                $pas = assegurarInputs($_GET['opcio']);
                 $query="SELECT * FROM events WHERE paseleccions = 'proces electoral';";
                 
                 $result = dbconnselect($query);
@@ -22,7 +21,6 @@ switch($_SERVER['REQUEST_METHOD']){
 
                 break;
             case 'passos':
-                $pas = assegurarInputs($_GET['opcio']);
                 $query="SELECT * FROM events WHERE paseleccions != 'proces electoral';";
 
                 $result = dbconnselect($query);
