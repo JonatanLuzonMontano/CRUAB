@@ -11,8 +11,12 @@
 }
 
 /*#########################   MAQUETACIÓ(LAYOUT)   #############################*/
-
 @media screen and (max-width: 900px) {
+  p {
+    font-style: normal;
+    padding-left: 10px;
+  }
+
   header {
     --nav-height: 12vh;
   }
@@ -33,7 +37,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    height: auto !important;
+    height: auto;
     width: 100vw;
   }
 
