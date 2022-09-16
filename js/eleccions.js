@@ -84,12 +84,9 @@ function obtenirLlistes() {
         }
       });
       let botoelimina = document.getElementsByClassName('eliminar');
-      console.log(botoelimina);
       for (let i = 0; i < botoelimina.length; i++) {
-        console.log("I = " + i + ", element es: " + botoelimina[i]);
         const element = botoelimina[i];
         element.classList.remove('hidden');
-        console.log(element);
         element.addEventListener('click', function () { eliminarLlista(i); });
       }
     }
