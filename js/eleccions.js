@@ -8,6 +8,21 @@ function pasEleccions() {
       console.table(llista);
       if (llista['presentacio de llistes'] === 1) {
         obtenirLlistes();
+
+        let botoelimina = document.getElementsByClassName('eliminar');
+        for (let i = 0; i < botoelimina.length; i++) {
+          const element = botoelimina[i];
+          element.classList.remove('hidden');
+          element.addEventListener('click', function () { eliminarLlista(i); });
+        }
+        let botoeditar = document.getElementsByClassName('editar');
+        for (let i = 0; i < botoeditar.length; i++) {
+          const element = botoeditar[i];
+          element.classList.remove('hidden');
+          element.addEventListener('click', function () { editarLlista(i); });
+        }
+
+
         document.getElementById('afegirllista').classList.remove('hidden');
         document.getElementById('afegirllista').addEventListener('click', function () {
           document.getElementById('formllista').classList.remove('hidden');
@@ -15,7 +30,6 @@ function pasEleccions() {
         });
         document.getElementById('afegirvocal').addEventListener('click', function () { afegirVocal('#Vocals'); });
         document.getElementById('crearllista').addEventListener('click', function () { enviarLlista(); });
-        document.querySelector('.editar').classList.remove('hidden');
       }
       if (llista['votacio'] === 1) {
         obtenirLlistes();
@@ -86,18 +100,6 @@ function obtenirLlistes() {
           }
         }
       });
-      let botoelimina = document.getElementsByClassName('eliminar');
-      for (let i = 0; i < botoelimina.length; i++) {
-        const element = botoelimina[i];
-        element.classList.remove('hidden');
-        element.addEventListener('click', function () { eliminarLlista(i); });
-      }
-      let botoeditar = document.getElementsByClassName('editar');
-      for (let i = 0; i < botoeditar.length; i++) {
-        const element = botoeditar[i];
-        element.classList.remove('hidden');
-        element.addEventListener('click', function () { editarLlista(i); });
-      }
     }
   };
   xhttpllistes.open('GET', '/api/llistes.php', true);
