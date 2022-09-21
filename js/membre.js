@@ -7,7 +7,9 @@ function actiuInactiu() {
       //console.log(data);
       for (i = 0; i < data.length; i++) {
         if (data[i]["numsoci"] == nummembre) {
-          document.getElementById('activitat').textContent = "Ets un usuari " + data[i]['estat'] + ".";
+          const missatge = "Ets un usuari " + data[i]['estat'] + ".";
+          document.getElementById('activitat').textContent = missatge;
+          popUp(missatge);
           break;
         }
       }
@@ -37,38 +39,42 @@ function checkPeriodeaActivacio() {
 }
 
 function activar() {
+  const membre = sessionStorage['numsoci'];
   if (confirm("Estas segur?")) {
     var xhttpactivar = new XMLHttpRequest();
     xhttpactivar.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        location.reload;
+        location.reload();
       }
     }
 
     var data = {};
 
-    data['estat'] = "actiu";
+    data['opcio'] = "activar";
+    data['membre'] = membre;
 
-    xhttpactivar.open('PUT', '/api/eleccions.php', true);
-    xhttpactivar.send();
+    xhttpactivar.open('PUT', '/api/registre.php', true);
+    xhttpactivar.send(JSON.stringify(data));
   }
 }
 
 function desactivar() {
+  const membre = sessionStorage['numsoci'];
   if (confirm("Estas segur?, si canvies d'idea envia un correu a juntacruab@gmail.com")) {
-    var xhttpactivar = new XMLHttpRequest();
-    xhttpactivar.onreadystatechange = function () {
+    var xhttpdesactivar = new XMLHttpRequest();
+    xhttpdesactivar.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        location.reload;
+        location.reload();
       }
     }
 
     var data = {};
 
-    data['estat'] = "inactiu";
+    data['opcio'] = "desactivar";
+    data['membre'] = membre;
 
-    xhttpactivar.open('PUT', '/api/eleccions.php', true);
-    xhttpactivar.send();
+    xhttpdesactivar.open('PUT', '/api/registre.php', true);
+    xhttpdesactivar.send(JSON.stringify(data));
   }
 }
 
@@ -76,16 +82,12 @@ function getMembres() {
   var xhttpmembres = new XMLHttpRequest();
   xhttpmembres.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttpmembres.responseText);
+      //console.log(xhttpmembres.responseText);
       var membres = JSON.parse(xhttpmembres.responseText);
       console.log(membres);
 
-
-
       var t = document.querySelector('#membres');
       var td = t.content.querySelectorAll("td");
-
-
 
       for (let i = 0; i < membres.length; i++) {
         const membre = membres[i];
@@ -143,10 +145,21 @@ function eliminarMembre(numsoci) {
     xhttpmembreeliminat.onreadystatechange = function () {
       console.log(xhttpmembreeliminat.responseText);
       if (this.readyState == 4 && this.status == 200) {
-        location.reload;
+        location.reload();
       }
     }
     xhttpmembreeliminat.open('DELETE', '/api/registre.php', true);
     xhttpmembreeliminat.send(JSON.stringify(data));
   }
+}
+
+/* no funciona*/
+function popUp(mensaje) {
+  const popup = document.getElementById('popup');
+  popup.textContent = mensaje;
+  console.log(popup);
+  popup.className = 'visible';
+  setTimeout(function () {
+    popup.className = '';
+  }, 10000);
 }

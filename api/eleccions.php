@@ -167,36 +167,7 @@ switch($_SERVER['REQUEST_METHOD']){
         }
 
     case 'DELETE':
-        $_POST = json_decode(file_get_contents('php://input'), true);
-        $nomllista = assegurarInputs($_POST['nom']);
-
-        $queryselect = 
-            "SELECT MAX(eleccions.`Any`) AS `Any`, MAX(eleccions.Convocatoria) AS Convocatoria
-              FROM eleccions;";
         
-        $result = dbconnselect($queryselect);
-
-        if($value = mysqli_fetch_assoc($result)){
-          $any = $value["Any"];
-          $convocatoria = $value["Convocatoria"];
-        }
-
-        $query = "DELETE FROM llista WHERE Nom='$nomllista' AND `Any`=$any AND `Convocatoria`=$convocatoria AND `JuntaActual`=0;";
-        
-        $resultdelete = dbconndelete($query);
-        if(substr($resultdelete, 0, 5) == "Error") {
-            $msg["Error"] = "Error al esborrar les dades. comproba que tot estigui correcte";
-            $msg["DeBug"] = $resultdelete;
-        } else {
-          $query = "DELETE FROM llistes WHERE Nom='$nomllista' AND `Any`=$any AND `Convocatoria`=$convocatoria AND `Guanyadora`=0;";
-                $resultdelete = dbconndelete($query);
-            if(substr($resultdelete, 0, 5) == "Error"){
-                $msg["Error"] = "Error al esborrar les dades. comproba que tot estigui correcte";
-                $msg["DeBug"] = $resultdelete;
-            } else {
-                $msg["Correcte"] = "Tot ok";
-            }
-        }
         
         break;
 

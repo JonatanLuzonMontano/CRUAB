@@ -11,10 +11,11 @@ function pasEleccions() {
         document.getElementById('afegirllista').classList.remove('hidden');
         document.getElementById('afegirllista').addEventListener('click', function () {
           document.getElementById('formllista').classList.remove('hidden');
-          obtenirMembres();
+          obtenirMembres("formllista");
         });
-        document.getElementById('afegirvocal').addEventListener('click', function () { afegirVocal(); });
+        document.getElementById('afegirvocal').addEventListener('click', function () { afegirVocal('#Vocals'); });
         document.getElementById('crearllista').addEventListener('click', function () { enviarLlista(); });
+        document.querySelector('.editar').classList.remove('hidden');
       }
       if (llista['votacio'] === 1) {
         obtenirLlistes();
@@ -45,9 +46,11 @@ function obtenirLlistes() {
 
       data.forEach(function (element) {
         let fileraclon = filera.cloneNode(true);
-        let td = fileraclon.querySelectorAll('td:not(:last-child)');
+        let td = fileraclon.querySelectorAll('td:not(:has(button))');
+
         td.forEach(function (element) {
-          if (element.textContent != "") {
+          var text = element.textContent;
+          if (/[a-zA-Z]+/g.test(text)) {
             element.textContent = "";
           }
         });
@@ -89,6 +92,12 @@ function obtenirLlistes() {
         element.classList.remove('hidden');
         element.addEventListener('click', function () { eliminarLlista(i); });
       }
+      let botoeditar = document.getElementsByClassName('editar');
+      for (let i = 0; i < botoeditar.length; i++) {
+        const element = botoeditar[i];
+        element.classList.remove('hidden');
+        element.addEventListener('click', function () { editarLlista(i); });
+      }
     }
   };
   xhttpllistes.open('GET', '/api/llistes.php', true);
@@ -106,15 +115,182 @@ function eliminarLlista(index) {
     xhttpeliminarllista.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
         console.log(xhttpeliminarllista.responseText);
-        location.reload;
+        location.reload();
       }
     };
-    xhttpeliminarllista.open('DELETE', '/api/eleccions.php', true);
+    xhttpeliminarllista.open('DELETE', '/api/llistes.php', true);
     xhttpeliminarllista.send(JSON.stringify(data));
   }
 }
 
-function obtenirMembres() {
+function editarLlista(index) {
+  if (checkEditaActiu()) {
+    alert("Siusplau, deixa d'editar una llista per poder editar un altra");
+  } else {
+    let presi = null;
+    let vice = null;
+    let treso = null;
+    let secre = null;
+    let vocals = null;
+    const llistallistes = document.querySelectorAll('.table-holder .llista');
+    llistallistes[index].classList.add('editant');
+    llistallistes[index].querySelectorAll('td:not(:has(button))').forEach(function (element, index) {
+      const text = element.textContent;
+      switch (index) {
+        case 0:
+          presi = text;
+          break;
+        case 1:
+          vice = text;
+          break;
+        case 2:
+          treso = text;
+          break;
+        case 3:
+          secre = text;
+          break;
+        case 4:
+          vocals = text;
+          break;
+
+        default:
+          break;
+      }
+      if (/[a-zA-Z]+/g.test(text)) {
+        element.textContent = "";
+      }
+      const carreg = element.className;
+      let selectpercopiar = null;
+      if (carreg === "Vocals") {
+        const llistavocals = vocals.split(', ');
+        for (let a = 0; a < llistavocals.length; a++) {
+          selectpercopiar = document.querySelector('#Vocal-1 select').cloneNode(true);
+          console.log('loop ' + a);
+          element.appendChild(selectpercopiar);
+        }
+        const afegirvocal = document.getElementById('templatebutton').querySelector('input');
+        element.appendChild(afegirvocal);
+        element.querySelector('input').addEventListener('click', function () {
+          afegirVocal('.editant .Vocals', llistavocals.length);
+          element.appendChild(afegirvocal);
+        });
+
+      } else {
+        selectpercopiar = document.getElementById(carreg).cloneNode(true);
+        element.appendChild(selectpercopiar);
+      }
+
+      if (element.querySelectorAll('select').length > 1) {
+        element.querySelectorAll('select').forEach(function (e, index) {
+          e.id = "editar" + "Vocal-" + (index + 1);
+        });
+      } else {
+        element.querySelector('select').id = "editar" + carreg;
+      }
+
+      console.log(text);
+
+
+    });
+    const llistaid = llistallistes[index].id;
+    obtenirMembres(llistaid);
+    setTimeout(() => {
+      llistallistes[index].querySelectorAll('td:not(:has(button))').forEach(function (element) {
+        let opcions = null;
+        let select = null;
+        switch (element.className) {
+          case "President":
+            select = element.querySelector('select');
+            opcions = select.querySelectorAll('option');
+            for (let j = 0; j < opcions.length; j++) {
+              const el = select.querySelectorAll('option')[j];
+              if (el.textContent.includes(presi)) {
+                console.log(presi + " = " + el.textContent);
+                select.value = el.value;
+                break;
+              }
+            }
+            break;
+          case "Vicepresident":
+            select = element.querySelector('select');
+            opcions = select.querySelectorAll('option');
+            for (let j = 0; j < opcions.length; j++) {
+              const el = select.querySelectorAll('option')[j];
+              if (el.textContent.includes(vice)) {
+                console.log(vice + " = " + el.textContent);
+                select.value = el.value;
+                break;
+              }
+            }
+            break;
+          case "Tresorer":
+            select = element.querySelector('select');
+            opcions = select.querySelectorAll('option');
+            for (let j = 0; j < opcions.length; j++) {
+              const el = select.querySelectorAll('option')[j];
+              if (el.textContent.includes(treso)) {
+                console.log(treso + " = " + el.textContent);
+                select.value = el.value;
+                break;
+              }
+            }
+            break;
+          case "Secretari":
+            select = element.querySelector('select');
+            opcions = select.querySelectorAll('option');
+            for (let j = 0; j < opcions.length; j++) {
+              const el = select.querySelectorAll('option')[j];
+              if (el.textContent.includes(secre)) {
+                console.log(secre + " = " + el.textContent);
+                select.value = el.value;
+                break;
+              }
+            }
+            break;
+          case "Vocals":
+            const llistavocals = vocals.split(', ');
+            const selects = element.querySelectorAll('select');
+
+            selects.forEach(function (select, iselect) {
+              opcions = select.querySelectorAll('option');
+
+              for (let j = 0; j < opcions.length; j++) {
+                const el = select.querySelectorAll('option')[j];
+                if (el.textContent.includes(llistavocals[iselect])) {
+                  console.log(vocals + " = " + el.textContent);
+                  select.value = el.value;
+                  break;
+                }
+              }
+            });
+
+
+            break;
+
+          default:
+            break;
+        }
+      });
+    }, 100);
+
+  }
+}
+
+function checkEditaActiu() {
+  const llistallistes = document.querySelectorAll('.table-holder .llista');
+  let veritat = false;
+  for (let i = 0; i < llistallistes.length; i++) {
+    const element = llistallistes[i];
+    if (element.classList.contains('editant')) {
+      veritat = true;
+    }
+  }
+  return veritat
+}
+
+function canviarLlista(index) { }
+
+function obtenirMembres(formulari) {
   var xhttpmembres = new XMLHttpRequest();
   xhttpmembres.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
@@ -122,7 +298,11 @@ function obtenirMembres() {
       var data = JSON.parse(xhttpmembres.responseText);
       data = data.sort(alphabetic);
       console.log(data);
-      const selects = document.querySelectorAll('#formllista select');
+      const pare = document.querySelector('[id="' + formulari + '"]');
+      console.log(pare);
+      console.log(formulari);
+      console.log('[id="' + formulari + '"]');
+      const selects = pare.querySelectorAll('select');
       function alphabetic(a, b) {
         if (a['nom'] < b['nom']) return -1;
         if (a['nom'] > b['nom']) return 1;
@@ -130,13 +310,16 @@ function obtenirMembres() {
       }
 
       selects.forEach(function (select) {
-        data.forEach(function (membre) {
-          if (membre.pseudonim != "") {
-            select.innerHTML += '<option value="' + membre.numsoci + '" >' + membre.nom + ' "' + membre.pseudonim + '" ' + membre.primercognom + '</option>';
-          } else {
-            select.innerHTML += '<option value="' + membre.numsoci + '" >' + membre.nom + ' ' + membre.primercognom + '</option>';
-          }
-        });
+        if (!select.querySelector('option + option')) {
+          data.forEach(function (membre) {
+            if (membre.pseudonim != "") {
+              select.innerHTML += '<option value="' + membre.numsoci + '" >' + membre.nom + ' "' + membre.pseudonim + '" ' + membre.primercognom + '</option>';
+            } else {
+              select.innerHTML += '<option value="' + membre.numsoci + '" >' + membre.nom + ' ' + membre.primercognom + '</option>';
+            }
+          });
+        }
+
       });
     }
   };
@@ -144,43 +327,55 @@ function obtenirMembres() {
   xhttpmembres.send();
 }
 
-function afegirVocal() {
-  let vocals = document.getElementById('vocals');
-  const vocalacopiar = document.querySelector("#vocal-1");
-  const vocalclon = vocalacopiar.cloneNode(true);
+function afegirVocal(parent, numvocalstaula) {
+  let selectparent = document.querySelector(parent);
+  console.log(selectparent);
+  let vocalacopiar = null;
 
-  let numvocals = vocals.querySelectorAll('div:not(:first-child)').length;
-
-  vocals.appendChild(vocalclon);
-  vocals.querySelector('div:last-child').id = "vocal-" + (numvocals + 1);
+  let vocalclon;
+  let numvocals = null;
+  if (selectparent.classList.contains('rows')) {
+    vocalacopiar = document.querySelector("#Vocal-1");
+    vocalclon = vocalacopiar.cloneNode(true);
+    numvocals = selectparent.querySelectorAll('div:not(:first-child)').length;
+    selectparent.appendChild(vocalclon);
+    selectparent.querySelector('div:last-child').id = "Vocal-" + (numvocals);
+  } else {
+    vocalacopiar = document.querySelector(".editant .Vocals select");
+    console.log(vocalacopiar);
+    vocalclon = vocalacopiar.cloneNode(true);
+    console.log(vocalclon);
+    selectparent.appendChild(vocalclon);
+    numvocals = numvocalstaula;
+    selectparent.querySelector('select:last-of-type').id = "editarVocal-" + (numvocals);
+  }
 }
 
 function validarFormulari(dades) {
   var registreLabels = document.getElementsByTagName("label");
-
-  if (dades['president'] == "") {
-    document.forms["formllista"]["president"].focus();
+  let dadestotes = true;
+  if (dades['carregs']['President'] == "") {
+    document.forms["formllista"]["President"].focus();
     console.log(document.forms["formllista"]);
     registreLabels[0].classList.add('error');
-    return false
+    dadestotes = false;
   } else { registreLabels[0].classList.remove('error'); }
-  if (dades['vicepresident'] == "") {
-    document.forms["formllista"]["vicepresident"].focus();
+  if (dades['carregs']['Vicepresident'] == "") {
+    document.forms["formllista"]["Vicepresident"].focus();
     registreLabels[1].classList.add('error');
-    return false
+    dadestotes = false;
   } else { registreLabels[1].classList.remove('error'); }
-  if (dades['tresorer'] == "") {
-    document.forms["formllista"]["tresorer"].focus();
+  if (dades['carregs']['Tresorer'] == "") {
+    document.forms["formllista"]["Tresorer"].focus();
     registreLabels[2].classList.add('error');
-    return false
+    dadestotes = false;
   } else { registreLabels[2].classList.remove('error'); }
-  if (dades['secretari'] == "") {
-    document.forms["formllista"]["secretari"].focus();
+  if (dades['carregs']['Secretari'] == "") {
+    document.forms["formllista"]["Secretari"].focus();
     registreLabels[3].classList.add('error');
-    return false
+    dadestotes = false;
   } else { registreLabels[3].classList.remove('error'); }
-  return true;
-
+  return dadestotes;
 }
 
 function enviarLlista() {
@@ -188,12 +383,12 @@ function enviarLlista() {
   data['nom'] = document.getElementById('nom').value;
 
   var carregs = {};
-  carregs['President'] = document.getElementById("president").value;
-  carregs['Vicepresident'] = document.getElementById("vicepresident").value;
-  carregs['Tresorer'] = document.getElementById("tresorer").value;
-  carregs['Secretari'] = document.getElementById("secretari").value;
+  carregs['President'] = document.getElementById("President").value;
+  carregs['Vicepresident'] = document.getElementById("Vicepresident").value;
+  carregs['Tresorer'] = document.getElementById("Tresorer").value;
+  carregs['Secretari'] = document.getElementById("Secretari").value;
 
-  const vocals = document.getElementsByClassName('vocal');
+  const vocals = document.getElementsByClassName('Vocal');
   for (let i = 0; i < vocals.length; i++) {
     const element = vocals[i].querySelector('select');
     carregs["Vocal " + (i + 1)] = element.value;
@@ -201,34 +396,29 @@ function enviarLlista() {
   data['carregs'] = carregs;
 
   console.log(data);
-  //if (validarFormulari(data)) {
+  if (validarFormulari(data)) {
+    var xhttp = new XMLHttpRequest();
 
-  var xhttp = new XMLHttpRequest();
-
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttp.responseText);
-      var data = JSON.parse(xhttp.responseText);
-      if ((data.hasOwnProperty('Error'))) {
-        alert("error");
-        //document.getElementById('missatge').textContent = data["Error"];
-        if (data.hasOwnProperty('DeBug')) {
-          alert("debug");
-          //document.getElementById('missatge').textContent += data["DeBug"];
+    xhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        console.log(xhttp.responseText);
+        var data = JSON.parse(xhttp.responseText);
+        if ((data.hasOwnProperty('Error'))) {
+          alert("error");
+          //document.getElementById('missatge').textContent = data["Error"];
+          if (data.hasOwnProperty('DeBug')) {
+            alert("debug");
+            //document.getElementById('missatge').textContent += data["DeBug"];
+          }
+        } else {
+          location.reload();
         }
-      } else {
-        location.reload;
       }
-    }
-  };
+    };
 
-  xhttp.open('POST', '/api/llistes.php', true);
-  xhttp.send(JSON.stringify(data));
-  //}
+    xhttp.open('POST', '/api/llistes.php', true);
+    xhttp.send(JSON.stringify(data));
+  } else {
+    alert("error al inserir les dades");
+  }
 }
-
-
-
-
-
-
