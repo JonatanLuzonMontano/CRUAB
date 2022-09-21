@@ -124,162 +124,198 @@ function eliminarLlista(index) {
 }
 
 function editarLlista(index) {
-  if (checkEditaActiu()) {
-    alert("Siusplau, deixa d'editar una llista per poder editar un altra");
-  } else {
-    let presi = null;
-    let vice = null;
-    let treso = null;
-    let secre = null;
-    let vocals = null;
-    const llistallistes = document.querySelectorAll('.table-holder .llista');
-    llistallistes[index].classList.add('editant');
-    llistallistes[index].querySelectorAll('td:not(:has(button))').forEach(function (element, index) {
-      const text = element.textContent;
-      switch (index) {
-        case 0:
-          presi = text;
+  let presi = null;
+  let vice = null;
+  let treso = null;
+  let secre = null;
+  let vocals = null;
+  const llistallistes = document.querySelectorAll('.table-holder .llista');
+  document.querySelectorAll(':is(.editar, .eliminar)').forEach(function (button) {
+    button.classList.add('hidden');
+  });
+  llistallistes[index].classList.add('editant');
+  const guardarboto = llistallistes[index].querySelector('.guardar');
+  const cancelarboto = llistallistes[index].querySelector('.cancelar');
+  guardarboto.classList.remove('hidden');
+  cancelarboto.classList.remove('hidden');
+  guardarboto.addEventListener('click', function () {
+    canviarLlista(llistallistes[index].id);
+  });
+  cancelarboto.addEventListener('click', function () {
+    location.reload();
+  });
+
+
+  llistallistes[index].querySelectorAll('td:not(:has(button))').forEach(function (element, index) {
+    const text = element.textContent;
+    switch (index) {
+      case 0:
+        presi = text;
+        break;
+      case 1:
+        vice = text;
+        break;
+      case 2:
+        treso = text;
+        break;
+      case 3:
+        secre = text;
+        break;
+      case 4:
+        vocals = text;
+        break;
+
+      default:
+        break;
+    }
+    if (/[a-zA-Z]+/g.test(text)) {
+      element.textContent = "";
+    }
+    const carreg = element.className;
+    let selectpercopiar = null;
+    if (carreg === "Vocals") {
+      const llistavocals = vocals.split(', ');
+      for (let a = 0; a < llistavocals.length; a++) {
+        selectpercopiar = document.querySelector('#Vocal-1 select').cloneNode(true);
+        element.appendChild(selectpercopiar);
+      }
+      const afegirvocal = document.getElementById('templatebutton').querySelector('input');
+      element.appendChild(afegirvocal);
+      element.querySelector('input').addEventListener('click', function () {
+        afegirVocal('.editant .Vocals');
+        element.appendChild(afegirvocal);
+      });
+
+    } else {
+      selectpercopiar = document.getElementById(carreg).cloneNode(true);
+      element.appendChild(selectpercopiar);
+    }
+
+    if (element.querySelector('[name="Vocal"]') != undefined) {
+      element.querySelectorAll('select[name="Vocal"]').forEach(function (e, index) {
+        e.id = "editar" + "Vocal-" + (index + 1);
+      });
+    } else {
+      element.querySelector('select').id = "editar" + carreg;
+    }
+  });
+
+  const llistaid = llistallistes[index].id;
+  obtenirMembres(llistaid);
+  setTimeout(() => {
+    llistallistes[index].querySelectorAll('td:not(:has(button))').forEach(function (element) {
+      let opcions = null;
+      let select = null;
+      switch (element.className) {
+        case "President":
+          select = element.querySelector('select');
+          opcions = select.querySelectorAll('option');
+          for (let j = 0; j < opcions.length; j++) {
+            const el = select.querySelectorAll('option')[j];
+            if (el.textContent.includes(presi)) {
+              select.value = el.value;
+              break;
+            }
+          }
           break;
-        case 1:
-          vice = text;
+        case "Vicepresident":
+          select = element.querySelector('select');
+          opcions = select.querySelectorAll('option');
+          for (let j = 0; j < opcions.length; j++) {
+            const el = select.querySelectorAll('option')[j];
+            if (el.textContent.includes(vice)) {
+              select.value = el.value;
+              break;
+            }
+          }
           break;
-        case 2:
-          treso = text;
+        case "Tresorer":
+          select = element.querySelector('select');
+          opcions = select.querySelectorAll('option');
+          for (let j = 0; j < opcions.length; j++) {
+            const el = select.querySelectorAll('option')[j];
+            if (el.textContent.includes(treso)) {
+              select.value = el.value;
+              break;
+            }
+          }
           break;
-        case 3:
-          secre = text;
+        case "Secretari":
+          select = element.querySelector('select');
+          opcions = select.querySelectorAll('option');
+          for (let j = 0; j < opcions.length; j++) {
+            const el = select.querySelectorAll('option')[j];
+            if (el.textContent.includes(secre)) {
+              select.value = el.value;
+              break;
+            }
+          }
           break;
-        case 4:
-          vocals = text;
+        case "Vocals":
+          const llistavocals = vocals.split(', ');
+          const selects = element.querySelectorAll('select');
+
+          selects.forEach(function (select, iselect) {
+            opcions = select.querySelectorAll('option');
+
+            for (let j = 0; j < opcions.length; j++) {
+              const el = select.querySelectorAll('option')[j];
+              if (el.textContent.includes(llistavocals[iselect])) {
+                select.value = el.value;
+                break;
+              }
+            }
+          });
+
+
           break;
 
         default:
           break;
       }
-      if (/[a-zA-Z]+/g.test(text)) {
-        element.textContent = "";
-      }
-      const carreg = element.className;
-      let selectpercopiar = null;
-      if (carreg === "Vocals") {
-        const llistavocals = vocals.split(', ');
-        for (let a = 0; a < llistavocals.length; a++) {
-          selectpercopiar = document.querySelector('#Vocal-1 select').cloneNode(true);
-          element.appendChild(selectpercopiar);
-        }
-        const afegirvocal = document.getElementById('templatebutton').querySelector('input');
-        element.appendChild(afegirvocal);
-        element.querySelector('input').addEventListener('click', function () {
-          afegirVocal('.editant .Vocals', llistavocals.length);
-          element.appendChild(afegirvocal);
-        });
-
-      } else {
-        selectpercopiar = document.getElementById(carreg).cloneNode(true);
-        element.appendChild(selectpercopiar);
-      }
-
-      if (element.querySelectorAll('select').length > 1) {
-        element.querySelectorAll('select').forEach(function (e, index) {
-          e.id = "editar" + "Vocal-" + (index + 1);
-        });
-      } else {
-        element.querySelector('select').id = "editar" + carreg;
-      }
     });
-
-    const llistaid = llistallistes[index].id;
-    obtenirMembres(llistaid);
-    setTimeout(() => {
-      llistallistes[index].querySelectorAll('td:not(:has(button))').forEach(function (element) {
-        let opcions = null;
-        let select = null;
-        switch (element.className) {
-          case "President":
-            select = element.querySelector('select');
-            opcions = select.querySelectorAll('option');
-            for (let j = 0; j < opcions.length; j++) {
-              const el = select.querySelectorAll('option')[j];
-              if (el.textContent.includes(presi)) {
-                select.value = el.value;
-                break;
-              }
-            }
-            break;
-          case "Vicepresident":
-            select = element.querySelector('select');
-            opcions = select.querySelectorAll('option');
-            for (let j = 0; j < opcions.length; j++) {
-              const el = select.querySelectorAll('option')[j];
-              if (el.textContent.includes(vice)) {
-                select.value = el.value;
-                break;
-              }
-            }
-            break;
-          case "Tresorer":
-            select = element.querySelector('select');
-            opcions = select.querySelectorAll('option');
-            for (let j = 0; j < opcions.length; j++) {
-              const el = select.querySelectorAll('option')[j];
-              if (el.textContent.includes(treso)) {
-                select.value = el.value;
-                break;
-              }
-            }
-            break;
-          case "Secretari":
-            select = element.querySelector('select');
-            opcions = select.querySelectorAll('option');
-            for (let j = 0; j < opcions.length; j++) {
-              const el = select.querySelectorAll('option')[j];
-              if (el.textContent.includes(secre)) {
-                select.value = el.value;
-                break;
-              }
-            }
-            break;
-          case "Vocals":
-            const llistavocals = vocals.split(', ');
-            const selects = element.querySelectorAll('select');
-
-            selects.forEach(function (select, iselect) {
-              opcions = select.querySelectorAll('option');
-
-              for (let j = 0; j < opcions.length; j++) {
-                const el = select.querySelectorAll('option')[j];
-                if (el.textContent.includes(llistavocals[iselect])) {
-                  select.value = el.value;
-                  break;
-                }
-              }
-            });
-
-
-            break;
-
-          default:
-            break;
-        }
-      });
-    }, 100);
-
-  }
+  }, 100);
 }
 
-function checkEditaActiu() {
+
+function canviarLlista(id) {
+  const llistatr = document.getElementById(id);
+
+  var data = {};
+  data['nom'] = id;
+
+  var carregs = {};
+  carregs['President'] = llistatr.querySelector(".President > select").value;
+  carregs['Vicepresident'] = llistatr.querySelector(".Vicepresident > select").value;
+  carregs['Tresorer'] = llistatr.querySelector(".Tresorer > select").value;
+  carregs['Secretari'] = llistatr.querySelector(".Secretari > select").value;
+
+  const vocals = llistatr.querySelectorAll('.Vocals > [id^="editarVocal-"]');
+  vocals.forEach(function (element, i) {
+    carregs["Vocal " + (i + 1)] = element.value;
+  });
+  data['carregs'] = carregs;
+
+  console.group("Llista per canviar");
+  console.log("Nom de la llista " + data['nom']);
+  console.table(data['carregs']);
+  console.groupEnd();
+
   const llistallistes = document.querySelectorAll('.table-holder .llista');
-  let veritat = false;
+  let llistaindex;
   for (let i = 0; i < llistallistes.length; i++) {
     const element = llistallistes[i];
-    if (element.classList.contains('editant')) {
-      veritat = true;
+    if (element.id === id) {
+      llistaindex = i;
     }
-  }
-  return veritat
-}
+  };
+  eliminarLlista(llistaindex);
 
-function canviarLlista(index) { }
+  setTimeout(() => {
+    enviarLlista('update', id);
+  }, 100);
+
+}
 
 function obtenirMembres(formulari) {
   var xhttpmembres = new XMLHttpRequest();
@@ -315,12 +351,12 @@ function obtenirMembres(formulari) {
   xhttpmembres.send();
 }
 
-function afegirVocal(parent, numvocalstaula) {
+function afegirVocal(parent) {
   let selectparent = document.querySelector(parent);
-  let vocalacopiar = null;
+  let vocalacopiar;
 
   let vocalclon;
-  let numvocals = null;
+  let numvocals;
   if (selectparent.classList.contains('rows')) {
     vocalacopiar = document.querySelector("#Vocal-1");
     vocalclon = vocalacopiar.cloneNode(true);
@@ -331,8 +367,8 @@ function afegirVocal(parent, numvocalstaula) {
     vocalacopiar = document.querySelector(".editant .Vocals select");
     vocalclon = vocalacopiar.cloneNode(true);
     selectparent.appendChild(vocalclon);
-    numvocals = numvocalstaula;
-    selectparent.querySelector('select:last-of-type').id = "editarVocal-" + (numvocals);
+    numvocals = selectparent.querySelectorAll('select').length;
+    selectparent.querySelector('select[name="Vocal"]:last-of-type').id = "editarVocal-" + (numvocals);
   }
 }
 
@@ -362,48 +398,103 @@ function validarFormulari(dades) {
   return dadestotes;
 }
 
-function enviarLlista() {
+function enviarLlista(tipo, nomllista) {
   var data = {};
-  data['nom'] = document.getElementById('nom').value;
 
-  var carregs = {};
-  carregs['President'] = document.getElementById("President").value;
-  carregs['Vicepresident'] = document.getElementById("Vicepresident").value;
-  carregs['Tresorer'] = document.getElementById("Tresorer").value;
-  carregs['Secretari'] = document.getElementById("Secretari").value;
+  if (tipo === 'update') {
+    const llistatr = document.getElementById(nomllista);
+    data['nom'] = nomllista;
 
-  const vocals = document.getElementsByClassName('Vocal');
-  for (let i = 0; i < vocals.length; i++) {
-    const element = vocals[i].querySelector('select');
-    carregs["Vocal " + (i + 1)] = element.value;
-  }
-  data['carregs'] = carregs;
+    var carregs = {};
+    carregs['President'] = llistatr.querySelector(".President > select").value;
+    carregs['Vicepresident'] = llistatr.querySelector(".Vicepresident > select").value;
+    carregs['Tresorer'] = llistatr.querySelector(".Tresorer > select").value;
+    carregs['Secretari'] = llistatr.querySelector(".Secretari > select").value;
 
-  console.table(data);
-  if (validarFormulari(data)) {
-    var xhttp = new XMLHttpRequest();
+    const vocals = llistatr.querySelectorAll('.Vocals > [id^="editarVocal-"]');
+    vocals.forEach(function (element, i) {
+      carregs["Vocal " + (i + 1)] = element.value;
+    });
+    data['carregs'] = carregs;
 
-    xhttp.onreadystatechange = function () {
-      if (this.readyState == 4 && this.status == 200) {
-        //console.log(xhttp.responseText);
-        var data = JSON.parse(xhttp.responseText);
-        console.table(data);
-        if ((data.hasOwnProperty('Error'))) {
-          alert("error");
-          //document.getElementById('missatge').textContent = data["Error"];
-          if (data.hasOwnProperty('DeBug')) {
-            alert("debug");
-            //document.getElementById('missatge').textContent += data["DeBug"];
+    console.group("Llista per afegir");
+    console.log("Nom de la llista " + data['nom']);
+    console.table(data['carregs']);
+    console.groupEnd();
+    if (validarFormulari(data)) {
+      var xhttp = new XMLHttpRequest();
+
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          //console.log(xhttp.responseText);
+          var data = JSON.parse(xhttp.responseText);
+          console.table(data);
+          if ((data.hasOwnProperty('Error'))) {
+            alert("error");
+            //document.getElementById('missatge').textContent = data["Error"];
+            if (data.hasOwnProperty('DeBug')) {
+              alert("debug");
+              //document.getElementById('missatge').textContent += data["DeBug"];
+            }
+          } else {
+            location.reload();
           }
-        } else {
-          location.reload();
         }
-      }
-    };
+      };
 
-    xhttp.open('POST', '/api/llistes.php', true);
-    xhttp.send(JSON.stringify(data));
+      xhttp.open('POST', '/api/llistes.php', true);
+      xhttp.send(JSON.stringify(data));
+    } else {
+      alert("error al inserir les dades");
+    }
+
   } else {
-    alert("error al inserir les dades");
+    data['nom'] = document.getElementById('nom').value;
+
+    var carregs = {};
+    carregs['President'] = document.getElementById("President").value;
+    carregs['Vicepresident'] = document.getElementById("Vicepresident").value;
+    carregs['Tresorer'] = document.getElementById("Tresorer").value;
+    carregs['Secretari'] = document.getElementById("Secretari").value;
+
+    const vocals = document.getElementsByClassName('Vocal');
+    for (let i = 0; i < vocals.length; i++) {
+      const element = vocals[i].querySelector('select');
+      carregs["Vocal " + (i + 1)] = element.value;
+    }
+    data['carregs'] = carregs;
+
+    console.group("Llista per afegir");
+    console.log("Nom de la llista " + data['nom']);
+    console.table(data['carregs']);
+    console.groupEnd();
+    if (validarFormulari(data)) {
+      var xhttp = new XMLHttpRequest();
+
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          //console.log(xhttp.responseText);
+          var data = JSON.parse(xhttp.responseText);
+          console.table(data);
+          if ((data.hasOwnProperty('Error'))) {
+            alert("error");
+            //document.getElementById('missatge').textContent = data["Error"];
+            if (data.hasOwnProperty('DeBug')) {
+              alert("debug");
+              //document.getElementById('missatge').textContent += data["DeBug"];
+            }
+          } else {
+            location.reload();
+          }
+        }
+      };
+
+      xhttp.open('POST', '/api/llistes.php', true);
+      xhttp.send(JSON.stringify(data));
+    } else {
+      alert("error al inserir les dades");
+    }
   }
+
+
 }
