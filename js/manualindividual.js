@@ -33,13 +33,12 @@ function afegirCopiaManual() {
 function reservarManual(manual, copia) {
   var xhttpreservar = new XMLHttpRequest();
   var data = { "usuari": sessionStorage.getItem("numsoci"), "manual": manual, "copia": copia };
-  console.log(data);
+  console.table(data);
   xhttpreservar.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       console.log(xhttpreservar.responseText);
       let resultat = JSON.parse(xhttpreservar.responseText);
       if (resultat.hasOwnProperty("Correcte")) {
-        console.log(document.getElementById(copia));
         document.getElementById(copia).disabled = true;
         alert("Reserva sol·licitada");
         location.reload();

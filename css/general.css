@@ -298,7 +298,8 @@ nav .temes-boto svg {
 
 main > div,
 main > article {
-  width: 80%;
+  min-width: 80%;
+  max-width: 90%;
   min-height: 50vh;
   margin-top: 9vh;
   padding: 10px;
@@ -428,6 +429,49 @@ main p {
 
 .stretch > * {
   flex-grow: 1;
+}
+
+/*##############################   ESPECIALES   #################################*/
+/*toast message pop up*/
+#popup {
+  position: fixed;
+  bottom: 10vh;
+  left: 50vw;
+  transform: translateX(-50%);
+  display: block;
+  width: fit-content;
+  max-width: 30ch;
+  background: grey;
+  color: white;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  visibility: hidden;
+}
+
+#popup.visible {
+  visibility: visible;
+  animation: popup 3s ease 0s 1 normal forwards;
+  -webkit-animation: popup 3s ease 0s 1 normal forwards;
+}
+
+@keyframes popup {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  20%,
+  80% {
+    opacity: 1;
+  }
 }
 
 /*#################################   FORMULARIOS   #################################*/
@@ -939,6 +983,25 @@ td {
 
 .hidden.hidden {
   display: none;
+}
+
+.Vocals {
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+#afegirvocallista {
+  text-align: center;
+  font-weight: 900;
+  clip-path: unset;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+  height: 30px;
+  aspect-ratio: 1;
 }
 
 /*#########################   FOOTER   #############################*/
