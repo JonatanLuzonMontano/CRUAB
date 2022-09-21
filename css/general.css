@@ -1,6 +1,5 @@
 @import "css-reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
-@import url('http://fonts.cdnfonts.com/css/verdana');
 @import "variables.css";
 @import "media-q-movil.css";
 
@@ -515,12 +514,6 @@ input[type="file"] {
   color: var(--theme-maxcontrast);
 }
 
-/*
-*:first-of-type >input[type="text"] {
-  background-color:white !important;
-  box-shadow:inset 0 0 5px 0;
-  border:unset !important;
-}*/
 /* botons en general quan hover*/
 :is(button, input:is([type="button"], [type="submit"])):not([disabled]):is(:hover, :focus) {
   --edge-size: .45em;
@@ -582,9 +575,10 @@ input[type="file"]:invalid:is(:hover, :focus)::file-selector-button {
 input:not([type="button"], [type="submit"]) {
   position: relative;
   background-color: var(--input-bg);
+  box-shadow: inset 0 0 5px 0;
+  border: unset;
   max-width: fit-content;
   margin-bottom: 10px;
-  border: 1px solid var(--input-border);
   border-radius: 3px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -611,7 +605,8 @@ input:is(:not(:placeholder-shown, [type="date"], [type="file"], :focus):invalid,
 input:-internal-autofill-selected:invalid,
 input.error:is([type], [name]) {
   --input-bg: var(--input-bg-incorrect);
-  --input-border: var(--input-border-incorrect);
+  outline: 1px solid var(--input-border-incorrect);
+  box-shadow: unset;
   animation: shake 0.5s;
   animation-iteration-count: 1;
   -webkit-animation: shake 0.5s;
@@ -638,14 +633,16 @@ input.error:is([type], [name]) {
 /*inputs quan escrius*/
 input:not([type="radio"], [type="submit"], [type="button"]):focus {
   --input-bg: var(--input-bg-focus);
-  --input-border: var(--input-border-focus);
+  outline: 1px solid var(--input-border-focus);
+  box-shadow: unset;
 }
 
 /*inputs quan son bons*/
 input:not(:placeholder-shown, [type="submit"]):valid,
 input:-internal-autofill-selected:valid {
   --input-bg: var(--input-bg-correct);
-  --input-border: var(--input-border-correct);
+  outline: 1px solid var(--input-border-correct);
+  box-shadow: unset;
 }
 
 input[type="radio"] {
@@ -727,30 +724,6 @@ label + div label,
 textarea {
   max-width: 100%;
   resize: vertical;
-}
-
-.editar.editar.editar {
-  background: var(--button-bg);
-  aspect-ratio: 1;
-  border-radius: 100px;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  -ms-border-radius: 100px;
-  -o-border-radius: 100px;
-  clip-path: unset;
-  padding: unset;
-  text-align: center;
-}
-
-.editar.editar svg {
-  text-align: center;
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-.editar.editar svg path {
-  translate: 18% 25%;
 }
 
 /*#########################   TABLAS Y CONTENIDO DE LA BASE DE DATOS   #############################*/

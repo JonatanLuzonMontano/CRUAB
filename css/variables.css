@@ -21,13 +21,10 @@
   --p-weight-normal: 100;
   --p-weight-semi: 400;
   --p-weight-bold: 700;
-
   --td-size: 18px;
-
   --button-font-size: 18px;
   width: 100vw;
   height: 100%;
-
   --scroll: url("http://cruab/img/temes/scroll.jfif");
 }
 
@@ -43,15 +40,15 @@ body {
   --p-color: var(--text-color-general);
   --a-color: var(--accent-color);
   --a-selected-color: var(--secondary-accent-color);
-  --input-bg-base: hsl(0, 0%, 80%);
+  --input-bg-base: hsl(0, 0%, 100%);
   --input-bg: var(--input-bg-base);
   --input-bg-correct: hsl(102, 16%, 64%);
   --input-bg-incorrect: hsl(0, 23%, 70%);
   --input-bg-focus: hsl(41, 23%, 70%);
   --input-border: var(--theme-maxcontrast);
-  --input-border-incorrect:red;
-  --input-border-correct:green;
-  --input-border-focus:orange;
+  --input-border-incorrect: red;
+  --input-border-correct: green;
+  --input-border-focus: orange;
 }
 
 body.clar {
@@ -133,9 +130,10 @@ body.pergami {
   --PHB-logo-color: #ed1c24;
   --PHB-underline-color: #f0bf48;
   --PHB-statblocklines: #9c2b1b;
-  --redscroll: url(https://i.imgur.com/YvYGqOX.jpg);
-  --bluescroll: url(https://i.imgur.com/w2m4BgW.jpg);
-  --seascroll: url(https://i.imgur.com/dKciX3y.jpg);
+  --scroll: url(/img/temes/scroll.jfif);
+  --redscroll: url(/img/temes/redscroll.jpg);
+  --bluescroll: url(/img/temes/dark blue.jpg);
+  --seascroll: url(/img/temes/sea.jpg);
   --theme-maxcontrast: hsl(0, 0%, 0%);
   --theme-90contrast: hsl(0, 0%, 10%);
   --theme-80contrast: hsl(0, 0%, 20%);
@@ -152,10 +150,10 @@ body.pergami {
   /*base backgrounds*/
   --body-bg-color: var(--HB-bg-color);
   --body-bg-image: ;
-  --content-bg-image: url("http://cruab/img/temes/scroll.jfif");
+  --content-bg-image: var(--scroll);
   --nav-bg-color: var(--theme-20contrast);
   --enllaç-navegació-bg-hover: 150%;
-  --nav-bg-image: url("http://cruab/img/temes/redscroll.jpg");
+  --nav-bg-image: var(--redscroll);
   --footer-bg-image: var(--seascroll);
   --nav-shadow: 0px 0px 14px #000;
   /*interactive colors*/
