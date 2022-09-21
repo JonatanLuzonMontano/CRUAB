@@ -536,6 +536,20 @@ input[type="file"] {
       0% calc(100% - var(--edge-size)));
 }
 
+.editar,
+.guardar,
+.cancelar {
+  fill:white;
+  aspect-ratio: 1;
+  padding: 0 !important;
+  clip-path: unset !important;
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
+}
+
 /*botons verds, que afegeixen alguna cosa i son "segurs"*/
 .constructiu,
 input[type="file"]:valid::file-selector-button {
