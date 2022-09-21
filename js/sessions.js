@@ -4,12 +4,9 @@ function logout() {
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var data = JSON.parse(xhttp.responseText);
-      //console.log(data);
-      //console.log(sessionStorage);
       sessionStorage.removeItem("numsoci");
       sessionStorage.removeItem("juntari");
       sessionStorage.clear();
-      //console.log(sessionStorage);
     }
   };
   xhttp.open('DELETE', '/api/login.php', true);

@@ -2,7 +2,7 @@ var xhttpjunta = new XMLHttpRequest();
 xhttpjunta.onreadystatechange = function(){
     if (this.readyState == 4 && this.status == 200) {
         var junta = JSON.parse(xhttpjunta.responseText);
-        console.log(junta);
+        //console.log(junta);
         if(junta == null){
             window.location.href = "login.html";
         } else {

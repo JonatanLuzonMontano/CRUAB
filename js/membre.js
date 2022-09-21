@@ -4,10 +4,10 @@ function actiuInactiu() {
   xhttpactiu.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var data = JSON.parse(xhttpactiu.responseText);
-      //console.log(data);
       for (i = 0; i < data.length; i++) {
         if (data[i]["numsoci"] == nummembre) {
           const missatge = "Ets un usuari " + data[i]['estat'] + ".";
+          sessionStorage.setItem("estatsoci", data[i]['estat']);
           document.getElementById('activitat').textContent = missatge;
           popUp(missatge);
           break;
@@ -23,9 +23,9 @@ function checkPeriodeaActivacio() {
   var xhttpcheckeleccions = new XMLHttpRequest();
   xhttpcheckeleccions.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttpcheckeleccions.responseText);
+      //console.log(xhttpcheckeleccions.responseText);
       var llista = JSON.parse(xhttpcheckeleccions.responseText);
-      console.log(llista);
+      console.table(llista);
       if (llista['activacio membres'] === 1) {
         document.getElementById('activarmembre').classList.remove('hidden');
         document.getElementById('activarmembre').addEventListener('click', function () { activar(); });
@@ -157,7 +157,7 @@ function eliminarMembre(numsoci) {
 function popUp(mensaje) {
   const popup = document.getElementById('popup');
   popup.textContent = mensaje;
-  console.log(popup);
+  //console.log(popup);
   popup.className = 'visible';
   setTimeout(function () {
     popup.className = '';

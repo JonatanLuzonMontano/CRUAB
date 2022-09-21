@@ -5,7 +5,7 @@ function pasEleccions() {
     if (this.readyState == 4 && this.status == 200) {
       //console.log(xhttpcheckeleccions.responseText);
       var llista = JSON.parse(xhttpcheckeleccions.responseText);
-      console.log(llista);
+      console.table(llista);
       if (llista['presentacio de llistes'] === 1) {
         obtenirLlistes();
         document.getElementById('afegirllista').classList.remove('hidden');
@@ -39,7 +39,7 @@ function obtenirLlistes() {
     if (this.readyState == 4 && this.status == 200) {
       //console.log(xhttpllistes.responseText);
       var data = JSON.parse(xhttpllistes.responseText);
-      console.log(data);
+      console.table(data);
 
       const taula = document.getElementsByTagName('tbody')[0];
       const filera = taula.querySelector('tr:last-child');
@@ -165,7 +165,6 @@ function editarLlista(index) {
         const llistavocals = vocals.split(', ');
         for (let a = 0; a < llistavocals.length; a++) {
           selectpercopiar = document.querySelector('#Vocal-1 select').cloneNode(true);
-          console.log('loop ' + a);
           element.appendChild(selectpercopiar);
         }
         const afegirvocal = document.getElementById('templatebutton').querySelector('input');
@@ -187,11 +186,8 @@ function editarLlista(index) {
       } else {
         element.querySelector('select').id = "editar" + carreg;
       }
-
-      console.log(text);
-
-
     });
+
     const llistaid = llistallistes[index].id;
     obtenirMembres(llistaid);
     setTimeout(() => {
@@ -205,7 +201,6 @@ function editarLlista(index) {
             for (let j = 0; j < opcions.length; j++) {
               const el = select.querySelectorAll('option')[j];
               if (el.textContent.includes(presi)) {
-                console.log(presi + " = " + el.textContent);
                 select.value = el.value;
                 break;
               }
@@ -217,7 +212,6 @@ function editarLlista(index) {
             for (let j = 0; j < opcions.length; j++) {
               const el = select.querySelectorAll('option')[j];
               if (el.textContent.includes(vice)) {
-                console.log(vice + " = " + el.textContent);
                 select.value = el.value;
                 break;
               }
@@ -229,7 +223,6 @@ function editarLlista(index) {
             for (let j = 0; j < opcions.length; j++) {
               const el = select.querySelectorAll('option')[j];
               if (el.textContent.includes(treso)) {
-                console.log(treso + " = " + el.textContent);
                 select.value = el.value;
                 break;
               }
@@ -241,7 +234,6 @@ function editarLlista(index) {
             for (let j = 0; j < opcions.length; j++) {
               const el = select.querySelectorAll('option')[j];
               if (el.textContent.includes(secre)) {
-                console.log(secre + " = " + el.textContent);
                 select.value = el.value;
                 break;
               }
@@ -257,7 +249,6 @@ function editarLlista(index) {
               for (let j = 0; j < opcions.length; j++) {
                 const el = select.querySelectorAll('option')[j];
                 if (el.textContent.includes(llistavocals[iselect])) {
-                  console.log(vocals + " = " + el.textContent);
                   select.value = el.value;
                   break;
                 }
@@ -294,14 +285,11 @@ function obtenirMembres(formulari) {
   var xhttpmembres = new XMLHttpRequest();
   xhttpmembres.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttpmembres.responseText);
+      //console.log(xhttpmembres.responseText);
       var data = JSON.parse(xhttpmembres.responseText);
       data = data.sort(alphabetic);
-      console.log(data);
+      //console.table(data);
       const pare = document.querySelector('[id="' + formulari + '"]');
-      console.log(pare);
-      console.log(formulari);
-      console.log('[id="' + formulari + '"]');
       const selects = pare.querySelectorAll('select');
       function alphabetic(a, b) {
         if (a['nom'] < b['nom']) return -1;
@@ -329,7 +317,6 @@ function obtenirMembres(formulari) {
 
 function afegirVocal(parent, numvocalstaula) {
   let selectparent = document.querySelector(parent);
-  console.log(selectparent);
   let vocalacopiar = null;
 
   let vocalclon;
@@ -342,9 +329,7 @@ function afegirVocal(parent, numvocalstaula) {
     selectparent.querySelector('div:last-child').id = "Vocal-" + (numvocals);
   } else {
     vocalacopiar = document.querySelector(".editant .Vocals select");
-    console.log(vocalacopiar);
     vocalclon = vocalacopiar.cloneNode(true);
-    console.log(vocalclon);
     selectparent.appendChild(vocalclon);
     numvocals = numvocalstaula;
     selectparent.querySelector('select:last-of-type').id = "editarVocal-" + (numvocals);
@@ -356,7 +341,6 @@ function validarFormulari(dades) {
   let dadestotes = true;
   if (dades['carregs']['President'] == "") {
     document.forms["formllista"]["President"].focus();
-    console.log(document.forms["formllista"]);
     registreLabels[0].classList.add('error');
     dadestotes = false;
   } else { registreLabels[0].classList.remove('error'); }
@@ -395,14 +379,15 @@ function enviarLlista() {
   }
   data['carregs'] = carregs;
 
-  console.log(data);
+  console.table(data);
   if (validarFormulari(data)) {
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        console.log(xhttp.responseText);
+        //console.log(xhttp.responseText);
         var data = JSON.parse(xhttp.responseText);
+        console.table(data);
         if ((data.hasOwnProperty('Error'))) {
           alert("error");
           //document.getElementById('missatge').textContent = data["Error"];
