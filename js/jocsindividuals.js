@@ -33,7 +33,7 @@ function afegirCopiaJoc() {
 function reservarJoc(joc, copia) {
   var xhttpreservar = new XMLHttpRequest();
   var data = { "usuari": sessionStorage.getItem("numsoci"), "joc": joc, "copia": copia };
-  console.log(data);
+  console.table(data);
   xhttpreservar.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       console.log(xhttpreservar.responseText);

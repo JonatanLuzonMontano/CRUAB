@@ -56,7 +56,6 @@ function alCarregar() {
       actiuInactiu();
       break;
     case "eleccions.html":
-      //console.log("Session storage = " + sessionStorage.eleccions);
       if (sessionStorage.eleccions == "false") {
         window.location.href = "index.html";
       } else {
@@ -68,6 +67,7 @@ function alCarregar() {
   }
 
   afegeixListeners();
+  console.table(sessionStorage);
 }
 
 function afegeixListeners() {
@@ -174,9 +174,9 @@ function checkEleccions() {
   var xhttpcheckeleccions = new XMLHttpRequest();
   xhttpcheckeleccions.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttpcheckeleccions.responseText);
+      //console.log(xhttpcheckeleccions.responseText);
       var llista = JSON.parse(xhttpcheckeleccions.responseText);
-      //console.log(llista);
+      console.table(llista);
       if (llista['proces electoral'] === 1 && sessionStorage['numsoci'] != null) {
         document.getElementById('paginaeleccions').classList.remove('hidden');
         window.sessionStorage.setItem('eleccions', true);
