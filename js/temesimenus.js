@@ -1,9 +1,8 @@
 
 /* ####################################################3#######  TEMES  ##############################################3################*/
-var tema = localStorage.getItem('tema');
 
 const canviaTema = () => {
-  tema = localStorage.getItem('tema');
+  var tema = localStorage.getItem('tema');
   if (tema == null) {
     localStorage.setItem('tema', "clar");
   }
@@ -68,4 +67,18 @@ function ifScrollMostrarPujar() {
 
 function scrollTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// #################################################################   FUNCIONS COMUNES DE DISPLAY D'INFORMACIO ##############################################
+
+function popUp(mensaje) {
+  const popup = document.getElementById('popup');
+  if (!popup.classList.contains('visible')) {
+    popup.textContent = mensaje;
+    popup.className = 'visible';
+    setTimeout(function () {
+      popup.className = '';
+    }, 1500);
+  }
+
 }

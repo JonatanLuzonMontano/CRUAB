@@ -150,8 +150,8 @@
               <td class="Secretari"></td>
               <td class="Vocals"></td>
               <td>
-                <button class="eliminar destructiu hidden">Eliminar</button> <button
-                  class="votar neutre hidden">Voto</button>
+                <button class="eliminar destructiu hidden">Eliminar</button>
+                <button class="votar neutre hidden">Voto</button>
                 <button class="guardar constructiu hidden">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
                     <path style="transform:translate(20%, 20%)"
@@ -176,9 +176,13 @@
             </tr>
           </tbody>
         </table>
-        <div id="templatebutton" class="hidden">
-          <input id="afegirvocallista" type="button" class="neutre" value="+">
-        </div>
+        <template id="templatebutton">
+          <div class="botonsvocals columns">
+            <input class="afegirvocal rodo" type="button" class="neutre" value="+">
+            <input class="eliminarvocal rodo" type="button" class="neutre" value="-">
+          </div>
+
+        </template>
       </div>
       <br>
       <button id="afegirllista" class="constructiu hidden">Afegir una llista electoral</button>
@@ -270,10 +274,12 @@
     </section>
   </footer>
 
+  <div id="popup"></div>
+
+  <script src="js/temesimenus.js"></script>
   <script src="js/checkmembre.js"></script>
   <script src="js/sessions.js"></script>
   <script src="js/eleccions.js"></script>
-  <script src="js/temesimenus.js"></script>
   <script src="js/onload.js"></script>
 </body>
 

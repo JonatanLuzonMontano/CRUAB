@@ -84,7 +84,7 @@ function getMembres() {
     if (this.readyState == 4 && this.status == 200) {
       //console.log(xhttpmembres.responseText);
       var membres = JSON.parse(xhttpmembres.responseText);
-      console.log(membres);
+      console.table(membres);
 
       var t = document.querySelector('#membres');
       var td = t.content.querySelectorAll("td");
@@ -138,28 +138,28 @@ function getMembres() {
 
 }
 
+
+/*para arreglar, no se puede eliminar nadie que aparezca en la lista de llistes*/
 function eliminarMembre(numsoci) {
   if (confirm('estas segur que vols eliminar el soci de numero ' + numsoci + "?")) {
-    var data = { key: 'numsoci', value: numsoci };
+    var data = { numsoci: numsoci };
+    console.log(data);
     var xhttpmembreeliminat = new XMLHttpRequest();
     xhttpmembreeliminat.onreadystatechange = function () {
-      console.log(xhttpmembreeliminat.responseText);
       if (this.readyState == 4 && this.status == 200) {
-        location.reload();
+        //console.log(xhttpmembreeliminat.responseText);
+        var data = JSON.parse(xhttpmembreeliminat.responseText);
+        if ((data.hasOwnProperty('Error'))) {
+          console.log(data["Error"]);
+          if (data.hasOwnProperty('DeBug')) {
+            console.log(data["DeBug"]);
+          }
+        } else {
+          location.reload();
+        }
       }
     }
     xhttpmembreeliminat.open('DELETE', '/api/registre.php', true);
     xhttpmembreeliminat.send(JSON.stringify(data));
   }
-}
-
-/* no funciona*/
-function popUp(mensaje) {
-  const popup = document.getElementById('popup');
-  popup.textContent = mensaje;
-  //console.log(popup);
-  popup.className = 'visible';
-  setTimeout(function () {
-    popup.className = '';
-  }, 10000);
 }

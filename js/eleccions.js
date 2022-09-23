@@ -9,19 +9,21 @@ function pasEleccions() {
       if (llista['presentacio de llistes'] === 1) {
         obtenirLlistes();
 
-        let botoelimina = document.getElementsByClassName('eliminar');
-        for (let i = 0; i < botoelimina.length; i++) {
-          const element = botoelimina[i];
-          element.classList.remove('hidden');
-          element.addEventListener('click', function () { eliminarLlista(i); });
-        }
-        let botoeditar = document.getElementsByClassName('editar');
-        for (let i = 0; i < botoeditar.length; i++) {
-          const element = botoeditar[i];
-          element.classList.remove('hidden');
-          element.addEventListener('click', function () { editarLlista(i); });
-        }
 
+        setTimeout(function () {
+          let botoelimina = document.getElementsByClassName('eliminar');
+          for (let i = 0; i < botoelimina.length; i++) {
+            const element = botoelimina[i];
+            element.classList.remove('hidden');
+            element.addEventListener('click', function () { eliminarLlista(i); });
+          }
+          let botoeditar = document.getElementsByClassName('editar');
+          for (let i = 0; i < botoeditar.length; i++) {
+            const element = botoeditar[i];
+            element.classList.remove('hidden');
+            element.addEventListener('click', function () { editarLlista(i); });
+          }
+        }, 200);
 
         document.getElementById('afegirllista').classList.remove('hidden');
         document.getElementById('afegirllista').addEventListener('click', function () {
@@ -126,11 +128,8 @@ function eliminarLlista(index) {
 }
 
 function editarLlista(index) {
-  let presi = null;
-  let vice = null;
-  let treso = null;
-  let secre = null;
-  let vocals = null;
+
+  let presi, vice, treso, secre, vocals;
   const llistallistes = document.querySelectorAll('.table-holder .llista');
   document.querySelectorAll(':is(.editar, .eliminar)').forEach(function (button) {
     button.classList.add('hidden');
@@ -174,18 +173,26 @@ function editarLlista(index) {
       element.textContent = "";
     }
     const carreg = element.className;
-    let selectpercopiar = null;
+    let selectpercopiar;
     if (carreg === "Vocals") {
       const llistavocals = vocals.split(', ');
       for (let a = 0; a < llistavocals.length; a++) {
         selectpercopiar = document.querySelector('#Vocal-1 select').cloneNode(true);
         element.appendChild(selectpercopiar);
       }
-      const afegirvocal = document.getElementById('templatebutton').querySelector('input');
-      element.appendChild(afegirvocal);
-      element.querySelector('input').addEventListener('click', function () {
+      console.log(element);
+      const grupbotons = document.getElementById('templatebutton');
+      clon = grupbotons.content.cloneNode(true);
+      const botons = clon.querySelector('.botonsvocals');
+      console.log(botons);
+      element.appendChild(botons);
+      element.querySelector('.afegirvocal').addEventListener('click', function () {
         afegirVocal('.editant .Vocals');
-        element.appendChild(afegirvocal);
+        element.appendChild(botons);
+      });
+      element.querySelector('.eliminarvocal').addEventListener('click', function () {
+        eliminarVocal('.editant .Vocals');
+        element.appendChild(botons);
       });
 
     } else {
@@ -360,17 +367,35 @@ function afegirVocal(parent) {
   let vocalclon;
   let numvocals;
   if (selectparent.classList.contains('rows')) {
+    if(selectparent.querySelector('*').length === 10) {
+      popUp('Normalment diria que ' + selectparent.querySelector('*').length + ' vocals son molts' );
+    }
     vocalacopiar = document.querySelector("#Vocal-1");
     vocalclon = vocalacopiar.cloneNode(true);
     numvocals = selectparent.querySelectorAll('div:not(:first-child)').length;
     selectparent.appendChild(vocalclon);
     selectparent.querySelector('div:last-child').id = "Vocal-" + (numvocals);
   } else {
+    if(selectparent.querySelector('*').length === 10) {
+      popUp('Normalment diria que ' + selectparent.querySelector('select').length + ' vocals son molts' );
+    }
     vocalacopiar = document.querySelector(".editant .Vocals select");
     vocalclon = vocalacopiar.cloneNode(true);
     selectparent.appendChild(vocalclon);
     numvocals = selectparent.querySelectorAll('select').length;
     selectparent.querySelector('select[name="Vocal"]:last-of-type').id = "editarVocal-" + (numvocals);
+  }
+}
+
+function eliminarVocal(parent) {
+  let selectparent = document.querySelector(parent);
+  let vocalaeliminar = selectparent.querySelector('select:last-of-type');
+
+  if (selectparent.querySelectorAll(' select').length > 1) {
+
+    selectparent.removeChild(vocalaeliminar);
+  } else {
+    popUp("El minim de camps per eliminar es 2");
   }
 }
 
@@ -500,3 +525,4 @@ function enviarLlista(tipo, nomllista) {
 
 
 }
+
