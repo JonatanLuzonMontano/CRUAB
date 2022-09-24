@@ -572,7 +572,7 @@ input[type="file"]:invalid:is(:hover, :focus)::file-selector-button {
 }
 
 /*inputs de tipus text, password, i tal, mai botons*/
-input:is([type="text"], [type="number"], [type="password"], [type="email"]) {
+input:not([type="button"], [type="radio"], [type="submit"]) {
   position: relative;
   background-color: var(--input-bg);
   box-shadow: inset 0 0 5px 0;
@@ -638,8 +638,8 @@ input:is([type="text"], [type="number"], [type="password"], [type="email"]):focu
 }
 
 /*inputs quan son bons*/
-input:is([type="text"], [type="number"], [type="password"], [type="email"]):not(:placeholder-shown):valid,
-input:-internal-autofill-selected:valid {
+input:not(:placeholder-shown, [type="radio"], [type="submit"]):valid,
+input:not([type="radio"]):-internal-autofill-selected:valid {
   --input-bg: var(--input-bg-correct);
   outline: 1px solid var(--input-border-correct);
   box-shadow: unset;
