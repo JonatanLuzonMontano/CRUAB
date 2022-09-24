@@ -2,42 +2,41 @@ function validarFormulariManual(dades, imatge) {
 
   if (dades['nom'] == "") {
     document.forms["formafegirmanual"]["nom"].focus();
-    document.getElementById('missatge').innerHTML = `<p>El nom és obligatori</p>`;
-    return false
+    popUp("El nom és obligatori");
+    return false;
   }
   if (dades['genere'] == "") {
     document.forms["formafegirmanual"]["genere"].focus();
-    document.getElementById('missatge').innerHTML = `<p>Has de posar el génere</p>`;
-    return false
+    popUp("Has de posar el génere");
+    return false;
   }
   if (dades['ambientacio'] == "") {
     document.forms["formafegirmanual"]["ambientacio"].focus();
-    document.getElementById('missatge').innerHTML = `<p>Has de posar una ambientació</p>`;
-    return false
+    popUp("Has de posar una ambientació");
+    return false;
   }
   if (dades['editorial'] == "") {
     document.forms["formafegirmanual"]["editorial"].focus();
-    document.getElementById('missatge').innerHTML = `<p>Has d'indicar l'editorial</p>`;
-    return false
+    popUp("Has d'indicar l'editorial");
+    return false;
   }
   if (dades['adquirit'] == "") {
     document.forms["formafegirmanual"]["adquirit"].focus();
-    document.getElementById('missatge').innerHTML = `<p>Has d'indicar quan es va adquirir el manual</p>`;
-    return false
+    popUp("Has d'indicar quan es va adquirir el manual");
+    return false;
   } else {
     var data = Date.parse(new Date());
     var datanadquisicio = Date.parse(dades['adquirit']);
     if (data < datanadquisicio) {
       document.forms["formregistre"]["naixement"].focus();
-      document.getElementById('missatge').innerHTML = `<p>La data d'adquisició ha de ser anterior a la data actual</p>`;
-      return false
+      popUp("La data d'adquisició ha de ser anterior a la data actual");
+      return false;
     }
   }
-
   if (imatge == null) {
     document.forms["formafegirmanual"]["img-uploader"].focus();
-    document.getElementById('missatge').innerHTML = `<p>Has d'introduir una imatge</p>`;
-    return false
+    popUp("Has d'introduir una imatge");
+    return false;
   }
 
   return true;
@@ -112,8 +111,9 @@ function getManuals() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(xhttp.responseText);
+      //console.log(xhttp.responseText);
       var llista = JSON.parse(xhttp.responseText);
+      console.table(llista);
       const element = document.getElementsByClassName("manual")[0];
       if (sessionStorage['juntari'] == 'true') {
         document.getElementById("boto-afegir").addEventListener('click', function () { registreManual(); }); /* esto no tendria que estar aqui, sino fuera del foreach*/

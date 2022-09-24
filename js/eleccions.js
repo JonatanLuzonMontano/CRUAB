@@ -286,7 +286,6 @@ function editarLlista(index) {
   }, 100);
 }
 
-
 function canviarLlista(id) {
   const llistatr = document.getElementById(id);
 
@@ -367,8 +366,8 @@ function afegirVocal(parent) {
   let vocalclon;
   let numvocals;
   if (selectparent.classList.contains('rows')) {
-    if(selectparent.querySelector('*').length === 10) {
-      popUp('Normalment diria que ' + selectparent.querySelector('*').length + ' vocals son molts' );
+    if (selectparent.querySelector('*').length === 10) {
+      popUp('Normalment diria que ' + selectparent.querySelector('*').length + ' vocals son molts');
     }
     vocalacopiar = document.querySelector("#Vocal-1");
     vocalclon = vocalacopiar.cloneNode(true);
@@ -376,8 +375,8 @@ function afegirVocal(parent) {
     selectparent.appendChild(vocalclon);
     selectparent.querySelector('div:last-child').id = "Vocal-" + (numvocals);
   } else {
-    if(selectparent.querySelector('*').length === 10) {
-      popUp('Normalment diria que ' + selectparent.querySelector('select').length + ' vocals son molts' );
+    if (selectparent.querySelector('*').length === 10) {
+      popUp('Normalment diria que ' + selectparent.querySelector('select').length + ' vocals son molts');
     }
     vocalacopiar = document.querySelector(".editant .Vocals select");
     vocalclon = vocalacopiar.cloneNode(true);
@@ -400,28 +399,28 @@ function eliminarVocal(parent) {
 }
 
 function validarFormulari(dades) {
-  var registreLabels = document.getElementsByTagName("label");
+  var registreLabels = document.querySelectorAll('label:not([for="nom"], [for^="Vocal"])');
+  var labelsbyname = [];
+  console.log(registreLabels);
+  registreLabels.forEach(function (label) {
+    labelsbyname.push(label.getAttribute('for'));
+  });
+  console.log(registreLabels);
+  console.log(dades);
   let dadestotes = true;
-  if (dades['carregs']['President'] == "") {
-    document.forms["formllista"]["President"].focus();
-    registreLabels[0].classList.add('error');
-    dadestotes = false;
-  } else { registreLabels[0].classList.remove('error'); }
-  if (dades['carregs']['Vicepresident'] == "") {
-    document.forms["formllista"]["Vicepresident"].focus();
-    registreLabels[1].classList.add('error');
-    dadestotes = false;
-  } else { registreLabels[1].classList.remove('error'); }
-  if (dades['carregs']['Tresorer'] == "") {
-    document.forms["formllista"]["Tresorer"].focus();
-    registreLabels[2].classList.add('error');
-    dadestotes = false;
-  } else { registreLabels[2].classList.remove('error'); }
-  if (dades['carregs']['Secretari'] == "") {
-    document.forms["formllista"]["Secretari"].focus();
-    registreLabels[3].classList.add('error');
-    dadestotes = false;
-  } else { registreLabels[3].classList.remove('error'); }
+  for (const [key, value] of Object.entries(dades['carregs'])) {
+    const index = labelsbyname.indexOf(key);
+    if (key.startsWith('Vocal')) {} else {
+      if (value == "") {
+        console.log('Id = ' + key);
+        document.getElementById(key).focus();
+        registreLabels[index].classList.add('error');
+        dadestotes = false;
+        popUp('La llista necessita un membre com a ' + key.toLowerCase() + '.');
+        break;
+      }
+    }
+  }
   return dadestotes;
 }
 
@@ -458,10 +457,10 @@ function enviarLlista(tipo, nomllista) {
           console.table(data);
           if ((data.hasOwnProperty('Error'))) {
             alert("error");
-            //document.getElementById('missatge').textContent = data["Error"];
+            popUp(data["Error"]);
             if (data.hasOwnProperty('DeBug')) {
               alert("debug");
-              //document.getElementById('missatge').textContent += data["DeBug"];
+              popUp(data["Debug"]);
             }
           } else {
             location.reload();
@@ -504,11 +503,9 @@ function enviarLlista(tipo, nomllista) {
           var data = JSON.parse(xhttp.responseText);
           console.table(data);
           if ((data.hasOwnProperty('Error'))) {
-            alert("error");
-            //document.getElementById('missatge').textContent = data["Error"];
+            popUp(data["Error"]);
             if (data.hasOwnProperty('DeBug')) {
-              alert("debug");
-              //document.getElementById('missatge').textContent += data["DeBug"];
+              popUp(data["Debug"]);
             }
           } else {
             location.reload();
@@ -518,11 +515,7 @@ function enviarLlista(tipo, nomllista) {
 
       xhttp.open('POST', '/api/llistes.php', true);
       xhttp.send(JSON.stringify(data));
-    } else {
-      alert("error al inserir les dades");
     }
   }
-
-
 }
 

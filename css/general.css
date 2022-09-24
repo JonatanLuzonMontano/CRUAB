@@ -455,12 +455,13 @@ main p {
   padding: 5px 10px;
 
   box-shadow: 0 0 5px white;
+  z-index:100;
 }
 
 #popup.visible {
   display:block;
-  animation: popup 1500ms ease 0s 1 normal forwards;
-  -webkit-animation: popup 1500ms ease 0s 1 normal forwards;
+  animation: popup 2500ms ease 0s 1 normal forwards;
+  -webkit-animation: popup 2500ms ease 0s 1 normal forwards;
 }
 
 @keyframes popup {

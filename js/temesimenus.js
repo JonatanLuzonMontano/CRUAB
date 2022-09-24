@@ -78,7 +78,7 @@ function popUp(mensaje) {
     popup.className = 'visible';
     setTimeout(function () {
       popup.className = '';
-    }, 1500);
+    }, 2500);
   }
 
 }
