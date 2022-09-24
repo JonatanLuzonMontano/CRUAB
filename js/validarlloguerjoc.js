@@ -4,7 +4,7 @@ function obtenirJocs(){
         if (this.readyState == 4 && this.status == 200) {
             //console.log(xhttp.responseText);
             var data = JSON.parse(xhttp.responseText);
-            console.log(data);
+            console.table(data);
 
             var t = document.querySelector('#jocsdetaula'),
             td = t.content.querySelectorAll("td");

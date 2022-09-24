@@ -1,7 +1,6 @@
 @import "css-reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap');
 @import "variables.css";
-@import "media-q-movil.css";
 
 /*#########################   BODY & REGLAS GENERALES   ##########################################*/
 body {
@@ -435,12 +434,12 @@ main p {
 /*toast message pop up*/
 #popup {
   position: fixed;
-  bottom: 10vh;
+  bottom: 20vh;
   left: 50vw;
   transform: translateX(-50%);
-  display: block;
+  display: none;
   width: fit-content;
-  max-width: 30ch;
+  max-width: 50ch;
   background: grey;
   color: white;
   -webkit-transform: translateX(-50%);
@@ -452,13 +451,17 @@ main p {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-  visibility: hidden;
+
+  padding: 5px 10px;
+
+  box-shadow: 0 0 5px white;
+  z-index:100;
 }
 
 #popup.visible {
-  visibility: visible;
-  animation: popup 3s ease 0s 1 normal forwards;
-  -webkit-animation: popup 3s ease 0s 1 normal forwards;
+  display:block;
+  animation: popup 2500ms ease 0s 1 normal forwards;
+  -webkit-animation: popup 2500ms ease 0s 1 normal forwards;
 }
 
 @keyframes popup {
@@ -478,20 +481,13 @@ main p {
 /* botons actius o inactius */
 :is(button, input:is([type="button"], [type="submit"])) {
   --edge-size: .45em;
+  border-radius:20px;
   background: var(--button-bg-fallback);
-  clip-path: polygon(
-      /*top left 1*/
-      0% var(--edge-size),
-      /*top left 2*/
-      var(--edge-size) 0%,
-      /*top right*/
-      100% 0,
-      /*bottom right 1*/
-      100% calc(100% - var(--edge-size)),
-      /*bottom right 1*/
-      calc(100% - var(--edge-size)) 100%,
-      /*bottom left*/
-      0% 100%);
+  /*clip-path: polygon(      top left       0% var(--edge-size),      top left       var(--edge-size) 0%,      top righ      100% 0,      bottom right       100% calc(100% - var(--edge-size)),      bottom right       calc(100% - var(--edge-size)) 100%,      bottom lef      0% 100%)*/;
+  -webkit-border-radius:20px;
+  -moz-border-radius:20px;
+  -ms-border-radius:20px;
+  -o-border-radius:20px;
 }
 
 /* botons que estan actius */
@@ -516,30 +512,20 @@ input[type="file"] {
 
 /* botons en general quan hover*/
 :is(button, input:is([type="button"], [type="submit"])):not([disabled]):is(:hover, :focus) {
-  --edge-size: .45em;
-  clip-path: polygon(
-      /*top left 1*/
-      0% var(--edge-size),
-      /*top left 2*/
-      var(--edge-size) 0%,
-      /*top right 1*/
-      calc(100% - var(--edge-size)) 0,
-      /*top right 2*/
-      100% var(--edge-size),
-      /*bottom right 1*/
-      100% calc(100% - var(--edge-size)),
-      /*bottom right 1*/
-      calc(100% - var(--edge-size)) 100%,
-      /*bottom left 1*/
-      var(--edge-size) 100%,
-      /*bottom left 2*/
-      0% calc(100% - var(--edge-size)));
+  /*--edge-size: .45em;
+  /*clip-path: polygon(      top left 1      0% var(--edge-size),      top left 2      var(--edge-size) 0%,      top right 1      calc(100% - var(--edge-size)) 0,      top right 2      100% var(--edge-size),      bottom right 1      100% calc(100% - var(--edge-size)),      bottom right 1      calc(100% - var(--edge-size)) 100%,      bottom left 1      var(--edge-size) 100%,      bottom left 2      0% calc(100% - var(--edge-size)));
+  */
+  border-radius: 100px;
+  -webkit-border-radius: 100px;
+  -moz-border-radius: 100px;
+  -ms-border-radius: 100px;
+  -o-border-radius: 100px;
 }
 
 .editar,
 .guardar,
 .cancelar {
-  fill:white;
+  fill: white;
   aspect-ratio: 1;
   padding: 0 !important;
   clip-path: unset !important;
@@ -645,7 +631,7 @@ input.error:is([type], [name]) {
 }
 
 /*inputs quan escrius*/
-input:not([type="radio"], [type="submit"], [type="button"]):focus {
+input:is([type="text"], [type="number"], [type="password"], [type="email"]):focus {
   --input-bg: var(--input-bg-focus);
   outline: 1px solid var(--input-border-focus);
   box-shadow: unset;
@@ -779,6 +765,7 @@ textarea {
 }
 
 table {
+  --border-table: 1px solid var(--theme-maxcontrast);
   z-index: 5;
   min-width: 300px;
   border-collapse: collapse;
@@ -787,7 +774,7 @@ table {
 }
 
 thead {
-  border-bottom: 1px solid var(--theme-maxcontrast);
+  border-bottom: var(--border-table);
 }
 
 th {
@@ -798,11 +785,29 @@ th {
 
 .clar tr:not(:last-child),
 .fosc tr:not(:last-child) {
-  border-bottom: 1px solid var(--theme-maxcontrast);
+  border-bottom: var(--border-table);
 }
 
 .pergami tbody tr:nth-child(odd) {
   background-color: var(--PHB-td-color);
+}
+
+tr {
+  height: max-content;
+}
+
+td:not(:has(*)) {
+  padding-inline: 5px;
+  height: 100%;
+}
+
+.Vocals {
+  max-width: 250px;
+}
+
+td:not(:has(select, button:not(.hidden))):has(*),
+table:has(.editant) th:empty {
+  display: none;
 }
 
 td {
@@ -986,7 +991,8 @@ td {
   -o-border-radius: 10px;
 }
 
-.image-holder img:is(:hover, :focus) {
+.image-holder img:is(:hover, :focus),
+.logo svg:is(:hover, :focus) {
   scale: 1.1;
   transition: scale 250ms ease-in-out;
   -webkit-transition: scale 250ms ease-in-out;
@@ -999,13 +1005,14 @@ td {
   display: none;
 }
 
-.Vocals {
+.editant .Vocals {
   display: flex;
   flex-direction: column;
   align-items: center
 }
 
-#afegirvocallista {
+input.rodo {
+  color:black !important;
   text-align: center;
   font-weight: 900;
   clip-path: unset;
@@ -1069,5 +1076,139 @@ footer h2 {
   .pc-columns-mobile-rows {
     display: flex;
     flex-direction: row;
+  }
+}
+
+/* ########################################################     PARA MOVIL      ##################################*/
+/*#########################   FUENTES   #############################*/
+@media screen and (max-width: 900px) {
+  :root {
+    --nav-font-size: 20px;
+    --h1-size: 30px;
+    --h2-size: 30px;
+    --h3-size: 30px;
+    --h4-size: 17px;
+    --p-size: 25px;
+  }
+}
+
+/*#########################   MAQUETACIÓ(LAYOUT)   #############################*/
+@media screen and (max-width: 900px) {
+  p {
+    font-style: normal;
+    padding-left: 10px;
+  }
+
+  header {
+    --nav-height: 12vh;
+  }
+
+  nav {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  #botonsnavegacio {
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    background-color: var(--nav-bg-color);
+    background-image: var(--nav-bg-image);
+    background-position-y: calc(var(--nav-height) * -1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: auto;
+    width: 100vw;
+  }
+
+  .enllaç-navegació:not(.logo) {
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  #botonsnavegacio.collapsed {
+    display: none;
+  }
+
+  .temes-boto {
+    width: 50px;
+  }
+
+  .main-content > div,
+  .main-content > article {
+    width: 90%;
+    padding: 10px 20px;
+  }
+
+  .main-content > article {
+    min-height: 10vh;
+  }
+
+  #user-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .llistaelements {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 5vh;
+    margin-bottom: 20px;
+  }
+
+  .element {
+    margin-bottom: 0;
+    height: 40vh;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .element h3 {
+    max-width: 90%;
+  }
+
+  .element p {
+    line-height: var(--p-size);
+  }
+
+  .contingut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+    min-height: 150px;
+    width: 100%;
+  }
+
+  .image-holder {
+    width: 50vw;
+    max-width: 100px;
+    margin-right: 0.5em;
+  }
+
+  .detalls {
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    width: 80%;
+  }
+
+  .nom {
+    text-align: center;
+  }
+
+  .pc-columns-mobile-rows {
+    display: flex;
+    flex-direction: column;
   }
 }

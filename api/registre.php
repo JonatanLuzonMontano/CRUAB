@@ -112,7 +112,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $resultinsert = dbconnupdate($query);
 
                 if (substr($resultinsert, 0, 5) == "Error") {
-                    $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
+                    $msg["Error"] = "Error al activar al membre. Comproba que tot estigui correcte";
                     $msg["DeBug"] = $resultinsert;
                 } else {
                     $msg["Correcte"] = "Tot ok";
@@ -123,7 +123,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $resultinsert = dbconnupdate($query);
 
                 if (substr($resultinsert, 0, 5) == "Error") {
-                    $msg["Error"] = "Error al actualitzar les dades. comproba que tot estigui correcte";
+                    $msg["Error"] = "Error al fer al membre inactiu. Comproba que tot estigui correcte";
                     $msg["DeBug"] = $resultinsert;
                 } else {
                     $msg["Correcte"] = "Tot ok";
@@ -134,6 +134,22 @@ switch ($_SERVER['REQUEST_METHOD']) {
                 $msg["Error"] = "wrong PUT method";
                 break;
         }
+        break;
+
+    case 'DELETE':
+        $_POST = json_decode(file_get_contents('php://input'), true);
+        $membre = assegurarInputs($_POST['numsoci']);
+
+        $querydelete = "DELETE FROM `membres` WHERE `membres`.`numsoci` = $membre;";
+        $resultdelete = dbconndelete($querydelete);
+
+        if (substr($resultdelete, 0, 5) == "Error") {
+            $msg["Error"] = "Error al esborrar el membre. Comproba que tot estigui correcte";
+            $msg["DeBug"] = $resultdelete;
+        } else {
+            $msg["Correcte"] = "Tot ok";
+        }
+
         break;
     default:
         http_response_code(400);

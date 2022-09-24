@@ -2,41 +2,40 @@ function validarFormulariJoc(dades) {
 
   if (dades['nom'] == "") {
     document.forms["formafegirjoc"]["nom"].focus();
-    document.getElementById('missatge').innerHTML = `<p>El nom és obligatori</p>`;
-    return false
+    popUp('El nom és obligatori');
+    return false;
   }
   if (dades['minjugadors'] == "") {
     document.forms["formafegirjoc"]["minjugadors"].focus();
-    document.getElementById('missatge').innerHTML = `<p>Has de posar un mínim de jugadors</p>`;
-    return false
+    popUp('Has de posar un mínim de jugadors');
+    return false;
   }
   if (dades['maxjugadors'] == "") {
     document.forms["formafegirjoc"]["maxjugadors"].focus();
-    document.getElementById('missatge').innerHTML = `<p>Has de posar un màxim de jugadors</p>`;
-    return false
+    popUp('Has de posar un màxim de jugadors');
+    return false;
   }
 
   if (dades['maxjugadors'] < dades['minjugadors']) {
     document.forms["formafegirjoc"]["maxjugadors"].focus();
-    document.forms["formafegirjoc"]["minjugadors"].focus();
-    document.getElementById('missatge').innerHTML = `<p>El màxim de jugadors ha de ser igual o superior al mínim de jugadors</p>`;
-    return false
+    popUp('El màxim de jugadors ha de ser igual o superior al mínim de jugadors');
+    return false;
   }
 
   if (dades['duracio'] == "") {
     document.forms["formafegirjoc"]["duracio"].focus();
-    document.getElementById('missatge').innerHTML = `<p>Has d'indicar la duració</p>`;
-    return false
+    popUp("Has d'indicar la duració");
+    return false;
   }
   if (dades['dificultat'] == "") {
     document.forms["formafegirjoc"]["dificultat"].focus();
-    document.getElementById('missatge').innerHTML = `<p>Has d'indicar la difucultat del joc</p>`;
-    return false
+    popUp("Has d'indicar la dificultat del joc");
+    return false;
   }
   if (dades['editorial'] == "") {
     document.forms["formafegirjoc"]["editorial"].focus();
-    document.getElementById('missatge').innerHTML = `<p>Has d'indicar l'editorial</p>`;
-    return false
+    popUp("Has d'indicar l'editorial");
+    return false;
   }
 
   return true;
@@ -44,13 +43,11 @@ function validarFormulariJoc(dades) {
 
 function getRadioCheckedValue(radio_name) {
   var oRadio = document.forms[0].elements[radio_name];
-
   for (var i = 0; i < oRadio.length; i++) {
     if (oRadio[i].checked) {
       return oRadio[i].value;
     }
   }
-
   return '';
 }
 /*
@@ -100,10 +97,10 @@ function eliminarJoc(nom) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4 && this.status == 200) {
-        console.log(xhttp.responseText);
+        //console.log(xhttp.responseText);
         var data = JSON.parse(xhttp.responseText);
         if ((data.hasOwnProperty('Error'))) {
-          alert(data["Error"] + " " + data["DeBug"]);
+          popUp(data["Error"] + ", " + data["DeBug"]);
         } else {
           window.location.href = "jocstaula.html";
         }
@@ -118,18 +115,12 @@ function registreJoc() {
   window.location.href = "afegirjoc.html";
 }
 
-
-
-
-
 function getJocsTaula() {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      //console.log(xhttp.responseText);
-      console.log(xhttp.responseText);
       var llista = JSON.parse(xhttp.responseText);
-      console.log(llista);
+      console.table(llista);
       const element = document.querySelector(".joc:last-child");
       if (sessionStorage['juntari'] == 'true') {
         document.getElementById('boto-afegir').classList.remove('hidden');
@@ -248,7 +239,7 @@ function filtrarJugadors() {
     }
   }
   if (atleastone == false) {
-    document.getElementById('message').textContent = "No hi ha cap joc per " + numjugadors + " jugadors.";
+    popUp("No hi ha cap joc per " + numjugadors + " jugadors.");
   }
 
 }
@@ -256,7 +247,6 @@ function filtrarJugadors() {
 function filtrarMinuts() {
   const jocs = document.getElementsByClassName('element');
   var minutsfiltre = document.querySelector("#minuts input:checked").value;
-  console.log(minutsfiltre);
   var atleastone = false;
   let minutsfiltrereal = [];
   switch (minutsfiltre) {
@@ -268,7 +258,6 @@ function filtrarMinuts() {
           jocs[i].classList.add('hidden');
         }
       }
-      console.log(minutsfiltrereal);
       break;
     case "120+":
       minutsfiltrereal.push(minutsfiltre.substring(0, -1));
@@ -283,8 +272,6 @@ function filtrarMinuts() {
       const index = minutsfiltre.indexOf("-");
       minutsfiltrereal.push(minutsfiltre.substring(0, index));
       minutsfiltrereal.push(minutsfiltre.substring(index + 1));
-      console.log(minutsfiltrereal);
-
       const totsminuts = [];
       for (i = minutsfiltrereal[0]; i <= minutsfiltrereal[1]; i++) {
         totsminuts.push(i);
@@ -303,7 +290,7 @@ function filtrarMinuts() {
     }
   }
   if (atleastone == false) {
-    document.getElementById('message').textContent = "No hi ha cap joc de " + minutsfiltre + " minuts.";
+    popUp("No hi ha cap joc de " + minutsfiltre + " minuts.");
   }
 
 }
@@ -312,7 +299,6 @@ function filtrarMinuts() {
 function filtrarJugadorsIMinuts() {
   const jocs = document.getElementsByClassName('element');
   const minutsfiltre = document.querySelector("#minuts input:checked").value;
-  console.log(minutsfiltre);
   const numjugadors = document.querySelector("#jugadors input:checked").value;
   var atleastone = false;
   const minutsfiltrereal = [];
@@ -339,7 +325,6 @@ function filtrarJugadorsIMinuts() {
       const index = minutsfiltre.indexOf("-");
       minutsfiltrereal.push(minutsfiltre.substring(0, index));
       minutsfiltrereal.push(minutsfiltre.substring(index + 1));
-      console.log(minutsfiltrereal);
 
       const totsminuts = [];
       for (i = minutsfiltrereal[0]; i <= minutsfiltrereal[1]; i++) {
@@ -372,6 +357,10 @@ function filtrarJugadorsIMinuts() {
     }
   }
   if (atleastone == false) {
-    document.getElementById('message').textContent = "No hi ha cap joc de " + minutsfiltre + " minuts.";
+    if (numjugadors > 1) {
+    popUp("No hi ha cap joc de " + minutsfiltre + " minuts i " + numjugadors + " jugadors.");
+    } else {
+      popUp("No hi ha cap joc de " + minutsfiltre + " minuts i " + numjugadors + " jugador.");
+    }
   }
 }
