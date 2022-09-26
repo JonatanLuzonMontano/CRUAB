@@ -82,3 +82,17 @@ function popUp(mensaje) {
   }
 
 }
+
+function decode(text) {
+  
+  var map = {
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#039;': "'"
+  };
+  console.log(text.replace(/(&amp;|&lt;|&gt;|&quot;|&#039;)/g, function(m) { return map[m]; }));
+  
+  return text.replace(/(&amp;|&lt;|&gt;|&quot;|&#039;)/g, function(m) { return map[m]; });
+}
