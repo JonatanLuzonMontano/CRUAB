@@ -41,7 +41,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
             $result = dbconninsert($queryinsertllistes);
 
             if (substr($result, 0, 5) == "Error") {
-                $msg["Error"] = "Error al inserir les dades de la llista. comproba que tot estigui correcte";
+                $msg["Error"] = "Error al inserir les dades de la llista. Comproba que tot estigui correcte";
                 $msg["DeBug"] = $result;
             } else {
                 $queryinsertllista = "";
@@ -59,7 +59,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
                     $result = dbconninsert($queryinsertllista);
                     if (substr($result, 0, 5) == "Error") {
-                        $msg["Error"] = "Error al inserir les dades dels membres de la llista. comproba que tot estigui correcte";
+                        $msg["Error"] = "Error al inserir les dades dels membres de la llista. Comproba que tot estigui correcte. Error en $key";
                         $msg["DeBug"] = $result;
                     } else {
                         $msg["Correcte"] = "Tot ok";

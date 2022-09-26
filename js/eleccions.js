@@ -58,24 +58,20 @@ function obtenirLlistes() {
       console.table(data);
 
       const taula = document.getElementsByTagName('tbody')[0];
-      const filera = taula.querySelector('tr:last-child');
 
+      let llistes = [];
       data.forEach(function (element) {
-        let fileraclon = filera.cloneNode(true);
-        let td = fileraclon.querySelectorAll('td:not(:has(button))');
-
-        td.forEach(function (element) {
-          var text = element.textContent;
-          if (/[a-zA-Z]+/g.test(text)) {
-            element.textContent = "";
-          }
-        });
-
-        if (taula.querySelector('tr:last-child').id !== "" && taula.querySelector('tr:last-child').id !== element.Nom) {
-          taula.appendChild(fileraclon);
-        }
-        taula.querySelector('tr:last-child').id = element.Nom;
-
+        llistes.push(element['Nom']);
+      });
+      llistes = [...new Set(llistes)];
+      llistes.forEach(function (llista) {
+        let fileraclon = document.getElementById('templatetaula').content.querySelector('tr').cloneNode(true);
+        taula.appendChild(fileraclon);
+        taula.querySelector('tr:last-child').id = llista;
+      });
+      data.forEach(function (element) {
+        //let td = fileraclon.querySelectorAll('td:not(:has(button))');
+        console.log(element.Nom);
         const fileraactual = document.getElementById(element.Nom);
         const carreg = element.Carreg;
         if (carreg.startsWith("Vocal")) {
@@ -92,7 +88,6 @@ function obtenirLlistes() {
               fileraactual.getElementsByClassName('Vocals')[0].textContent += ', ' + element.nom + ' ' + element.primercognom;
             }
           }
-
         }
         else {
           if (element.pseudonim != "") {
@@ -145,8 +140,6 @@ function editarLlista(index) {
   cancelarboto.addEventListener('click', function () {
     location.reload();
   });
-
-
   llistallistes[index].querySelectorAll('td:not(:has(button))').forEach(function (element, index) {
     const text = element.textContent;
     switch (index) {
@@ -410,7 +403,7 @@ function validarFormulari(dades) {
   let dadestotes = true;
   for (const [key, value] of Object.entries(dades['carregs'])) {
     const index = labelsbyname.indexOf(key);
-    if (key.startsWith('Vocal')) {} else {
+    if (key.startsWith('Vocal')) { } else {
       if (value == "") {
         console.log('Id = ' + key);
         document.getElementById(key).focus();
@@ -457,10 +450,10 @@ function enviarLlista(tipo, nomllista) {
           console.table(data);
           if ((data.hasOwnProperty('Error'))) {
             alert("error");
-            popUp(data["Error"]);
+            console.log(data["Error"]);
             if (data.hasOwnProperty('DeBug')) {
-              alert("debug");
-              popUp(data["Debug"]);
+              
+              console.log(data["Debug"]);
             }
           } else {
             location.reload();
@@ -503,9 +496,9 @@ function enviarLlista(tipo, nomllista) {
           var data = JSON.parse(xhttp.responseText);
           console.table(data);
           if ((data.hasOwnProperty('Error'))) {
-            popUp(data["Error"]);
+            console.log(data["Error"]);
             if (data.hasOwnProperty('DeBug')) {
-              popUp(data["Debug"]);
+              console.log(data["Debug"]);
             }
           } else {
             location.reload();

@@ -26,7 +26,7 @@ switch($_SERVER['REQUEST_METHOD']){
         $query = "UPDATE `cruab`.`membres` SET `estat`='actiu', `validat`='1' WHERE `numsoci`=$numsoci";
         $result = dbconnupdate($query);
         if(substr($result, 0, 5) == "Error"){
-            $msg["Error"] = "Error al modificar les dades. comproba que tot estigui correcte";
+            $msg["Error"] = "Error al modificar les dades. Comproba que tot estigui correcte";
             $msg["DeBug"] = $result;
         } else {
             $msg["Correcte"] = "Tot ok";

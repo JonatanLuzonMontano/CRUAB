@@ -9,6 +9,12 @@ function alCarregar() {
   afegirClassAMain();
 
   switch (nomArxiu()) { /*carga los eventos onload para la pagina correspondiente*/
+    case "index.html":
+      obtenirContingut();
+      setTimeout(() => {
+        afegirBotons();
+      }, 1000);
+      break;
     case "manuals.html":
       document.getElementById('paginamanuals').classList.add("active");
       getManuals();
@@ -62,7 +68,11 @@ function alCarregar() {
         pasEleccions();
       }
       break;
+    case "":
+      window.location.href = "index.html";
+      break;
     default:
+
       break;
   }
 

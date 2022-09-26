@@ -430,6 +430,16 @@ main p {
   flex-grow: 1;
 }
 
+.botons {
+  height:25px;
+  margin-left:20px;
+}
+
+.botons *:not(:first-child) {
+  margin-left:20px;
+}
+
+
 /*##############################   ESPECIALES   #################################*/
 /*toast message pop up*/
 #popup {
@@ -722,8 +732,8 @@ label + div label,
 }
 
 textarea {
-  max-width: 100%;
-  resize: vertical;
+  width: clamp(200px, 90ch, 100%);
+  /*height: clamp(100px, 30ch, 30%);*/
 }
 
 /*#########################   TABLAS Y CONTENIDO DE LA BASE DE DATOS   #############################*/
