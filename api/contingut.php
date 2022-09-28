@@ -4,75 +4,80 @@ header('Access-Control-Allow-Origin: *');
 include_once('../php/connexiobd.php');
 include_once('../php/seguretat.php');
 
+
+
 switch ($_SERVER['REQUEST_METHOD']) {
-	case 'GET':
-		$query = "SELECT * FROM `contingut`;";
+  case 'GET':
+    $query = "SELECT * FROM `articles`;";
 
-		$result = dbconnselect($query);
-		$msg = array();
+    $result = dbconnselect($query);
+    $msg = array();
 
-		while ($values = mysqli_fetch_assoc($result)) {
-			$msg[] = $values;
-		}
+    while ($values = mysqli_fetch_assoc($result)) {
+      $msg[] = $values;
+    }
 
-		break;
-	case 'POST':
-		$_POST = json_decode(file_get_contents('php://input'), true);
+    break;
+  case 'POST':
+    $_POST = json_decode(file_get_contents('php://input'), true);
+    $msg['comprovaciones'] = $_POST;
 
-		$titol = utf8_decode(assegurarInputs($_POST['titol']));
-		$text = utf8_decode(assegurarInputs($_POST['text']));
-		$id = intval(assegurarInputs($_POST['id']));
-		$juntari = intval(assegurarInputs($_POST['juntari']));
+    $data = date("Y-m-d");
+    $titol = assegurarInputs($_POST['titol']);
+    $text = assegurarInputs($_POST['text']);
+    $id = assegurarInputs($_POST['id']);
+    $autor = assegurarInputs($_POST['autor']);
 
-		$query = "INSERT INTO `cruab`.`contingut` (`Titol`, `Text`, `juntari`, `id`) VALUES ('$titol', '$text', '$juntari', $id)";
+    $query = "INSERT INTO `cruab`.`articles` (`Titol`, `Text`, `Autor`, `Id` , `Data`) VALUES ('$titol', '$text', '$autor', $id, '$data');";
 
-		$result = dbconninsert($query);
-		if (substr($result, 0, 5) == "Error") {
-			$msg["Error"] = "Error al afegir l'article. Comproba que tot estigui correcte";
-			$msg["DeBug"] = $result;
-		} else {
-			$msg["Correcte"] = "Tot ok";
-		}
+    $result = dbconninsert($query);
 
-		break;
-	case 'PUT':
-		$_POST = json_decode(file_get_contents('php://input'), true);
+    if (substr($result, 0, 5) == "Error") {
+      $msg["Error"] = "Error al afegir l'article. Comproba que tot estigui correcte";
+      $msg["DeBug"] = $result;
+    } else {
+      $msg["Correcte"] = "Tot ok";
+    }
 
-		$titol = utf8_decode(assegurarInputs($_POST['titol']));
-		$text = utf8_decode(assegurarInputs($_POST['text']));
-		
-		$id = intval(assegurarInputs($_POST['id']));
-		$juntari = intval(assegurarInputs($_POST['juntari']));
+    break;
+  case 'PUT':
+    $_POST = json_decode(file_get_contents('php://input'), true);
 
-		$query = "UPDATE `cruab`.`contingut` SET `Titol`='$titol', `Text`='$text', `juntari`='$juntari'  WHERE `id`=$id;";
+    $data = date("Y-m-d");
+    $titol = utf8_decode(assegurarInputs($_POST['titol']));
+    $text = utf8_decode(assegurarInputs($_POST['text']));
 
-		$result = dbconnupdate($query);
-		if (substr($result, 0, 5) == "Error") {
-			$msg["Error"] = "Error al modificar l'article. Comproba que tot estigui correcte";
-			$msg["DeBug"] = $result;
-		} else {
-			$msg["Correcte"] = "Tot ok";
-		}
-		break;
-	case 'DELETE':
-		$_POST = json_decode(file_get_contents('php://input'), true);
+    $id = intval(assegurarInputs($_POST['id']));
+    $autor = intval(assegurarInputs($_POST['autor']));
 
-		$id = intval(assegurarInputs($_POST['id']));
+    $query = "UPDATE `cruab`.`articles` SET `Titol`='$titol', `Text`='$text', `Autor`='$autor', `Data`='$data'  WHERE `id`=$id;";
 
-		$query = "DELETE FROM `cruab`.`contingut` WHERE `id`=$id;";
+    $result = dbconnupdate($query);
+    if (substr($result, 0, 5) == "Error") {
+      $msg["Error"] = "Error al modificar l'article. Comproba que tot estigui correcte";
+      $msg["DeBug"] = $result;
+    } else {
+      $msg["Correcte"] = "Tot ok";
+    }
+    break;
+  case 'DELETE':
+    $_POST = json_decode(file_get_contents('php://input'), true);
 
-		$result = dbconndelete($query);
-		if (substr($result, 0, 5) == "Error") {
+    $id = assegurarInputs($_POST['id']);
+    $query = "DELETE FROM `cruab`.`articles` WHERE `id`=$id;";
+
+    $result = dbconndelete($query);
+    if (substr($result, 0, 5) == "Error") {
 			$msg["Error"] = "Error al esborrar l'article. Comproba que tot estigui correcte";
 			$msg["DeBug"] = $result;
 		} else {
 			$msg["Correcte"] = "Tot ok";
 		}
-		break;
-	default:
-		http_response_code(400);
-		echo "wrong method";
-		break;
+    break;
+  default:
+    http_response_code(400);
+    echo "wrong method";
+    break;
 }
 
-echo (json_encode($msg, JSON_NUMERIC_CHECK, JSON_UNESCAPED_UNICODE));
+echo json_encode($msg, JSON_NUMERIC_CHECK, JSON_UNESCAPED_UNICODE);

@@ -20,10 +20,11 @@ function obtenirContingut() {
 
           contingut.appendChild(plantillaarticle);
           const articleactual = contingut.querySelector('section:last-of-type');
-          articleactual.id = article.id;
+          articleactual.id = article.Id;
           articleactual.setAttribute('new', 'no');
           articleactual.querySelector('.titol').textContent = decode(article.Titol);
           articleactual.querySelector('.text').textContent = decode(article.Text);
+          articleactual.querySelector('.data').textContent = article.Data;
         });
       }
     }
@@ -42,19 +43,19 @@ function afegirBotons() {
       afegirArticle();
     });
 
-    const events = document.querySelectorAll('.main-content section');
+    const articles = document.querySelectorAll('.main-content section');
 
-    events.forEach(function (event) {
-      if (!event.querySelector('.botons')) {
+    articles.forEach(function (article) {
+      if (!article.querySelector('.botons')) {
         const botons = document.getElementById('template').content.querySelector('.botons').cloneNode(true);
-        event.querySelector('.header').appendChild(botons);
-        event.querySelector('.editar').classList.remove('hidden');
-        event.querySelector('.editar').addEventListener('click', function () {
-          editarArticle(event.id);
+        article.querySelector('.header').appendChild(botons);
+        article.querySelector('.editar').classList.remove('hidden');
+        article.querySelector('.editar').addEventListener('click', function () {
+          editarArticle(article.id);
         });
-        event.querySelector('.eliminar').classList.remove('hidden');
-        event.querySelector('.eliminar').addEventListener('click', function () {
-          borrarArticle(event.id);
+        article.querySelector('.eliminar').classList.remove('hidden');
+        article.querySelector('.eliminar').addEventListener('click', function () {
+          borrarArticle(article.id);
         });
       }
     });
@@ -68,7 +69,7 @@ function editarArticle(id) {
   const article = document.getElementById(id);
   article.querySelector('.guardar').classList.remove('hidden');
   article.querySelector('.guardar').addEventListener('click', function () {
-    guardarEvent(id);
+    guardarArticle(id);
   });
   article.querySelector('.cancelar').classList.remove('hidden');
   article.querySelector('.cancelar').addEventListener('click', function () {
@@ -99,7 +100,7 @@ function guardarArticle(id) {
     if (event.getAttribute('new') == 'no') {
       let data = {}
 
-      data['juntari'] = sessionStorage['numsoci'];
+      data['autor'] = sessionStorage['numsoci'];
       data['id'] = id;
       data['titol'] = event.querySelector('.titol-parent input').value;
       data['text'] = event.querySelector('.textarea').value;
@@ -128,7 +129,7 @@ function guardarArticle(id) {
     } else {
       let data = {}
 
-      data['juntari'] = sessionStorage['numsoci'];
+      data['autor'] = sessionStorage['numsoci'];
       data['id'] = id;
       data['titol'] = event.querySelector('.titol-parent input').value;
       data['text'] = event.querySelector('.textarea').value;
@@ -139,6 +140,7 @@ function guardarArticle(id) {
       xhttpcontingut.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
 
+          console.log(xhttpcontingut.responseText);
           var response = JSON.parse(xhttpcontingut.responseText);
 
           if ((response.hasOwnProperty('Error'))) {
@@ -181,7 +183,7 @@ function afegirArticle() {
 
     article.querySelector('.guardar').classList.remove('hidden');
     article.querySelector('.guardar').addEventListener('click', function () {
-      guardarEvent(article.id);
+      guardarArticle(article.id);
     });
     article.querySelector('.cancelar').classList.remove('hidden');
     article.querySelector('.cancelar').addEventListener('click', function () {
@@ -202,6 +204,10 @@ function borrarArticle(id) {
     let data = {};
 
     data['id'] = id;
+
+    if (data['id'] === undefined) {
+      alert('Problema, el id no existe');
+    }
 
     var xhttpcontingut = new XMLHttpRequest();
     xhttpcontingut.onreadystatechange = function () {
