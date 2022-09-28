@@ -339,6 +339,9 @@ main p {
   font-size: var(--p-size);
 }
 
+
+
+
 /* enllaços al contingut principal*/
 .main-content a {
   background: linear-gradient(90deg, var(--theme-maxcontrast), var(--theme-maxcontrast)) left bottom 0px 2px no-repeat;
@@ -414,6 +417,16 @@ main p {
   100% {
     rotate: 360deg;
   }
+}
+
+.article {
+  position:relative;
+}
+
+.data {
+  position:absolute;
+  right:0px;
+  bottom:0px;
 }
 
 /*###############################   GESTIÓN   #############################*/
@@ -665,7 +678,6 @@ select {
 
 label {
   position: relative;
-  width: fit-content;
 }
 
 /*missatge d'error*/
@@ -821,9 +833,20 @@ table:has(.editant) th:empty {
 }
 
 td {
+  position:relative;
   text-align: center;
   font-size: var(--td-size);
   transition: 100ms;
+}
+
+td:empty::after {
+  content:'-';
+  width:100%;
+  height:100%;
+  top:4px;
+  left:0px;
+  position: absolute;
+  display: block;
 }
 
 .tableImageHolder {
@@ -1037,18 +1060,15 @@ input.rodo {
 
 /*#########################   FOOTER   #############################*/
 footer {
+  position:relative;
   z-index: 3;
   background-color: var(--nav-bg-color);
   background-image: var(--footer-bg-image);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 20vh;
   width: 100vw;
   margin-top: 10vh;
   /*si se toca, comprobar que en index no haya espacio entre este y el final de pagina*/
-  color: var(--nav-color);
+  color: var(--footer-color);
   text-align: center;
   box-shadow: var(--nav-shadow);
 }
@@ -1075,6 +1095,17 @@ footer .social-link:is(:hover, :focus) {
 footer h2 {
   color: var(--nav-color);
 }
+
+footer span, footer label {
+  color:inherit;
+}
+
+.socis {
+  position:absolute;
+  top:0px;
+  right:20px;
+}
+
 
 /*#########################   MEDIA QUERIES   ##########################################*/
 /*#########################   PARA PC   #############################*/

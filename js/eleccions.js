@@ -55,7 +55,7 @@ function obtenirLlistes() {
     if (this.readyState == 4 && this.status == 200) {
       //console.log(xhttpllistes.responseText);
       var data = JSON.parse(xhttpllistes.responseText);
-      console.table(data);
+      //console.table(data);
 
       const taula = document.getElementsByTagName('tbody')[0];
 
@@ -70,8 +70,6 @@ function obtenirLlistes() {
         taula.querySelector('tr:last-child').id = llista;
       });
       data.forEach(function (element) {
-        //let td = fileraclon.querySelectorAll('td:not(:has(button))');
-        console.log(element.Nom);
         const fileraactual = document.getElementById(element.Nom);
         const carreg = element.Carreg;
         if (carreg.startsWith("Vocal")) {
