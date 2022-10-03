@@ -1,10 +1,18 @@
 
 /* ####################################################3#######  TEMES  ##############################################3################*/
 
-const canviaTema = () => {
+function canviaTema() {
   var tema = localStorage.getItem('tema');
   if (tema == null) {
-    localStorage.setItem('tema', "clar");
+    let matched = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (matched) {
+      console.log('dark');
+      localStorage.setItem('tema', "fosc");
+    } else {
+      console.log('clar');
+      localStorage.setItem('tema', "clar");
+    }
   }
   document.body.classList = tema;
 }
@@ -84,7 +92,7 @@ function popUp(mensaje) {
 }
 
 function decode(text) {
-  
+
   var map = {
     '&amp;': '&',
     '&lt;': '<',
@@ -92,7 +100,7 @@ function decode(text) {
     '&quot;': '"',
     '&#039;': "'"
   };
-  
-  
-  return text.replace(/(&amp;|&lt;|&gt;|&quot;|&#039;)/g, function(m) { return map[m]; });
+
+
+  return text.replace(/(&amp;|&lt;|&gt;|&quot;|&#039;)/g, function (m) { return map[m]; });
 }

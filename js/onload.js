@@ -2,6 +2,7 @@
 window.onload = alCarregar;
 
 function alCarregar() {
+
   canviaTema();
 
   checkEleccions();
