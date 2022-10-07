@@ -14,9 +14,6 @@ function alCarregar() {
   switch (nomArxiu()) { /*carga los eventos onload para la pagina correspondiente*/
     case "index.html":
       obtenirContingut();
-      setTimeout(() => {
-        afegirBotons();
-      }, 1000);
       break;
     case "manuals.html":
       document.getElementById('paginamanuals').classList.add("active");
@@ -229,6 +226,6 @@ function ensenyarSocisActius() {
       document.querySelector('.socis').classList.remove('hidden');
       document.getElementById('socisactius').textContent = socisactius.length;
     }
-  }, 500);
+  }, 100);
 }
 

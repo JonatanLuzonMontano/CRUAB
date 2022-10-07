@@ -31,6 +31,30 @@ function obtenirContingut() {
   };
   xhhtpcontingut.open('GET', '/api/contingut.php', true);
   xhhtpcontingut.send();
+
+  setTimeout(() => {
+    activarLinks('#contingut');
+    afegirBotons();
+  }, 100);
+}
+
+function activarLinks(parent) {
+  const contingut = document.querySelector(parent);
+  const articles = contingut.querySelectorAll('p');
+
+  articles.forEach(function (article) {
+    let text = article.textContent;
+    let links = text.match(new RegExp(/(\[[\w\-\.]+\]+)(\(?https:[\/\w\-\.]+\))|(https:[\/\w\-\.]+)|(\[[\w\-\.]+\]+)(\(?http:[\/\w\-\.]+\))|(http:[\/\w\-\.]+)/g));
+
+    if (links != null) {
+      console.log('links no es null');
+      links.forEach(function (link) {
+        console.log(link);
+        text = text.replace(link, '<a href="' + link + '">' + link + '</a>');
+      });
+      article.innerHTML = text;
+    }
+  });
 }
 
 function afegirBotons() {
