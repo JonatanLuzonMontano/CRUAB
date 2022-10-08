@@ -104,3 +104,14 @@ function decode(text) {
 
   return text.replace(/(&amp;|&lt;|&gt;|&quot;|&#039;)/g, function (m) { return map[m]; });
 }
+
+function carregant() {
+  document.getElementsByTagName('main')[0].classList.add('hidden');
+  document.getElementsByTagName('footer')[0].classList.add('hidden');
+  document.querySelector('.loading-parent').classList.remove('hidden');
+
+  setTimeout(() => {
+    document.querySelector('.loading-parent').classList.add('hidden');
+    document.getElementsByTagName('main')[0].classList.remove('hidden');
+  }, 4996);
+}

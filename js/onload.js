@@ -3,6 +3,8 @@ window.onload = alCarregar;
 
 function alCarregar() {
 
+  //carregant();
+
   canviaTema();
 
   checkEleccions();
