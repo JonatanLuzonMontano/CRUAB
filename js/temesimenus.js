@@ -1,10 +1,18 @@
 
 /* ####################################################3#######  TEMES  ##############################################3################*/
 
-const canviaTema = () => {
+function canviaTema() {
   var tema = localStorage.getItem('tema');
   if (tema == null) {
-    localStorage.setItem('tema', "clar");
+    let matched = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    if (matched) {
+      console.log('dark');
+      localStorage.setItem('tema', "fosc");
+    } else {
+      console.log('clar');
+      localStorage.setItem('tema', "clar");
+    }
   }
   document.body.classList = tema;
 }
@@ -84,7 +92,7 @@ function popUp(mensaje) {
 }
 
 function decode(text) {
-  
+
   var map = {
     '&amp;': '&',
     '&lt;': '<',
@@ -92,7 +100,18 @@ function decode(text) {
     '&quot;': '"',
     '&#039;': "'"
   };
-  console.log(text.replace(/(&amp;|&lt;|&gt;|&quot;|&#039;)/g, function(m) { return map[m]; }));
-  
-  return text.replace(/(&amp;|&lt;|&gt;|&quot;|&#039;)/g, function(m) { return map[m]; });
+
+
+  return text.replace(/(&amp;|&lt;|&gt;|&quot;|&#039;)/g, function (m) { return map[m]; });
+}
+
+function carregant() {
+  document.getElementsByTagName('main')[0].classList.add('hidden');
+  document.getElementsByTagName('footer')[0].classList.add('hidden');
+  document.querySelector('.loading-parent').classList.remove('hidden');
+
+  setTimeout(() => {
+    document.querySelector('.loading-parent').classList.add('hidden');
+    document.getElementsByTagName('main')[0].classList.remove('hidden');
+  }, 4996);
 }

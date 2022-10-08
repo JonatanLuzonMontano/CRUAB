@@ -144,14 +144,19 @@
       <a id="facebook" class="social-link" property="facebook" name="" href="facebook.com">Facebook</a>
       <a id="twitter" class="social-link" href="https://twitter.com/cruaboficial?">Twitter</a>
     </section>
+    <section class="socis hidden">
+      <label for="socisactius">Socis actius: </label>
+      <span id="socisactius"></span>
+    </section>
   </footer>
 
   <template id="template">
-    <section>
+    <section class="article">
       <div class="header columns align">
         <h2 class="titol"></h2>
       </div>
       <p class="text"></p>
+      <span class="data"></span>
     </section>
     <button class="afegir constructiu hidden">Afegir event</button>
     <div class="botons columns align">
@@ -192,9 +197,13 @@
 
   <div id="popup"></div>
 
+  <div class="loading-parent hidden columns">
+    <div class="loading"></div>
+  </div>
+
   <script src="js/temesimenus.js"></script>
   <script src="js/sessions.js"></script>
-  <script src="js/editarcontingut.js"></script>
+  <script src="js/contingut.js"></script>
   <script src="js/onload.js"></script>
 </body>
 

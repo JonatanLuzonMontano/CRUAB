@@ -49,6 +49,7 @@ body {
   --input-border-incorrect: red;
   --input-border-correct: green;
   --input-border-focus: orange;
+  --footer-color: var(--theme-90contrast);
 }
 
 body.clar {
@@ -174,4 +175,5 @@ body.pergami {
   --p-color: var(--text-color-general);
   --a-color: var(--PHB-logo-color);
   --a-selected-color: var(--secondary-accent-color);
+  --footer-color: var(--theme-10contrast);
 }

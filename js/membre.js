@@ -4,12 +4,12 @@ function actiuInactiu() {
   xhttpactiu.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
       var data = JSON.parse(xhttpactiu.responseText);
+      console.table(data);
       for (i = 0; i < data.length; i++) {
         if (data[i]["numsoci"] == nummembre) {
           const missatge = "Ets un usuari " + data[i]['estat'] + ".";
           sessionStorage.setItem("estatsoci", data[i]['estat']);
           document.getElementById('activitat').textContent = missatge;
-          popUp(missatge);
           break;
         }
       }
@@ -99,21 +99,14 @@ function getMembres() {
         }
 
         for (const [key, value] of Object.entries(membre)) {
-          if (key == "pseudonim" && value == "" || key == "pseudonim" && value == " ") {
-            for (let j = 0; j < td.length; j++) {
-              const tdactual = td[j];
-              if (tdactual.classList.contains(key)) {
-                tdactual.textContent = "-";
-              }
-            }
-          } else {
-            for (let j = 0; j < td.length; j++) {
-              const tdactual = td[j];
-              if (tdactual.classList.contains(key)) {
-                tdactual.textContent = value;
-              }
+
+          for (let j = 0; j < td.length; j++) {
+            const tdactual = td[j];
+            if (tdactual.classList.contains(key)) {
+              tdactual.textContent = value;
             }
           }
+
         }
 
         for (let j = 0; j < td.length; j++) {

@@ -416,6 +416,16 @@ main p {
   }
 }
 
+.article {
+  position: relative;
+}
+
+.data {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+
 /*###############################   GESTIÓN   #############################*/
 .gestio-link {
   font-size: var(--h1-size);
@@ -431,14 +441,13 @@ main p {
 }
 
 .botons {
-  height:25px;
-  margin-left:20px;
+  height: 25px;
+  margin-left: 20px;
 }
 
 .botons *:not(:first-child) {
-  margin-left:20px;
+  margin-left: 20px;
 }
-
 
 /*##############################   ESPECIALES   #################################*/
 /*toast message pop up*/
@@ -461,15 +470,13 @@ main p {
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
-
   padding: 5px 10px;
-
   box-shadow: 0 0 5px white;
-  z-index:100;
+  z-index: 100;
 }
 
 #popup.visible {
-  display:block;
+  display: block;
   animation: popup 2500ms ease 0s 1 normal forwards;
   -webkit-animation: popup 2500ms ease 0s 1 normal forwards;
 }
@@ -491,13 +498,14 @@ main p {
 /* botons actius o inactius */
 :is(button, input:is([type="button"], [type="submit"])) {
   --edge-size: .45em;
-  border-radius:20px;
+  border-radius: 20px;
   background: var(--button-bg-fallback);
-  /*clip-path: polygon(      top left       0% var(--edge-size),      top left       var(--edge-size) 0%,      top righ      100% 0,      bottom right       100% calc(100% - var(--edge-size)),      bottom right       calc(100% - var(--edge-size)) 100%,      bottom lef      0% 100%)*/;
-  -webkit-border-radius:20px;
-  -moz-border-radius:20px;
-  -ms-border-radius:20px;
-  -o-border-radius:20px;
+  /*clip-path: polygon(      top left       0% var(--edge-size),      top left       var(--edge-size) 0%,      top righ      100% 0,      bottom right       100% calc(100% - var(--edge-size)),      bottom right       calc(100% - var(--edge-size)) 100%,      bottom lef      0% 100%)*/
+  ;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
 }
 
 /* botons que estan actius */
@@ -665,7 +673,6 @@ select {
 
 label {
   position: relative;
-  width: fit-content;
 }
 
 /*missatge d'error*/
@@ -821,9 +828,20 @@ table:has(.editant) th:empty {
 }
 
 td {
+  position: relative;
   text-align: center;
   font-size: var(--td-size);
   transition: 100ms;
+}
+
+td:empty::after {
+  content: '-';
+  width: 100%;
+  height: 100%;
+  top: 4px;
+  left: 0px;
+  position: absolute;
+  display: block;
 }
 
 .tableImageHolder {
@@ -1022,7 +1040,7 @@ td {
 }
 
 input.rodo {
-  color:black !important;
+  color: black !important;
   text-align: center;
   font-weight: 900;
   clip-path: unset;
@@ -1037,18 +1055,15 @@ input.rodo {
 
 /*#########################   FOOTER   #############################*/
 footer {
+  position: relative;
   z-index: 3;
   background-color: var(--nav-bg-color);
   background-image: var(--footer-bg-image);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 20vh;
   width: 100vw;
   margin-top: 10vh;
   /*si se toca, comprobar que en index no haya espacio entre este y el final de pagina*/
-  color: var(--nav-color);
+  color: var(--footer-color);
   text-align: center;
   box-shadow: var(--nav-shadow);
 }
@@ -1074,6 +1089,17 @@ footer .social-link:is(:hover, :focus) {
 
 footer h2 {
   color: var(--nav-color);
+}
+
+footer span,
+footer label {
+  color: inherit;
+}
+
+.socis {
+  position: absolute;
+  top: 0px;
+  right: 20px;
 }
 
 /*#########################   MEDIA QUERIES   ##########################################*/
@@ -1220,5 +1246,49 @@ footer h2 {
   .pc-columns-mobile-rows {
     display: flex;
     flex-direction: column;
+  }
+}
+
+.loading-parent {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--body-bg-color);
+  width: 400px;
+  height: 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  border:1px solid var(--theme-90contrast);
+}
+
+.loading-parent::after {
+  content: 'carregant el contingut...';
+  display: block;
+  position: absolute;
+  color:white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.loading {
+  width: 100%;
+  height: 100%;
+  background: var(--theme-maxcontrast);
+  animation: load 5s cubic-bezier(.31,1.03,.98,.47) 1;
+  border-radius: inherit;
+}
+
+@keyframes load {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
   }
 }

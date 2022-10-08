@@ -2,18 +2,20 @@
 window.onload = alCarregar;
 
 function alCarregar() {
+
+  //carregant();
+
   canviaTema();
 
   checkEleccions();
 
   afegirClassAMain();
 
+  ensenyarSocisActius();
+
   switch (nomArxiu()) { /*carga los eventos onload para la pagina correspondiente*/
     case "index.html":
       obtenirContingut();
-      setTimeout(() => {
-        afegirBotons();
-      }, 1000);
       break;
     case "manuals.html":
       document.getElementById('paginamanuals').classList.add("active");
@@ -197,5 +199,35 @@ function checkEleccions() {
   }
   xhttpcheckeleccions.open('GET', '/api/eleccions.php?opcio=eleccio', true);
   xhttpcheckeleccions.send();
+}
+
+function ensenyarSocisActius() {
+  var socisactius = [];
+  const nummembre = sessionStorage.getItem("numsoci");
+  var xhttpactiu = new XMLHttpRequest();
+  xhttpactiu.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      var data = JSON.parse(xhttpactiu.responseText);
+      for (i = 0; i < data.length; i++) {
+        if (data[i]["numsoci"] == nummembre) {
+          sessionStorage.setItem("estatsoci", data[i]['estat']);
+        }
+        if (data[i]['estat'] == 'actiu') {
+          socisactius.push(data[i]['estat']);
+        }
+      }
+    }
+  }
+  xhttpactiu.open('GET', '/api/registre.php?tipus=actiusono', true);
+  xhttpactiu.send();
+
+
+
+  setTimeout(() => {
+    if (sessionStorage['estatsoci'] == "actiu") {
+      document.querySelector('.socis').classList.remove('hidden');
+      document.getElementById('socisactius').textContent = socisactius.length;
+    }
+  }, 100);
 }
 
