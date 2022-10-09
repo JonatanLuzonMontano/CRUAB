@@ -433,9 +433,13 @@ main p {
   border: 2px solid var(--theme-maxcontrast);
   border-radius: 10px;
   height: 300px;
-  aspect-ratio: 3;
+  min-width: 300px;
   overflow: hidden;
   margin-left: 20px;
+}
+
+iframe {
+  aspect-ratio: 1;
 }
 
 /*###############################   GESTIÓN   #############################*/
@@ -459,6 +463,10 @@ main p {
 
 .botons *:not(:first-child) {
   margin-left: 20px;
+}
+
+#login {
+  margin-top: 20px;
 }
 
 /*##############################   ESPECIALES   #################################*/
@@ -748,6 +756,9 @@ textarea {
   box-shadow: inset 0 0 5px 0;
   min-height: 100px;
   max-height: 500px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 /*#########################   TABLAS Y CONTENIDO DE LA BASE DE DATOS   #############################*/
@@ -1062,11 +1073,12 @@ input.rodo {
   font-weight: 900;
   clip-path: unset;
   border-radius: 100px;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  -ms-border-radius: 100px;
-  -o-border-radius: 100px;
   height: 30px;
+  aspect-ratio: 1;
+}
+
+.rodo {
+  border-radius: 100px !important;
   aspect-ratio: 1;
 }
 
@@ -1076,16 +1088,18 @@ footer {
   z-index: 3;
   background-color: var(--nav-bg-color);
   background-image: var(--footer-bg-image);
-  height: 20vh;
+  /*height: 20vh;*/
   width: 100vw;
   margin-top: 10vh;
   /*si se toca, comprobar que en index no haya espacio entre este y el final de pagina*/
   color: var(--footer-color);
   text-align: center;
   box-shadow: var(--nav-shadow);
+  align-items: flex-start;
 }
 
-footer .social-link {
+footer a {
+  width: max-content;
   background-image: linear-gradient(90deg, var(--secondary-accent-color), var(--secondary-accent-color));
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -1100,11 +1114,19 @@ footer .social-link {
   -o-transition: ease-out 200ms;
 }
 
-footer .social-link:is(:hover, :focus) {
+footer section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+footer a:is(:hover, :focus) {
   background-size: 100% 2px;
 }
 
-footer h2 {
+footer h3 {
   color: var(--nav-color);
 }
 

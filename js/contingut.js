@@ -5,7 +5,18 @@ function obtenirContingut() {
     if (this.readyState == 4 && this.status == 200) {
       var articles = JSON.parse(xhhtpcontingut.responseText);
       console.table(articles);
-
+      let maxid = null;
+      articles.forEach(function (a) {
+        if (maxid != null) {
+          if (a['Id'] > maxid) {
+            maxid = a['Id'];
+          }
+        } else {
+          maxid = a['Id'];
+        }
+      });
+      sessionStorage.setItem('numnouarticle', maxid + 1);
+      
       if ((articles.hasOwnProperty('Error'))) {
         popUp("Error. Consulta la consola per saber els detalls.");
         console.log(articles["Error"]);
@@ -42,15 +53,13 @@ function activarLinks(parent) {
   const contingut = document.querySelector(parent);
   const articles = contingut.querySelectorAll('p');
 
-  console.log(articles);
+  //console.log(articles);
   articles.forEach(function (article) {
     let text = article.textContent;
     let links = text.match(new RegExp(/(\[[\w\-\.]+\]+)(\(?https:[\/\w\-\.]+\))|(https:[\/\w\-\.]+)|(\[[\w\-\.]+\]+)(\(?http:[\/\w\-\.]+\))|(http:[\/\w\-\.]+)/g));
 
     if (links != null) {
-      console.log('links no es null');
       links.forEach(function (link) {
-        console.log(link);
         text = text.replace(link, '<a href="' + link + '">' + link + '</a>');
       });
       article.innerHTML = text;
@@ -186,14 +195,14 @@ function guardarArticle(id) {
 }
 
 function afegirArticle() {
-  if (!document.querySelector('section[new="yes"]')) {
+  if (!document.querySelector('#contingut section[new="yes"]')) {
     document.getElementById('contingut').removeChild(document.querySelector('.afegir'));
     plantillaarticle = document.getElementById('template').content.querySelector('section').cloneNode(true);
 
     contingut.appendChild(plantillaarticle);
 
-    const article = contingut.querySelector('section:last-of-type');
-    article.id = document.querySelectorAll('section[id]').length + 1;
+    const article = contingut.querySelector('#contingut section:last-of-type');
+    article.id = sessionStorage['numnouarticle'];
     article.setAttribute('new', 'yes');
 
     const inputtitol = document.getElementById('template').content.querySelector('.titol-parent').cloneNode(true);
