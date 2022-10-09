@@ -19,7 +19,7 @@ body {
 * {
   /*outline: 1px dashed red;
   */
-  transition: all 200ms;
+  /*transition: all 200ms;*/
 }
 
 ::selection {
@@ -32,7 +32,7 @@ a::selection {
 }
 
 :focus {
-  z-index: 100;
+  z-index: 2;
   outline: none;
 }
 
@@ -274,6 +274,10 @@ nav .temes-boto svg {
 }
 
 /*#########################   CONTENINDO PRINCIPAL   #############################*/
+body {
+  color: var(--p-color);
+}
+
 .main-content {
   display: flex;
   justify-content: center;
@@ -297,8 +301,7 @@ nav .temes-boto svg {
 
 main > div,
 main > article {
-  min-width: 80%;
-  max-width: 90%;
+  width: 90%;
   min-height: 50vh;
   margin-top: 9vh;
   padding: 10px;
@@ -426,6 +429,15 @@ main p {
   bottom: 0px;
 }
 
+.iframe {
+  border: 2px solid var(--theme-maxcontrast);
+  border-radius: 10px;
+  height: 300px;
+  aspect-ratio: 3;
+  overflow: hidden;
+  margin-left: 20px;
+}
+
 /*###############################   GESTIÓN   #############################*/
 .gestio-link {
   font-size: var(--h1-size);
@@ -498,14 +510,10 @@ main p {
 /* botons actius o inactius */
 :is(button, input:is([type="button"], [type="submit"])) {
   --edge-size: .45em;
-  border-radius: 20px;
+  border-radius: 7px;
   background: var(--button-bg-fallback);
   /*clip-path: polygon(      top left       0% var(--edge-size),      top left       var(--edge-size) 0%,      top righ      100% 0,      bottom right       100% calc(100% - var(--edge-size)),      bottom right       calc(100% - var(--edge-size)) 100%,      bottom lef      0% 100%)*/
-  ;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
+  transition-duration: 200ms;
 }
 
 /* botons que estan actius */
@@ -533,11 +541,7 @@ input[type="file"] {
   /*--edge-size: .45em;
   /*clip-path: polygon(      top left 1      0% var(--edge-size),      top left 2      var(--edge-size) 0%,      top right 1      calc(100% - var(--edge-size)) 0,      top right 2      100% var(--edge-size),      bottom right 1      100% calc(100% - var(--edge-size)),      bottom right 1      calc(100% - var(--edge-size)) 100%,      bottom left 1      var(--edge-size) 100%,      bottom left 2      0% calc(100% - var(--edge-size)));
   */
-  border-radius: 100px;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  -ms-border-radius: 100px;
-  -o-border-radius: 100px;
+  border-radius: 10px;
 }
 
 .editar,
@@ -590,7 +594,7 @@ input[type="file"]:invalid:is(:hover, :focus)::file-selector-button {
 }
 
 /*inputs de tipus text, password, i tal, mai botons*/
-input:not([type="button"], [type="radio"], [type="submit"]) {
+input[type="text"] {
   position: relative;
   background-color: var(--input-bg);
   box-shadow: inset 0 0 5px 0;
@@ -656,8 +660,8 @@ input:is([type="text"], [type="number"], [type="password"], [type="email"]):focu
 }
 
 /*inputs quan son bons*/
-input:not(:placeholder-shown, [type="radio"], [type="submit"]):valid,
-input:not([type="radio"]):-internal-autofill-selected:valid {
+input:not(:placeholder-shown, [type="radio"], [type="checkbox"], [type="submit"]):valid,
+input:not([type="radio"], [type="checkbox"]):-internal-autofill-selected:valid {
   --input-bg: var(--input-bg-correct);
   outline: 1px solid var(--input-border-correct);
   box-shadow: unset;
@@ -739,13 +743,26 @@ label + div label,
 }
 
 textarea {
-  width: clamp(200px, 90ch, 100%);
-  /*height: clamp(100px, 30ch, 30%);*/
+  resize: vertical;
+  width: 100%;
+  box-shadow: inset 0 0 5px 0;
+  min-height: 100px;
+  max-height: 500px;
 }
 
 /*#########################   TABLAS Y CONTENIDO DE LA BASE DE DATOS   #############################*/
 #filterbox {
+  margin-top: 10px;
   width: 70%;
+  margin-bottom: 20px;
+}
+
+#filterbox:has(+ .hidden) {
+  margin-bottom: 30px;
+}
+
+#filterbox + .constructiu {
+  margin-bottom: 20px;
 }
 
 #filterbox > div {
@@ -1261,14 +1278,14 @@ footer label {
   height: 20px;
   border-radius: 20px;
   overflow: hidden;
-  border:1px solid var(--theme-90contrast);
+  border: 1px solid var(--theme-90contrast);
 }
 
 .loading-parent::after {
   content: 'carregant el contingut...';
   display: block;
   position: absolute;
-  color:white;
+  color: white;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -1279,7 +1296,7 @@ footer label {
   width: 100%;
   height: 100%;
   background: var(--theme-maxcontrast);
-  animation: load 5s cubic-bezier(.31,1.03,.98,.47) 1;
+  animation: load 5s cubic-bezier(.31, 1.03, .98, .47) 1;
   border-radius: inherit;
 }
 

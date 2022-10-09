@@ -178,7 +178,7 @@ function getJocsTaula() {
   xhttp.open('GET', '/api/jocstaula.php', true);
   xhttp.send();
 }
-
+/*
 function onlyOneMinuts(checkbox) {
   var checkboxes = document.querySelectorAll('#minuts input[type="checkbox"]');
   checkboxes.forEach((item) => {
@@ -192,23 +192,24 @@ function onlyOneJugadors(checkbox) {
     if (item !== checkbox) item.checked = false;
   });
 }
+*/
 
 function filtrar() {
-  const jugadors = document.querySelector('#jugadors input[type="checkbox"]:checked');
-  const minuts = document.querySelector('#minuts input[type="checkbox"]:checked');
+  const jugadors = document.querySelector('#jugadors').value;
+  const minuts = document.querySelector('#minuts').value;
   const jocs = document.getElementsByClassName('element');
-  document.getElementById('message').textContent = "";
+  console.log("jugadors = " + jugadors + " minuts: " + minuts);
   for (i = 0; i < jocs.length; i++) {
     jocs[i].classList.remove('hidden');
   }
-  if (jugadors != null || minuts != null) {
-    if (jugadors != null && minuts === null) {
+  if (jugadors != "" || minuts != "") {
+    if (jugadors != "" && minuts === "") {
       filtrarJugadors();
     }
-    if (minuts != null && jugadors === null) {
+    if (minuts != "" && jugadors === "") {
       filtrarMinuts();
     }
-    if (jugadors != null && minuts != null) {
+    if (jugadors != "" && minuts != "") {
       filtrarJugadorsIMinuts();
     }
   }
@@ -218,12 +219,13 @@ function filtrar() {
 
 function filtrarJugadors() {
   const jocs = document.getElementsByClassName('element');
-  const numjugadors = document.querySelector("#jugadors input:checked").value;
+  const numjugadors = document.querySelector("#jugadors").value;
   var atleastone = false;
   for (i = 0; i < jocs.length; i++) {
+
     const element = jocs[i];
     if (numjugadors === "10+") {
-      if (element.getAttribute("minjugadors") < 10) {
+      if (element.getAttribute("minjugadors") <= 10) {
         element.classList.add('hidden');
       }
     } else {
@@ -241,16 +243,15 @@ function filtrarJugadors() {
   if (atleastone == false) {
     popUp("No hi ha cap joc per " + numjugadors + " jugadors.");
   }
-
 }
 
 function filtrarMinuts() {
   const jocs = document.getElementsByClassName('element');
-  var minutsfiltre = document.querySelector("#minuts input:checked").value;
+  var minutsfiltre = document.querySelector("#minuts").value;
   var atleastone = false;
   let minutsfiltrereal = [];
   switch (minutsfiltre) {
-    case "-10":
+    case document.querySelectorAll('#minuts option')[1].value:
       minutsfiltrereal.push(parseInt(minutsfiltre.substring(1)));
       for (i = 0; i < jocs.length; i++) {
         const minuts = parseInt(jocs[i].getAttribute("minuts"));
@@ -259,8 +260,10 @@ function filtrarMinuts() {
         }
       }
       break;
-    case "120+":
-      minutsfiltrereal.push(minutsfiltre.substring(0, -1));
+    case document.querySelector('#minuts option:last-child').value:
+      console.log(minutsfiltre);
+      minutsfiltrereal.push(minutsfiltre.slice(0, -1));
+      console.log(minutsfiltrereal);
       for (i = 0; i < jocs.length; i++) {
         const minuts = parseInt(jocs[i].getAttribute("minuts"));
         if (minuts < minutsfiltrereal) {
@@ -272,6 +275,7 @@ function filtrarMinuts() {
       const index = minutsfiltre.indexOf("-");
       minutsfiltrereal.push(minutsfiltre.substring(0, index));
       minutsfiltrereal.push(minutsfiltre.substring(index + 1));
+
       const totsminuts = [];
       for (i = minutsfiltrereal[0]; i <= minutsfiltrereal[1]; i++) {
         totsminuts.push(i);
@@ -298,12 +302,12 @@ function filtrarMinuts() {
 
 function filtrarJugadorsIMinuts() {
   const jocs = document.getElementsByClassName('element');
-  const minutsfiltre = document.querySelector("#minuts input:checked").value;
-  const numjugadors = document.querySelector("#jugadors input:checked").value;
+  const minutsfiltre = document.querySelector("#minuts").value;
+  const numjugadors = document.querySelector("#jugadors").value;
   var atleastone = false;
   const minutsfiltrereal = [];
   switch (minutsfiltre) {
-    case document.querySelectorAll('#minuts input[type="checkbox"]')[0]:
+    case document.querySelectorAll('#minuts option')[1].value:
       minutsfiltrereal.push(parseInt(minutsfiltre.substring(1)));
       for (i = 0; i < jocs.length; i++) {
         const minuts = parseInt(jocs[i].getAttribute("minuts"));
@@ -312,8 +316,10 @@ function filtrarJugadorsIMinuts() {
         }
       }
       break;
-    case document.querySelectorAll('#minuts input[type="checkbox"]')[-1]:
-      minutsfiltrereal.push(minutsfiltre.substring(0, -1));
+    case document.querySelector('#minuts option:last-child').value:
+      console.log(minutsfiltre);
+      minutsfiltrereal.push(minutsfiltre.slice(0, -1));
+      console.log(minutsfiltrereal);
       for (i = 0; i < jocs.length; i++) {
         const minuts = parseInt(jocs[i].getAttribute("minuts"));
         if (minuts < minutsfiltrereal) {
@@ -358,7 +364,7 @@ function filtrarJugadorsIMinuts() {
   }
   if (atleastone == false) {
     if (numjugadors > 1) {
-    popUp("No hi ha cap joc de " + minutsfiltre + " minuts i " + numjugadors + " jugadors.");
+      popUp("No hi ha cap joc de " + minutsfiltre + " minuts i " + numjugadors + " jugadors.");
     } else {
       popUp("No hi ha cap joc de " + minutsfiltre + " minuts i " + numjugadors + " jugador.");
     }

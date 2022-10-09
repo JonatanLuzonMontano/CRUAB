@@ -110,12 +110,12 @@ body.fosc {
   --body-bg-color: var(--theme-20contrast);
   --nav-bg-color: var(--theme-30contrast);
   --button-bg-fallback: hsl(60, 70%, 50%);
-  --destructiu: hsl(0, 50%, 35%);
-  --destructiu-hover: hsl(0, 50%, 55%);
-  --constructiu: hsl(125, 50%, 26%);
-  --constructiu-hover: hsl(125, 50%, 40%);
-  --neutre: hsl(200, 50%, 38%);
-  --neutre-hover: hsl(200, 50%, 55%);
+  --destructiu: hsl(0, 61%, 44%);
+  --destructiu-hover: hsl(0, 66%, 53%);
+  --constructiu: hsl(125, 71%, 33%);
+  --constructiu-hover: hsl(125, 65%, 43%);
+  --neutre: hsl(200, 71%, 47%);
+  --neutre-hover: hsl(200, 91%, 65%);
   --button-bg: var(--button-bg-fallback);
   --enllaç-navegació-bg-hover: 130%;
   --enllaç-navegació-bg-clicked: var(--theme-50contrast);

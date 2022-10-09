@@ -169,16 +169,8 @@ function ifSubmmit() {
 
 function ifFiltre() {
   if (document.getElementById("filterbox") != undefined) {
-    const checkboxesminuts = document.querySelectorAll('#minuts input[type="checkbox"]');
-    checkboxesminuts.forEach((e) => { e.addEventListener('click', function () { onlyOneMinuts(this); }); });
-
-    const checkboxesjugadors = document.querySelectorAll('#jugadors input[type="checkbox"]');
-    checkboxesjugadors.forEach((e) => { e.addEventListener('click', function () { onlyOneJugadors(this); }); });
-
-    const checkboxes = document.querySelectorAll('#filterbox input[type="checkbox"]');
-    checkboxes.forEach((e) => { e.addEventListener('click', function () { filtrar(); }); });
-
-
+    const filters = document.querySelectorAll('#filterbox select');
+    filters.forEach((e) => { e.addEventListener('change', function () { filtrar(); }); });
   }
 }
 
