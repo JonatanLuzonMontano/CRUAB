@@ -37,11 +37,14 @@ function pasEleccions() {
         obtenirLlistes();
 
 
-        const botovotar = document.getElementsByClassName('votar');
-        for (i = 0; i < botovotar.length; i++) {
-          botovotar[i].classList.remove('hidden');
-          //element.addEventListener('click', function () { votar(); });
-        }
+        setTimeout(function () {
+          const botovotar = document.getElementsByClassName('votar');
+          console.log(botovotar);
+          for (i = 0; i < botovotar.length; i++) {
+            botovotar[i].classList.remove('hidden');
+            //element.addEventListener('click', function () { votar(); });
+          }
+        }, 200);
       }
     }
   }
@@ -450,7 +453,7 @@ function enviarLlista(tipo, nomllista) {
             alert("error");
             console.log(data["Error"]);
             if (data.hasOwnProperty('DeBug')) {
-              
+
               console.log(data["Debug"]);
             }
           } else {

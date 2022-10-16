@@ -74,12 +74,12 @@ body.clar {
   --nav-bg-image: none;
   /*interactive colors*/
   --button-bg-fallback: yellow;
-  --destructiu: hsl(0, 91%, 35%);
-  --destructiu-hover: hsl(0, 91%, 55%);
-  --constructiu: hsl(125, 91%, 26%);
-  --constructiu-hover: hsl(125, 91%, 40%);
-  --neutre: hsl(200, 91%, 35%);
-  --neutre-hover: hsl(200, 91%, 55%);
+  --destructiu: linear-gradient(150deg, hsl(0, 91%, 55%), hsl(0, 91%, 35%));
+  --destructiu-hover: linear-gradient(150deg, hsl(0, 91%, 70%), hsl(0, 91%, 55%));
+  --constructiu: linear-gradient(150deg, hsl(125, 91%, 55%), hsl(125, 91%, 35%));
+  --constructiu-hover: linear-gradient(150deg, hsl(125, 91%, 75%), hsl(125, 91%, 55%));
+  --neutre: linear-gradient(150deg, hsl(200, 91%, 65%), hsl(200, 91%, 35%));
+  --neutre-hover: linear-gradient(150deg, hsl(200, 91%, 75%), hsl(200, 91%, 50%));
   --button-bg: var(--button-bg-fallback);
   --enllaç-navegació-bg-clicked: var(--theme-40contrast);
   --input-border: var(--theme-maxcontrast);
@@ -110,12 +110,12 @@ body.fosc {
   --body-bg-color: var(--theme-20contrast);
   --nav-bg-color: var(--theme-30contrast);
   --button-bg-fallback: hsl(60, 70%, 50%);
-  --destructiu: hsl(0, 61%, 44%);
-  --destructiu-hover: hsl(0, 66%, 53%);
-  --constructiu: hsl(125, 71%, 33%);
-  --constructiu-hover: hsl(125, 65%, 43%);
-  --neutre: hsl(200, 71%, 47%);
-  --neutre-hover: hsl(200, 91%, 65%);
+  --destructiu: linear-gradient(150deg, hsl(0, 91%, 55%), hsl(0, 91%, 35%));
+  --destructiu-hover: linear-gradient(150deg, hsl(0, 91%, 70%), hsl(0, 91%, 55%));
+  --constructiu: linear-gradient(150deg, hsl(125, 91%, 55%), hsl(125, 91%, 35%));
+  --constructiu-hover: linear-gradient(150deg, hsl(125, 91%, 75%), hsl(125, 91%, 55%));
+  --neutre: linear-gradient(150deg, hsl(200, 91%, 65%), hsl(200, 91%, 35%));
+  --neutre-hover: linear-gradient(150deg, hsl(200, 91%, 75%), hsl(200, 91%, 50%));
   --button-bg: var(--button-bg-fallback);
   --enllaç-navegació-bg-hover: 130%;
   --enllaç-navegació-bg-clicked: var(--theme-50contrast);
@@ -159,12 +159,12 @@ body.pergami {
   --nav-shadow: 0px 0px 14px #000;
   /*interactive colors*/
   --button-bg-fallback: yellow;
-  --destructiu: hsl(0, 91%, 35%);
-  --destructiu-hover: hsl(0, 91%, 55%);
-  --constructiu: hsl(125, 91%, 26%);
-  --constructiu-hover: hsl(125, 91%, 40%);
-  --neutre: hsl(0, 0%, 20%);
-  --neutre-hover: hsl(0, 0%, 40%);
+  --destructiu: linear-gradient(150deg, hsl(0, 91%, 55%), hsl(0, 91%, 35%));
+  --destructiu-hover: linear-gradient(150deg, hsl(0, 91%, 70%), hsl(0, 91%, 55%));
+  --constructiu: linear-gradient(150deg, hsl(125, 91%, 55%), hsl(125, 91%, 35%));
+  --constructiu-hover: linear-gradient(150deg, hsl(125, 91%, 75%), hsl(125, 91%, 55%));
+  --neutre: linear-gradient(150deg, hsl(0, 0%, 40%), hsl(0, 0%, 20%));
+  --neutre-hover: linear-gradient(150deg, hsl(0, 0%, 70%), hsl(0, 0%, 40%));
   --button-bg: var(--button-bg-fallback);
   --enllaç-navegació-bg-clicked: var(--PHB-statblocklines);
   --input-border: var(--theme-maxcontrast);

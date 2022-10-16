@@ -210,13 +210,31 @@ body.pergami .enllaç-navegació:not(.logo):is(:hover, :focus) {
   background: unset;
   height: 30px;
   width: 30px;
-  border: 1px solid var(--theme-70contrast);
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: unset;
+  border: 0;
 }
 
-#boto-navegacio hr {
-  border-color: var(--theme-maxcontrast);
-  margin-block: 5px;
+#boto-navegacio div {
+  background: var(--theme-maxcontrast);
+  width: 100%;
+  height: .2em;
+  transition: all 0.5s;
+  transform-origin: left;
+}
+
+#boto-navegacio.active div:nth-child(2) {
+  opacity: 0;
+}
+
+#boto-navegacio.active div:first-child {
+  transform: rotate(45deg);
+}
+
+#boto-navegacio.active div:last-child {
+  transform: rotate(-45deg);
 }
 
 nav .temes-boto svg {
@@ -282,8 +300,8 @@ body {
   display: flex;
   justify-content: center;
   width: 100vw;
-  min-height: 60vh;
-  margin-top: 10vh;
+  min-height: calc(100vh - 15vh - 20vh);
+  margin-top: 15vh;
   height: fit-content;
   z-index: 5;
 }
@@ -302,10 +320,22 @@ body {
 main > div,
 main > article {
   width: 90%;
-  min-height: 50vh;
-  margin-top: 9vh;
+  margin-top: 5vh;
   padding: 10px;
   box-shadow: var(--nav-shadow);
+}
+
+main > article:first-of-type {
+  margin-top: 6vh;
+}
+
+main > article:only-of-type {
+  min-height: 50vh;
+  margin-bottom: 2vh;
+}
+
+main > article:not(:only-of-type):last-of-type {
+  margin-bottom: 5vh;
 }
 
 h1 {
@@ -353,6 +383,11 @@ main p {
   -moz-transition: ease-out 200ms;
   -ms-transition: ease-out 200ms;
   -o-transition: ease-out 200ms;
+}
+
+a:hover {
+  color: var(--a-selected-color);
+  filter: brightness(70%);
 }
 
 /* enllaços al contingut principal quan hover*/
@@ -525,16 +560,18 @@ iframe {
 }
 
 /* botons que estan actius */
-:is(button, input:is([type="button"], [type="submit"])):not([disabled]),
+:is(button:not(.temes-boto), input:is([type="button"], [type="submit"])):not([disabled]),
 input[type="file"]::file-selector-button {
-  background-color: var(--button-bg);
+  background: var(--button-bg);
   border: none;
   font-size: var(--button-font-size);
   font-weight: bolder;
   letter-spacing: 0.1em;
   padding: .2em .5em;
-  color: var(--theme-mincontrast);
+  color: white;
   min-height: 27px;
+  text-shadow: 1px 2px 2px #000;
+  box-shadow: 1px 2px 5px #000;
 }
 
 input[type="file"] {
@@ -550,6 +587,8 @@ input[type="file"] {
   /*clip-path: polygon(      top left 1      0% var(--edge-size),      top left 2      var(--edge-size) 0%,      top right 1      calc(100% - var(--edge-size)) 0,      top right 2      100% var(--edge-size),      bottom right 1      100% calc(100% - var(--edge-size)),      bottom right 1      calc(100% - var(--edge-size)) 100%,      bottom left 1      var(--edge-size) 100%,      bottom left 2      0% calc(100% - var(--edge-size)));
   */
   border-radius: 10px;
+  text-shadow: 1px 1px 2px #000;
+  box-shadow: 1px 1px 3px #000;
 }
 
 .editar,
@@ -806,7 +845,7 @@ textarea {
 }
 
 .table-holder {
-  overflow-x: auto;
+  /*overflow-x: auto;*/
 }
 
 table {
@@ -1078,8 +1117,20 @@ input.rodo {
 }
 
 .rodo {
+  color: white;
+  font-weight: 900;
+  border: 1px solid hsl(100 0% 80%);
+  aspect-ratio: 1;
   border-radius: 100px !important;
   aspect-ratio: 1;
+}
+
+.rodo svg {
+  filter: drop-shadow(0px 1px 0px hsl(0, 0%, 0%));
+}
+
+.rodo:hover svg {
+  filter: drop-shadow(0px 1px 0px hsl(0, 0%, 0%, .5));
 }
 
 /*#########################   FOOTER   #############################*/
@@ -1088,9 +1139,9 @@ footer {
   z-index: 3;
   background-color: var(--nav-bg-color);
   background-image: var(--footer-bg-image);
-  /*height: 20vh;*/
+  height: 20vh;
   width: 100vw;
-  margin-top: 10vh;
+  /*margin-top: 10vh;
   /*si se toca, comprobar que en index no haya espacio entre este y el final de pagina*/
   color: var(--footer-color);
   text-align: center;
@@ -1186,7 +1237,7 @@ footer label {
   #botonsnavegacio {
     position: absolute;
     top: var(--nav-height);
-    left: 0;
+    right: 0;
     background-color: var(--nav-bg-color);
     background-image: var(--nav-bg-image);
     background-position-y: calc(var(--nav-height) * -1);
@@ -1195,12 +1246,14 @@ footer label {
     justify-content: flex-start;
     align-items: flex-start;
     height: auto;
-    width: 100vw;
+    /*width: 100vw;*/
+    clip-path: polygon(100% 0, 100% 90%, 50% 100%, 0 90%, 0 0);
   }
 
   .enllaç-navegació:not(.logo) {
     align-items: flex-start;
     width: 100%;
+    justify-content: center;
   }
 
   #botonsnavegacio.collapsed {

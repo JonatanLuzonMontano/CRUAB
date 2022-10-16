@@ -35,6 +35,7 @@ function clickeffect(e) { /*efecte de clic als botons*/
 
 function opennav() { /* obre i tanca la navegació en mòbil*/
   document.getElementById("botonsnavegacio").classList.toggle("collapsed");
+  document.getElementById("boto-navegacio").classList.toggle("active");
 }
 
 function obrirTemes() {
