@@ -70,7 +70,7 @@ body.clar {
   --body-bg-color: var(--theme-mincontrast);
   --body-bg-image: url(https://www.dndbeyond.com/content/1-0-2187-0/skins/waterdeep/images/background_texture.png);
   --nav-bg-color: var(--theme-10contrast);
-  --enllaç-navegació-bg-hover: 90%;
+  --enllaç-navegacio-bg-hover: 90%;
   --nav-bg-image: none;
   /*interactive colors*/
   --button-bg-fallback: yellow;
@@ -81,7 +81,7 @@ body.clar {
   --neutre: linear-gradient(150deg, hsl(200, 91%, 65%), hsl(200, 91%, 35%));
   --neutre-hover: linear-gradient(150deg, hsl(200, 91%, 75%), hsl(200, 91%, 50%));
   --button-bg: var(--button-bg-fallback);
-  --enllaç-navegació-bg-clicked: var(--theme-40contrast);
+  --enllaç-navegacio-bg-clicked: var(--theme-40contrast);
   --input-border: var(--theme-maxcontrast);
   /*text color*/
   --text-color-general: var(--theme-80contrast);
@@ -117,8 +117,8 @@ body.fosc {
   --neutre: linear-gradient(150deg, hsl(200, 91%, 65%), hsl(200, 91%, 35%));
   --neutre-hover: linear-gradient(150deg, hsl(200, 91%, 75%), hsl(200, 91%, 50%));
   --button-bg: var(--button-bg-fallback);
-  --enllaç-navegació-bg-hover: 130%;
-  --enllaç-navegació-bg-clicked: var(--theme-50contrast);
+  --enllaç-navegacio-bg-hover: 130%;
+  --enllaç-navegacio-bg-clicked: var(--theme-50contrast);
   --accent-color: hsl(170, 100%, 50%);
   --secondary-accent-color: rgb(255, 8, 8);
 }
@@ -153,7 +153,7 @@ body.pergami {
   --body-bg-image: ;
   --content-bg-image: var(--scroll);
   --nav-bg-color: var(--theme-20contrast);
-  --enllaç-navegació-bg-hover: 150%;
+  --enllaç-navegacio-bg-hover: 150%;
   --nav-bg-image: var(--redscroll);
   --footer-bg-image: var(--seascroll);
   --nav-shadow: 0px 0px 14px #000;
@@ -166,7 +166,7 @@ body.pergami {
   --neutre: linear-gradient(150deg, hsl(0, 0%, 40%), hsl(0, 0%, 20%));
   --neutre-hover: linear-gradient(150deg, hsl(0, 0%, 70%), hsl(0, 0%, 40%));
   --button-bg: var(--button-bg-fallback);
-  --enllaç-navegació-bg-clicked: var(--PHB-statblocklines);
+  --enllaç-navegacio-bg-clicked: var(--PHB-statblocklines);
   --input-border: var(--theme-maxcontrast);
   /*text color*/
   --text-color-general: var(--theme-80contrast);

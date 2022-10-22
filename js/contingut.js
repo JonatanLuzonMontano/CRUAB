@@ -18,7 +18,7 @@ function obtenirContingut() {
       sessionStorage.setItem('numnouarticle', maxid + 1);
       
       if ((articles.hasOwnProperty('Error'))) {
-        popUp("Error. Consulta la consola per saber els detalls.");
+        toast("Error. Consulta la consola per saber els detalls.");
         console.log(articles["Error"]);
         if (articles.hasOwnProperty('DeBug')) {
           console.log(articles["Debug"]);
@@ -148,7 +148,7 @@ function guardarArticle(id) {
           var response = JSON.parse(xhttpcontingut.responseText);
 
           if ((response.hasOwnProperty('Error'))) {
-            popUp("Error. Consulta la consola per saber els detalls.");
+            toast("Error. Consulta la consola per saber els detalls.");
             console.log(response["Error"]);
             if (response.hasOwnProperty('DeBug')) {
               console.log(response["Debug"]);
@@ -178,7 +178,7 @@ function guardarArticle(id) {
           var response = JSON.parse(xhttpcontingut.responseText);
 
           if ((response.hasOwnProperty('Error'))) {
-            popUp("Error. Consulta la consola per saber els detalls.");
+            toast("Error. Consulta la consola per saber els detalls.");
             console.log(response["Error"]);
             if (response.hasOwnProperty('DeBug')) {
               console.log(response["Debug"]);
@@ -228,7 +228,7 @@ function afegirArticle() {
       boto.classList.add('hidden');
     });
   } else {
-    popUp('Ja has creat un nou article, guarda abans de crear un de nou.');
+    toast('Ja has creat un nou article, guarda abans de crear un de nou.');
   }
 
 }
@@ -250,7 +250,7 @@ function borrarArticle(id) {
         var response = JSON.parse(xhttpcontingut.responseText);
 
         if ((response.hasOwnProperty('Error'))) {
-          popUp("Error. Consulta la consola per saber els detalls.");
+          toast("Error. Consulta la consola per saber els detalls.");
           console.log(response["Error"]);
           if (response.hasOwnProperty('DeBug')) {
             console.log(response["Debug"]);

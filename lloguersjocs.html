@@ -12,7 +12,7 @@
 <body>
   <header id="capçalera" class="navigation">
     <nav id="navbar">
-      <a class="logo enllaç-navegació" href="index.html">
+      <a class="logo enllaç-navegacio" href="index.html">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 30 450 450">
           <defs>
             <style>
@@ -83,14 +83,14 @@
         </svg>
       </a>
 
-      <div id="botonsnavegacio" class="collapsed">
-        <a id="paginajocs" class="enllaç-navegació" aria-current="page" href="jocstaula.html">Jocs de taula</a>
-        <a id="paginamanuals" class="enllaç-navegació" aria-current="page" href="manuals.html">Manuals</a>
-        <a id="paginagestio" class="enllaç-navegació hidden" aria-current="page" href="gestio.html">Gestió</a>
-        <a id="paginacompte" class="enllaç-navegació hidden" aria-current="page" href="membre.html">Compte</a>
-        <a id="paginalogout" class="enllaç-navegació hidden" aria-current="page" href="">Tancar sessió</a>
-        <a id="paginaeleccions" class="enllaç-navegació hidden" aria-current="page" href="eleccions.html">Eleccions</a>
-        <a id="paginalogin" class="enllaç-navegació hidden" aria-current="page" href="login.html">Iniciar sessió</a>
+      <div id="botonsnavegacioprincipal" class="collapsed">
+        <a id="paginajocs" class="enllaç-navegacio" aria-current="page" href="jocstaula.html">Jocs de taula</a>
+        <a id="paginamanuals" class="enllaç-navegacio" aria-current="page" href="manuals.html">Manuals</a>
+        <a id="paginagestio" class="enllaç-navegacio hidden" aria-current="page" href="gestio.html">Gestió</a>
+        <a id="paginacompte" class="enllaç-navegacio hidden" aria-current="page" href="membre.html">Compte</a>
+        <a id="paginalogout" class="enllaç-navegacio hidden" aria-current="page" href="">Tancar sessió</a>
+        <a id="paginaeleccions" class="enllaç-navegacio hidden" aria-current="page" href="eleccions.html">Eleccions</a>
+        <a id="paginalogin" class="enllaç-navegacio hidden" aria-current="page" href="login.html">Iniciar sessió</a>
       </div>
       <div id="botonsdreta">
         <button id="temes" class="temes-boto" type="button" data-target="espaitemes">
@@ -106,12 +106,20 @@
           <button id="pergami" class="canvi-tema" type="button" data-toggle="theme" data-target="body">Pergami</button>
         </div>
         <div id="boto-navegacio-parent">
-          <button id="boto-navegacio" type="button" data-toggle="collapse" data-target="#botonsnavegacio">
+          <button id="boto-navegacio" type="button" data-toggle="collapse" data-target="##botonsnavegacioprincipal">
             <hr>
             <hr>
             <hr>
           </button>
         </div>
+      </div>
+    </nav>
+    <nav id="juntanavbar" class="hidden">
+      <div id="botonsnavegaciojunta">
+        <a class="enllaç-navegacio" href="gestioingresosmembres.html">Ingresos membres</a>
+        <a class="enllaç-navegacio" href="gestiolloguersjocs.html">Gestió lloguers jocs</a>
+        <a class="enllaç-navegacio" href="gestiolloguersmanuals.html">Gestió lloguers manuals</a>
+        <a class="enllaç-navegacio" href="gestiomembres.html">Gestió de membres</a>
       </div>
     </nav>
   </header>
@@ -192,7 +200,7 @@
     </section>
   </footer>
 
-  <div id="popup"></div>
+  <div id="toast"></div>
 
   <div class="loading-parent hidden columns">
     <div class="loading"></div>

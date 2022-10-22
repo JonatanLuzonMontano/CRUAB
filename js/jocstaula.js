@@ -2,39 +2,39 @@ function validarFormulariJoc(dades) {
 
   if (dades['nom'] == "") {
     document.forms["formafegirjoc"]["nom"].focus();
-    popUp('El nom és obligatori');
+    toast('El nom és obligatori');
     return false;
   }
   if (dades['minjugadors'] == "") {
     document.forms["formafegirjoc"]["minjugadors"].focus();
-    popUp('Has de posar un mínim de jugadors');
+    toast('Has de posar un mínim de jugadors');
     return false;
   }
   if (dades['maxjugadors'] == "") {
     document.forms["formafegirjoc"]["maxjugadors"].focus();
-    popUp('Has de posar un màxim de jugadors');
+    toast('Has de posar un màxim de jugadors');
     return false;
   }
 
   if (dades['maxjugadors'] < dades['minjugadors']) {
     document.forms["formafegirjoc"]["maxjugadors"].focus();
-    popUp('El màxim de jugadors ha de ser igual o superior al mínim de jugadors');
+    toast('El màxim de jugadors ha de ser igual o superior al mínim de jugadors');
     return false;
   }
 
   if (dades['duracio'] == "") {
     document.forms["formafegirjoc"]["duracio"].focus();
-    popUp("Has d'indicar la duració");
+    toast("Has d'indicar la duració");
     return false;
   }
   if (dades['dificultat'] == "") {
     document.forms["formafegirjoc"]["dificultat"].focus();
-    popUp("Has d'indicar la dificultat del joc");
+    toast("Has d'indicar la dificultat del joc");
     return false;
   }
   if (dades['editorial'] == "") {
     document.forms["formafegirjoc"]["editorial"].focus();
-    popUp("Has d'indicar l'editorial");
+    toast("Has d'indicar l'editorial");
     return false;
   }
 
@@ -100,7 +100,7 @@ function eliminarJoc(nom) {
         //console.log(xhttp.responseText);
         var data = JSON.parse(xhttp.responseText);
         if ((data.hasOwnProperty('Error'))) {
-          popUp(data["Error"] + ", " + data["DeBug"]);
+          toast(data["Error"] + ", " + data["DeBug"]);
         } else {
           window.location.href = "jocstaula.html";
         }
@@ -215,8 +215,6 @@ function filtrar() {
   }
 }
 
-
-
 function filtrarJugadors() {
   const jocs = document.getElementsByClassName('element');
   const numjugadors = document.querySelector("#jugadors").value;
@@ -241,7 +239,7 @@ function filtrarJugadors() {
     }
   }
   if (atleastone == false) {
-    popUp("No hi ha cap joc per " + numjugadors + " jugadors.");
+    toast("No hi ha cap joc per " + numjugadors + " jugadors.");
   }
 }
 
@@ -294,11 +292,10 @@ function filtrarMinuts() {
     }
   }
   if (atleastone == false) {
-    popUp("No hi ha cap joc de " + minutsfiltre + " minuts.");
+    toast("No hi ha cap joc de " + minutsfiltre + " minuts.");
   }
 
 }
-
 
 function filtrarJugadorsIMinuts() {
   const jocs = document.getElementsByClassName('element');
@@ -364,9 +361,9 @@ function filtrarJugadorsIMinuts() {
   }
   if (atleastone == false) {
     if (numjugadors > 1) {
-      popUp("No hi ha cap joc de " + minutsfiltre + " minuts i " + numjugadors + " jugadors.");
+      toast("No hi ha cap joc de " + minutsfiltre + " minuts i " + numjugadors + " jugadors.");
     } else {
-      popUp("No hi ha cap joc de " + minutsfiltre + " minuts i " + numjugadors + " jugador.");
+      toast("No hi ha cap joc de " + minutsfiltre + " minuts i " + numjugadors + " jugador.");
     }
   }
 }

@@ -34,7 +34,7 @@ function clickeffect(e) { /*efecte de clic als botons*/
 }
 
 function opennav() { /* obre i tanca la navegació en mòbil*/
-  document.getElementById("botonsnavegacio").classList.toggle("collapsed");
+  document.getElementById("botonsnavegacioprincipal").classList.toggle("collapsed");
   document.getElementById("boto-navegacio").classList.toggle("active");
 }
 
@@ -80,13 +80,13 @@ function scrollTop() {
 
 // #################################################################   FUNCIONS COMUNES DE DISPLAY D'INFORMACIO ##############################################
 
-function popUp(mensaje) {
-  const popup = document.getElementById('popup');
-  if (!popup.classList.contains('visible')) {
-    popup.textContent = mensaje;
-    popup.className = 'visible';
+function toast(mensaje) {
+  const toast = document.getElementById('toast');
+  if (!toast.classList.contains('visible')) {
+    toast.textContent = mensaje;
+    toast.className = 'visible';
     setTimeout(function () {
-      popup.className = '';
+      toast.className = '';
     }, 2500);
   }
 

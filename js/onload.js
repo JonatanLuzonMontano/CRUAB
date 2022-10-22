@@ -13,6 +13,7 @@ function alCarregar() {
 
   ensenyarSocisActius();
 
+
   switch (nomArxiu()) { /*carga los eventos onload para la pagina correspondiente*/
     case "index.html":
       obtenirContingut();
@@ -83,10 +84,10 @@ function alCarregar() {
 }
 
 function afegeixListeners() {
-  var botonsnavegacio = document.getElementsByClassName("enllaç-navegació");
-  for (i = 0; i < botonsnavegacio.length; i++) {
-    botonsnavegacio[i].addEventListener('mousedown', clickeffect);
-    botonsnavegacio[i].addEventListener('mouseup', clickeffect);
+  var botonsnavegacioprincipal = document.getElementsByClassName("enllaç-navegacio");
+  for (i = 0; i < botonsnavegacioprincipal.length; i++) {
+    botonsnavegacioprincipal[i].addEventListener('mousedown', clickeffect);
+    botonsnavegacioprincipal[i].addEventListener('mouseup', clickeffect);
   }
   ifSubmmit();
   ifFiltre();

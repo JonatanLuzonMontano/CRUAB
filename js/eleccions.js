@@ -361,7 +361,7 @@ function afegirVocal(parent) {
   let numvocals;
   if (selectparent.classList.contains('rows')) {
     if (selectparent.querySelector('*').length === 10) {
-      popUp('Normalment diria que ' + selectparent.querySelector('*').length + ' vocals son molts');
+      toast('Normalment diria que ' + selectparent.querySelector('*').length + ' vocals son molts');
     }
     vocalacopiar = document.querySelector("#Vocal-1");
     vocalclon = vocalacopiar.cloneNode(true);
@@ -370,7 +370,7 @@ function afegirVocal(parent) {
     selectparent.querySelector('div:last-child').id = "Vocal-" + (numvocals);
   } else {
     if (selectparent.querySelector('*').length === 10) {
-      popUp('Normalment diria que ' + selectparent.querySelector('select').length + ' vocals son molts');
+      toast('Normalment diria que ' + selectparent.querySelector('select').length + ' vocals son molts');
     }
     vocalacopiar = document.querySelector(".editant .Vocals select");
     vocalclon = vocalacopiar.cloneNode(true);
@@ -388,7 +388,7 @@ function eliminarVocal(parent) {
 
     selectparent.removeChild(vocalaeliminar);
   } else {
-    popUp("El minim de camps per eliminar es 2");
+    toast("El minim de camps per eliminar es 2");
   }
 }
 
@@ -410,7 +410,7 @@ function validarFormulari(dades) {
         document.getElementById(key).focus();
         registreLabels[index].classList.add('error');
         dadestotes = false;
-        popUp('La llista necessita un membre com a ' + key.toLowerCase() + '.');
+        toast('La llista necessita un membre com a ' + key.toLowerCase() + '.');
         break;
       }
     }
