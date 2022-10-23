@@ -138,7 +138,7 @@ img {
   justify-content: flex-start;
   height: calc(var(--nav-height) - 15vh);
   width: 100%;
-  background: var(--theme-80contrast);
+  background: hsl(0, 0%, 20%);
 }
 
 [id^="botonsnavegacio"] {
@@ -167,7 +167,7 @@ img {
   align-items: center;
   height: 100%;
   padding-inline: 20px;
-  color: var(--nav-color);
+  color: hsl(0, 0%, 85%);
   font-family: var(--header-font-family);
   text-decoration: unset;
 }
@@ -397,7 +397,7 @@ main p {
 }
 
 /* enllaços al contingut principal*/
-.main-content a {
+.main-content *:not(button)>a {
   background: linear-gradient(90deg, var(--theme-maxcontrast), var(--theme-maxcontrast)) left bottom 0px 2px no-repeat;
   color: var(--a-color);
   text-decoration: unset;
@@ -409,15 +409,20 @@ main p {
   -o-transition: ease-out 200ms;
 }
 
-.main-content a:hover {
-  color: var(--a-selected-color);
-  filter: brightness(70%);
+.main-content button>a {
+  color:inherit;
+  text-decoration: unset;
 }
 
 /* enllaços al contingut principal quan hover*/
-.main-content a:is(:hover, :focus) {
+.main-content *:not(button)>a:is(:hover, :focus) {
+  color: var(--a-selected-color);
+  filter: brightness(70%);
   background-size: 100% 2px;
 }
+
+
+
 
 /*missatges d'error als formularis de login*/
 .missatge {
@@ -944,6 +949,10 @@ td:empty::after {
 .columns {
   display: flex;
   flex-direction: row;
+}
+
+.threegap {
+  gap:300px;
 }
 
 .space-around {
