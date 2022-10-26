@@ -33,7 +33,7 @@ function clickeffect(e) { /*efecte de clic als botons*/
   e.target.classList.toggle("clicked");
 }
 
-function opennav() { /* obre i tanca la navegació en mòbil*/
+function opennav() { /* obre i tanca la navegacio en mòbil*/
   document.getElementById("botonsnavegacioprincipal").classList.toggle("collapsed");
   document.getElementById("boto-navegacio").classList.toggle("active");
 }

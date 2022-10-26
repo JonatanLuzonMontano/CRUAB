@@ -173,7 +173,7 @@ img {
 }
 
 
-/*enllaços de navegació quan hover o focus si la navegacio te fons opac*/
+/*enllaços de navegacio quan hover o focus si la navegacio te fons opac*/
 .opac .enllaç-navegacio:not(.logo):is(:hover, :focus),
 body.pergami .enllaç-navegacio:not(.logo):is(:hover, :focus) {
   backdrop-filter: brightness(var(--enllaç-navegacio-bg-hover));
@@ -347,6 +347,10 @@ main > article {
   margin-top: 5vh;
   padding: 10px;
   box-shadow: var(--nav-shadow);
+}
+
+main > article:empty {
+  display:none;
 }
 
 main > article:first-of-type {
