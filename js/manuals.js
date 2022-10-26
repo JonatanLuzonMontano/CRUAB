@@ -128,12 +128,12 @@ function getManuals() {
         }
         var manualactual = document.querySelector(".manual:last-child");
         manualactual.id = manual.Nom;
-        manualactual.getElementsByClassName("nom")[0].textContent = manual.Nom;
+        manualactual.getElementsByClassName("nom")[0].textContent = decode(manual.Nom);
         manualactual.querySelector("a").href = "manualindividual.html?nom=" + manual.Nom;
         manualactual.querySelector("img").src = manual.Imatge;
-        manualactual.querySelector(".editorial").textContent = "Publicat per " + manual.Editorial + ".";
-        manualactual.querySelector(".ambientacio").textContent = "Ambientació: " + manual.Ambientacio + ".";
-        manualactual.querySelector(".coleccio").textContent = "Part de la col·leció " + manual.Coleccio + ".";
+        manualactual.querySelector(".editorial").textContent = "Publicat per " + decode(manual.Editorial) + ".";
+        manualactual.querySelector(".ambientacio").textContent = "Ambientació: " + decode(manual.Ambientacio) + ".";
+        manualactual.querySelector(".coleccio").textContent = "Part de la col·leció " + decode(manual.Coleccio) + ".";
         manualactual.querySelector(".adquirit").textContent = "A la taquilla des del " + manual.Adquirit + ".";
 
         if (sessionStorage['juntari'] == 'true') {

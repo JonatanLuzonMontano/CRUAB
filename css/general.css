@@ -81,6 +81,7 @@ img {
 /*#########################   NAVEGACIÓN   #############################*/
 [id="capçalera"] {
   --nav-height: 20vh;
+  --normal-nav-height:calc(var(--nav-height) - 5vh);
   position: fixed;
   top: 0px;
   z-index: 3;
@@ -191,7 +192,7 @@ body.pergami .enllaç-navegacio:not(.logo):is(:hover, :focus) {
 
 .logo {
   margin: 0 30px;
-  width: 70px;
+  width: 100px;
   padding: 0;
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -225,8 +226,8 @@ body.pergami .enllaç-navegacio:not(.logo):is(:hover, :focus) {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: var(--nav-height);
-  width: var(--nav-height);
+  height: var(--normal-nav-height);
+  width: var(--normal-nav-height);
   border: unset;
 }
 
@@ -267,12 +268,16 @@ nav .temes-boto svg {
   pointer-events: none;
   fill: var(--secondary-accent-color);
 }
+nav .temes-boto:hover svg {
+  fill: var(--accent-color);
+}
+
 
 #botonsdreta > .espai-temes {
   display: none;
   background-color: var(--theme-30contrast);
   position: absolute;
-  top: var(--nav-height);
+  top: var(--normal-nav-height);
   right: 3.5vw;
   width: fit-content;
   height: fit-content;
@@ -283,6 +288,12 @@ nav .temes-boto svg {
   border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
 }
+
+#temes {
+  box-shadow:unset;
+}
+
+
 
 #espaitemes.open {
   display: grid;
@@ -298,6 +309,9 @@ nav .temes-boto svg {
   border-left: 10px solid transparent;
   border-right: 0px solid transparent;
   border-bottom: 20px solid var(--theme-30contrast);
+}
+#clar, #fosc, #pergami {
+  text-shadow: none;
 }
 
 #clar {
@@ -354,7 +368,7 @@ main > article:empty {
 }
 
 main > article:first-of-type {
-  margin-top: 6vh;
+  margin-top: 15vh;
 }
 
 main > article:only-of-type {
@@ -1061,10 +1075,8 @@ td:empty::after {
 
 .contingut {
   position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   height: 100%;
   min-height: 150px;
   width: 300px;
@@ -1074,14 +1086,13 @@ td:empty::after {
   display: flex;
   flex-direction: column;
   text-align: left;
-  width: 60%;
-  height: 80%;
+  height: 70%;
   min-width: 100px;
   line-height: 1em;
 }
 
 .detalls > p {
-  font-size: calc(var(--p-size) * 0.8);
+  font-size: calc(var(--p-size) * 0.7);
   padding: 2px 5px;
   width: 100%;
   word-wrap: break-word;
@@ -1109,9 +1120,9 @@ td:empty::after {
 
 .image-holder {
   font-size: var(--p-size);
-  width: 40%;
   max-width: 20vw;
   margin-right: 1em;
+  height:168px;
   overflow: hidden;
   border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -1123,11 +1134,7 @@ td:empty::after {
 .image-holder img:is(:hover, :focus),
 .logo svg:is(:hover, :focus) {
   scale: 1.1;
-  transition: scale 250ms ease-in-out;
-  -webkit-transition: scale 250ms ease-in-out;
-  -moz-transition: scale 250ms ease-in-out;
-  -ms-transition: scale 250ms ease-in-out;
-  -o-transition: scale 250ms ease-in-out;
+  transition:250ms ease-in-out;
 }
 
 .hidden.hidden {
@@ -1261,6 +1268,7 @@ footer label {
 
   header {
     --nav-height: 12vh;
+    --normal-nav-height: calc(var(--nav-height) - 5vh);
   }
 
   nav {
@@ -1270,7 +1278,7 @@ footer label {
 
   #botonsnavegacioprincipal {
     position: absolute;
-    top: var(--nav-height);
+    top: var(--normal-nav-height);
     right: 0;
     background-color: var(--nav-bg-color);
     background-image: var(--nav-bg-image);

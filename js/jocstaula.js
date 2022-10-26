@@ -253,7 +253,7 @@ function filtrarMinuts() {
       minutsfiltrereal.push(parseInt(minutsfiltre.substring(1)));
       for (i = 0; i < jocs.length; i++) {
         const minuts = parseInt(jocs[i].getAttribute("minuts"));
-        if (minuts > minutsfiltrereal) {
+        if (minuts >= minutsfiltrereal) {
           jocs[i].classList.add('hidden');
         }
       }
@@ -261,10 +261,10 @@ function filtrarMinuts() {
     case document.querySelector('#minuts option:last-child').value:
       console.log(minutsfiltre);
       minutsfiltrereal.push(minutsfiltre.slice(0, -1));
-      console.log(minutsfiltrereal);
+      
       for (i = 0; i < jocs.length; i++) {
         const minuts = parseInt(jocs[i].getAttribute("minuts"));
-        if (minuts < minutsfiltrereal) {
+        if (minuts <= minutsfiltrereal) {
           jocs[i].classList.add('hidden');
         }
       }
@@ -275,9 +275,10 @@ function filtrarMinuts() {
       minutsfiltrereal.push(minutsfiltre.substring(index + 1));
 
       const totsminuts = [];
-      for (i = minutsfiltrereal[0]; i <= minutsfiltrereal[1]; i++) {
+      for (i = parseInt(minutsfiltrereal[0]); i <= parseInt(minutsfiltrereal[1]); i++) {
         totsminuts.push(i);
       }
+      
       for (i = 0; i < jocs.length; i++) {
         if (!totsminuts.includes(parseInt(jocs[i].getAttribute("minuts")))) {
           jocs[i].classList.add('hidden');
@@ -308,7 +309,7 @@ function filtrarJugadorsIMinuts() {
       minutsfiltrereal.push(parseInt(minutsfiltre.substring(1)));
       for (i = 0; i < jocs.length; i++) {
         const minuts = parseInt(jocs[i].getAttribute("minuts"));
-        if (minuts > minutsfiltrereal) {
+        if (minuts >= minutsfiltrereal) {
           jocs[i].classList.add('hidden');
         }
       }
@@ -319,7 +320,7 @@ function filtrarJugadorsIMinuts() {
       console.log(minutsfiltrereal);
       for (i = 0; i < jocs.length; i++) {
         const minuts = parseInt(jocs[i].getAttribute("minuts"));
-        if (minuts < minutsfiltrereal) {
+        if (minuts <= minutsfiltrereal) {
           jocs[i].classList.add('hidden');
         }
       }
@@ -330,7 +331,7 @@ function filtrarJugadorsIMinuts() {
       minutsfiltrereal.push(minutsfiltre.substring(index + 1));
 
       const totsminuts = [];
-      for (i = minutsfiltrereal[0]; i <= minutsfiltrereal[1]; i++) {
+      for (i = parseInt(minutsfiltrereal[0]); i <= parseInt(minutsfiltrereal[1]); i++) {
         totsminuts.push(i);
       }
       for (i = 0; i < jocs.length; i++) {

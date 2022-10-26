@@ -13,8 +13,13 @@ switch ($_SERVER['REQUEST_METHOD']) {
     $result = dbconnselect($query);
     $msg = array();
 
-    while ($values = mysqli_fetch_assoc($result)) {
-      $msg[] = $values;
+    if ($result == false) {
+      $msg = "No hi ha articles a la base de dades";
+    } else {
+
+      while ($values = mysqli_fetch_assoc($result)) {
+        $msg = $values;
+      }
     }
 
     break;
@@ -68,11 +73,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
     $result = dbconndelete($query);
     if (substr($result, 0, 5) == "Error") {
-			$msg["Error"] = "Error al esborrar l'article. Comproba que tot estigui correcte";
-			$msg["DeBug"] = $result;
-		} else {
-			$msg["Correcte"] = "Tot ok";
-		}
+      $msg["Error"] = "Error al esborrar l'article. Comproba que tot estigui correcte";
+      $msg["DeBug"] = $result;
+    } else {
+      $msg["Correcte"] = "Tot ok";
+    }
     break;
   default:
     http_response_code(400);
