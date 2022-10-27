@@ -58,7 +58,7 @@ function obtenirLlistes() {
     if (this.readyState == 4 && this.status == 200) {
       //console.log(xhttpllistes.responseText);
       var data = JSON.parse(xhttpllistes.responseText);
-      //console.table(data);
+      console.table(data);
 
       const taula = document.getElementsByTagName('tbody')[0];
 
@@ -77,13 +77,13 @@ function obtenirLlistes() {
         const carreg = element.Carreg;
         if (carreg.startsWith("Vocal")) {
           if (fileraactual.getElementsByClassName('Vocals')[0].textContent === "") {
-            if (element.pseudonim != "") {
+            if (element.pseudonim != "" && element.pseudonim != " " && element.pseudonim != null) {
               fileraactual.getElementsByClassName('Vocals')[0].textContent = element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
             } else {
               fileraactual.getElementsByClassName('Vocals')[0].textContent = element.nom + ' ' + element.primercognom;
             }
           } else {
-            if (element.pseudonim != "") {
+            if (element.pseudonim != "" && element.pseudonim != null ) {
               fileraactual.getElementsByClassName('Vocals')[0].textContent += ', ' + element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
             } else {
               fileraactual.getElementsByClassName('Vocals')[0].textContent += ', ' + element.nom + ' ' + element.primercognom;

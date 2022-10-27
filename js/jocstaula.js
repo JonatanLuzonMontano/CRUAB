@@ -290,24 +290,25 @@ function filtrar() {
         }
       }
     }
-
-    if (dificultat != "") {
-      for (i = 0; i < jocs.length; i++) {
-        const element = jocs[i];
-        if (element.getAttribute("dificultat") != dificultat) {
-          console.log(element.getAttribute("dificultat") + " != " + dificultat);
-          element.classList.add("hidden");
-        }
-      }
-    }
+  }
+  console.log(dificultat != "");
+  if (dificultat != "") {
     for (i = 0; i < jocs.length; i++) {
-      if (!jocs[i].classList.contains("hidden")) {
-        atleastone = true;
-        break;
+      console.log("bucle");
+      const element = jocs[i];
+      if (element.getAttribute("dificultat") != dificultat) {
+        console.log(element.getAttribute("dificultat") + " != " + dificultat);
+        element.classList.add("hidden");
       }
     }
-    if (atleastone == false) {
-      toast("No hi ha cap joc que compleixi els filtres.");
+  }
+  for (i = 0; i < jocs.length; i++) {
+    if (!jocs[i].classList.contains("hidden")) {
+      atleastone = true;
+      break;
     }
+  }
+  if (atleastone == false) {
+    toast("No hi ha cap joc que compleixi els filtres.");
   }
 }
