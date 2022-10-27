@@ -156,17 +156,17 @@
               <option value="10+">Jocs de 10 jugadors/es o més</option>
             </select>
           </div>
+          <div class="rows">
+            <label class="filterlabel" for="dificultat">Filtre per dificultat:</label>
+            <select id="dificultat">
+              <option selected value></option>
+              <option value="1">Jocs fàcils</option>
+              <option value="2">Jocs mitjans</option>
+              <option value="3">Jocs difícils</option>
+              <option value="4">Jocs molt difícils</option>
+            </select>
+          </div>
       </aside>
-      <div class="reservats hidden">
-        <button id="mostrarreservats" class="neutre hidden">Jocs Reservats</button>
-        <div class="popup hidden">
-          <ol></ol>
-
-          <template id="templatetaula">
-            <li class="reservat"></li>
-          </template>
-        </div>
-      </div>
       
       <button id="boto-afegir" class="constructiu hidden"></button>
       <p id="message"></p>
