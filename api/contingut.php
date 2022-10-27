@@ -13,12 +13,14 @@ switch ($_SERVER['REQUEST_METHOD']) {
     $result = dbconnselect($query);
     $msg = array();
 
+    
+
     if ($result == false) {
       $msg = "No hi ha articles a la base de dades";
     } else {
 
       while ($values = mysqli_fetch_assoc($result)) {
-        $msg = $values;
+        $msg[] = $values;
       }
     }
 

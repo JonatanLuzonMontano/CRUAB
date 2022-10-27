@@ -193,6 +193,7 @@ body.pergami .enllaç-navegacio:not(.logo):is(:hover, :focus) {
 .logo {
   margin: 0 30px;
   width: 100px;
+  max-width:100px;
   padding: 0;
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -888,10 +889,6 @@ textarea {
   margin-block: auto;
 }
 
-.table-holder {
-  /*overflow-x: auto;*/
-}
-
 table {
   --border-table: 1px solid var(--theme-maxcontrast);
   z-index: 5;
@@ -1131,10 +1128,13 @@ td:empty::after {
   -o-border-radius: 10px;
 }
 
+.image-holder img, .logo svg {
+  transition:250ms ease-in-out;
+}
+
 .image-holder img:is(:hover, :focus),
 .logo svg:is(:hover, :focus) {
   scale: 1.1;
-  transition:250ms ease-in-out;
 }
 
 .hidden.hidden {

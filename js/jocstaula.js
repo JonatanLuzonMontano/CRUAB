@@ -100,7 +100,7 @@ function eliminarJoc(nom) {
         //console.log(xhttp.responseText);
         var data = JSON.parse(xhttp.responseText);
         if ((data.hasOwnProperty('Error'))) {
-          toast(data["Error"] + ", " + data["DeBug"]);
+          console.log(data["Error"] + ", " + data["DeBug"]);
         } else {
           window.location.href = "jocstaula.html";
         }
@@ -165,6 +165,7 @@ function getJocsTaula() {
             dificultat.style = "background-color: red;";
             break;
           default:
+            alert("error, dificultad invalida");
             break;
         }
         if (sessionStorage['juntari'] == 'true') {

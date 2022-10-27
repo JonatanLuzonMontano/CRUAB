@@ -5,74 +5,47 @@ function obtenirContingut() {
       console.log(xhttpcontingut.responseText);
       var articles = JSON.parse(xhttpcontingut.responseText);
       console.table(articles);
-      if (articles === "No hi ha articles a la base de dades") {
-        toast("No hi ha articles");
+      let contingut;
+      let plantillaarticle;
+
+      if (articles.length === 0) {
+        toast("no hay articulos");
       } else {
         let maxid = null;
-        console.log(articles.length);
-        if (articles.length == undefined) {
-          maxid = 0;
-          const contingut = document.getElementById("contingut");
-          let plantillaarticle = document.getElementById("template").content.querySelector("section").cloneNode(true);
-          contingut.appendChild(plantillaarticle);
-          const articleactual = contingut.querySelector("section:last-of-type");
-          let article = articles;
-          articleactual.id = article.id;
-            articleactual.setAttribute("new", "no");
-            articleactual.querySelector(".titol").textContent = decode(
-              article.titol
-            );
-            articleactual.querySelector(".text").textContent = decode(
-              article.text
-            );
-            articleactual.querySelector(".data").textContent = article.Data;
-        } else {
-          articles.forEach(function (a) {
-            if (maxid != null) {
-              if (a["Id"] > maxid) {
-                maxid = a["Id"];
-              }
-            } else {
-              maxid = a["Id"];
-            }
-          });
-          sessionStorage.setItem("numnouarticle", maxid + 1);
-
-          if (articles.hasOwnProperty("Error")) {
-            toast("Error. Consulta la consola per saber els detalls.");
-            console.log(articles["Error"]);
-            if (articles.hasOwnProperty("DeBug")) {
-              console.log(articles["Debug"]);
+        articles.forEach(function (a) {
+          if (maxid != null) {
+            if (a["id"] > maxid) {
+              maxid = a["id"];
             }
           } else {
-            const contingut = document.getElementById("contingut");
-            let plantillaarticle = document
-              .getElementById("template")
-              .content.querySelector("section")
-              .cloneNode(true);
-            articles.forEach(function (article) {
-              plantillaarticle = document
-                .getElementById("template")
-                .content.querySelector("section")
-                .cloneNode(true);
-
-              contingut.appendChild(plantillaarticle);
-              const articleactual = contingut.querySelector(
-                "section:last-of-type"
-              );
-              articleactual.id = article.Id;
-              articleactual.setAttribute("new", "no");
-              articleactual.querySelector(".titol").textContent = decode(
-                article.Titol
-              );
-              articleactual.querySelector(".text").textContent = decode(
-                article.Text
-              );
-              articleactual.querySelector(".data").textContent = article.Data;
-            });
+            maxid = a["id"];
           }
-        }
+        });
+        contingut = document.getElementById("contingut");
+        plantillaarticle = document
+          .getElementById("template")
+          .content.querySelector("section")
+          .cloneNode(true);
+        articles.forEach(function (article) {
+          plantillaarticle = document
+            .getElementById("template")
+            .content.querySelector("section")
+            .cloneNode(true);
 
+          contingut.appendChild(plantillaarticle);
+          const articleactual = contingut.querySelector("section:last-of-type");
+          articleactual.id = article.id;
+          articleactual.setAttribute("new", "no");
+          articleactual.querySelector(".titol").textContent = decode(
+            article.titol
+          );
+          articleactual.querySelector(".text").textContent = decode(
+            article.text
+          );
+          articleactual.querySelector(".data").textContent = article.Data;
+        });
+        console.log(maxid + 1);
+        sessionStorage.setItem("numnouarticle", maxid + 1);
       }
     }
   };
@@ -111,13 +84,15 @@ function afegirBotons() {
   if (sessionStorage["juntari"] == "true") {
     const afegirboto = document
       .getElementById("template")
-      .content.querySelector(".afegir")
+      .content.querySelector(".button-holder")
       .cloneNode(true);
     document.getElementById("contingut").appendChild(afegirboto);
-    document.querySelector(".afegir").classList.remove("hidden");
-    document.querySelector(".afegir").addEventListener("click", function () {
-      afegirArticle();
-    });
+    document.querySelector(".button-holder .afegir").classList.remove("hidden");
+    document
+      .querySelector(".button-holder .afegir")
+      .addEventListener("click", function () {
+        afegirArticle();
+      });
 
     const articles = document.querySelectorAll(".main-content section");
 
@@ -250,7 +225,7 @@ function afegirArticle() {
   if (!document.querySelector('#contingut section[new="yes"]')) {
     document
       .getElementById("contingut")
-      .removeChild(document.querySelector(".afegir"));
+      .removeChild(document.querySelector(".button-holder"));
     plantillaarticle = document
       .getElementById("template")
       .content.querySelector("section")
@@ -259,7 +234,11 @@ function afegirArticle() {
     contingut.appendChild(plantillaarticle);
 
     const article = contingut.querySelector("#contingut section:last-of-type");
-    article.id = sessionStorage["numnouarticle"];
+    let idafegir = 1;
+    if (sessionStorage["numnouarticle"] != undefined) {
+      idafegir = sessionStorage["numnouarticle"];
+    }
+    article.id = idafegir;
     article.setAttribute("new", "yes");
 
     const inputtitol = document
