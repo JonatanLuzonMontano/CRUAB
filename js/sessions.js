@@ -31,6 +31,7 @@ xhttp.onreadystatechange = function () {
 
       if (sessionStorage.hasOwnProperty('juntari') && sessionStorage['juntari'] == 'true') {
         document.getElementById('paginagestio').classList.remove('hidden');
+        document.getElementById('juntanavbar').classList.remove('hidden');
       }
     }else {
       logout();

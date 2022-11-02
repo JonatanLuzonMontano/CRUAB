@@ -19,7 +19,7 @@ body {
 * {
   /*outline: 1px dashed red;
   */
-  transition: all 200ms;
+  /*transition: all 200ms;*/
 }
 
 ::selection {
@@ -32,7 +32,7 @@ a::selection {
 }
 
 :focus {
-  z-index: 100;
+  z-index: 2;
   outline: none;
 }
 
@@ -59,7 +59,7 @@ a::selection {
   background-color: hsl(0, 0%, 60%);
 }
 
-#capçalera *,
+[id="capçalera"] *,
 input,
 button,
 #filterbox *,
@@ -79,15 +79,15 @@ img {
 }
 
 /*#########################   NAVEGACIÓN   #############################*/
-#capçalera {
-  --nav-height: 15vh;
+[id="capçalera"] {
+  --nav-height: 20vh;
+  --normal-nav-height:calc(var(--nav-height) - 5vh);
   position: fixed;
   top: 0px;
   z-index: 3;
   background-color: none;
-  background-image: var(--nav-bg-image);
   display: block;
-  height: var(--nav-height);
+  
   width: 100%;
   max-width: 100vw;
   -webkit-touch-callout: none;
@@ -105,17 +105,18 @@ img {
   box-shadow: var(--nav-shadow);
 }
 
-#capçalera.opac {
+[id="capçalera"].opac {
   background-color: var(--nav-bg-color);
 }
 
 /*llista de botons de navegacio*/
-#capçalera > nav {
+[id="capçalera"] > [id="navbar"] {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
-  height: 100%;
+  background-image: var(--nav-bg-image);
+  height: calc(var(--nav-height) - 5vh);
   width: 100%;
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -131,43 +132,68 @@ img {
   /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
 }
 
-#botonsnavegacio {
+[id="capçalera"] > [id="juntanavbar"] {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  height: 100%;
+  justify-content: flex-start;
+  height: calc(var(--nav-height) - 15vh);
+  width: 100%;
+  background: hsl(0, 0%, 20%);
 }
 
-.enllaç-navegació {
+[id^="botonsnavegacio"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width:100%;
+}
+
+[id="navbar"] .enllaç-navegacio {
   background-color: unset;
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 20px;
+  padding-inline:10px;
   color: var(--nav-color);
   font-size: var(--nav-font-size);
   font-family: var(--header-font-family);
   text-decoration: unset;
 }
 
-/*enllaços de navegació quan hover o focus si la navegacio te fons opac*/
-.opac .enllaç-navegació:not(.logo):is(:hover, :focus),
-body.pergami .enllaç-navegació:not(.logo):is(:hover, :focus) {
-  backdrop-filter: brightness(var(--enllaç-navegació-bg-hover));
+[id="juntanavbar"] .enllaç-navegacio {
+  background-color: unset;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-inline: 20px;
+  color: hsl(0, 0%, 85%);
+  font-family: var(--header-font-family);
+  text-decoration: unset;
+}
+
+
+/*enllaços de navegacio quan hover o focus si la navegacio te fons opac*/
+.opac .enllaç-navegacio:not(.logo):is(:hover, :focus),
+body.pergami .enllaç-navegacio:not(.logo):is(:hover, :focus) {
+  backdrop-filter: brightness(var(--enllaç-navegacio-bg-hover));
   z-index: 100;
 }
 
-#capçalera:not(.opac) .enllaç-navegació:is(:hover, :focus) {
+[id="capçalera"]:not(.opac) .enllaç-navegacio:is(:hover, :focus) {
   text-shadow: 0 0 10px var(--nav-color);
 }
 
-.enllaç-navegació.clicked,
-.enllaç-navegació.active {
-  background-color: var(--enllaç-navegació-bg-clicked);
+.enllaç-navegacio.clicked,
+.enllaç-navegacio.active {
+  background-color: var(--enllaç-navegacio-bg-clicked);
 }
 
 .logo {
   margin: 0 30px;
-  width: 70px;
+  width: 100px;
+  max-width:100px;
   padding: 0;
   -webkit-touch-callout: none;
   /* iOS Safari */
@@ -201,8 +227,8 @@ body.pergami .enllaç-navegació:not(.logo):is(:hover, :focus) {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: var(--nav-height);
-  width: var(--nav-height);
+  height: var(--normal-nav-height);
+  width: var(--normal-nav-height);
   border: unset;
 }
 
@@ -210,13 +236,31 @@ body.pergami .enllaç-navegació:not(.logo):is(:hover, :focus) {
   background: unset;
   height: 30px;
   width: 30px;
-  border: 1px solid var(--theme-70contrast);
-  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: unset;
+  border: 0;
 }
 
-#boto-navegacio hr {
-  border-color: var(--theme-maxcontrast);
-  margin-block: 5px;
+#boto-navegacio div {
+  background: var(--theme-maxcontrast);
+  width: 100%;
+  height: .2em;
+  transition: all 0.5s;
+  transform-origin: left;
+}
+
+#boto-navegacio.active div:nth-child(2) {
+  opacity: 0;
+}
+
+#boto-navegacio.active div:first-child {
+  transform: rotate(45deg);
+}
+
+#boto-navegacio.active div:last-child {
+  transform: rotate(-45deg);
 }
 
 nav .temes-boto svg {
@@ -225,12 +269,16 @@ nav .temes-boto svg {
   pointer-events: none;
   fill: var(--secondary-accent-color);
 }
+nav .temes-boto:hover svg {
+  fill: var(--accent-color);
+}
+
 
 #botonsdreta > .espai-temes {
   display: none;
   background-color: var(--theme-30contrast);
   position: absolute;
-  top: var(--nav-height);
+  top: var(--normal-nav-height);
   right: 3.5vw;
   width: fit-content;
   height: fit-content;
@@ -241,6 +289,12 @@ nav .temes-boto svg {
   border-bottom-right-radius: 10px;
   border-top-left-radius: 10px;
 }
+
+#temes {
+  box-shadow:unset;
+}
+
+
 
 #espaitemes.open {
   display: grid;
@@ -256,6 +310,9 @@ nav .temes-boto svg {
   border-left: 10px solid transparent;
   border-right: 0px solid transparent;
   border-bottom: 20px solid var(--theme-30contrast);
+}
+#clar, #fosc, #pergami {
+  text-shadow: none;
 }
 
 #clar {
@@ -274,12 +331,16 @@ nav .temes-boto svg {
 }
 
 /*#########################   CONTENINDO PRINCIPAL   #############################*/
+body {
+  color: var(--p-color);
+}
+
 .main-content {
   display: flex;
   justify-content: center;
   width: 100vw;
-  min-height: 60vh;
-  margin-top: 10vh;
+  min-height: calc(100vh - 15vh - 20vh);
+  margin-top: 15vh;
   height: fit-content;
   z-index: 5;
 }
@@ -297,12 +358,27 @@ nav .temes-boto svg {
 
 main > div,
 main > article {
-  min-width: 80%;
-  max-width: 90%;
-  min-height: 50vh;
-  margin-top: 9vh;
+  width: 90%;
+  margin-top: 5vh;
   padding: 10px;
   box-shadow: var(--nav-shadow);
+}
+
+main > article:empty {
+  display:none;
+}
+
+main > article:first-of-type {
+  margin-top: 15vh;
+}
+
+main > article:only-of-type {
+  min-height: 50vh;
+  margin-bottom: 2vh;
+}
+
+main > article:not(:only-of-type):last-of-type {
+  margin-bottom: 5vh;
 }
 
 h1 {
@@ -340,7 +416,7 @@ main p {
 }
 
 /* enllaços al contingut principal*/
-.main-content a {
+.main-content *:not(button)>a {
   background: linear-gradient(90deg, var(--theme-maxcontrast), var(--theme-maxcontrast)) left bottom 0px 2px no-repeat;
   color: var(--a-color);
   text-decoration: unset;
@@ -352,10 +428,20 @@ main p {
   -o-transition: ease-out 200ms;
 }
 
+.main-content button>a {
+  color:inherit;
+  text-decoration: unset;
+}
+
 /* enllaços al contingut principal quan hover*/
-.main-content a:is(:hover, :focus) {
+.main-content *:not(button)>a:is(:hover, :focus) {
+  color: var(--a-selected-color);
+  filter: brightness(70%);
   background-size: 100% 2px;
 }
+
+
+
 
 /*missatges d'error als formularis de login*/
 .missatge {
@@ -426,10 +512,20 @@ main p {
   bottom: 0px;
 }
 
-/*###############################   GESTIÓN   #############################*/
-.gestio-link {
-  font-size: var(--h1-size);
+.iframe {
+  border: 2px solid var(--theme-maxcontrast);
+  border-radius: 10px;
+  height: 300px;
+  min-width: 300px;
+  overflow: hidden;
+  margin-left: 20px;
 }
+
+iframe {
+  aspect-ratio: 1;
+}
+
+
 
 /*###############################   MEMBRE   ##############################*/
 .stretch {
@@ -449,9 +545,13 @@ main p {
   margin-left: 20px;
 }
 
+#login {
+  margin-top: 20px;
+}
+
 /*##############################   ESPECIALES   #################################*/
 /*toast message pop up*/
-#popup {
+#toast {
   position: fixed;
   bottom: 20vh;
   left: 50vw;
@@ -475,13 +575,13 @@ main p {
   z-index: 100;
 }
 
-#popup.visible {
+#toast.visible {
   display: block;
-  animation: popup 2500ms ease 0s 1 normal forwards;
-  -webkit-animation: popup 2500ms ease 0s 1 normal forwards;
+  animation: toast 2500ms ease 0s 1 normal forwards;
+  -webkit-animation: toast 2500ms ease 0s 1 normal forwards;
 }
 
-@keyframes popup {
+@keyframes toast {
 
   0%,
   100% {
@@ -498,27 +598,25 @@ main p {
 /* botons actius o inactius */
 :is(button, input:is([type="button"], [type="submit"])) {
   --edge-size: .45em;
-  border-radius: 20px;
+  border-radius: 7px;
   background: var(--button-bg-fallback);
   /*clip-path: polygon(      top left       0% var(--edge-size),      top left       var(--edge-size) 0%,      top righ      100% 0,      bottom right       100% calc(100% - var(--edge-size)),      bottom right       calc(100% - var(--edge-size)) 100%,      bottom lef      0% 100%)*/
-  ;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
+  transition-duration: 200ms;
 }
 
 /* botons que estan actius */
-:is(button, input:is([type="button"], [type="submit"])):not([disabled]),
+:is(button:not(.temes-boto), input:is([type="button"], [type="submit"])):not([disabled]),
 input[type="file"]::file-selector-button {
-  background-color: var(--button-bg);
+  background: var(--button-bg);
   border: none;
   font-size: var(--button-font-size);
   font-weight: bolder;
   letter-spacing: 0.1em;
   padding: .2em .5em;
-  color: var(--theme-mincontrast);
+  color: white;
   min-height: 27px;
+  text-shadow: 1px 2px 2px #000;
+  box-shadow: 1px 2px 5px #000;
 }
 
 input[type="file"] {
@@ -533,11 +631,9 @@ input[type="file"] {
   /*--edge-size: .45em;
   /*clip-path: polygon(      top left 1      0% var(--edge-size),      top left 2      var(--edge-size) 0%,      top right 1      calc(100% - var(--edge-size)) 0,      top right 2      100% var(--edge-size),      bottom right 1      100% calc(100% - var(--edge-size)),      bottom right 1      calc(100% - var(--edge-size)) 100%,      bottom left 1      var(--edge-size) 100%,      bottom left 2      0% calc(100% - var(--edge-size)));
   */
-  border-radius: 100px;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  -ms-border-radius: 100px;
-  -o-border-radius: 100px;
+  border-radius: 10px;
+  text-shadow: 1px 1px 2px #000;
+  box-shadow: 1px 1px 3px #000;
 }
 
 .editar,
@@ -590,7 +686,7 @@ input[type="file"]:invalid:is(:hover, :focus)::file-selector-button {
 }
 
 /*inputs de tipus text, password, i tal, mai botons*/
-input:not([type="button"], [type="radio"], [type="submit"]) {
+input:is([type="text"], [type="email"], [type="password"]) {
   position: relative;
   background-color: var(--input-bg);
   box-shadow: inset 0 0 5px 0;
@@ -656,8 +752,8 @@ input:is([type="text"], [type="number"], [type="password"], [type="email"]):focu
 }
 
 /*inputs quan son bons*/
-input:not(:placeholder-shown, [type="radio"], [type="submit"]):valid,
-input:not([type="radio"]):-internal-autofill-selected:valid {
+input:not(:placeholder-shown, [type="radio"], [type="checkbox"], [type="submit"]):valid,
+input:not([type="radio"], [type="checkbox"]):-internal-autofill-selected:valid {
   --input-bg: var(--input-bg-correct);
   outline: 1px solid var(--input-border-correct);
   box-shadow: unset;
@@ -739,13 +835,29 @@ label + div label,
 }
 
 textarea {
-  width: clamp(200px, 90ch, 100%);
-  /*height: clamp(100px, 30ch, 30%);*/
+  resize: vertical;
+  width: 100%;
+  box-shadow: inset 0 0 5px 0;
+  min-height: 100px;
+  max-height: 500px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 /*#########################   TABLAS Y CONTENIDO DE LA BASE DE DATOS   #############################*/
 #filterbox {
+  margin-top: 10px;
   width: 70%;
+  margin-bottom: 20px;
+}
+
+#filterbox:has(+ .hidden) {
+  margin-bottom: 30px;
+}
+
+#filterbox + .constructiu {
+  margin-bottom: 20px;
 }
 
 #filterbox > div {
@@ -775,10 +887,6 @@ textarea {
 
 #filterbox *:where(#filtrarJugadors, #filtrarMinuts) {
   margin-block: auto;
-}
-
-.table-holder {
-  overflow-x: auto;
 }
 
 table {
@@ -856,6 +964,10 @@ td:empty::after {
 .columns {
   display: flex;
   flex-direction: row;
+}
+
+.threegap {
+  gap:300px;
 }
 
 .space-around {
@@ -960,10 +1072,8 @@ td:empty::after {
 
 .contingut {
   position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   height: 100%;
   min-height: 150px;
   width: 300px;
@@ -973,14 +1083,13 @@ td:empty::after {
   display: flex;
   flex-direction: column;
   text-align: left;
-  width: 60%;
-  height: 80%;
+  height: 70%;
   min-width: 100px;
   line-height: 1em;
 }
 
 .detalls > p {
-  font-size: calc(var(--p-size) * 0.8);
+  font-size: calc(var(--p-size) * 0.7);
   padding: 2px 5px;
   width: 100%;
   word-wrap: break-word;
@@ -1008,9 +1117,9 @@ td:empty::after {
 
 .image-holder {
   font-size: var(--p-size);
-  width: 40%;
   max-width: 20vw;
   margin-right: 1em;
+  height:168px;
   overflow: hidden;
   border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -1019,14 +1128,13 @@ td:empty::after {
   -o-border-radius: 10px;
 }
 
+.image-holder img, .logo svg {
+  transition:250ms ease-in-out;
+}
+
 .image-holder img:is(:hover, :focus),
 .logo svg:is(:hover, :focus) {
   scale: 1.1;
-  transition: scale 250ms ease-in-out;
-  -webkit-transition: scale 250ms ease-in-out;
-  -moz-transition: scale 250ms ease-in-out;
-  -ms-transition: scale 250ms ease-in-out;
-  -o-transition: scale 250ms ease-in-out;
 }
 
 .hidden.hidden {
@@ -1045,12 +1153,25 @@ input.rodo {
   font-weight: 900;
   clip-path: unset;
   border-radius: 100px;
-  -webkit-border-radius: 100px;
-  -moz-border-radius: 100px;
-  -ms-border-radius: 100px;
-  -o-border-radius: 100px;
   height: 30px;
   aspect-ratio: 1;
+}
+
+.rodo {
+  color: white;
+  font-weight: 900;
+  border: 1px solid hsl(100 0% 80%);
+  aspect-ratio: 1;
+  border-radius: 100px !important;
+  aspect-ratio: 1;
+}
+
+.rodo svg {
+  filter: drop-shadow(0px 1px 0px hsl(0, 0%, 0%));
+}
+
+.rodo:hover svg {
+  filter: drop-shadow(0px 1px 0px hsl(0, 0%, 0%, .5));
 }
 
 /*#########################   FOOTER   #############################*/
@@ -1061,14 +1182,16 @@ footer {
   background-image: var(--footer-bg-image);
   height: 20vh;
   width: 100vw;
-  margin-top: 10vh;
+  /*margin-top: 10vh;
   /*si se toca, comprobar que en index no haya espacio entre este y el final de pagina*/
   color: var(--footer-color);
   text-align: center;
   box-shadow: var(--nav-shadow);
+  align-items: flex-start;
 }
 
-footer .social-link {
+footer a {
+  width: max-content;
   background-image: linear-gradient(90deg, var(--secondary-accent-color), var(--secondary-accent-color));
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -1083,11 +1206,19 @@ footer .social-link {
   -o-transition: ease-out 200ms;
 }
 
-footer .social-link:is(:hover, :focus) {
+footer section {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+footer a:is(:hover, :focus) {
   background-size: 100% 2px;
 }
 
-footer h2 {
+footer h3 {
   color: var(--nav-color);
 }
 
@@ -1137,6 +1268,7 @@ footer label {
 
   header {
     --nav-height: 12vh;
+    --normal-nav-height: calc(var(--nav-height) - 5vh);
   }
 
   nav {
@@ -1144,10 +1276,10 @@ footer label {
     justify-content: flex-start;
   }
 
-  #botonsnavegacio {
+  #botonsnavegacioprincipal {
     position: absolute;
-    top: var(--nav-height);
-    left: 0;
+    top: var(--normal-nav-height);
+    right: 0;
     background-color: var(--nav-bg-color);
     background-image: var(--nav-bg-image);
     background-position-y: calc(var(--nav-height) * -1);
@@ -1156,15 +1288,17 @@ footer label {
     justify-content: flex-start;
     align-items: flex-start;
     height: auto;
-    width: 100vw;
+    /*width: 100vw;*/
+    clip-path: polygon(100% 0, 100% 90%, 50% 100%, 0 90%, 0 0);
   }
 
-  .enllaç-navegació:not(.logo) {
+  .enllaç-navegacio:not(.logo) {
     align-items: flex-start;
     width: 100%;
+    justify-content: center;
   }
 
-  #botonsnavegacio.collapsed {
+  #botonsnavegacioprincipal.collapsed {
     display: none;
   }
 
@@ -1261,14 +1395,14 @@ footer label {
   height: 20px;
   border-radius: 20px;
   overflow: hidden;
-  border:1px solid var(--theme-90contrast);
+  border: 1px solid var(--theme-90contrast);
 }
 
 .loading-parent::after {
   content: 'carregant el contingut...';
   display: block;
   position: absolute;
-  color:white;
+  color: white;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -1279,7 +1413,7 @@ footer label {
   width: 100%;
   height: 100%;
   background: var(--theme-maxcontrast);
-  animation: load 5s cubic-bezier(.31,1.03,.98,.47) 1;
+  animation: load 5s cubic-bezier(.31, 1.03, .98, .47) 1;
   border-radius: inherit;
 }
 

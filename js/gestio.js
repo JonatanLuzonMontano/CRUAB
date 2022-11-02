@@ -43,6 +43,7 @@ function obrirVotacio() {
     xhttpobrirvotacio.send(JSON.stringify(data));
   }
 }
+
 function obrirActivacio() {
   if (confirm("Estas segur?")) {
     var xhttpobriractivacio = new XMLHttpRequest;

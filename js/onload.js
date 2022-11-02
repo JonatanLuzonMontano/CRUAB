@@ -13,6 +13,7 @@ function alCarregar() {
 
   ensenyarSocisActius();
 
+
   switch (nomArxiu()) { /*carga los eventos onload para la pagina correspondiente*/
     case "index.html":
       obtenirContingut();
@@ -83,10 +84,10 @@ function alCarregar() {
 }
 
 function afegeixListeners() {
-  var botonsnavegacio = document.getElementsByClassName("enllaç-navegació");
-  for (i = 0; i < botonsnavegacio.length; i++) {
-    botonsnavegacio[i].addEventListener('mousedown', clickeffect);
-    botonsnavegacio[i].addEventListener('mouseup', clickeffect);
+  var botonsnavegacioprincipal = document.getElementsByClassName("enllaç-navegacio");
+  for (i = 0; i < botonsnavegacioprincipal.length; i++) {
+    botonsnavegacioprincipal[i].addEventListener('mousedown', clickeffect);
+    botonsnavegacioprincipal[i].addEventListener('mouseup', clickeffect);
   }
   ifSubmmit();
   ifFiltre();
@@ -169,16 +170,8 @@ function ifSubmmit() {
 
 function ifFiltre() {
   if (document.getElementById("filterbox") != undefined) {
-    const checkboxesminuts = document.querySelectorAll('#minuts input[type="checkbox"]');
-    checkboxesminuts.forEach((e) => { e.addEventListener('click', function () { onlyOneMinuts(this); }); });
-
-    const checkboxesjugadors = document.querySelectorAll('#jugadors input[type="checkbox"]');
-    checkboxesjugadors.forEach((e) => { e.addEventListener('click', function () { onlyOneJugadors(this); }); });
-
-    const checkboxes = document.querySelectorAll('#filterbox input[type="checkbox"]');
-    checkboxes.forEach((e) => { e.addEventListener('click', function () { filtrar(); }); });
-
-
+    const filters = document.querySelectorAll('#filterbox select');
+    filters.forEach((e) => { e.addEventListener('change', function () { filtrar(); }); });
   }
 }
 

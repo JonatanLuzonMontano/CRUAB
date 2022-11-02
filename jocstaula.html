@@ -12,7 +12,7 @@
 <body>
   <header id="capçalera" class="navigation">
     <nav id="navbar">
-      <a class="logo enllaç-navegació" href="index.html">
+      <a class="logo enllaç-navegacio" href="index.html">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 30 450 450">
           <defs>
             <style>
@@ -82,14 +82,14 @@
           </g>
         </svg>
       </a>
-      <div id="botonsnavegacio" class="collapsed">
-        <a id="paginajocs" class="enllaç-navegació" aria-current="page" href="jocstaula.html">Jocs de taula</a>
-        <a id="paginamanuals" class="enllaç-navegació" aria-current="page" href="manuals.html">Manuals</a>
-        <a id="paginagestio" class="enllaç-navegació hidden" aria-current="page" href="gestio.html">Gestió</a>
-        <a id="paginacompte" class="enllaç-navegació hidden" aria-current="page" href="membre.html">Compte</a>
-        <a id="paginalogout" class="enllaç-navegació hidden" aria-current="page" href="">Tancar sessió</a>
-        <a id="paginaeleccions" class="enllaç-navegació hidden" aria-current="page" href="eleccions.html">Eleccions</a>
-        <a id="paginalogin" class="enllaç-navegació hidden" aria-current="page" href="login.html">Iniciar sessió</a>
+      <div id="botonsnavegacioprincipal" class="collapsed">
+        <a id="paginajocs" class="enllaç-navegacio" aria-current="page" href="jocstaula.html">Jocs de taula</a>
+        <a id="paginamanuals" class="enllaç-navegacio" aria-current="page" href="manuals.html">Manuals</a>
+        <a id="paginagestio" class="enllaç-navegacio hidden" aria-current="page" href="gestio.html">Gestió</a>
+        <a id="paginacompte" class="enllaç-navegacio hidden" aria-current="page" href="membre.html">Compte</a>
+        <a id="paginalogout" class="enllaç-navegacio hidden" aria-current="page" href="">Tancar sessió</a>
+        <a id="paginaeleccions" class="enllaç-navegacio hidden" aria-current="page" href="eleccions.html">Eleccions</a>
+        <a id="paginalogin" class="enllaç-navegacio hidden" aria-current="page" href="login.html">Iniciar sessió</a>
       </div>
       <div id="botonsdreta">
         <button id="temes" class="temes-boto" type="button" data-target="espaitemes">
@@ -105,7 +105,7 @@
           <button id="pergami" class="canvi-tema" type="button" data-toggle="theme" data-target="body">Pergami</button>
         </div>
         <div id="boto-navegacio-parent">
-          <button id="boto-navegacio" type="button" data-toggle="collapse" data-target="#botonsnavegacio">
+          <button id="boto-navegacio" type="button" data-toggle="collapse" data-target="##botonsnavegacioprincipal">
             <hr>
             <hr>
             <hr>
@@ -113,89 +113,61 @@
         </div>
       </div>
     </nav>
+    <nav id="juntanavbar" class="hidden">
+      <div id="botonsnavegaciojunta">
+        <a class="enllaç-navegacio" href="gestioingresosmembres.html">Ingresos membres</a>
+        <a class="enllaç-navegacio" href="gestiolloguersjocs.html">Gestió lloguers jocs</a>
+        <a class="enllaç-navegacio" href="gestiolloguersmanuals.html">Gestió lloguers manuals</a>
+        <a class="enllaç-navegacio" href="gestiomembres.html">Gestió de membres</a>
+      </div>
+    </nav>
   </header>
 
   <main class="main-content">
 
-    <article class="flex-parent rows center">
-      <aside id="filterbox" class="filterbox flex-parent rows center">
+    <article class=" rows center">
+      <aside id="filterbox" class="filterbox rows center">
         <div class="filter-parent">
-          <label class="filterlabel" for="minuts">Filtre de durada del joc:</label>
-          <div id="minuts" class="numbers flex-parent columns center">
-            <div class="filter">
-              <label for="-10">menys de 10 minuts</label>
-              <input id="-10" type="checkbox" name="-10" value="-10">
-            </div>
-            <div class="filter">
-              <label for="10-30">de 10 a 30 minuts</label>
-              <input id="10-30" type="checkbox" name="10-30" value="10-30">
-            </div>
-            <div class="filter">
-              <label for="20-30">de 20 a 30 minuts</label>
-              <input id="20-30" type="checkbox" name="20-30" value="20-30">
-            </div>
-            <div class="filter">
-              <label for="30-60">de 30 minuts a 1 hora</label>
-              <input id="30-60" type="checkbox" name="30-60" value="30-60">
-            </div>
-            <div class="filter">
-              <label for="60-120">de 1 a 2 hores</label>
-              <input id="60-120" type="checkbox" name="60-120" value="60-120">
-            </div>
-            <div class="filter">
-              <label for="120+">més de 2 hores</label>
-              <input id="120+" type="checkbox" name="120+" value="120+">
-            </div>
+          <div class="rows">
+            <label class="filterlabel" for="minuts">Filtre de durada del joc:</label>
+            <select id="minuts">
+              <option selected value></option>
+              <option value="-10">Menys de 10 minuts</option>
+              <option value="10-30">De 10 a 30 minuts</option>
+              <option value="30-60">De 30 minuts a 1 hora</option>
+              <option value="60-120">De 1 a 2 hores</option>
+              <option value="120-180">De 2 a 3 hores</option>
+              <option value="180+">Més de 3 hores</option>
+            </select>
           </div>
-        </div>
-        <div class="filter-parent">
-          <label class="filterlabel" for="jugadors">Filtre de nombre de jugadors:</label>
-          <div id="jugadors" class="numbers flex-parent columns center">
-            <div class="filter">
-              <label for="1">1</label>
-              <input id="1" type="checkbox" name="1" value="1">
-            </div>
-            <div class="filter">
-              <label for="2">2</label>
-              <input id="2" type="checkbox" name="2" value="2">
-            </div>
-            <div class="filter">
-              <label for="3">3</label>
-              <input id="3" type="checkbox" name="3" value="3">
-            </div>
-            <div class="filter">
-              <label for="4">4</label>
-              <input id="4" type="checkbox" name="4" value="4">
-            </div>
-            <div class="filter">
-              <label for="5">5</label>
-              <input id="5" type="checkbox" name="5" value="5">
-            </div>
-            <div class="filter">
-              <label for="6">6</label>
-              <input id="6" type="checkbox" name="6" value="6">
-            </div>
-            <div class="filter">
-              <label for="7">7</label>
-              <input id="7" type="checkbox" name="7" value="7">
-            </div>
-            <div class="filter">
-              <label for="8">8</label>
-              <input id="8" type="checkbox" name="8" value="8">
-            </div>
-            <div class="filter">
-              <label for="9">9</label>
-              <input id="9" type="checkbox" name="9" value="9">
-            </div>
-            <div class="filter">
-              <label for="10+">10+</label>
-              <input id="10+" type="checkbox" name="10+" value="10+">
-            </div>
+          <div class="rows">
+            <label class="filterlabel" for="jugadors">Filtre de nombre de jugadors:</label>
+            <select id="jugadors">
+              <option selected value></option>
+              <option value="1">Jocs individuals</option>
+              <option value="2">Jocs de 2 jugadors/es</option>
+              <option value="3">Jocs de 3 jugadors/es</option>
+              <option value="4">Jocs de 4 jugadors/es</option>
+              <option value="5">Jocs de 5 jugadors/es</option>
+              <option value="6">Jocs de 6 jugadors/es</option>
+              <option value="7">Jocs de 7 jugadors/es</option>
+              <option value="8">Jocs de 8 jugadors/es</option>
+              <option value="9">Jocs de 9 jugadors/es</option>
+              <option value="10+">Jocs de 10 jugadors/es o més</option>
+            </select>
           </div>
-        </div>
-
-        <!--<button id="filtrar" class="neutre">filtrar</button>-->
+          <div class="rows">
+            <label class="filterlabel" for="dificultat">Filtre per dificultat:</label>
+            <select id="dificultat">
+              <option selected value></option>
+              <option value="1">Jocs fàcils</option>
+              <option value="2">Jocs mitjans</option>
+              <option value="3">Jocs difícils</option>
+              <option value="4">Jocs molt difícils</option>
+            </select>
+          </div>
       </aside>
+      
       <button id="boto-afegir" class="constructiu hidden"></button>
       <p id="message"></p>
       <div id="llistajocs" class="llistaelements">
@@ -229,17 +201,19 @@
     </button>
   </main>
 
-  <footer>
-    <section class="contacte">
-      <h2>Contacta amb nosaltres!</h2>
+  <footer class="columns space-evenly">
+    <section id="contacte">
+      <h3>Contacta amb nosaltres!</h3>
       <adress property="email">
         <a id="email" class="social-link" href="mailto:juntacruab@gmail.com">juntacruab@gmail.com</a>
       </adress>
       <adress property="adress" typeof="PostalAdress">
         <p property="streetAdress">Plaça Cívica, 08193 Bellaterra, Barcelona</p>
+        <p>T'esperem!</p>
       </adress>
     </section>
-    <section class="social-links">
+    <section id="enllaços-socials">
+      <h3>Ens pots trobar a...</h3>
       <a id="instagram" class="social-link" property="instagram" name="@"
         href="https://www.instagram.com/cruab_clubderol/">Instagram</a>
       <a id="facebook" class="social-link" property="facebook" name="" href="facebook.com">Facebook</a>
@@ -249,9 +223,22 @@
       <label for="socisactius">Socis actius: </label>
       <span id="socisactius"></span>
     </section>
+    <section id="textos-legals">
+      <h3>Textos legals</h3>
+      <p>
+        <a href="/avis-legal/" target="_blank" rel="noopener noreferrer">Avís Legal</a>
+        <br>
+        <a href="/politica-de-privacitat/" target="_blank" rel="noopener noreferrer"> Política de Privacitat i
+          Cookies</a><br>
+        <!--<a href="/drets-dimatge/" target="_blank" rel="noopener noreferrer"> Drets de cessió de dades i imatges</a><br>
+        <a href="/estatuts-del-club-excursionista-esparreguera/" target="_blank" rel="noopener noreferrer"> Estatuts del
+          Club</a><br>
+        <a href="/politica-de-xarxes-socials/" target="_blank" rel="noopener noreferrer"> Política de Xarxes Socials</a>-->
+      </p>
+    </section>
   </footer>
 
-  <div id="popup"></div>
+  <div id="toast"></div>
 
   <div class="loading-parent hidden columns">
     <div class="loading"></div>

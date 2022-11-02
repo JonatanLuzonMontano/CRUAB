@@ -2,40 +2,40 @@ function validarFormulariManual(dades, imatge) {
 
   if (dades['nom'] == "") {
     document.forms["formafegirmanual"]["nom"].focus();
-    popUp("El nom és obligatori");
+    toast("El nom és obligatori");
     return false;
   }
   if (dades['genere'] == "") {
     document.forms["formafegirmanual"]["genere"].focus();
-    popUp("Has de posar el génere");
+    toast("Has de posar el génere");
     return false;
   }
   if (dades['ambientacio'] == "") {
     document.forms["formafegirmanual"]["ambientacio"].focus();
-    popUp("Has de posar una ambientació");
+    toast("Has de posar una ambientació");
     return false;
   }
   if (dades['editorial'] == "") {
     document.forms["formafegirmanual"]["editorial"].focus();
-    popUp("Has d'indicar l'editorial");
+    toast("Has d'indicar l'editorial");
     return false;
   }
   if (dades['adquirit'] == "") {
     document.forms["formafegirmanual"]["adquirit"].focus();
-    popUp("Has d'indicar quan es va adquirir el manual");
+    toast("Has d'indicar quan es va adquirir el manual");
     return false;
   } else {
     var data = Date.parse(new Date());
     var datanadquisicio = Date.parse(dades['adquirit']);
     if (data < datanadquisicio) {
       document.forms["formregistre"]["naixement"].focus();
-      popUp("La data d'adquisició ha de ser anterior a la data actual");
+      toast("La data d'adquisició ha de ser anterior a la data actual");
       return false;
     }
   }
   if (imatge == null) {
     document.forms["formafegirmanual"]["img-uploader"].focus();
-    popUp("Has d'introduir una imatge");
+    toast("Has d'introduir una imatge");
     return false;
   }
 
@@ -128,12 +128,12 @@ function getManuals() {
         }
         var manualactual = document.querySelector(".manual:last-child");
         manualactual.id = manual.Nom;
-        manualactual.getElementsByClassName("nom")[0].textContent = manual.Nom;
+        manualactual.getElementsByClassName("nom")[0].textContent = decode(manual.Nom);
         manualactual.querySelector("a").href = "manualindividual.html?nom=" + manual.Nom;
         manualactual.querySelector("img").src = manual.Imatge;
-        manualactual.querySelector(".editorial").textContent = "Publicat per " + manual.Editorial + ".";
-        manualactual.querySelector(".ambientacio").textContent = "Ambientació: " + manual.Ambientacio + ".";
-        manualactual.querySelector(".coleccio").textContent = "Part de la col·leció " + manual.Coleccio + ".";
+        manualactual.querySelector(".editorial").textContent = "Publicat per " + decode(manual.Editorial) + ".";
+        manualactual.querySelector(".ambientacio").textContent = "Ambientació: " + decode(manual.Ambientacio) + ".";
+        manualactual.querySelector(".coleccio").textContent = "Part de la col·leció " + decode(manual.Coleccio) + ".";
         manualactual.querySelector(".adquirit").textContent = "A la taquilla des del " + manual.Adquirit + ".";
 
         if (sessionStorage['juntari'] == 'true') {

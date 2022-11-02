@@ -37,11 +37,14 @@ function pasEleccions() {
         obtenirLlistes();
 
 
-        const botovotar = document.getElementsByClassName('votar');
-        for (i = 0; i < botovotar.length; i++) {
-          botovotar[i].classList.remove('hidden');
-          //element.addEventListener('click', function () { votar(); });
-        }
+        setTimeout(function () {
+          const botovotar = document.getElementsByClassName('votar');
+          console.log(botovotar);
+          for (i = 0; i < botovotar.length; i++) {
+            botovotar[i].classList.remove('hidden');
+            //element.addEventListener('click', function () { votar(); });
+          }
+        }, 200);
       }
     }
   }
@@ -55,7 +58,7 @@ function obtenirLlistes() {
     if (this.readyState == 4 && this.status == 200) {
       //console.log(xhttpllistes.responseText);
       var data = JSON.parse(xhttpllistes.responseText);
-      //console.table(data);
+      console.table(data);
 
       const taula = document.getElementsByTagName('tbody')[0];
 
@@ -74,13 +77,13 @@ function obtenirLlistes() {
         const carreg = element.Carreg;
         if (carreg.startsWith("Vocal")) {
           if (fileraactual.getElementsByClassName('Vocals')[0].textContent === "") {
-            if (element.pseudonim != "") {
+            if (element.pseudonim != "" && element.pseudonim != " " && element.pseudonim != null) {
               fileraactual.getElementsByClassName('Vocals')[0].textContent = element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
             } else {
               fileraactual.getElementsByClassName('Vocals')[0].textContent = element.nom + ' ' + element.primercognom;
             }
           } else {
-            if (element.pseudonim != "") {
+            if (element.pseudonim != "" && element.pseudonim != null ) {
               fileraactual.getElementsByClassName('Vocals')[0].textContent += ', ' + element.nom + ' "' + element.pseudonim + '" ' + element.primercognom;
             } else {
               fileraactual.getElementsByClassName('Vocals')[0].textContent += ', ' + element.nom + ' ' + element.primercognom;
@@ -358,7 +361,7 @@ function afegirVocal(parent) {
   let numvocals;
   if (selectparent.classList.contains('rows')) {
     if (selectparent.querySelector('*').length === 10) {
-      popUp('Normalment diria que ' + selectparent.querySelector('*').length + ' vocals son molts');
+      toast('Normalment diria que ' + selectparent.querySelector('*').length + ' vocals son molts');
     }
     vocalacopiar = document.querySelector("#Vocal-1");
     vocalclon = vocalacopiar.cloneNode(true);
@@ -367,7 +370,7 @@ function afegirVocal(parent) {
     selectparent.querySelector('div:last-child').id = "Vocal-" + (numvocals);
   } else {
     if (selectparent.querySelector('*').length === 10) {
-      popUp('Normalment diria que ' + selectparent.querySelector('select').length + ' vocals son molts');
+      toast('Normalment diria que ' + selectparent.querySelector('select').length + ' vocals son molts');
     }
     vocalacopiar = document.querySelector(".editant .Vocals select");
     vocalclon = vocalacopiar.cloneNode(true);
@@ -385,7 +388,7 @@ function eliminarVocal(parent) {
 
     selectparent.removeChild(vocalaeliminar);
   } else {
-    popUp("El minim de camps per eliminar es 2");
+    toast("El minim de camps per eliminar es 2");
   }
 }
 
@@ -407,7 +410,7 @@ function validarFormulari(dades) {
         document.getElementById(key).focus();
         registreLabels[index].classList.add('error');
         dadestotes = false;
-        popUp('La llista necessita un membre com a ' + key.toLowerCase() + '.');
+        toast('La llista necessita un membre com a ' + key.toLowerCase() + '.');
         break;
       }
     }
@@ -450,7 +453,7 @@ function enviarLlista(tipo, nomllista) {
             alert("error");
             console.log(data["Error"]);
             if (data.hasOwnProperty('DeBug')) {
-              
+
               console.log(data["Debug"]);
             }
           } else {
